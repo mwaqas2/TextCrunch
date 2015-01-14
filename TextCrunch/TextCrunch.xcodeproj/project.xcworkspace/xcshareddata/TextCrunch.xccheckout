@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>C9ABC4C1-EB59-4485-A0C2-666DC0FFEA3F</string>
+	<key>IDESourceControlProjectName</key>
+	<string>TextCrunch</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>21D71D0CE56430782321F412BF8ABA9C00C8448D</key>
+		<string>https://github.com/gcoomber/TextCrunch.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>TextCrunch/TextCrunch.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>21D71D0CE56430782321F412BF8ABA9C00C8448D</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/gcoomber/TextCrunch.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>21D71D0CE56430782321F412BF8ABA9C00C8448D</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>21D71D0CE56430782321F412BF8ABA9C00C8448D</string>
+			<key>IDESourceControlWCCName</key>
+			<string>TextCrunch</string>
+		</dict>
+	</array>
+</dict>
+</plist>
