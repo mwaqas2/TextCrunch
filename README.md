@@ -5,6 +5,8 @@
 
 Textcrunch is an iOS application(iOS7 or later) that makes buying and selling textbooks easy for students.
 
+[Doc Folder](https://drive.google.com/a/ualberta.ca/?tab=mo#folders/0B3Dml7eFPSQ-cnJ2TVFNdmhtU2s)
+
 [Meeting Minutes - Jan 12th](https://docs.google.com/document/d/19mreAEWOptTLUcETKrQju4GBI7gQ0J4XwUUK4sA2ZwE/edit?usp=sharing)
 
 [Requirements & Planning Document](https://docs.google.com/a/ualberta.ca/document/d/1bmjq_dkj4x_Q1tWqtzVzgbF_mbeWVTM-F2QmuKVp4K0/edit#heading=h.rf5nc6mi4le2)
