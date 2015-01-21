@@ -14,11 +14,11 @@
 		<string>https://github.com/gcoomber/TextCrunch.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>TextCrunch/TextCrunch.xcodeproj</string>
+	<string>TextCrunch.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>21D71D0CE56430782321F412BF8ABA9C00C8448D</key>
-		<string>../../..</string>
+		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/gcoomber/TextCrunch.git</string>
@@ -34,7 +34,7 @@
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>21D71D0CE56430782321F412BF8ABA9C00C8448D</string>
 			<key>IDESourceControlWCCName</key>
-			<string>TextCrunch</string>
+			<string>textcrunch</string>
 		</dict>
 	</array>
 </dict>
