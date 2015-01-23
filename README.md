@@ -16,3 +16,5 @@ Textcrunch is an iOS application(iOS7 or later) that makes buying and selling te
 You can modify and run the app by cloning this repository and then opening the project within XCode(v6.1 required).
 
 ### Third Party Resources
+
+Test commit
