@@ -15,6 +15,26 @@ Textcrunch is an iOS application(iOS7 or later) that makes buying and selling te
 
 ### Installation
 
+#### CocoaPods
+
+We use CocoaPods as our package manager. In order to install you will need
+a working version of
+[Ruby](https://www.ruby-lang.org/en/documentation/installation/).
+
+To install CocoaPods, assuming you're in the TextCrunch root:
+
+```bash
+sudo gem install cocoapods
+pod setup
+pod install
+```
+
+If this all worked successfully, you'll have all of the latest dependecies
+installed and working properly!
+
+
+#### Development
+
 You can modify and run the app by cloning this repository and then opening the project within XCode(v6.1 required).
 
 ### Third Party Resources
