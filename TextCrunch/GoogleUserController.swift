@@ -10,11 +10,5 @@ import Foundation
 
 
 class GoogleUserController: UserController{
-    override func loginUser(user: UserModel){
-        super.loginUser(user)
-    }
-    
-    override func createUserAccount(user: UserModel){
-        super.createUserAccount(user)
-    }
+
 }
