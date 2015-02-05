@@ -10,14 +10,17 @@ import Foundation
 import CoreLocation
 
 class UserModel {
-    
-    var uname: String
     var email: String
     var pass: String
+    var accountId: String
+    var paymentToken: String
+    var currentLocation: CLLocation?
     
-    init(uname: String, email: String, pass:String) {
-        self.uname = uname
+    init(email: String, pass: String){
         self.email = email
         self.pass = pass
+        self.accountId = ""
+        self.paymentToken = ""
     }
+    
 }
