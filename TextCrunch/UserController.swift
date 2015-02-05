@@ -10,7 +10,7 @@ import Foundation
 
 
 //The base UserController class for non-social network user management.
-class UserController{
+public class UserController{
     
     let LOGINFAIL_MISC = -1 //Login error code for unknown error.
     let LOGINFAIL_PASSWORD = 0 //Login error code for if the login password is not correct.
@@ -20,13 +20,17 @@ class UserController{
     
     let CREATEFAIL_MISC = -1 //Account creation error code for unknown error.
     let CREATEFAIL_EMAILEXISTS = 10 //Account creation error code for if the email is already in use.
-    let CREATESUCCESS = 11 //Account creation code for a successful creation.
-    
+    public let CREATESUCCESS = 11 //Account creation code for a successful creation.
+	
+	public init()
+	{
+	}
+	
     func loginUser(user: UserModel) -> Int{
         return self.LOGINFAIL_MISC
     }
     
-    func createUserAccount(user: UserModel) -> Int{
+    public func createUserAccount(user: UserModel) -> Int{
         return self.CREATEFAIL_MISC
     }
     
