@@ -28,6 +28,8 @@ sudo gem install cocoapods
 pod setup
 pod install
 ```
+**Important:** Open the project using TextCrunch.xcworkspace via xCode
+otherwise you're gonna have a bad time.
 
 If this all worked successfully, you'll have all of the latest dependecies
 installed and working properly!
