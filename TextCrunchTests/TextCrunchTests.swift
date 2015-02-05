@@ -2,7 +2,7 @@
 //  TextCrunchTests.swift
 //  TextCrunchTests
 //
-//  Created by Derek Dowling on 2015-01-12.
+//  Created by Derek Dowling on 2015-02-05.
 //  Copyright (c) 2015 Text Crunch. All rights reserved.
 //
 

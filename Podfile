@@ -1,10 +1,10 @@
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '8.0'
+platform :ios, '7.1'
 
 target 'TextCrunch' do
     pod 'Braintree'
-    pod 'Parse', '~> 1.6.2'
     pod 'Bolts'
+    pod 'Parse', '~> 1.6.2'
 end
 
 target 'TextCrunchTests' do
