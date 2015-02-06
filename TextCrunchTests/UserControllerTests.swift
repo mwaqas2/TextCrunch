@@ -12,10 +12,13 @@ import XCTest
 //import TextCrunch
 
 class UserControllerTests: XCTestCase {
+    
+    var appDelegate: AppDelegate = AppDelegate()
 
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        appDelegate.application(UIApplication.sharedApplication(), didFinishLaunchingWithOptions: nil)
     }
     
     override func tearDown() {
@@ -42,9 +45,9 @@ class UserControllerTests: XCTestCase {
     func testCreateUserAccount(){
         var testUser = UserModel(email: "testingemail@testing.com", pass: "password")
         var controller = UserController()
-        var result = controller.createUserAccount(testUser)
-        XCTAssert(result == controller.CREATESUCCESS, "Account created.")
-        
+        var result : UserController.UCCode = controller.createUserAccount(testUser)
+        println("test result: \(result.rawValue)")
+        XCTAssert(result == UserController.UCCode.CREATESUCESS , "Account not created.")
     }
     
     func testGetCurrentUser(){

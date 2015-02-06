@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18B312C91A8432E8009EF22B /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658FD01A1A648861004D056D /* UserModel.swift */; };
+		18B312CA1A8432EA009EF22B /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B489961A7D5FAD00541D06 /* UserController.swift */; };
+		18B312CB1A8432ED009EF22B /* ListingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B489A61A82D7F300541D06 /* ListingModel.swift */; };
+		18B312CC1A8432F0009EF22B /* GoogleUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4899E1A7D66E000541D06 /* GoogleUserController.swift */; };
+		18B312CD1A8432F3009EF22B /* FBUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4899C1A7D66D100541D06 /* FBUserController.swift */; };
+		18B312CE1A8432F7009EF22B /* TwitterUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4899A1A7D66C100541D06 /* TwitterUserController.swift */; };
+		18B312CF1A8442B9009EF22B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658FCFFA1A64789E004D056D /* AppDelegate.swift */; };
 		18B489971A7D5FAD00541D06 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B489961A7D5FAD00541D06 /* UserController.swift */; };
 		18B4899B1A7D66C100541D06 /* TwitterUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4899A1A7D66C100541D06 /* TwitterUserController.swift */; };
 		18B4899D1A7D66D100541D06 /* FBUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4899C1A7D66D100541D06 /* FBUserController.swift */; };
@@ -358,7 +365,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				655DEF9D1A8416DD00931A3B /* UserControllerTests.swift in Sources */,
+				18B312C91A8432E8009EF22B /* UserModel.swift in Sources */,
+				18B312CA1A8432EA009EF22B /* UserController.swift in Sources */,
+				18B312CF1A8442B9009EF22B /* AppDelegate.swift in Sources */,
 				655DEF971A8415D200931A3B /* TextCrunchTests.swift in Sources */,
+				18B312CE1A8432F7009EF22B /* TwitterUserController.swift in Sources */,
+				18B312CD1A8432F3009EF22B /* FBUserController.swift in Sources */,
+				18B312CB1A8432ED009EF22B /* ListingModel.swift in Sources */,
+				18B312CC1A8432F0009EF22B /* GoogleUserController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -586,6 +600,7 @@
 				655DEF9C1A8415D200931A3B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		658FCFF01A64789E004D056D /* Build configuration list for PBXProject "TextCrunch" */ = {
 			isa = XCConfigurationList;
