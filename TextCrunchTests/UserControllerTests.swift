@@ -9,7 +9,7 @@
 import UIKit
 import XCTest
 
-//import TextCrunch
+import TextCrunch
 
 class UserControllerTests: XCTestCase {
 
@@ -43,7 +43,7 @@ class UserControllerTests: XCTestCase {
         var testUser = UserModel(email: "testingemail@testing.com", pass: "password")
         var controller = UserController()
         var result = controller.createUserAccount(testUser)
-        XCTAssert(result == controller.CREATESUCCESS, "Account created.")
+		XCTAssert(result == controller.CREATESUCCESS, "Account created.")
         
     }
     
