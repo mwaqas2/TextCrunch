@@ -66,7 +66,11 @@ class UserControllerTests: XCTestCase {
     }
     
     func testGetCurrentUser(){
-        
+        var testPFUser = PFUser.logInWithUsername("testingemail@testing.com", password: "password")
+        var controller = UserController()
+        var testUser = controller.getCurrentUser()
+        XCTAssert(testUser != nil, "Returned current user nil test failed.")
+        XCTAssert(testUser?.accountId == (testPFUser.objectId), "Returned current user ID match test failed.")
     }
     
     func testDelteUserAccount(){

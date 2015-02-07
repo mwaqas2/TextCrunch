@@ -24,6 +24,10 @@ class UserController{
         case CREATESUCCESS
     }
     
+    
+    //Logs in using the passed in UserModel, setting it as the app's current user.
+    //Returns a UCCode indicating the success or failure of logging in the user.
+    //Returns .LOGINSUCCESS, .LOGINFAIL_NEXIST, .LOGINFAIL_PASSWORD, or .LOGINFAIL_MISC
     func loginUser(user: UserModel) -> UCCode{
         var resultCode = UCCode.LOGINFAIL_MISC
         var errorResult : NSError?
@@ -49,6 +53,7 @@ class UserController{
     
     //Adds the passed user model to Parse as a new user.
     //Returns a UCCode indicating the success or failure of adding the user.
+    //Returns .CREATESUCCESS, .CREATEFAIL_EMAILEXISTS, or .CREATEFAIL_MISC.
     //Currently adds the user synchronously.
     func createUserAccount(user: UserModel) -> UCCode{
         var parseModel = PFUser()
@@ -56,6 +61,7 @@ class UserController{
         parseModel.username = user.email
         parseModel.password = user.pass
         parseModel.email = user.email
+        parseModel["paymentToken"] = ""//This is temporary, as the actual payment token creation requires our payment system in place.
         
         var error:NSErrorPointer = NSErrorPointer()
         var result = parseModel.signUp(error)
@@ -68,8 +74,18 @@ class UserController{
         return resultCode
     }
     
+    
+    //Returns a UserModel representing the currently logged-in user, or nil if no user is logged in.
     func getCurrentUser()-> UserModel?{
-        return nil
+        var currentUser = PFUser.currentUser()
+        if (currentUser != nil){
+            var currentUserModel = UserModel(email: currentUser.username, pass: nil)
+            currentUserModel.accountId = currentUser.objectId
+            currentUserModel.paymentToken = currentUser["paymentToken"] as String
+            return currentUserModel
+        } else {
+            return nil
+        }
     }
     
     func deleteUserAccount(user: UserModel) -> Bool{

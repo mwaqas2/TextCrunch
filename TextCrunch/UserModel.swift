@@ -11,12 +11,12 @@ import CoreLocation
 
 class UserModel {
     var email: String
-    var pass: String
+    var pass: String?
     var accountId: String
     var paymentToken: String
     var currentLocation: CLLocation?
     
-    init(email: String, pass: String){
+    init(email: String, pass: String?){
         self.email = email
         self.pass = pass
         self.accountId = ""
