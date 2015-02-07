@@ -14,13 +14,15 @@ class Book {
     var isbn13: String
     var title: String
     var language: String
+    var authorName: String
     var publisherName: String
     var editionInfo: String
     
-    init(isbn13: String, title: String, language: String, publisherName: String, editionInfo: String) {
+    init(isbn13: String, title: String, language: String, authorName: String, publisherName: String, editionInfo: String) {
         self.isbn13 = isbn13
         self.title = title
         self.language = language
+        self.authorName = authorName
         self.publisherName = publisherName
         self.editionInfo = editionInfo
     }
