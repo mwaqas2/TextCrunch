@@ -39,15 +39,30 @@ class UserControllerTests: XCTestCase {
     }
     
     func testLoginUser(){
-        
+        var testUser = UserModel(email: "testingemail@testing.com", pass:"password")
+        var testUser2 = UserModel(email: "testingemail@testing.com", pass:"notarealpassword")
+        var testUser3 = UserModel(email: "doesntexist@testing.com", pass:"password")
+        var controller = UserController()
+        var result : UserController.UCCode = controller.loginUser(testUser)
+        XCTAssert(result == UserController.UCCode.LOGINSUCCESS, "User successful login test failed.")
+        result = controller.loginUser(testUser2)
+        XCTAssert(result == UserController.UCCode.LOGINFAIL_PASSWORD, "User wrong password login test failed.")
+        result = controller.loginUser(testUser3)
+        XCTAssert(result == UserController.UCCode.LOGINFAIL_NEXIST, "User account does not exist login test failed.")
     }
     
     func testCreateUserAccount(){
-        var testUser = UserModel(email: "testingemail@testing.com", pass: "password")
+        var testUser = UserModel(email: "useraccountcreationtest@testing.com", pass: "password")
+        var testUser2 = UserModel(email: "testingemail@testing.com", pass:"password1234")
         var controller = UserController()
         var result : UserController.UCCode = controller.createUserAccount(testUser)
-        println("test result: \(result.rawValue)")
-        XCTAssert(result == UserController.UCCode.CREATESUCESS , "Account not created.")
+        XCTAssert(result == UserController.UCCode.CREATESUCCESS , "Successful account creation test failed.")
+        result = controller.createUserAccount(testUser2)
+        XCTAssert(result == UserController.UCCode.CREATEFAIL_EMAILEXISTS, "Email taken account creation test failed.")
+        
+        //Clean up by removing the useraccountcreationtest@testing.com user from the database.
+        var userToDelte = PFUser.logInWithUsername("useraccountcreationtest@testing.com", password: "password")
+        userToDelte.delete()
     }
     
     func testGetCurrentUser(){

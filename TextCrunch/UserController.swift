@@ -12,16 +12,6 @@ import Foundation
 //The base UserController class for non-social network user management.
 class UserController{
     
-   /** let LOGINFAIL_MISC = -1 //Login error code for unknown error.
-    let LOGINFAIL_PASSWORD = 0 //Login error code for if the login password is not correct.
-    let LOGINFAIL_NEXIST = 1 //Login error code for if the account does not exist.
-    let LOGINFAIL_EMAIL = 2 //Login error code for if the email is incorrect.
-    let LOGINSUCCESS = 3 //Login code for a successful login.
-    
-    let CREATEFAIL_MISC = -1 //Account creation error code for unknown error.
-    let CREATEFAIL_EMAILEXISTS = 10 //Account creation error code for if the email is already in use.
-    let CREATESUCCESS = 11 //Account creation code for a successful creation.**/
-    
     enum UCCode : Int{
         case LOGINFAIL_PASSWORD = 0
         case LOGINFAIL_NEXIST
@@ -31,11 +21,28 @@ class UserController{
         
         case CREATEFAIL_MISC
         case CREATEFAIL_EMAILEXISTS
-        case CREATESUCESS
+        case CREATESUCCESS
     }
     
     func loginUser(user: UserModel) -> UCCode{
         var resultCode = UCCode.LOGINFAIL_MISC
+        var errorResult : NSError?
+        //PFUser.logInWithUsername(user.email, password: user.pass)
+        var resultUser = PFUser.logInWithUsername(user.email, password: user.pass, error: &errorResult)
+        if (resultUser == nil){//Either the account doesn't exist or the password is wrong.
+            var query = PFUser.query()
+            query.whereKey("username", equalTo: user.email)
+            //Checks to see if an account with the given username/email exists,
+            //if there is one the error must be that the password is wrong.
+            var queryResults = query.findObjects()
+            if (queryResults.count == 0){
+                resultCode = .LOGINFAIL_NEXIST
+            } else {
+                resultCode = .LOGINFAIL_PASSWORD
+            }
+        } else {
+            resultCode = .LOGINSUCCESS
+        }
         return resultCode
     }
     
@@ -56,21 +63,8 @@ class UserController{
             println("Error creating account: \(error.debugDescription)")
             resultCode = UCCode.CREATEFAIL_EMAILEXISTS
         } else {
-            resultCode = UCCode.CREATESUCESS
+            resultCode = UCCode.CREATESUCCESS
         }
-        /**parseModel.signUpInBackgroundWithBlock {
-            (succeeded: Bool!, error: NSError!) -> Void in
-            if error == nil {
-                // Hooray! Let them use the app now.
-                resultCode = UCCode.CREATESUCESS
-            } else {
-                let errorString = error.userInfo?["error"] as NSString
-                // Show the errorString somewhere and let the user try again.
-                println("Error creating account: \(errorString)")
-                println("Localized description: \(error.localizedDescription)")
-                resultCode = UCCode.CREATEFAIL_EMAILEXISTS
-            }
-        }**/
         return resultCode
     }
     
