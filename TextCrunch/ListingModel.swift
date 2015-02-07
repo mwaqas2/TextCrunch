@@ -8,6 +8,20 @@
 
 import Foundation
 
-class Listing{
-    //Stub placeholder while working on user controller.
+class ListingModel {
+    var book: Book?
+    var price: IntegerLiteralType
+    var seller: UserModel?
+    var buyer: UserModel?
+    var conversation: Conversation?
+    var condition: String
+    var comment: String
+    
+    init(book: Book?, seller: UserModel?, price: IntegerLiteralType, condition: String, comment: String) {
+        self.book = book
+        self.seller = seller
+        self.price = price
+        self.condition = condition
+        self.comment = comment
+    }
 }
