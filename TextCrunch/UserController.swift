@@ -88,9 +88,10 @@ class UserController{
         }
     }
     
-    func deleteUserAccount(user: UserModel) -> Bool{
-        return false
-    }
+    func deleteCurrentUserAccount() -> Bool{
+        var currentUser = PFUser.currentUser()
+        var result = currentUser.delete()
+        return result    }
     
     func logoutUser(user: UserModel) ->Bool{
         return false

@@ -73,8 +73,21 @@ class UserControllerTests: XCTestCase {
         XCTAssert(testUser?.accountId == (testPFUser.objectId), "Returned current user ID match test failed.")
     }
     
-    func testDelteUserAccount(){
+    func testDelteCurrentUserAccount(){
+        //Set up by creating a new user account that will be deleted.
+        var newUser = PFUser()
+        var controller = UserController()
+        newUser.email = "accounttodelete@testing.com"
+        newUser.password = "password"
+        newUser.username = "accounttodelete@testing.com"
+        var signupResult = newUser.signUp()
+        XCTAssert(signupResult == true, "Account deletion test setup failed.")
         
+        var deletionResult = controller.deleteCurrentUserAccount()
+        XCTAssert(deletionResult == true, "Sucessful account deletion test failed.")
+        
+        deletionResult = controller.deleteCurrentUserAccount()
+        XCTAssert(deletionResult == false, "Failed account deletion test failed.")
     }
     
     func testLogoutUser(){
