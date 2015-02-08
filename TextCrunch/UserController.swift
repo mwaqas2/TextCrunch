@@ -31,7 +31,6 @@ class UserController{
     func loginUser(user: User) -> UCCode{
         var resultCode = UCCode.LOGINFAIL_MISC
         var errorResult : NSError?
-        //PFUser.logInWithUsername(user.email, password: user.pass)
         var resultUser = PFUser.logInWithUsername(user.email, password: user.pass, error: &errorResult)
         if (resultUser == nil){//Either the account doesn't exist or the password is wrong.
             var query = PFUser.query()
@@ -61,7 +60,7 @@ class UserController{
         parseModel.username = user.email
         parseModel.password = user.pass
         parseModel.email = user.email
-        parseModel["paymentToken"] = ""//This is temporary, as the actual payment token creation requires our payment system in place.
+        parseModel["paymentToken"] = user.paymentToken
         
         var error:NSErrorPointer = NSErrorPointer()
         var result = parseModel.signUp(error)
