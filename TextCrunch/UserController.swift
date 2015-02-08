@@ -88,34 +88,42 @@ class UserController{
         }
     }
     
+    //Deletes the account of the user currently logged in.
+    //Returns true if the deletion was successful and false if it was not.
     func deleteCurrentUserAccount() -> Bool{
         var currentUser = PFUser.currentUser()
         var result = currentUser.delete()
-        return result    }
-    
-    func logoutUser(user: User) ->Bool{
-        return false
+        return result
     }
     
-    func resetPassword(user: User) -> Bool{
-        return false
+    //Logs out the current user.
+    //Returns true if the logout was sucessful and false if there is still a user logged in.
+    func logoutCurrentUser() -> Bool{
+        PFUser.logOut()
+        var currentUser = PFUser.currentUser()
+        return (currentUser == nil)
     }
     
-    func getUsersSoldListings(user: User) -> [ListingModel]?{
+    //Initiates password reset with Parse by sending the user a password reset email.
+    func resetCurrentUserPassword() -> Void{
+        var currentUser = PFUser.currentUser()
+        PFUser.requestPasswordResetForEmailInBackground(currentUser.email, block: nil)
+        return
+    }
+    
+    //Incomplete until the
+    func getUsersSoldListings(user: User) -> [Listing]?{
         return nil
     }
     
-    func getUsersBoughtListings(user: User) -> [ListingModel]?{
+    func getUsersBoughtListings(user: User) -> [Listing]?{
         return nil
     }
     
-    func getUsersActiveListings(user: User) -> [ListingModel]?{
+    func getUsersActiveListings(user: User) -> [Listing]?{
         return nil
     }
     
-    func updateCurrentUser(){
-        
-    }
 }
 
 

@@ -8,6 +8,6 @@
 
 import Foundation
 
-class ListingModel{
+class Listing{
     //Stub placeholder while working on user controller.
 }

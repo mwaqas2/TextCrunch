@@ -90,12 +90,16 @@ class UserControllerTests: XCTestCase {
         XCTAssert(deletionResult == false, "Failed account deletion test failed.")
     }
     
-    func testLogoutUser(){
+    func testLogoutCurrentUser(){
+        PFUser.logInWithUsername("testingemail@testing.com", password: "password")
+        var controller = UserController()
+        var logoutResult = controller.logoutCurrentUser()
+        XCTAssert(logoutResult == true, "Successful account logout test failed.")
         
     }
     
     func testResetPassword(){
-        
+        //Untestable programmatically since it requires the user to respond to an email.
     }
     
     func testGetUsersSoldListings(){
@@ -111,8 +115,5 @@ class UserControllerTests: XCTestCase {
         
     }
     
-    func testUpdateCurrentUser(){
-        
-    }
 
 }
