@@ -13,11 +13,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        let gradientLayer = BackgroundSetting()
-        let background = gradientLayer.background()
-        
-        background.frame=self.view.bounds
-        self.view.layer.insertSublayer(background, atIndex: 0)
+
 
     }
 
