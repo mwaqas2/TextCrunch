@@ -110,16 +110,15 @@ public class UserController{
         return
     }
     
-    //Incomplete until the
-    func getUsersSoldListings(user: User) -> [Listing]?{
+    func getUsersSoldListings(user: UserModel) -> [Listing]?{
         return nil
     }
     
-    func getUsersBoughtListings(user: User) -> [Listing]?{
+    func getUsersBoughtListings(user: UserModel) -> [Listing]?{
         return nil
     }
     
-    func getUsersActiveListings(user: User) -> [Listing]?{
+    func getUsersActiveListings(user: UserModel) -> [Listing]?{
         return nil
     }
     

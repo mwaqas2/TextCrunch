@@ -7,23 +7,21 @@
 //
 
 import Foundation
-import CoreLocation
 
-class Book {
+class Book : PFObject, PFSubclassing {
     
-    var isbn13: String
-    var title: String
-    var language: String
-    var authorName: String
-    var publisherName: String
-    var editionInfo: String
+    @NSManaged var isbn13: String
+    @NSManaged var title: String
+    @NSManaged var language: String
+    @NSManaged var authorName: String
+    @NSManaged var publisherName: String
+    @NSManaged var editionInfo: String
     
-    init(isbn13: String, title: String, language: String, authorName: String, publisherName: String, editionInfo: String) {
-        self.isbn13 = isbn13
-        self.title = title
-        self.language = language
-        self.authorName = authorName
-        self.publisherName = publisherName
-        self.editionInfo = editionInfo
+    override class func load() {
+        self.registerSubclass()
+    }
+    
+    class func parseClassName() -> String! {
+        return "Book"
     }
 }

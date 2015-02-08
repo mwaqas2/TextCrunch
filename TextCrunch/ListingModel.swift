@@ -8,20 +8,20 @@
 
 import Foundation
 
-class ListingModel {
-    var book: Book?
-    var price: IntegerLiteralType
-    var seller: UserModel?
-    var buyer: UserModel?
-    var conversation: Conversation?
-    var condition: String
-    var comment: String
+class Listing : PFObject, PFSubclassing {
+    @NSManaged var book: Book
+    @NSManaged var price: IntegerLiteralType
+    @NSManaged var seller: PFObject
+    @NSManaged var buyer: PFObject?
+    @NSManaged var conversation: PFObject?
+    @NSManaged var condition: String?
+    @NSManaged var comment: String?
+
+    override class func load() {
+        self.registerSubclass()
+    }
     
-    init(book: Book?, seller: UserModel?, price: IntegerLiteralType, condition: String, comment: String) {
-        self.book = book
-        self.seller = seller
-        self.price = price
-        self.condition = condition
-        self.comment = comment
+    class func parseClassName() -> String! {
+        return "Listing"
     }
 }

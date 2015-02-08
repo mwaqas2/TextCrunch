@@ -20,6 +20,12 @@
 		18B4899F1A7D66E000541D06 /* GoogleUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4899E1A7D66E000541D06 /* GoogleUserController.swift */; };
 		18B489A71A82D7F300541D06 /* ListingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B489A61A82D7F300541D06 /* ListingModel.swift */; };
 		32C890AF1A7FC70A00196E47 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C890AE1A7FC70A00196E47 /* ProfileViewController.swift */; };
+		535A39331A870BC000D3F01B /* BookModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535A39321A870BC000D3F01B /* BookModelTests.swift */; };
+		535A39361A871EFC00D3F01B /* BookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F8E5CC1A85DFC600A5D10E /* BookModel.swift */; };
+		535A39371A871F6200D3F01B /* ListingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B489A61A82D7F300541D06 /* ListingModel.swift */; };
+		535A39381A871FA000D3F01B /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658FD01A1A648861004D056D /* UserModel.swift */; };
+		535A39391A871FAE00D3F01B /* ConversationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F8E5CB1A85DFC600A5D10E /* ConversationModel.swift */; };
+		535A393F1A874C0A00D3F01B /* ListingModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535A393D1A874C0A00D3F01B /* ListingModelTests.swift */; };
 		53F8E5CD1A85DFC600A5D10E /* ConversationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F8E5CB1A85DFC600A5D10E /* ConversationModel.swift */; };
 		53F8E5CE1A85DFC600A5D10E /* BookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F8E5CC1A85DFC600A5D10E /* BookModel.swift */; };
 		655DEF971A8415D200931A3B /* TextCrunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655DEF961A8415D200931A3B /* TextCrunchTests.swift */; };
@@ -45,7 +51,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		655DEF981A8415D200931A3B /* PBXContainerItemProxy */ = {
+		535A39341A871E4800D3F01B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 658FCFED1A64789E004D056D /* Project object */;
 			proxyType = 1;
@@ -64,6 +70,8 @@
 		18B489A61A82D7F300541D06 /* ListingModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ListingModel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		18B489A81A82DE2F00541D06 /* UserControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = UserControllerTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		32C890AE1A7FC70A00196E47 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		535A39321A870BC000D3F01B /* BookModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookModelTests.swift; sourceTree = "<group>"; };
+		535A393D1A874C0A00D3F01B /* ListingModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListingModelTests.swift; sourceTree = "<group>"; };
 		53F8E5CB1A85DFC600A5D10E /* ConversationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationModel.swift; sourceTree = "<group>"; };
 		53F8E5CC1A85DFC600A5D10E /* BookModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookModel.swift; sourceTree = "<group>"; };
 		655DEF7E1A84105D00931A3B /* libPods-TextCrunch-Bolts.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-TextCrunch-Bolts.a"; path = "Pods/build/Debug-iphoneos/libPods-TextCrunch-Bolts.a"; sourceTree = "<group>"; };
@@ -135,6 +143,8 @@
 			isa = PBXGroup;
 			children = (
 				18B489A81A82DE2F00541D06 /* UserControllerTests.swift */,
+				535A39321A870BC000D3F01B /* BookModelTests.swift */,
+				535A393D1A874C0A00D3F01B /* ListingModelTests.swift */,
 				655DEF961A8415D200931A3B /* TextCrunchTests.swift */,
 				655DEF941A8415D200931A3B /* Supporting Files */,
 			);
@@ -251,7 +261,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				655DEF991A8415D200931A3B /* PBXTargetDependency */,
+				535A39351A871E4800D3F01B /* PBXTargetDependency */,
 			);
 			name = TextCrunchTests;
 			productName = TextCrunchTests;
@@ -372,6 +382,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				535A393F1A874C0A00D3F01B /* ListingModelTests.swift in Sources */,
 				655DEF9D1A8416DD00931A3B /* UserControllerTests.swift in Sources */,
 				18B312C91A8432E8009EF22B /* UserModel.swift in Sources */,
 				18B312CA1A8432EA009EF22B /* UserController.swift in Sources */,
@@ -381,6 +392,9 @@
 				18B312CD1A8432F3009EF22B /* FBUserController.swift in Sources */,
 				18B312CB1A8432ED009EF22B /* ListingModel.swift in Sources */,
 				18B312CC1A8432F0009EF22B /* GoogleUserController.swift in Sources */,
+				535A39391A871FAE00D3F01B /* ConversationModel.swift in Sources */,
+				535A39331A870BC000D3F01B /* BookModelTests.swift in Sources */,
+				535A39361A871EFC00D3F01B /* BookModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,10 +419,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		655DEF991A8415D200931A3B /* PBXTargetDependency */ = {
+		535A39351A871E4800D3F01B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 658FCFF41A64789E004D056D /* TextCrunch */;
-			targetProxy = 655DEF981A8415D200931A3B /* PBXContainerItemProxy */;
+			targetProxy = 535A39341A871E4800D3F01B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -463,6 +477,7 @@
 				INFOPLIST_FILE = TextCrunchTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				"MTL_ENABLE_DEBUG_INFO[arch=*]" = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TextCrunch.app/TextCrunch";
 			};
