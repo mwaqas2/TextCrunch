@@ -25,10 +25,10 @@ class UserController{
     }
     
     
-    //Logs in using the passed in UserModel, setting it as the app's current user.
+    //Logs in using the passed in User, setting it as the app's current user.
     //Returns a UCCode indicating the success or failure of logging in the user.
     //Returns .LOGINSUCCESS, .LOGINFAIL_NEXIST, .LOGINFAIL_PASSWORD, or .LOGINFAIL_MISC
-    func loginUser(user: UserModel) -> UCCode{
+    func loginUser(user: User) -> UCCode{
         var resultCode = UCCode.LOGINFAIL_MISC
         var errorResult : NSError?
         //PFUser.logInWithUsername(user.email, password: user.pass)
@@ -55,7 +55,7 @@ class UserController{
     //Returns a UCCode indicating the success or failure of adding the user.
     //Returns .CREATESUCCESS, .CREATEFAIL_EMAILEXISTS, or .CREATEFAIL_MISC.
     //Currently adds the user synchronously.
-    func createUserAccount(user: UserModel) -> UCCode{
+    func createUserAccount(user: User) -> UCCode{
         var parseModel = PFUser()
         var resultCode = UCCode.CREATEFAIL_MISC
         parseModel.username = user.email
@@ -75,14 +75,14 @@ class UserController{
     }
     
     
-    //Returns a UserModel representing the currently logged-in user, or nil if no user is logged in.
-    func getCurrentUser()-> UserModel?{
-        var currentUser = PFUser.currentUser()
-        if (currentUser != nil){
-            var currentUserModel = UserModel(email: currentUser.username, pass: nil)
-            currentUserModel.accountId = currentUser.objectId
-            currentUserModel.paymentToken = currentUser["paymentToken"] as String
-            return currentUserModel
+    //Returns a User representing the currently logged-in user, or nil if no user is logged in.
+    func getCurrentUser()-> User?{
+        var currentPFUser = PFUser.currentUser()
+        if (currentPFUser != nil){
+            var currentUser = User(email: currentPFUser.username, pass: nil)
+            currentUser.accountId = currentPFUser.objectId
+            currentUser.paymentToken = currentPFUser["paymentToken"] as String
+            return currentUser
         } else {
             return nil
         }
@@ -93,23 +93,23 @@ class UserController{
         var result = currentUser.delete()
         return result    }
     
-    func logoutUser(user: UserModel) ->Bool{
+    func logoutUser(user: User) ->Bool{
         return false
     }
     
-    func resetPassword(user: UserModel) -> Bool{
+    func resetPassword(user: User) -> Bool{
         return false
     }
     
-    func getUsersSoldListings(user: UserModel) -> [ListingModel]?{
+    func getUsersSoldListings(user: User) -> [ListingModel]?{
         return nil
     }
     
-    func getUsersBoughtListings(user: UserModel) -> [ListingModel]?{
+    func getUsersBoughtListings(user: User) -> [ListingModel]?{
         return nil
     }
     
-    func getUsersActiveListings(user: UserModel) -> [ListingModel]?{
+    func getUsersActiveListings(user: User) -> [ListingModel]?{
         return nil
     }
     

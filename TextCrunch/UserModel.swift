@@ -1,5 +1,5 @@
 //
-//  UserModel.swft.swift
+//  User.swft.swift
 //  TextCrunch
 //
 //  Created by Derek Dowling on 2015-01-12.
@@ -9,7 +9,7 @@
 import Foundation
 import CoreLocation
 
-class UserModel {
+class User {
     var email: String
     var pass: String?
     var accountId: String

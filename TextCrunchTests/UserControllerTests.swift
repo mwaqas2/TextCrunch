@@ -39,9 +39,9 @@ class UserControllerTests: XCTestCase {
     }
     
     func testLoginUser(){
-        var testUser = UserModel(email: "testingemail@testing.com", pass:"password")
-        var testUser2 = UserModel(email: "testingemail@testing.com", pass:"notarealpassword")
-        var testUser3 = UserModel(email: "doesntexist@testing.com", pass:"password")
+        var testUser = User(email: "testingemail@testing.com", pass:"password")
+        var testUser2 = User(email: "testingemail@testing.com", pass:"notarealpassword")
+        var testUser3 = User(email: "doesntexist@testing.com", pass:"password")
         var controller = UserController()
         var result : UserController.UCCode = controller.loginUser(testUser)
         XCTAssert(result == UserController.UCCode.LOGINSUCCESS, "User successful login test failed.")
@@ -52,8 +52,8 @@ class UserControllerTests: XCTestCase {
     }
     
     func testCreateUserAccount(){
-        var testUser = UserModel(email: "useraccountcreationtest@testing.com", pass: "password")
-        var testUser2 = UserModel(email: "testingemail@testing.com", pass:"password1234")
+        var testUser = User(email: "useraccountcreationtest@testing.com", pass: "password")
+        var testUser2 = User(email: "testingemail@testing.com", pass:"password1234")
         var controller = UserController()
         var result : UserController.UCCode = controller.createUserAccount(testUser)
         XCTAssert(result == UserController.UCCode.CREATESUCCESS , "Successful account creation test failed.")
