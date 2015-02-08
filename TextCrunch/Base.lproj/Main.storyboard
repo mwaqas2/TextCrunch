@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="SlN-8A-vyZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="SlN-8A-vyZ">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -97,7 +97,7 @@
         <!--SellViewController-->
         <scene sceneID="WIl-Hc-D12">
             <objects>
-                <viewController title="SellViewController" id="lBh-6B-FBX" sceneMemberID="viewController">
+                <viewController title="SellViewController" id="lBh-6B-FBX" customClass="CreateListingVC" customModule="TextCrunch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="N1Z-nc-8X8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -160,7 +160,7 @@
         <!--BuyViewController-->
         <scene sceneID="UrX-6z-pV8">
             <objects>
-                <viewController title="BuyViewController" id="XIJ-nH-wfo" sceneMemberID="viewController">
+                <viewController title="BuyViewController" id="XIJ-nH-wfo" customClass="Buy_VC" customModule="TextCrunch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="n8b-Oh-9m4">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -285,7 +285,7 @@
         <!--ConfirmListingViewController-->
         <scene sceneID="0ek-Hd-kAf">
             <objects>
-                <viewController title="ConfirmListingViewController" id="pk3-Jl-ByR" sceneMemberID="viewController">
+                <viewController title="ConfirmListingViewController" id="pk3-Jl-ByR" customClass="ISBNVC" customModule="TextCrunch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="T8O-xd-JkL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -338,7 +338,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="pQb-xj-XiD"/>
         <segue reference="azw-Sk-Q3u"/>
+        <segue reference="pQb-xj-XiD"/>
     </inferredMetricsTieBreakers>
 </document>

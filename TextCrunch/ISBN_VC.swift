@@ -1,18 +1,23 @@
 //
-//  ViewController.swift
+//  ISBN_VC.swift
 //  TextCrunch
 //
-//  Created by Derek Dowling on 2015-01-12.
+//  Created by Kevin De Asis on 2015-02-08.
 //  Copyright (c) 2015 Text Crunch. All rights reserved.
 //
 
+import Foundation
+
+
 import UIKit
 
-class ViewController: UIViewController {
 
+class ISBNVC: UIViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        
         let gradientLayer = BackgroundSetting()
         let background = gradientLayer.background()
         
@@ -20,15 +25,10 @@ class ViewController: UIViewController {
         self.view.layer.insertSublayer(background, atIndex: 0)
 
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-		// Get the new view controller using segue.destinationViewController.
-		// Pass the selected object to the new view controller.
-	}
+    
 }
-

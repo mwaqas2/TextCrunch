@@ -14,6 +14,12 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        let gradientLayer = BackgroundSetting()
+        let background = gradientLayer.background()
+        
+        background.frame=self.view.bounds
+        self.view.layer.insertSublayer(background, atIndex: 0)
+
     }
 
     override func didReceiveMemoryWarning() {
