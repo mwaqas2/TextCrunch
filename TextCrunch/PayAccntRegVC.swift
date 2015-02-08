@@ -12,7 +12,7 @@ import Foundation
 import UIKit
 import CoreData
 
-class CreateListingVC: UIViewController {
+class PayAccntRegVC: UIViewController {
     
     
     //var CreateListing = [NSManagedObject]()
