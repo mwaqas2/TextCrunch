@@ -13,6 +13,7 @@
 		18B4899F1A7D66E000541D06 /* GoogleUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4899E1A7D66E000541D06 /* GoogleUserController.swift */; };
 		18B489A71A82D7F300541D06 /* ListingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B489A61A82D7F300541D06 /* ListingModel.swift */; };
 		32C890AF1A7FC70A00196E47 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C890AE1A7FC70A00196E47 /* ProfileViewController.swift */; };
+		56B9727E1A87A2CD002A0B38 /* cabinet_barcode.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 56B9727D1A87A2CD002A0B38 /* cabinet_barcode.jpg */; };
 		56D1E7511A877550000B426A /* PayAccntRegVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D1E7501A877550000B426A /* PayAccntRegVC.swift */; };
 		56D1E7541A877593000B426A /* ListingRecieverVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D1E7531A877593000B426A /* ListingRecieverVC.swift */; };
 		56D1E7571A877BC1000B426A /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D1E7561A877BC1000B426A /* Background.swift */; };
@@ -60,6 +61,7 @@
 		18B489A61A82D7F300541D06 /* ListingModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListingModel.swift; sourceTree = "<group>"; };
 		18B489A81A82DE2F00541D06 /* UserControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserControllerTests.swift; sourceTree = "<group>"; };
 		32C890AE1A7FC70A00196E47 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		56B9727D1A87A2CD002A0B38 /* cabinet_barcode.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = cabinet_barcode.jpg; path = ../../../../../Desktop/cabinet_barcode.jpg; sourceTree = "<group>"; };
 		56D1E7501A877550000B426A /* PayAccntRegVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PayAccntRegVC.swift; sourceTree = "<group>"; };
 		56D1E7531A877593000B426A /* ListingRecieverVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListingRecieverVC.swift; sourceTree = "<group>"; };
 		56D1E7561A877BC1000B426A /* Background.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 				658FCFFA1A64789E004D056D /* AppDelegate.swift */,
 				658FCFFC1A64789E004D056D /* ViewController.swift */,
 				658FCFFE1A64789E004D056D /* Main.storyboard */,
+				56B9727D1A87A2CD002A0B38 /* cabinet_barcode.jpg */,
 				32C890AE1A7FC70A00196E47 /* ProfileViewController.swift */,
 				658FD0011A64789E004D056D /* Images.xcassets */,
 				658FD0031A64789E004D056D /* LaunchScreen.xib */,
@@ -347,6 +350,7 @@
 				658FD0001A64789E004D056D /* Main.storyboard in Resources */,
 				658FD0051A64789E004D056D /* LaunchScreen.xib in Resources */,
 				658FD0021A64789E004D056D /* Images.xcassets in Resources */,
+				56B9727E1A87A2CD002A0B38 /* cabinet_barcode.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
