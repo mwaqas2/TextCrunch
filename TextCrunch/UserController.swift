@@ -110,7 +110,6 @@ public class UserController{
         return
     }
     
-    //Incomplete until the
     func getUsersSoldListings(user: User) -> [Listing]?{
         return nil
     }

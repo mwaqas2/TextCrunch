@@ -8,6 +8,20 @@
 
 import Foundation
 
-class Listing{
-    //Stub placeholder while working on user controller.
+class Listing : PFObject, PFSubclassing {
+    @NSManaged var book: Book
+    @NSManaged var price: IntegerLiteralType
+    @NSManaged var seller: PFObject
+    @NSManaged var buyer: PFObject?
+    @NSManaged var conversation: PFObject?
+    @NSManaged var condition: String?
+    @NSManaged var comment: String?
+
+    override class func load() {
+        self.registerSubclass()
+    }
+    
+    class func parseClassName() -> String! {
+        return "Listing"
+    }
 }
