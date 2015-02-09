@@ -20,7 +20,10 @@
 		18B4899F1A7D66E000541D06 /* GoogleUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4899E1A7D66E000541D06 /* GoogleUserController.swift */; };
 		18B489A71A82D7F300541D06 /* ListingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B489A61A82D7F300541D06 /* ListingModel.swift */; };
 		32C890AF1A7FC70A00196E47 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C890AE1A7FC70A00196E47 /* ProfileViewController.swift */; };
+<<<<<<< HEAD
 		32E6E0F41A84599400292B7A /* AccountCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E6E0F31A84599400292B7A /* AccountCreationViewController.swift */; };
+		53D47D867D33DB4010D71A25 /* libPods-TextCrunch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BF014D2A0012B6EBA82417A /* libPods-TextCrunch.a */; };
+=======
 		535A39331A870BC000D3F01B /* BookModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535A39321A870BC000D3F01B /* BookModelTests.swift */; };
 		535A39361A871EFC00D3F01B /* BookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F8E5CC1A85DFC600A5D10E /* BookModel.swift */; };
 		535A39371A871F6200D3F01B /* ListingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B489A61A82D7F300541D06 /* ListingModel.swift */; };
@@ -29,6 +32,7 @@
 		535A393F1A874C0A00D3F01B /* ListingModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535A393D1A874C0A00D3F01B /* ListingModelTests.swift */; };
 		53F8E5CD1A85DFC600A5D10E /* ConversationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F8E5CB1A85DFC600A5D10E /* ConversationModel.swift */; };
 		53F8E5CE1A85DFC600A5D10E /* BookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F8E5CC1A85DFC600A5D10E /* BookModel.swift */; };
+>>>>>>> master
 		655DEF971A8415D200931A3B /* TextCrunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655DEF961A8415D200931A3B /* TextCrunchTests.swift */; };
 		655DEF9D1A8416DD00931A3B /* UserControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B489A81A82DE2F00541D06 /* UserControllerTests.swift */; };
 		658FCFFB1A64789E004D056D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658FCFFA1A64789E004D056D /* AppDelegate.swift */; };
@@ -71,11 +75,14 @@
 		18B489A61A82D7F300541D06 /* ListingModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ListingModel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		18B489A81A82DE2F00541D06 /* UserControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = UserControllerTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		32C890AE1A7FC70A00196E47 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		32E6E0F31A84599400292B7A /* AccountCreationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountCreationViewController.swift; sourceTree = "<group>"; };
+=======
 		535A39321A870BC000D3F01B /* BookModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookModelTests.swift; sourceTree = "<group>"; };
 		535A393D1A874C0A00D3F01B /* ListingModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListingModelTests.swift; sourceTree = "<group>"; };
 		53F8E5CB1A85DFC600A5D10E /* ConversationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationModel.swift; sourceTree = "<group>"; };
 		53F8E5CC1A85DFC600A5D10E /* BookModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookModel.swift; sourceTree = "<group>"; };
+>>>>>>> master
 		655DEF7E1A84105D00931A3B /* libPods-TextCrunch-Bolts.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-TextCrunch-Bolts.a"; path = "Pods/build/Debug-iphoneos/libPods-TextCrunch-Bolts.a"; sourceTree = "<group>"; };
 		655DEF7F1A84105D00931A3B /* libPods-TextCrunch-Braintree.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-TextCrunch-Braintree.a"; path = "Pods/build/Debug-iphoneos/libPods-TextCrunch-Braintree.a"; sourceTree = "<group>"; };
 		655DEF801A84105D00931A3B /* libPods-TextCrunch-Parse.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-TextCrunch-Parse.a"; path = "Pods/build/Debug-iphoneos/libPods-TextCrunch-Parse.a"; sourceTree = "<group>"; };
@@ -134,7 +141,11 @@
 				65A9FD1A1A705A5D0095F48C /* CoreGraphics.framework in Frameworks */,
 				65A9FD181A705A460095F48C /* CFNetwork.framework in Frameworks */,
 				65A9FD161A705A3B0095F48C /* AudioToolbox.framework in Frameworks */,
+<<<<<<< HEAD
+				53D47D867D33DB4010D71A25 /* libPods-TextCrunch.a in Frameworks */,
+=======
 				D21F77DABE882B4DF078A486 /* libPods-TextCrunch.a in Frameworks */,
+>>>>>>> master
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
