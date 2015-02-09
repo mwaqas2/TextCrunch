@@ -13,10 +13,12 @@
 		18B4899F1A7D66E000541D06 /* GoogleUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4899E1A7D66E000541D06 /* GoogleUserController.swift */; };
 		18B489A71A82D7F300541D06 /* ListingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B489A61A82D7F300541D06 /* ListingModel.swift */; };
 		32C890AF1A7FC70A00196E47 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C890AE1A7FC70A00196E47 /* ProfileViewController.swift */; };
+		32E6E0F41A84599400292B7A /* AccountCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E6E0F31A84599400292B7A /* AccountCreationViewController.swift */; };
+		53D47D867D33DB4010D71A25 /* libPods-TextCrunch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BF014D2A0012B6EBA82417A /* libPods-TextCrunch.a */; };
 		655DEF971A8415D200931A3B /* TextCrunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655DEF961A8415D200931A3B /* TextCrunchTests.swift */; };
 		655DEF9D1A8416DD00931A3B /* UserControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B489A81A82DE2F00541D06 /* UserControllerTests.swift */; };
 		658FCFFB1A64789E004D056D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658FCFFA1A64789E004D056D /* AppDelegate.swift */; };
-		658FCFFD1A64789E004D056D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658FCFFC1A64789E004D056D /* ViewController.swift */; };
+		658FCFFD1A64789E004D056D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658FCFFC1A64789E004D056D /* LoginViewController.swift */; };
 		658FD0001A64789E004D056D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 658FCFFE1A64789E004D056D /* Main.storyboard */; };
 		658FD0021A64789E004D056D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 658FD0011A64789E004D056D /* Images.xcassets */; };
 		658FD0051A64789E004D056D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 658FD0031A64789E004D056D /* LaunchScreen.xib */; };
@@ -54,6 +56,7 @@
 		18B489A61A82D7F300541D06 /* ListingModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListingModel.swift; sourceTree = "<group>"; };
 		18B489A81A82DE2F00541D06 /* UserControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserControllerTests.swift; sourceTree = "<group>"; };
 		32C890AE1A7FC70A00196E47 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		32E6E0F31A84599400292B7A /* AccountCreationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountCreationViewController.swift; sourceTree = "<group>"; };
 		655DEF7E1A84105D00931A3B /* libPods-TextCrunch-Bolts.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-TextCrunch-Bolts.a"; path = "Pods/build/Debug-iphoneos/libPods-TextCrunch-Bolts.a"; sourceTree = "<group>"; };
 		655DEF7F1A84105D00931A3B /* libPods-TextCrunch-Braintree.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-TextCrunch-Braintree.a"; path = "Pods/build/Debug-iphoneos/libPods-TextCrunch-Braintree.a"; sourceTree = "<group>"; };
 		655DEF801A84105D00931A3B /* libPods-TextCrunch-Parse.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-TextCrunch-Parse.a"; path = "Pods/build/Debug-iphoneos/libPods-TextCrunch-Parse.a"; sourceTree = "<group>"; };
@@ -68,7 +71,7 @@
 		658FCFF51A64789E004D056D /* TextCrunch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextCrunch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		658FCFF91A64789E004D056D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		658FCFFA1A64789E004D056D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		658FCFFC1A64789E004D056D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		658FCFFC1A64789E004D056D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		658FCFFF1A64789E004D056D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		658FD0011A64789E004D056D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		658FD0041A64789E004D056D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -112,6 +115,7 @@
 				65A9FD1A1A705A5D0095F48C /* CoreGraphics.framework in Frameworks */,
 				65A9FD181A705A460095F48C /* CFNetwork.framework in Frameworks */,
 				65A9FD161A705A3B0095F48C /* AudioToolbox.framework in Frameworks */,
+				53D47D867D33DB4010D71A25 /* libPods-TextCrunch.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,7 +175,8 @@
 			isa = PBXGroup;
 			children = (
 				658FCFFA1A64789E004D056D /* AppDelegate.swift */,
-				658FCFFC1A64789E004D056D /* ViewController.swift */,
+				658FCFFC1A64789E004D056D /* LoginViewController.swift */,
+				32E6E0F31A84599400292B7A /* AccountCreationViewController.swift */,
 				658FCFFE1A64789E004D056D /* Main.storyboard */,
 				32C890AE1A7FC70A00196E47 /* ProfileViewController.swift */,
 				658FD0011A64789E004D056D /* Images.xcassets */,
@@ -367,12 +372,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				18B489971A7D5FAD00541D06 /* UserController.swift in Sources */,
-				658FCFFD1A64789E004D056D /* ViewController.swift in Sources */,
+				658FCFFD1A64789E004D056D /* LoginViewController.swift in Sources */,
 				18B4899F1A7D66E000541D06 /* GoogleUserController.swift in Sources */,
 				18B489A71A82D7F300541D06 /* ListingModel.swift in Sources */,
 				18B4899D1A7D66D100541D06 /* FBUserController.swift in Sources */,
 				658FCFFB1A64789E004D056D /* AppDelegate.swift in Sources */,
 				18B4899B1A7D66C100541D06 /* TwitterUserController.swift in Sources */,
+				32E6E0F41A84599400292B7A /* AccountCreationViewController.swift in Sources */,
 				32C890AF1A7FC70A00196E47 /* ProfileViewController.swift in Sources */,
 				658FD01B1A648861004D056D /* UserModel.swift in Sources */,
 			);
@@ -586,6 +592,7 @@
 				655DEF9C1A8415D200931A3B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		658FCFF01A64789E004D056D /* Build configuration list for PBXProject "TextCrunch" */ = {
 			isa = XCConfigurationList;
