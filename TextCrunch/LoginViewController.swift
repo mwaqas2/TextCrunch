@@ -9,16 +9,21 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-	// Text fields for user login screen
+	// Text fields for user login information
 	@IBOutlet weak var emailTextField: UITextField!
 	@IBOutlet weak var passwordTextField: UITextField!
-	
+
+	// Labels for login warnings
+	@IBOutlet weak var emailWarningLabel: UILabel!
+	@IBOutlet weak var passwordWarningLabel: UILabel!
+
 	let testEmail = "test@gmail.com"
 	let testPassword = "password"
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+		showLoginWarning(false, showPasswordWarning: false)
     }
 
     override func didReceiveMemoryWarning() {
@@ -69,9 +74,21 @@ class LoginViewController: UIViewController {
 	// returns true if the User has been successfully logged in
 	// returns false if the login was unsuccessful
 	func loginUser() -> Bool {
-		//TODO: Add user login here
+		let isCorrectEmail = isValidEmail()
+		let isCorrectPass = isCorrectPassword()
 		
-		return isValidEmail() && isCorrectPassword()
+		// Show/Hide login warnings
+		showLoginWarning(!isCorrectEmail, showPasswordWarning: !isCorrectPass)
+		
+		//TODO: Add user login here
+		return isCorrectEmail && isCorrectPass
+	}
+	
+	// Shows or hides the login warning indicating that the User's
+	// email or password are incorrect
+	func showLoginWarning(showEmailWarning: Bool, showPasswordWarning: Bool) {
+		emailWarningLabel.hidden = !showEmailWarning
+		passwordWarningLabel.hidden = (!showPasswordWarning || showEmailWarning)
 	}
 }
 
