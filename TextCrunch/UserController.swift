@@ -110,15 +110,15 @@ public class UserController{
         return
     }
     
-    func getUsersSoldListings(user: UserModel) -> [Listing]?{
+    func getUsersSoldListings(user: User) -> [Listing]?{
         return nil
     }
     
-    func getUsersBoughtListings(user: UserModel) -> [Listing]?{
+    func getUsersBoughtListings(user: User) -> [Listing]?{
         return nil
     }
     
-    func getUsersActiveListings(user: UserModel) -> [Listing]?{
+    func getUsersActiveListings(user: User) -> [Listing]?{
         return nil
     }
     
