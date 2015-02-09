@@ -23,8 +23,6 @@
 		32E6E0F41A84599400292B7A /* AccountCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E6E0F31A84599400292B7A /* AccountCreationViewController.swift */; };
 		535A39331A870BC000D3F01B /* BookModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535A39321A870BC000D3F01B /* BookModelTests.swift */; };
 		535A39361A871EFC00D3F01B /* BookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F8E5CC1A85DFC600A5D10E /* BookModel.swift */; };
-		535A39371A871F6200D3F01B /* ListingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B489A61A82D7F300541D06 /* ListingModel.swift */; };
-		535A39381A871FA000D3F01B /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658FD01A1A648861004D056D /* UserModel.swift */; };
 		535A39391A871FAE00D3F01B /* ConversationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F8E5CB1A85DFC600A5D10E /* ConversationModel.swift */; };
 		535A393F1A874C0A00D3F01B /* ListingModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535A393D1A874C0A00D3F01B /* ListingModelTests.swift */; };
 		53F8E5CD1A85DFC600A5D10E /* ConversationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F8E5CB1A85DFC600A5D10E /* ConversationModel.swift */; };
@@ -141,6 +139,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		188A779F1A896B200068587A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				18B489A61A82D7F300541D06 /* ListingModel.swift */,
+				658FD01A1A648861004D056D /* UserModel.swift */,
+				53F8E5CC1A85DFC600A5D10E /* BookModel.swift */,
+				53F8E5CB1A85DFC600A5D10E /* ConversationModel.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		188A77A01A896B3E0068587A /* ModelControllers */ = {
+			isa = PBXGroup;
+			children = (
+				18B4899E1A7D66E000541D06 /* GoogleUserController.swift */,
+				18B4899C1A7D66D100541D06 /* FBUserController.swift */,
+				18B4899A1A7D66C100541D06 /* TwitterUserController.swift */,
+				18B489961A7D5FAD00541D06 /* UserController.swift */,
+			);
+			name = ModelControllers;
+			sourceTree = "<group>";
+		};
+		188A77A11A896B5A0068587A /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				32C890AE1A7FC70A00196E47 /* ProfileViewController.swift */,
+				32E6E0F31A84599400292B7A /* AccountCreationViewController.swift */,
+				658FCFFC1A64789E004D056D /* LoginViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
 		655DEF931A8415D200931A3B /* TextCrunchTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -195,23 +225,15 @@
 		658FCFF71A64789E004D056D /* TextCrunch */ = {
 			isa = PBXGroup;
 			children = (
-				53F8E5CB1A85DFC600A5D10E /* ConversationModel.swift */,
-				53F8E5CC1A85DFC600A5D10E /* BookModel.swift */,
+				188A77A11A896B5A0068587A /* ViewControllers */,
+				188A77A01A896B3E0068587A /* ModelControllers */,
+				188A779F1A896B200068587A /* Models */,
 				658FCFFA1A64789E004D056D /* AppDelegate.swift */,
-				658FCFFC1A64789E004D056D /* LoginViewController.swift */,
-				32E6E0F31A84599400292B7A /* AccountCreationViewController.swift */,
 				658FCFFE1A64789E004D056D /* Main.storyboard */,
-				32C890AE1A7FC70A00196E47 /* ProfileViewController.swift */,
 				658FD0011A64789E004D056D /* Images.xcassets */,
 				658FD0031A64789E004D056D /* LaunchScreen.xib */,
 				658FCFF81A64789E004D056D /* Supporting Files */,
-				658FD01A1A648861004D056D /* UserModel.swift */,
 				65A9FD0E1A70571B0095F48C /* TextCrunch-Bridging-Header.h */,
-				18B489961A7D5FAD00541D06 /* UserController.swift */,
-				18B4899A1A7D66C100541D06 /* TwitterUserController.swift */,
-				18B4899C1A7D66D100541D06 /* FBUserController.swift */,
-				18B4899E1A7D66E000541D06 /* GoogleUserController.swift */,
-				18B489A61A82D7F300541D06 /* ListingModel.swift */,
 			);
 			path = TextCrunch;
 			sourceTree = "<group>";
