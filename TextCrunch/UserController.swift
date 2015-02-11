@@ -13,7 +13,8 @@ import Foundation
 public class UserController{
     
     enum UCCode : Int{
-        case LOGINFAIL_PASSWORD = 0
+		case INVALID = -1
+        case LOGINFAIL_PASSWORD
         case LOGINFAIL_NEXIST
         case LOGINFAIL_EMAIL
         case LOGINFAIL_MISC
@@ -28,7 +29,7 @@ public class UserController{
     //Logs in using the passed in User, setting it as the app's current user.
     //Returns a UCCode indicating the success or failure of logging in the user.
     //Returns .LOGINSUCCESS, .LOGINFAIL_NEXIST, .LOGINFAIL_PASSWORD, or .LOGINFAIL_MISC
-    func loginUser(user: User) -> UCCode{
+    class func loginUser(user: User) -> UCCode{
         var resultCode = UCCode.LOGINFAIL_MISC
         var errorResult : NSError?
         var resultUser = PFUser.logInWithUsername(user.email, password: user.pass, error: &errorResult)
@@ -54,7 +55,7 @@ public class UserController{
     //Returns a UCCode indicating the success or failure of adding the user.
     //Returns .CREATESUCCESS, .CREATEFAIL_EMAILEXISTS, or .CREATEFAIL_MISC.
     //Currently adds the user synchronously.
-    func createUserAccount(user: User) -> UCCode{
+    class func createUserAccount(user: User) -> UCCode{
         var parseModel = PFUser()
         var resultCode = UCCode.CREATEFAIL_MISC
         parseModel.username = user.email
@@ -75,7 +76,7 @@ public class UserController{
     
     
     //Returns a User representing the currently logged-in user, or nil if no user is logged in.
-    func getCurrentUser()-> User?{
+    class func getCurrentUser()-> User?{
         var currentPFUser = PFUser.currentUser()
         if (currentPFUser != nil){
             var currentUser = User(email: currentPFUser.username, pass: nil)
@@ -89,7 +90,7 @@ public class UserController{
     
     //Deletes the account of the user currently logged in.
     //Returns true if the deletion was successful and false if it was not.
-    func deleteCurrentUserAccount() -> Bool{
+    class func deleteCurrentUserAccount() -> Bool{
         var currentUser = PFUser.currentUser()
         var result = currentUser.delete()
         return result
@@ -97,28 +98,28 @@ public class UserController{
     
     //Logs out the current user.
     //Returns true if the logout was sucessful and false if there is still a user logged in.
-    func logoutCurrentUser() -> Bool{
+    class func logoutCurrentUser() -> Bool{
         PFUser.logOut()
         var currentUser = PFUser.currentUser()
         return (currentUser == nil)
     }
     
     //Initiates password reset with Parse by sending the user a password reset email.
-    func resetCurrentUserPassword() -> Void{
+    class func resetCurrentUserPassword() -> Void{
         var currentUser = PFUser.currentUser()
         PFUser.requestPasswordResetForEmailInBackground(currentUser.email, block: nil)
         return
     }
     
-    func getUsersSoldListings(user: User) -> [Listing]?{
+    class func getUsersSoldListings(user: User) -> [Listing]?{
         return nil
     }
     
-    func getUsersBoughtListings(user: User) -> [Listing]?{
+    class func getUsersBoughtListings(user: User) -> [Listing]?{
         return nil
     }
     
-    func getUsersActiveListings(user: User) -> [Listing]?{
+    class func getUsersActiveListings(user: User) -> [Listing]?{
         return nil
     }
     
