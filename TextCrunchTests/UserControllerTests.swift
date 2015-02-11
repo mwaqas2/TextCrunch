@@ -14,86 +14,86 @@ import TextCrunch
 class UserControllerTests: XCTestCase {
     
     var appDelegate: AppDelegate = AppDelegate()
-
+    var controller: UserController = UserController()
+    var testUser: PSUser = PSUser(email: "testingemail@testing.com")
+    
+    // Put setup code here. This method is called before the invocation of each test method in the class.
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        
         appDelegate.application(UIApplication.sharedApplication(), didFinishLaunchingWithOptions: nil)
+        self.testUser = PSUser(email: "testingemail@testing.com")
     }
     
+    // Put teardown code here. This method is called after the invocation of each test method in the class.
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
-    }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock() {
-            // Put the code you want to measure the time of here.
+        
+        if (self.testUser.isAuthenticated()) {
+            self.testUser.delete()
         }
     }
-    
+
     func testLoginUser(){
-        var testUser = User(email: "testingemail@testing.com", pass:"password")
-        var testUser2 = User(email: "testingemail@testing.com", pass:"notarealpassword")
-        var testUser3 = User(email: "doesntexist@testing.com", pass:"password")
-        var controller = UserController()
-        var result : UserController.UCCode = controller.loginUser(testUser)
+        
+        // persist user for login test
+        var testPass = "password"
+        self.testUser.password = testPass
+        self.testUser.signUp()
+        
+        var result : UserController.UCCode = self.controller.loginUser(testUser, password: testPass)
         XCTAssert(result == UserController.UCCode.LOGINSUCCESS, "User successful login test failed.")
-        result = controller.loginUser(testUser2)
+        
+        result = controller.loginUser(testUser, password: "notarealpassword")
         XCTAssert(result == UserController.UCCode.LOGINFAIL_PASSWORD, "User wrong password login test failed.")
-        result = controller.loginUser(testUser3)
+        
+        var fakeUser = PSUser(email: "doesntexist@testing.com")
+        result = controller.loginUser(fakeUser, password: testPass)
         XCTAssert(result == UserController.UCCode.LOGINFAIL_NEXIST, "User account does not exist login test failed.")
     }
     
-    func testCreateUserAccount(){
-        var testUser = User(email: "useraccountcreationtest@testing.com", pass: "password")
-        var testUser2 = User(email: "testingemail@testing.com", pass:"password1234")
-        var controller = UserController()
-        var result : UserController.UCCode = controller.createUserAccount(testUser)
+    func testCreateUserAccount() {
+
+        var result : UserController.UCCode = self.controller.createUserAccount(self.testUser, password: "password")
         XCTAssert(result == UserController.UCCode.CREATESUCCESS , "Successful account creation test failed.")
-        result = controller.createUserAccount(testUser2)
-        XCTAssert(result == UserController.UCCode.CREATEFAIL_EMAILEXISTS, "Email taken account creation test failed.")
         
-        //Clean up by removing the useraccountcreationtest@testing.com user from the database.
-        var userToDelte = PFUser.logInWithUsername("useraccountcreationtest@testing.com", password: "password")
-        userToDelte.delete()
+        result = self.controller.createUserAccount(self.testUser, password: "password")
+        XCTAssert(result == UserController.UCCode.CREATEFAIL_EMAILEXISTS, "Email taken account creation test failed.")
     }
     
     func testGetCurrentUser(){
-        var testPFUser = PFUser.logInWithUsername("testingemail@testing.com", password: "password")
-        var controller = UserController()
-        var testUser = controller.getCurrentUser()
+        
+        self.testUser.password = "password"
+        self.testUser.signUp()
+        
+        var testPFUser = PFUser.logInWithUsername(self.testUser.email, password: "password")
+        var testUser = self.controller.getCurrentUser()
+        
         XCTAssert(testUser != nil, "Returned current user nil test failed.")
-        XCTAssert(testUser?.accountId == (testPFUser.objectId), "Returned current user ID match test failed.")
+        XCTAssert(testUser.objectId == testPFUser?.objectId, "Returned current user ID match test failed.")
     }
     
-    func testDelteCurrentUserAccount(){
-        //Set up by creating a new user account that will be deleted.
-        var newUser = PFUser()
-        var controller = UserController()
-        newUser.email = "accounttodelete@testing.com"
-        newUser.password = "password"
-        newUser.username = "accounttodelete@testing.com"
-        var signupResult = newUser.signUp()
-        XCTAssert(signupResult == true, "Account deletion test setup failed.")
+    func testDeleteCurrentUserAccount(){
         
-        var deletionResult = controller.deleteCurrentUserAccount()
+        // persist user for deletion
+        self.testUser.password = "password"
+        self.testUser.signUp()
+        PFUser.logInWithUsername(self.testUser.username, password: "password")
+        
+        var deletionResult = self.controller.deleteCurrentUserAccount()
         XCTAssert(deletionResult == true, "Sucessful account deletion test failed.")
         
-        deletionResult = controller.deleteCurrentUserAccount()
+        deletionResult = self.controller.deleteCurrentUserAccount()
         XCTAssert(deletionResult == false, "Failed account deletion test failed.")
     }
     
     func testLogoutCurrentUser(){
-        PFUser.logInWithUsername("testingemail@testing.com", password: "password")
-        var controller = UserController()
-        var logoutResult = controller.logoutCurrentUser()
+        
+        self.testUser.password = "password"
+        self.testUser.signUp()
+        
+        PFUser.logInWithUsername(self.testUser.username, password: "password")
+        var logoutResult = self.controller.logoutCurrentUser()
         XCTAssert(logoutResult == true, "Successful account logout test failed.")
         
     }

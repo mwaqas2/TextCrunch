@@ -17,11 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
+        // Register Parse Subclasses before initializing
+        PSUser.registerSubclass()
         Parse.setApplicationId("bd9pkI4jclGiICv1xM5YQiDfsxUD4SB4c3jQvBHW", clientKey: "nyPjmHMJAacFQVQSg7CTxZj3DWp1pKW9RBVsOPGK")
-        var object = PFObject(className: "TestClass")
-        object.addObject("Banana", forKey: "favoriteFood")
-        object.addObject("Chocolate", forKey: "favoriteIceCream")
-        object.save()
+        
         return true
     }
 

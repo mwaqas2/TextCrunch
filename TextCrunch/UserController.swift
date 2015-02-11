@@ -10,9 +10,9 @@ import Foundation
 
 
 //The base UserController class for non-social network user management.
-public class UserController{
+public class UserController {
     
-    enum UCCode : Int{
+    enum UCCode : Int {
         case LOGINFAIL_PASSWORD = 0
         case LOGINFAIL_NEXIST
         case LOGINFAIL_EMAIL
@@ -28,10 +28,10 @@ public class UserController{
     //Logs in using the passed in User, setting it as the app's current user.
     //Returns a UCCode indicating the success or failure of logging in the user.
     //Returns .LOGINSUCCESS, .LOGINFAIL_NEXIST, .LOGINFAIL_PASSWORD, or .LOGINFAIL_MISC
-    func loginUser(user: User) -> UCCode{
+    func loginUser(user: PSUser, password: String) -> UCCode {
         var resultCode = UCCode.LOGINFAIL_MISC
         var errorResult : NSError?
-        var resultUser = PFUser.logInWithUsername(user.email, password: user.pass, error: &errorResult)
+        var resultUser = PFUser.logInWithUsername(user.email, password: password, error: &errorResult)
         if (resultUser == nil){//Either the account doesn't exist or the password is wrong.
             var query = PFUser.query()
             query.whereKey("username", equalTo: user.email)
@@ -54,42 +54,41 @@ public class UserController{
     //Returns a UCCode indicating the success or failure of adding the user.
     //Returns .CREATESUCCESS, .CREATEFAIL_EMAILEXISTS, or .CREATEFAIL_MISC.
     //Currently adds the user synchronously.
-    func createUserAccount(user: User) -> UCCode{
-        var parseModel = PFUser()
-        var resultCode = UCCode.CREATEFAIL_MISC
-        parseModel.username = user.email
-        parseModel.password = user.pass
-        parseModel.email = user.email
-        parseModel["paymentToken"] = user.paymentToken
+    func createUserAccount(user: PSUser, password: String) -> UCCode{
         
-        var error:NSErrorPointer = NSErrorPointer()
-        var result = parseModel.signUp(error)
-        if(result != true){
-            println("Error creating account: \(error.debugDescription)")
+        user.password = password
+        
+        var resultCode = UCCode.CREATEFAIL_MISC
+        var error: NSError?
+
+        var result = user.signUp(&error)
+        
+        if(!result) {
+            println("User creation error: \(error)")
             resultCode = UCCode.CREATEFAIL_EMAILEXISTS
         } else {
             resultCode = UCCode.CREATESUCCESS
         }
+        
         return resultCode
     }
     
     
     //Returns a User representing the currently logged-in user, or nil if no user is logged in.
-    func getCurrentUser()-> User?{
-        var currentPFUser = PFUser.currentUser()
-        if (currentPFUser != nil){
-            var currentUser = User(email: currentPFUser.username, pass: nil)
-            currentUser.accountId = currentPFUser.objectId
-            currentUser.paymentToken = currentPFUser["paymentToken"] as String
-            return currentUser
-        } else {
+    func getCurrentUser()-> PSUser! {
+        
+        var currentPFUser = PSUser.currentUser()
+        
+        if (currentPFUser == nil){
             return nil
         }
+        
+        return currentPFUser
     }
     
     //Deletes the account of the user currently logged in.
     //Returns true if the deletion was successful and false if it was not.
-    func deleteCurrentUserAccount() -> Bool{
+    func deleteCurrentUserAccount() -> Bool {
         var currentUser = PFUser.currentUser()
         var result = currentUser.delete()
         return result
@@ -97,7 +96,7 @@ public class UserController{
     
     //Logs out the current user.
     //Returns true if the logout was sucessful and false if there is still a user logged in.
-    func logoutCurrentUser() -> Bool{
+    func logoutCurrentUser() -> Bool {
         PFUser.logOut()
         var currentUser = PFUser.currentUser()
         return (currentUser == nil)
@@ -111,15 +110,15 @@ public class UserController{
     }
     
     //Incomplete until the
-    func getUsersSoldListings(user: User) -> [Listing]?{
+    func getUsersSoldListings(user: PSUser) -> [Listing]?{
         return nil
     }
     
-    func getUsersBoughtListings(user: User) -> [Listing]?{
+    func getUsersBoughtListings(user: PSUser) -> [Listing]?{
         return nil
     }
     
-    func getUsersActiveListings(user: User) -> [Listing]?{
+    func getUsersActiveListings(user: PSUser) -> [Listing]?{
         return nil
     }
     

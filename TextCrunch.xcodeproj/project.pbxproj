@@ -20,7 +20,6 @@
 		18B4899F1A7D66E000541D06 /* GoogleUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4899E1A7D66E000541D06 /* GoogleUserController.swift */; };
 		18B489A71A82D7F300541D06 /* ListingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B489A61A82D7F300541D06 /* ListingModel.swift */; };
 		32C890AF1A7FC70A00196E47 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C890AE1A7FC70A00196E47 /* ProfileViewController.swift */; };
-		655DEF971A8415D200931A3B /* TextCrunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655DEF961A8415D200931A3B /* TextCrunchTests.swift */; };
 		655DEF9D1A8416DD00931A3B /* UserControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B489A81A82DE2F00541D06 /* UserControllerTests.swift */; };
 		658FCFFB1A64789E004D056D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658FCFFA1A64789E004D056D /* AppDelegate.swift */; };
 		658FCFFD1A64789E004D056D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658FCFFC1A64789E004D056D /* ViewController.swift */; };
@@ -39,6 +38,7 @@
 		65A9FD261A705A910095F48C /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A9FD251A705A910095F48C /* StoreKit.framework */; };
 		65A9FD281A705A9B0095F48C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A9FD271A705A9B0095F48C /* SystemConfiguration.framework */; };
 		65A9FD2C1A705B400095F48C /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A9FD2B1A705B400095F48C /* libsqlite3.0.dylib */; };
+		ADA291EE00B53C28C69A81DA /* libPods-TextCrunch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BF014D2A0012B6EBA82417A /* libPods-TextCrunch.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,7 +71,6 @@
 		655DEF891A84107900931A3B /* libPods-TextCrunch.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-TextCrunch.a"; path = "Pods/build/Debug-iphoneos/libPods-TextCrunch.a"; sourceTree = "<group>"; };
 		655DEF921A8415D200931A3B /* TextCrunchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TextCrunchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		655DEF951A8415D200931A3B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		655DEF961A8415D200931A3B /* TextCrunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCrunchTests.swift; sourceTree = "<group>"; };
 		658FCFF51A64789E004D056D /* TextCrunch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextCrunch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		658FCFF91A64789E004D056D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		658FCFFA1A64789E004D056D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -119,6 +118,7 @@
 				65A9FD1A1A705A5D0095F48C /* CoreGraphics.framework in Frameworks */,
 				65A9FD181A705A460095F48C /* CFNetwork.framework in Frameworks */,
 				65A9FD161A705A3B0095F48C /* AudioToolbox.framework in Frameworks */,
+				ADA291EE00B53C28C69A81DA /* libPods-TextCrunch.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,7 +129,6 @@
 			isa = PBXGroup;
 			children = (
 				18B489A81A82DE2F00541D06 /* UserControllerTests.swift */,
-				655DEF961A8415D200931A3B /* TextCrunchTests.swift */,
 				655DEF941A8415D200931A3B /* Supporting Files */,
 			);
 			path = TextCrunchTests;
@@ -368,7 +367,6 @@
 				18B312C91A8432E8009EF22B /* UserModel.swift in Sources */,
 				18B312CA1A8432EA009EF22B /* UserController.swift in Sources */,
 				18B312CF1A8442B9009EF22B /* AppDelegate.swift in Sources */,
-				655DEF971A8415D200931A3B /* TextCrunchTests.swift in Sources */,
 				18B312CE1A8432F7009EF22B /* TwitterUserController.swift in Sources */,
 				18B312CD1A8432F3009EF22B /* FBUserController.swift in Sources */,
 				18B312CB1A8432ED009EF22B /* ListingModel.swift in Sources */,
