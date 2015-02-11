@@ -855,7 +855,13 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+<<<<<<< HEAD
+        <segue reference="csL-ll-QId"/>
+        <segue reference="pQb-xj-XiD"/>
+        <segue reference="azw-Sk-Q3u"/>
+=======
         <segue reference="dOV-zu-ymH"/>
         <segue reference="H8G-7b-byd"/>
+>>>>>>> master
     </inferredMetricsTieBreakers>
 </document>
