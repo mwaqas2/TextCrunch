@@ -30,8 +30,8 @@
 		53F8E5CE1A85DFC600A5D10E /* BookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F8E5CC1A85DFC600A5D10E /* BookModel.swift */; };
 		560869C41A8A51B300630C64 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560869C31A8A51B300630C64 /* Background.swift */; };
 		560869C61A8A522600630C64 /* BillingInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560869C51A8A522600630C64 /* BillingInfoViewController.swift */; };
-		560869C81A8A524F00630C64 /* BookPurchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560869C71A8A524F00630C64 /* BookPurchaseViewController.swift */; };
-		560869CA1A8A527B00630C64 /* SellBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560869C91A8A527B00630C64 /* SellBookViewController.swift */; };
+		560869C81A8A524F00630C64 /* ListingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560869C71A8A524F00630C64 /* ListingViewController.swift */; };
+		560869CA1A8A527B00630C64 /* EditListingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560869C91A8A527B00630C64 /* EditListingViewController.swift */; };
 		560869CC1A8A529800630C64 /* IsbnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560869CB1A8A529800630C64 /* IsbnViewController.swift */; };
 		560869D01A8A55C500630C64 /* cabinet_barcode.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 560869CF1A8A55C500630C64 /* cabinet_barcode.jpg */; };
 		655DEF9D1A8416DD00931A3B /* UserControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B489A81A82DE2F00541D06 /* UserControllerTests.swift */; };
@@ -82,8 +82,8 @@
 		53F8E5CC1A85DFC600A5D10E /* BookModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookModel.swift; sourceTree = "<group>"; };
 		560869C31A8A51B300630C64 /* Background.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		560869C51A8A522600630C64 /* BillingInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillingInfoViewController.swift; sourceTree = "<group>"; };
-		560869C71A8A524F00630C64 /* BookPurchaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookPurchaseViewController.swift; sourceTree = "<group>"; };
-		560869C91A8A527B00630C64 /* SellBookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SellBookViewController.swift; sourceTree = "<group>"; };
+		560869C71A8A524F00630C64 /* ListingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListingViewController.swift; sourceTree = "<group>"; };
+		560869C91A8A527B00630C64 /* EditListingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditListingViewController.swift; sourceTree = "<group>"; };
 		560869CB1A8A529800630C64 /* IsbnViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IsbnViewController.swift; sourceTree = "<group>"; };
 		560869CF1A8A55C500630C64 /* cabinet_barcode.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = cabinet_barcode.jpg; path = TextCrunch/cabinet_barcode.jpg; sourceTree = "<group>"; };
 		655DEF7E1A84105D00931A3B /* libPods-TextCrunch-Bolts.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-TextCrunch-Bolts.a"; path = "Pods/build/Debug-iphoneos/libPods-TextCrunch-Bolts.a"; sourceTree = "<group>"; };
@@ -178,8 +178,8 @@
 				32E6E0F31A84599400292B7A /* AccountCreationViewController.swift */,
 				658FCFFC1A64789E004D056D /* LoginViewController.swift */,
 				560869C51A8A522600630C64 /* BillingInfoViewController.swift */,
-				560869C71A8A524F00630C64 /* BookPurchaseViewController.swift */,
-				560869C91A8A527B00630C64 /* SellBookViewController.swift */,
+				560869C71A8A524F00630C64 /* ListingViewController.swift */,
+				560869C91A8A527B00630C64 /* EditListingViewController.swift */,
 				560869CB1A8A529800630C64 /* IsbnViewController.swift */,
 			);
 			name = ViewControllers;
@@ -451,14 +451,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				18B489971A7D5FAD00541D06 /* UserController.swift in Sources */,
-				560869CA1A8A527B00630C64 /* SellBookViewController.swift in Sources */,
+				560869CA1A8A527B00630C64 /* EditListingViewController.swift in Sources */,
 				658FCFFD1A64789E004D056D /* LoginViewController.swift in Sources */,
 				18B4899F1A7D66E000541D06 /* GoogleUserController.swift in Sources */,
 				18B489A71A82D7F300541D06 /* ListingModel.swift in Sources */,
 				560869C61A8A522600630C64 /* BillingInfoViewController.swift in Sources */,
 				53F8E5CE1A85DFC600A5D10E /* BookModel.swift in Sources */,
-				560869C81A8A524F00630C64 /* BookPurchaseViewController.swift in Sources */,
-				187896C51A8D6D7A0027C7A1 /* UserModel.swift in Sources */,
+				560869C81A8A524F00630C64 /* ListingViewController.swift in Sources */,
 				18B4899D1A7D66D100541D06 /* FBUserController.swift in Sources */,
 				560869CC1A8A529800630C64 /* IsbnViewController.swift in Sources */,
 				658FCFFB1A64789E004D056D /* AppDelegate.swift in Sources */,
