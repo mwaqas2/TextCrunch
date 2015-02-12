@@ -14,25 +14,10 @@ class User : PFUser, PFSubclassing {
         super.init()
     }
     
+    
     convenience init(email: String, stripeId: String = "") {
         self.init()
-        
         self.email = email
         self.username = email
-        //self.setStripeId(stripeId)
-        
     }
-//
-////    func setStripeId(id: String) {
-////        self["stripeId"] = id
-////    }
-////    
-////    func getStripeId() -> String {
-////        return self["stripeId"] as String
-////    }
-//    
-////    func currentUser() -> User {
-////        return self.currentUser() as User
-////    }
-//
 }

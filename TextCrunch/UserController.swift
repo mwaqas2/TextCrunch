@@ -32,18 +32,19 @@ public class UserController {
         
         var resultCode = UCCode.LOGINFAIL_MISC
         var error : NSError?
-        var errorMsg: String!
+        var errorMsg: String! = ""
         
         var user = User.logInWithUsername(loginUser.email, password: password, error: &error)
         if (user == nil) {//Either the account doesn't exist or the password is wrong.
             
-            // marshall error into return value for showing in the app
+            //Marshall error into return value for showing in the app
             errorMsg = error?.userInfo?["error"] as String!
             
             if (error?.userInfo?["code"] as Int == kPFErrorObjectNotFound) {
                 resultCode = .LOGINFAIL_NEXIST
+            } else {
+                resultCode = .LOGINFAIL_PASSWORD
             }
-            
         } else {
             resultCode = .LOGINSUCCESS
         }
@@ -62,7 +63,7 @@ public class UserController {
         
         var resultCode = UCCode.CREATEFAIL_MISC
         var error: NSError?
-        var errorMsg: String!
+        var errorMsg: String! = ""
 
         var result = user.signUp(&error)
         if(!result) {
@@ -78,7 +79,7 @@ public class UserController {
     //Deletes the account of the user currently logged in.
     //Returns true if the deletion was successful and false if it was not.
     func deleteCurrentUserAccount() -> Bool {
-        var currentUser = User.currentUser()
+        var currentUser = PFUser.currentUser()
         var result = currentUser.delete()
         return result
     }
@@ -86,19 +87,19 @@ public class UserController {
     //Logs out the current user.
     //Returns true if the logout was sucessful and false if there is still a user logged in.
     func logoutCurrentUser() -> Bool {
-        User.logOut()
-        var currentUser = User.currentUser()
+        PFUser.logOut()
+        var currentUser = PFUser.currentUser()
         return (currentUser == nil)
     }
     
     //Initiates password reset with Parse by sending the user a password reset email.
     func resetCurrentUserPassword() -> Void{
-        var currentUser = User.currentUser()
-        User.requestPasswordResetForEmailInBackground(currentUser.email, block: nil)
+        var currentUser = PFUser.currentUser()
+        PFUser.requestPasswordResetForEmailInBackground(currentUser.email, block: nil)
         return
     }
     
-    //Incomplete until the
+    //Incomplete until the Listing model stuff is complete and moved in.
     func getUsersSoldListings(user: User) -> [Listing]?{
         return nil
     }
