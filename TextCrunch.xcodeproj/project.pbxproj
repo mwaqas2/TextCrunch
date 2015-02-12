@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		18B312C91A8432E8009EF22B /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658FD01A1A648861004D056D /* UserModel.swift */; };
+		18B312C91A8432E8009EF22B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658FD01A1A648861004D056D /* User.swift */; };
 		18B312CA1A8432EA009EF22B /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B489961A7D5FAD00541D06 /* UserController.swift */; };
 		18B312CB1A8432ED009EF22B /* ListingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B489A61A82D7F300541D06 /* ListingModel.swift */; };
 		18B312CC1A8432F0009EF22B /* GoogleUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4899E1A7D66E000541D06 /* GoogleUserController.swift */; };
@@ -26,7 +26,7 @@
 		658FD0001A64789E004D056D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 658FCFFE1A64789E004D056D /* Main.storyboard */; };
 		658FD0021A64789E004D056D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 658FD0011A64789E004D056D /* Images.xcassets */; };
 		658FD0051A64789E004D056D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 658FD0031A64789E004D056D /* LaunchScreen.xib */; };
-		658FD01B1A648861004D056D /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658FD01A1A648861004D056D /* UserModel.swift */; };
+		658FD01B1A648861004D056D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658FD01A1A648861004D056D /* User.swift */; };
 		65A9FD161A705A3B0095F48C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A9FD151A705A3B0095F48C /* AudioToolbox.framework */; };
 		65A9FD181A705A460095F48C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A9FD171A705A460095F48C /* CFNetwork.framework */; };
 		65A9FD1A1A705A5D0095F48C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A9FD191A705A5D0095F48C /* CoreGraphics.framework */; };
@@ -38,7 +38,6 @@
 		65A9FD261A705A910095F48C /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A9FD251A705A910095F48C /* StoreKit.framework */; };
 		65A9FD281A705A9B0095F48C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A9FD271A705A9B0095F48C /* SystemConfiguration.framework */; };
 		65A9FD2C1A705B400095F48C /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A9FD2B1A705B400095F48C /* libsqlite3.0.dylib */; };
-		ADA291EE00B53C28C69A81DA /* libPods-TextCrunch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BF014D2A0012B6EBA82417A /* libPods-TextCrunch.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,14 +60,6 @@
 		18B489A61A82D7F300541D06 /* ListingModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ListingModel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		18B489A81A82DE2F00541D06 /* UserControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = UserControllerTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		32C890AE1A7FC70A00196E47 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		655DEF7E1A84105D00931A3B /* libPods-TextCrunch-Bolts.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-TextCrunch-Bolts.a"; path = "Pods/build/Debug-iphoneos/libPods-TextCrunch-Bolts.a"; sourceTree = "<group>"; };
-		655DEF7F1A84105D00931A3B /* libPods-TextCrunch-Braintree.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-TextCrunch-Braintree.a"; path = "Pods/build/Debug-iphoneos/libPods-TextCrunch-Braintree.a"; sourceTree = "<group>"; };
-		655DEF801A84105D00931A3B /* libPods-TextCrunch-Parse.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-TextCrunch-Parse.a"; path = "Pods/build/Debug-iphoneos/libPods-TextCrunch-Parse.a"; sourceTree = "<group>"; };
-		655DEF811A84105D00931A3B /* libPods-TextCrunch.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-TextCrunch.a"; path = "Pods/build/Debug-iphoneos/libPods-TextCrunch.a"; sourceTree = "<group>"; };
-		655DEF861A84107900931A3B /* libPods-TextCrunch-Bolts.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-TextCrunch-Bolts.a"; path = "Pods/build/Debug-iphoneos/libPods-TextCrunch-Bolts.a"; sourceTree = "<group>"; };
-		655DEF871A84107900931A3B /* libPods-TextCrunch-Braintree.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-TextCrunch-Braintree.a"; path = "Pods/build/Debug-iphoneos/libPods-TextCrunch-Braintree.a"; sourceTree = "<group>"; };
-		655DEF881A84107900931A3B /* libPods-TextCrunch-Parse.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-TextCrunch-Parse.a"; path = "Pods/build/Debug-iphoneos/libPods-TextCrunch-Parse.a"; sourceTree = "<group>"; };
-		655DEF891A84107900931A3B /* libPods-TextCrunch.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-TextCrunch.a"; path = "Pods/build/Debug-iphoneos/libPods-TextCrunch.a"; sourceTree = "<group>"; };
 		655DEF921A8415D200931A3B /* TextCrunchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TextCrunchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		655DEF951A8415D200931A3B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		658FCFF51A64789E004D056D /* TextCrunch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextCrunch.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,7 +69,7 @@
 		658FCFFF1A64789E004D056D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		658FD0011A64789E004D056D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		658FD0041A64789E004D056D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		658FD01A1A648861004D056D /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = UserModel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		658FD01A1A648861004D056D /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = User.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		65A9FD0E1A70571B0095F48C /* TextCrunch-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TextCrunch-Bridging-Header.h"; sourceTree = "<group>"; };
 		65A9FD151A705A3B0095F48C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		65A9FD171A705A460095F48C /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -91,8 +82,6 @@
 		65A9FD251A705A910095F48C /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		65A9FD271A705A9B0095F48C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		65A9FD2B1A705B400095F48C /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
-		9BF014D2A0012B6EBA82417A /* libPods-TextCrunch.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TextCrunch.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		AE7D9D790BAE55CA823B772C /* libPods-TextCrunchTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TextCrunchTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,7 +107,6 @@
 				65A9FD1A1A705A5D0095F48C /* CoreGraphics.framework in Frameworks */,
 				65A9FD181A705A460095F48C /* CFNetwork.framework in Frameworks */,
 				65A9FD161A705A3B0095F48C /* AudioToolbox.framework in Frameworks */,
-				ADA291EE00B53C28C69A81DA /* libPods-TextCrunch.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,7 +148,6 @@
 				655DEF931A8415D200931A3B /* TextCrunchTests */,
 				658FCFF61A64789E004D056D /* Products */,
 				AD73EC2E505D03FEF98DADE1 /* Pods */,
-				82130BAA12009FEBF7DF72FF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -183,7 +170,7 @@
 				658FD0011A64789E004D056D /* Images.xcassets */,
 				658FD0031A64789E004D056D /* LaunchScreen.xib */,
 				658FCFF81A64789E004D056D /* Supporting Files */,
-				658FD01A1A648861004D056D /* UserModel.swift */,
+				658FD01A1A648861004D056D /* User.swift */,
 				65A9FD0E1A70571B0095F48C /* TextCrunch-Bridging-Header.h */,
 				18B489961A7D5FAD00541D06 /* UserController.swift */,
 				18B4899A1A7D66C100541D06 /* TwitterUserController.swift */,
@@ -200,23 +187,6 @@
 				658FCFF91A64789E004D056D /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		82130BAA12009FEBF7DF72FF /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				655DEF861A84107900931A3B /* libPods-TextCrunch-Bolts.a */,
-				655DEF871A84107900931A3B /* libPods-TextCrunch-Braintree.a */,
-				655DEF881A84107900931A3B /* libPods-TextCrunch-Parse.a */,
-				655DEF891A84107900931A3B /* libPods-TextCrunch.a */,
-				655DEF7E1A84105D00931A3B /* libPods-TextCrunch-Bolts.a */,
-				655DEF7F1A84105D00931A3B /* libPods-TextCrunch-Braintree.a */,
-				655DEF801A84105D00931A3B /* libPods-TextCrunch-Parse.a */,
-				655DEF811A84105D00931A3B /* libPods-TextCrunch.a */,
-				9BF014D2A0012B6EBA82417A /* libPods-TextCrunch.a */,
-				AE7D9D790BAE55CA823B772C /* libPods-TextCrunchTests.a */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		AD73EC2E505D03FEF98DADE1 /* Pods */ = {
@@ -364,7 +334,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				655DEF9D1A8416DD00931A3B /* UserControllerTests.swift in Sources */,
-				18B312C91A8432E8009EF22B /* UserModel.swift in Sources */,
+				18B312C91A8432E8009EF22B /* User.swift in Sources */,
 				18B312CA1A8432EA009EF22B /* UserController.swift in Sources */,
 				18B312CF1A8442B9009EF22B /* AppDelegate.swift in Sources */,
 				18B312CE1A8432F7009EF22B /* TwitterUserController.swift in Sources */,
@@ -386,7 +356,7 @@
 				658FCFFB1A64789E004D056D /* AppDelegate.swift in Sources */,
 				18B4899B1A7D66C100541D06 /* TwitterUserController.swift in Sources */,
 				32C890AF1A7FC70A00196E47 /* ProfileViewController.swift in Sources */,
-				658FD01B1A648861004D056D /* UserModel.swift in Sources */,
+				658FD01B1A648861004D056D /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -491,7 +461,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -530,7 +500,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "TextCrunch/TextCrunch-Bridging-Header.h";
@@ -552,7 +522,7 @@
 					"$(PROJECT_DIR)/vendor",
 				);
 				INFOPLIST_FILE = TextCrunch/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -577,7 +547,7 @@
 					"$(PROJECT_DIR)/vendor",
 				);
 				INFOPLIST_FILE = TextCrunch/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

@@ -13,16 +13,24 @@ import TextCrunch
 
 class UserControllerTests: XCTestCase {
     
-    var appDelegate: AppDelegate = AppDelegate()
-    var controller: UserController = UserController()
-    var testUser: PSUser = PSUser(email: "testingemail@testing.com")
+    var appDelegate: AppDelegate!
+    var controller: UserController!
+    var testUser: User!
     
     // Put setup code here. This method is called before the invocation of each test method in the class.
     override func setUp() {
         super.setUp()
         
+        appDelegate = AppDelegate()
         appDelegate.application(UIApplication.sharedApplication(), didFinishLaunchingWithOptions: nil)
-        self.testUser = PSUser(email: "testingemail@testing.com")
+        controller = UserController()
+        
+        // generate uuid's so we don't have collisions and for test debugging
+        var uuid = NSUUID().UUIDString
+        testUser = User(email: "testingemail+\(uuid)@testing.com")
+        
+        // uncomment the print statement to help with debugging
+        // println(testUser.email)
     }
     
     // Put teardown code here. This method is called after the invocation of each test method in the class.
@@ -30,7 +38,8 @@ class UserControllerTests: XCTestCase {
         super.tearDown()
         
         if (self.testUser.isAuthenticated()) {
-            self.testUser.delete()
+            // comment this out if you need to debug the post test state
+            testUser.delete()
         }
     }
 
@@ -38,62 +47,51 @@ class UserControllerTests: XCTestCase {
         
         // persist user for login test
         var testPass = "password"
+        
         self.testUser.password = testPass
         self.testUser.signUp()
-        
-        var result : UserController.UCCode = self.controller.loginUser(testUser, password: testPass)
-        XCTAssert(result == UserController.UCCode.LOGINSUCCESS, "User successful login test failed.")
+
+        var result = self.controller.loginUser(testUser, password: self.testUser.password)
+        XCTAssert(result.code == UserController.UCCode.LOGINSUCCESS, "User successful login test failed.")
         
         result = controller.loginUser(testUser, password: "notarealpassword")
-        XCTAssert(result == UserController.UCCode.LOGINFAIL_PASSWORD, "User wrong password login test failed.")
+        XCTAssert(result.code == UserController.UCCode.LOGINFAIL_NEXIST, "User wrong password login test failed.")
         
-        var fakeUser = PSUser(email: "doesntexist@testing.com")
+        var fakeUser = User(email: "doesntexist@testing.com")
         result = controller.loginUser(fakeUser, password: testPass)
-        XCTAssert(result == UserController.UCCode.LOGINFAIL_NEXIST, "User account does not exist login test failed.")
+        XCTAssert(result.code == UserController.UCCode.LOGINFAIL_NEXIST, "User account does not exist login test failed.")
     }
     
     func testCreateUserAccount() {
 
-        var result : UserController.UCCode = self.controller.createUserAccount(self.testUser, password: "password")
-        XCTAssert(result == UserController.UCCode.CREATESUCCESS , "Successful account creation test failed.")
+        var result = self.controller.createUserAccount(testUser, password: "password")
+        XCTAssert(result.code == UserController.UCCode.CREATESUCCESS , "Successful account creation test failed.")
         
-        result = self.controller.createUserAccount(self.testUser, password: "password")
-        XCTAssert(result == UserController.UCCode.CREATEFAIL_EMAILEXISTS, "Email taken account creation test failed.")
-    }
-    
-    func testGetCurrentUser(){
-        
-        self.testUser.password = "password"
-        self.testUser.signUp()
-        
-        var testPFUser = PFUser.logInWithUsername(self.testUser.email, password: "password")
-        var testUser = self.controller.getCurrentUser()
-        
-        XCTAssert(testUser != nil, "Returned current user nil test failed.")
-        XCTAssert(testUser.objectId == testPFUser?.objectId, "Returned current user ID match test failed.")
+        result = self.controller.createUserAccount(testUser, password: "password")
+        XCTAssert(result.code == UserController.UCCode.CREATEFAIL_EMAILEXISTS, "Email taken account creation test failed.")
     }
     
     func testDeleteCurrentUserAccount(){
         
         // persist user for deletion
-        self.testUser.password = "password"
-        self.testUser.signUp()
-        PFUser.logInWithUsername(self.testUser.username, password: "password")
+        testUser.password = "password"
+        testUser.signUp()
+        PFUser.logInWithUsername(testUser.username, password: "password")
         
-        var deletionResult = self.controller.deleteCurrentUserAccount()
+        var deletionResult = controller.deleteCurrentUserAccount()
         XCTAssert(deletionResult == true, "Sucessful account deletion test failed.")
         
-        deletionResult = self.controller.deleteCurrentUserAccount()
+        deletionResult = controller.deleteCurrentUserAccount()
         XCTAssert(deletionResult == false, "Failed account deletion test failed.")
     }
     
     func testLogoutCurrentUser(){
         
-        self.testUser.password = "password"
-        self.testUser.signUp()
+        testUser.password = "password"
+        testUser.signUp()
         
-        PFUser.logInWithUsername(self.testUser.username, password: "password")
-        var logoutResult = self.controller.logoutCurrentUser()
+        PFUser.logInWithUsername(testUser.username, password: "password")
+        var logoutResult = controller.logoutCurrentUser()
         XCTAssert(logoutResult == true, "Successful account logout test failed.")
         
     }
