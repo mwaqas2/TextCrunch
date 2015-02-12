@@ -56,7 +56,7 @@ public class UserController {
     //Returns a UCCode indicating the success or failure of adding the user.
     //Returns .CREATESUCCESS, .CREATEFAIL_EMAILEXISTS, or .CREATEFAIL_MISC.
     //Currently adds the user synchronously.
-    func createUserAccount(user: User, password: String) -> (code: UCCode, errorMsg: String!) {
+    func createUserAccount(user: User, password: String) -> (code: UCCode, error: String!) {
         
         user.password = password
         
