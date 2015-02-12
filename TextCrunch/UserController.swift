@@ -32,7 +32,7 @@ public class UserController {
         
         var resultCode = UCCode.LOGINFAIL_MISC
         var error : NSError?
-        var errorMsg: String! = ""
+        var errorMsg: String = ""
         
         var user = User.logInWithUsername(loginUser.email, password: password, error: &error)
         if (user == nil) {//Either the account doesn't exist or the password is wrong.
@@ -42,8 +42,6 @@ public class UserController {
             
             if (error?.userInfo?["code"] as Int == kPFErrorObjectNotFound) {
                 resultCode = .LOGINFAIL_NEXIST
-            } else {
-                resultCode = .LOGINFAIL_PASSWORD
             }
         } else {
             resultCode = .LOGINSUCCESS
@@ -63,7 +61,7 @@ public class UserController {
         
         var resultCode = UCCode.CREATEFAIL_MISC
         var error: NSError?
-        var errorMsg: String! = ""
+        var errorMsg: String = ""
 
         var result = user.signUp(&error)
         if(!result) {
