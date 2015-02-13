@@ -10,7 +10,7 @@ import Foundation
 
 
 //The base UserController class for non-social network user management.
-public class UserController{
+public class UserController {
     
     enum UCCode : Int{
 		case INVALID = -1
@@ -29,25 +29,25 @@ public class UserController{
     //Logs in using the passed in User, setting it as the app's current user.
     //Returns a UCCode indicating the success or failure of logging in the user.
     //Returns .LOGINSUCCESS, .LOGINFAIL_NEXIST, .LOGINFAIL_PASSWORD, or .LOGINFAIL_MISC
-    class func loginUser(user: User) -> UCCode{
+    class func loginUser(email: String, password: String) -> (code: UCCode, error: String!) {
         var resultCode = UCCode.LOGINFAIL_MISC
-        var errorResult : NSError?
-        var resultUser = PFUser.logInWithUsername(user.email, password: user.pass, error: &errorResult)
-        if (resultUser == nil){//Either the account doesn't exist or the password is wrong.
-            var query = PFUser.query()
-            query.whereKey("username", equalTo: user.email)
-            //Checks to see if an account with the given username/email exists,
-            //if there is one the error must be that the password is wrong.
-            var queryResults = query.findObjects()
-            if (queryResults.count == 0){
+        var error : NSError?
+        var errorMsg: String = ""
+        
+        var user = User.logInWithUsername(email, password: password, error: &error)
+        if (user == nil) {//Either the account doesn't exist or the password is wrong.
+            
+            //Marshall error into return value for showing in the app
+            errorMsg = error?.userInfo?["error"] as String!
+            
+            if (error?.userInfo?["code"] as Int == kPFErrorObjectNotFound) {
                 resultCode = .LOGINFAIL_NEXIST
-            } else {
-                resultCode = .LOGINFAIL_PASSWORD
             }
         } else {
             resultCode = .LOGINSUCCESS
         }
-        return resultCode
+        
+        return (resultCode, errorMsg)
     }
     
     
@@ -55,37 +55,25 @@ public class UserController{
     //Returns a UCCode indicating the success or failure of adding the user.
     //Returns .CREATESUCCESS, .CREATEFAIL_EMAILEXISTS, or .CREATEFAIL_MISC.
     //Currently adds the user synchronously.
-    class func createUserAccount(user: User) -> UCCode{
-        var parseModel = PFUser()
-        var resultCode = UCCode.CREATEFAIL_MISC
-        parseModel.username = user.email
-        parseModel.password = user.pass
-        parseModel.email = user.email
-        parseModel["paymentToken"] = user.paymentToken
+    class func createUserAccount(email: String, password: String) -> (code: UCCode, error: String!) {
         
-        var error:NSErrorPointer = NSErrorPointer()
-        var result = parseModel.signUp(error)
-        if(result != true){
-            println("Error creating account: \(error.debugDescription)")
+        var user = User()
+        user.email = email
+        user.password = password
+        user.username = email
+        
+        var resultCode = UCCode.CREATEFAIL_MISC
+        var error: NSError?
+        var errorMsg: String = ""
+
+        var result = user.signUp(&error)
+        if(!result) {
             resultCode = UCCode.CREATEFAIL_EMAILEXISTS
+            errorMsg = error?.userInfo?["error"] as String!
         } else {
             resultCode = UCCode.CREATESUCCESS
         }
-        return resultCode
-    }
-    
-    
-    //Returns a User representing the currently logged-in user, or nil if no user is logged in.
-    class func getCurrentUser()-> User?{
-        var currentPFUser = PFUser.currentUser()
-        if (currentPFUser != nil){
-            var currentUser = User(email: currentPFUser.username, pass: nil)
-            currentUser.accountId = currentPFUser.objectId
-            currentUser.paymentToken = currentPFUser["paymentToken"] as String
-            return currentUser
-        } else {
-            return nil
-        }
+        return (resultCode, errorMsg)
     }
     
     //Deletes the account of the user currently logged in.
@@ -109,6 +97,11 @@ public class UserController{
         var currentUser = PFUser.currentUser()
         PFUser.requestPasswordResetForEmailInBackground(currentUser.email, block: nil)
         return
+    }
+    
+    class func getCurrentUser() -> User{
+        var currentUser: User = User.currentUser()
+        return currentUser
     }
     
     class func getUsersSoldListings(user: User) -> [Listing]?{

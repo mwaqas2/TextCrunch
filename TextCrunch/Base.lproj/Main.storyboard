@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="SlN-8A-vyZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="SlN-8A-vyZ">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -499,7 +499,6 @@
         <!--ConfirmListingViewController-->
         <scene sceneID="fHT-Kx-UFk">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="PxI-3g-0KG" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController title="ConfirmListingViewController" id="Xbj-sq-km8" customClass="IsbnViewController" customModule="TextCrunch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Zd6-jo-fJN">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -563,13 +562,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="LmB-0y-2d8"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PxI-3g-0KG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1296" y="1565"/>
         </scene>
         <!--Sell Book View Controller-->
         <scene sceneID="r7y-ey-Qev">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="21j-s7-Sy2" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="Kzo-BZ-Fi8" customClass="SellBookViewController" customModule="TextCrunch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pi4-zQ-eSz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -649,13 +648,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="23E-Nu-C7A"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="21j-s7-Sy2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1975" y="1565"/>
         </scene>
         <!--SellViewController-->
         <scene sceneID="hvu-h5-OA6">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Nvt-6H-grt" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController title="SellViewController" id="r4H-4r-PAO" customClass="BillingInfoViewController" customModule="TextCrunch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ayH-pp-Z4C">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -720,6 +719,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="zhx-27-OYs"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nvt-6H-grt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="823" y="1152"/>
         </scene>

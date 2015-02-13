@@ -86,7 +86,7 @@ class AccountCreationViewController: UIViewController {
 		
 		// Attempt to create a new account in the Parse DB
 		if isAllowedEmail && isAllowedPass && isAllowedConfirmPass {
-			retVal = UserController.createUserAccount(User(email: emailTextField.text, pass: passwordTextField.text))
+			retVal = UserController.createUserAccount(emailTextField.text, password: passwordTextField.text).code
 			
 			accountCreated = (retVal == UserController.UCCode.CREATESUCCESS)
 		}

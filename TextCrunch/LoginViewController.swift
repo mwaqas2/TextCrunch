@@ -58,13 +58,13 @@ class LoginViewController: UIViewController {
 		
 		// Attempt to login user
 		if isValidEmail && isValidPass {
-			var retVal = UserController.loginUser(User(email: emailTextField.text, pass: passwordTextField.text))
-			loginSuccessful = (retVal == UserController.UCCode.LOGINSUCCESS)
+			var retVal = UserController.loginUser(emailTextField.text, password: passwordTextField.text)
+			loginSuccessful = (retVal.code == UserController.UCCode.LOGINSUCCESS)
 			
 			isValidEmail = loginSuccessful
 			isValidPass = loginSuccessful
 			
-			if (retVal == UserController.UCCode.LOGINFAIL_PASSWORD) {
+			if (retVal.code == UserController.UCCode.LOGINFAIL_PASSWORD) {
 				isValidPass = false
 			}
 			

@@ -1,15 +1,15 @@
 //
-//  UserModel.swift
+//  User.swft.swift
 //  TextCrunch
 //
-//  Created by Philip Pabst on 2015-02-12.
+//  Created by Derek Dowling on 2015-01-12.
 //  Copyright (c) 2015 Text Crunch. All rights reserved.
 //
 
 import Foundation
 
 class User : PFUser, PFSubclassing {
-    
+
     override init() {
         super.init()
     }
