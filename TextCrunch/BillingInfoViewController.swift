@@ -14,13 +14,10 @@ class BillingInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        let gradientLayer = BackgroundSetting()
-        let background = gradientLayer.background()
-        
-        background.frame=self.view.bounds
-        self.view.layer.insertSublayer(background, atIndex: 0)
-        
+        //let gradientLayer = BackgroundSetting()
+        //let background = gradientLayer.background()
+        //background.frame=self.view.bounds
+        //self.view.layer.insertSublayer(background, atIndex: 0)
     }
     
     override func didReceiveMemoryWarning() {
