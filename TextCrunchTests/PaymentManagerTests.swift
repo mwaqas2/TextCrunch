@@ -12,8 +12,8 @@ import TextCrunch
 
 class PaymentManagerTests: XCTestCase {
     
-    var appDelegate: AppDelegate = AppDelegate()
-    var manager: PaymentManager = PaymentManager()
+    var appDelegate: AppDelegate!
+    var manager: PaymentManager!
     
     // stripe pre-created buyer
     var stripeBuyerId: String = "cus_5fPv3WLmhhIxia"
@@ -23,29 +23,42 @@ class PaymentManagerTests: XCTestCase {
     var stripeSellerId: String = "cus_5fPxZXCiBofcDu"
     var stripeSellerToken: String = ""
     
-    var buyer: UserModel!
-    var seller: UserModel!
+    var buyer: User!
+    var seller: User!
     
     override func setUp() {
         super.setUp()
         
-        self.buyer = User("test+buyer@txtcrunch.com")
-        self.buyer.
+        appDelegate = AppDelegate()
+        appDelegate.application(UIApplication.sharedApplication(), didFinishLaunchingWithOptions: nil)
+        manager = PaymentManager()
+        var uniq = NSUUID().UUIDString
         
-        self.seller = UserModel("test+seller@txtcrunch.com")
+        buyer = User(email: "test+buyer" + uniq + "@txtcrunch.com")
+        buyer.stripeCardToken = stripeCardToken
+        buyer.stripeId = stripeBuyerId
+        buyer.password = "password1"
+        buyer.signUp()
+        
+        seller = User(email: "test+seller" + uniq + "@txtcrunch.com")
+        seller.password = "password1"
+        seller.stripeId = stripeSellerId
+        seller.stripeSellerToken = stripeSellerToken
+        seller.signUp()
     }
     
     override func tearDown() {
         super.tearDown()
-        appDelegate.application(UIApplication.sharedApplication(), didFinishLaunchingWithOptions: nil)
+        buyer.delete()
+        seller.delete()
     }
 
     func testPay() {
-        var result = self.manager.Pay(10.00, buyerId: self.buyerId, sellerId: self.sellerId, textName: "TestBook")
-        
-        XCTAssert(true, "test")
+        var result = PaymentManager.pay(10.00, buyerId: buyer.objectId, sellerId: seller.objectId, textName: "TestBook")
+        println(result)
+
         // This is an example of a functional test case.
-        //XCTAssert(!result.err, "Shouldn't error on payment attempt")
-        //XCTAssert(result.msg, "Payment Successful")
+        XCTAssert(result["err"] == nil, "Shouldn't error on payment attempt")
+        XCTAssert(result["msg"] != nil, "Payment Successful")
     }
 }

@@ -10,12 +10,15 @@ import Foundation
 
 class User : PFUser, PFSubclassing {
     
+    @NSManaged var stripeCardToken: String
+    @NSManaged var stripeId: String
+    @NSManaged var stripeSellerToken: String
+    
     override init() {
         super.init()
     }
     
-    
-    convenience init(email: String, stripeId: String = "") {
+    convenience init(email: String) {
         self.init()
         self.email = email
         self.username = email

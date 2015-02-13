@@ -55,6 +55,9 @@
 		658FD0021A64789E004D056D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 658FD0011A64789E004D056D /* Images.xcassets */; };
 		658FD0051A64789E004D056D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 658FD0031A64789E004D056D /* LaunchScreen.xib */; };
 		65A0DE891A8DC47400C0413C /* BuyerInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A0DE881A8DC47400C0413C /* BuyerInfoController.swift */; };
+		65A0DE8C1A8DC90C00C0413C /* PaymentManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A0DE8B1A8DC90C00C0413C /* PaymentManagerTests.swift */; };
+		65A0DE8E1A8DC97700C0413C /* PaymentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A0DE8D1A8DC97700C0413C /* PaymentManager.swift */; };
+		65A0DE8F1A8DCA4100C0413C /* PaymentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A0DE8D1A8DC97700C0413C /* PaymentManager.swift */; };
 		65A9FD161A705A3B0095F48C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A9FD151A705A3B0095F48C /* AudioToolbox.framework */; };
 		65A9FD181A705A460095F48C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A9FD171A705A460095F48C /* CFNetwork.framework */; };
 		65A9FD1A1A705A5D0095F48C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A9FD191A705A5D0095F48C /* CoreGraphics.framework */; };
@@ -133,6 +136,8 @@
 		658FD0011A64789E004D056D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		658FD0041A64789E004D056D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		65A0DE881A8DC47400C0413C /* BuyerInfoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuyerInfoController.swift; sourceTree = "<group>"; };
+		65A0DE8B1A8DC90C00C0413C /* PaymentManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentManagerTests.swift; sourceTree = "<group>"; };
+		65A0DE8D1A8DC97700C0413C /* PaymentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentManager.swift; sourceTree = "<group>"; };
 		65A9FD0E1A70571B0095F48C /* TextCrunch-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TextCrunch-Bridging-Header.h"; sourceTree = "<group>"; };
 		65A9FD151A705A3B0095F48C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		65A9FD171A705A460095F48C /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -248,6 +253,7 @@
 		655DEF931A8415D200931A3B /* TextCrunchTests */ = {
 			isa = PBXGroup;
 			children = (
+				65A0DE8B1A8DC90C00C0413C /* PaymentManagerTests.swift */,
 				18B489A81A82DE2F00541D06 /* UserControllerTests.swift */,
 				535A39321A870BC000D3F01B /* BookModelTests.swift */,
 				535A393D1A874C0A00D3F01B /* ListingModelTests.swift */,
@@ -335,6 +341,7 @@
 		65A0DE8A1A8DC62200C0413C /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				65A0DE8D1A8DC97700C0413C /* PaymentManager.swift */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -507,8 +514,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65A0DE8F1A8DCA4100C0413C /* PaymentManager.swift in Sources */,
 				535A393F1A874C0A00D3F01B /* ListingModelTests.swift in Sources */,
 				655DEF9D1A8416DD00931A3B /* UserControllerTests.swift in Sources */,
+				65A0DE8C1A8DC90C00C0413C /* PaymentManagerTests.swift in Sources */,
 				18B312CA1A8432EA009EF22B /* UserController.swift in Sources */,
 				18B312CF1A8442B9009EF22B /* AppDelegate.swift in Sources */,
 				187896C61A8D7A020027C7A1 /* UserModel.swift in Sources */,
@@ -548,6 +557,7 @@
 				32ECF1DB1A9D61D000F65DA5 /* SearchViewController.swift in Sources */,
 				53F8E5CD1A85DFC600A5D10E /* ConversationModel.swift in Sources */,
 				18B4899B1A7D66C100541D06 /* TwitterUserController.swift in Sources */,
+				65A0DE8E1A8DC97700C0413C /* PaymentManager.swift in Sources */,
 				32E6E0F41A84599400292B7A /* AccountCreationViewController.swift in Sources */,
 				32C890AF1A7FC70A00196E47 /* SellerListingViewController.swift in Sources */,
 				560869C41A8A51B300630C64 /* Background.swift in Sources */,

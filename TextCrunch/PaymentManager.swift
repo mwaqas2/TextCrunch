@@ -14,8 +14,7 @@ class PaymentManager {
         
     }
     
-    func Pay(dollarAmnt: Float, buyerId: String, sellerId: String, textName: String) -> Dictionary<String, String>
-    {
+    class func pay(dollarAmnt: Float, buyerId: String, sellerId: String, textName: String) -> [String: String] {
         // convert dollars to cents for Stripe
         var amntCents = dollarAmnt * 100
         
