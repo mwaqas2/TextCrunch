@@ -7,7 +7,7 @@ Textcrunch is an iOS application(iOS7 or later) that makes buying and selling te
 
 [Doc Folder](https://drive.google.com/a/ualberta.ca/?tab=mo#folders/0B3Dml7eFPSQ-cnJ2TVFNdmhtU2s)
 
-[Meeting Minutes - Jan 30th](https://docs.google.com/document/d/11F-L3x2ccZE2GWCgL6mIrnn2eDma-uQzakEOv66Hdhg/edit?usp=sharing)
+[Meeting Minutes - Feb 13th](https://docs.google.com/document/d/11F-L3x2ccZE2GWCgL6mIrnn2eDma-uQzakEOv66Hdhg/edit?usp=sharing)
 
 [Interation Plan](https://docs.google.com/spreadsheets/d/1stDzi9Jg7wkI0EvA0Bl5i-6_2FDbe8f8oR2sb_0ZHO4/edit?usp=sharing)
 
