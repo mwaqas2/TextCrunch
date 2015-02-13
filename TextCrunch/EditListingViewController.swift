@@ -22,7 +22,8 @@ class EditListingViewController: UIViewController {
     // Listing related input
     @IBOutlet weak var price: UITextField!
     @IBOutlet weak var comments: UITextField!
-   
+
+    @IBOutlet var delete: UIButton!
     
     var bookISBN:String!
     var listing:Listing!
@@ -53,6 +54,9 @@ class EditListingViewController: UIViewController {
             listing = Listing()
             listing.book = book
             listing.seller = UserController.getCurrentUser()
+            
+            // Only show delete button if listing previously existed
+            delete.hidden = true
         } else {
             book.isbn13 = listing.book.isbn13
             setListingElements()
@@ -89,6 +93,9 @@ class EditListingViewController: UIViewController {
             // Hide back bar to avoid resubmission of listing
             // Only occurs when ViewListing is accessed via EditListing
             svc.listing = self.listing
+        }
+        if (segue.identifier == "deleteListing") {
+            listing.delete()
         }
     }
     
