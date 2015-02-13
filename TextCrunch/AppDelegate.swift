@@ -19,7 +19,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Register Parse Subclasses before initializing
         //ParseCrashReporting.enable(); //This was causing issues with the UserControllerTests crashing, investigate when we have time.
         User.registerSubclass()
+        Listing.registerSubclass()
+        Book.registerSubclass()
         Parse.setApplicationId("bd9pkI4jclGiICv1xM5YQiDfsxUD4SB4c3jQvBHW", clientKey: "nyPjmHMJAacFQVQSg7CTxZj3DWp1pKW9RBVsOPGK")
+        //var object = PFObject(className: "TestClass")
+        //object.addObject("Banana", forKey: "favoriteFood")
+        //object.addObject("Chocolate", forKey: "favoriteIceCream")
+        //object.save()
         return true
     }
 

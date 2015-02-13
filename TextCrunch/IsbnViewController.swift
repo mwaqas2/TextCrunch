@@ -11,16 +11,24 @@ import UIKit
 
 class IsbnViewController: UIViewController {
     
+    @IBOutlet weak var isbn: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //let gradientLayer = BackgroundSetting()
+        //let background = gradientLayer.background()
+        //background.frame=self.view.bounds
+        //self.view.layer.insertSublayer(background, atIndex: 0)
         
-        let gradientLayer = BackgroundSetting()
-        let background = gradientLayer.background()
-        
-        background.frame=self.view.bounds
-        self.view.layer.insertSublayer(background, atIndex: 0)
-        
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        if (segue.identifier == "searchBookIsbn") {
+            var svc = segue.destinationViewController as EditListingViewController;
+            svc.bookISBN = isbn.text
+            
+        }
     }
     
     override func didReceiveMemoryWarning() {
