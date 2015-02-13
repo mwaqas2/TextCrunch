@@ -54,6 +54,7 @@
 		658FD0001A64789E004D056D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 658FCFFE1A64789E004D056D /* Main.storyboard */; };
 		658FD0021A64789E004D056D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 658FD0011A64789E004D056D /* Images.xcassets */; };
 		658FD0051A64789E004D056D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 658FD0031A64789E004D056D /* LaunchScreen.xib */; };
+		65A0DE891A8DC47400C0413C /* BuyerInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A0DE881A8DC47400C0413C /* BuyerInfoController.swift */; };
 		65A9FD161A705A3B0095F48C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A9FD151A705A3B0095F48C /* AudioToolbox.framework */; };
 		65A9FD181A705A460095F48C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A9FD171A705A460095F48C /* CFNetwork.framework */; };
 		65A9FD1A1A705A5D0095F48C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A9FD191A705A5D0095F48C /* CoreGraphics.framework */; };
@@ -131,6 +132,7 @@
 		658FCFFF1A64789E004D056D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		658FD0011A64789E004D056D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		658FD0041A64789E004D056D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		65A0DE881A8DC47400C0413C /* BuyerInfoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuyerInfoController.swift; sourceTree = "<group>"; };
 		65A9FD0E1A70571B0095F48C /* TextCrunch-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TextCrunch-Bridging-Header.h"; sourceTree = "<group>"; };
 		65A9FD151A705A3B0095F48C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		65A9FD171A705A460095F48C /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -204,6 +206,8 @@
 			isa = PBXGroup;
 			children = (
 				32C890AE1A7FC70A00196E47 /* SellerListingViewController.swift */,
+				65A0DE881A8DC47400C0413C /* BuyerInfoController.swift */,
+				32C890AE1A7FC70A00196E47 /* ProfileViewController.swift */,
 				32E6E0F31A84599400292B7A /* AccountCreationViewController.swift */,
 				658FCFFC1A64789E004D056D /* LoginViewController.swift */,
 				560869C51A8A522600630C64 /* BillingInfoViewController.swift */,
@@ -303,6 +307,7 @@
 				1892840A1A97B7AE000B15D6 /* Money Bag-25.png */,
 				560869CF1A8A55C500630C64 /* cabinet_barcode.jpg */,
 				1892840D1A97BD4E000B15D6 /* CustomViews */,
+				65A0DE8A1A8DC62200C0413C /* Managers */,
 				560869C21A8A515900630C64 /* UISettings */,
 				188A77A11A896B5A0068587A /* ViewControllers */,
 				188A77A01A896B3E0068587A /* ModelControllers */,
@@ -325,6 +330,13 @@
 				658FCFF91A64789E004D056D /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		65A0DE8A1A8DC62200C0413C /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Managers;
 			sourceTree = "<group>";
 		};
 		82130BAA12009FEBF7DF72FF /* Frameworks */ = {
@@ -522,6 +534,7 @@
 				32ECF1E31A9D63CD00F65DA5 /* ListingDatabaseController.swift in Sources */,
 				18B4899F1A7D66E000541D06 /* GoogleUserController.swift in Sources */,
 				18B489A71A82D7F300541D06 /* ListingModel.swift in Sources */,
+				65A0DE891A8DC47400C0413C /* BuyerInfoController.swift in Sources */,
 				560869C61A8A522600630C64 /* BillingInfoViewController.swift in Sources */,
 				53F8E5CE1A85DFC600A5D10E /* BookModel.swift in Sources */,
 				560869C81A8A524F00630C64 /* ListingViewController.swift in Sources */,

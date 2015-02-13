@@ -5,3 +5,5 @@
 #import <Parse/Parse.h>
 #import <Parse/PFObject+Subclass.h>
 #import <ParseCrashReporting/ParseCrashReporting.h>
+#import <Stripe/Stripe.H>
+#import <PaymentKit/PTKView.h>
