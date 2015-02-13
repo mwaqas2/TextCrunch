@@ -18,8 +18,10 @@ class EditListingViewController: UIViewController {
     @IBOutlet weak var publisher: UILabel!
     @IBOutlet weak var isbn13: UILabel!
     @IBOutlet weak var language: UILabel!
-    
     @IBOutlet weak var comments: UITextField!
+    
+    var bookISBN:String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

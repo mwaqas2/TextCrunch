@@ -11,6 +11,7 @@ import UIKit
 
 class IsbnViewController: UIViewController {
     
+    @IBOutlet weak var isbn: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,6 +22,14 @@ class IsbnViewController: UIViewController {
         background.frame=self.view.bounds
         self.view.layer.insertSublayer(background, atIndex: 0)
         
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
+        if (segue.identifier == "action") {
+            var svc = segue!.destinationViewController as EditListingViewController;
+            svc.bookISBN = isbn.text
+            
+        }
     }
     
     override func didReceiveMemoryWarning() {
