@@ -21,9 +21,6 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <segue destination="Xbj-sq-km8" kind="push" id="PUT-s2-QcB"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TxtCrunch" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8dO-WT-3Ln">
                                 <rect key="frame" x="48" y="78" width="210" height="61"/>
@@ -492,7 +489,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cabinet_barcode.jpg" id="KLT-pa-Kft">
-                                <rect key="frame" x="86" y="132" width="149" height="111"/>
+                                <rect key="frame" x="86" y="134" width="149" height="111"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1vl-3O-OeX">
@@ -505,7 +502,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Kzo-BZ-Fi8" kind="push" id="TVs-pI-eFN"/>
+                                    <segue destination="Kzo-BZ-Fi8" kind="push" identifier="searchBookIsbn" id="TVs-pI-eFN"/>
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" id="fTc-8K-dDY">
@@ -515,7 +512,7 @@
                                 <attributedString key="attributedText">
                                     <fragment content="Or you can manually enter the ISBN13, which can be found above the UPC code, below.">
                                         <attributes>
-                                            <color key="NSColor" red="0.42406486742424243" green="0.42406486742424243" blue="0.42406486742424243" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="NSColor" red="0.42406486739999999" green="0.42406486739999999" blue="0.42406486739999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <font key="NSFont" size="14" name="HelveticaNeue-Bold"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                         </attributes>
@@ -559,66 +556,66 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="spq-nR-7C6">
-                                <rect key="frame" x="0.0" y="221" width="320" height="21"/>
+                                <rect key="frame" x="0.0" y="210" width="320" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="g51-dd-9fw">
-                                <rect key="frame" x="16" y="46" width="157" height="167"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_placeholder.jpg" id="g51-dd-9fw">
+                                <rect key="frame" x="11" y="73" width="136" height="140"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="c4H-rR-gG5">
-                                <rect key="frame" x="0.0" y="250" width="320" height="21"/>
+                                <rect key="frame" x="0.0" y="239" width="320" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edition" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ec2-Wk-9Sc">
-                                <rect key="frame" x="0.0" y="279" width="320" height="21"/>
+                                <rect key="frame" x="0.0" y="268" width="320" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Publisher" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MVF-4i-5pt">
-                                <rect key="frame" x="0.0" y="308" width="320" height="21"/>
+                                <rect key="frame" x="0.0" y="297" width="320" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Language" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="De7-Wq-tj3">
-                                <rect key="frame" x="0.0" y="337" width="320" height="21"/>
+                                <rect key="frame" x="0.0" y="326" width="320" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ISBN13" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fTZ-X4-3pP">
-                                <rect key="frame" x="0.0" y="366" width="320" height="21"/>
+                                <rect key="frame" x="0.0" y="355" width="320" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Comments" minimumFontSize="17" id="3sx-CH-FLa">
-                                <rect key="frame" x="0.0" y="395" width="320" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Comments" textAlignment="center" minimumFontSize="17" id="3sx-CH-FLa">
+                                <rect key="frame" x="0.0" y="384" width="320" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <accessibility key="accessibilityConfiguration" hint="Comments" label=""/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Price" minimumFontSize="17" id="AJY-Uo-vRI">
-                                <rect key="frame" x="207" y="78" width="97" height="30"/>
+                                <rect key="frame" x="207" y="130" width="97" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="wnw-xp-DJF">
-                                <rect key="frame" x="48" y="472" width="223" height="40"/>
+                                <rect key="frame" x="49" y="461" width="223" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.96281171089999995" green="0.32081731299999999" blue="0.32051487299999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Post Listing">
@@ -626,9 +623,17 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="KuW-Cq-17O" kind="push" id="gYi-df-u0E"/>
+                                    <action selector="updateListing:" destination="Kzo-BZ-Fi8" eventType="touchUpInside" id="v8U-8q-Dx9"/>
+                                    <segue destination="KuW-Cq-17O" kind="push" identifier="viewListing" id="gYi-df-u0E"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UOr-Vp-yZO">
+                                <rect key="frame" x="188" y="130" width="19" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -640,6 +645,7 @@
                         <outlet property="edition" destination="ec2-Wk-9Sc" id="bfl-JQ-Psz"/>
                         <outlet property="isbn13" destination="fTZ-X4-3pP" id="eBL-kL-qes"/>
                         <outlet property="language" destination="De7-Wq-tj3" id="8Tr-Wh-uo6"/>
+                        <outlet property="navigationItem" destination="23E-Nu-C7A" id="wfT-cV-0ah"/>
                         <outlet property="price" destination="AJY-Uo-vRI" id="vx3-SE-Rnn"/>
                         <outlet property="publisher" destination="MVF-4i-5pt" id="lnW-jW-Z5p"/>
                     </connections>
@@ -700,97 +706,106 @@
         <!--ListingViewController-->
         <scene sceneID="3ot-cQ-jsZ">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xCI-hP-m6q" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController title="ListingViewController" id="KuW-Cq-17O" customClass="ListingViewController" customModule="TextCrunch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1t3-g1-cJ2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="NfW-hi-uMt">
-                                <rect key="frame" x="16" y="46" width="157" height="167"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_placeholder.jpg" id="NfW-hi-uMt">
+                                <rect key="frame" x="11" y="73" width="136" height="140"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SQc-X5-Jcj">
-                                <rect key="frame" x="221" y="85" width="55" height="21"/>
+                                <rect key="frame" x="207" y="130" width="68" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="jGA-bV-A5E">
-                                <rect key="frame" x="48" y="504" width="223" height="35"/>
+                                <rect key="frame" x="48" y="456" width="223" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.96281171089999995" green="0.32081731299999999" blue="0.32051487299999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Edit Listing">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="Kzo-BZ-Fi8" kind="push" identifier="editListing" id="QcH-Gb-e50"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="wordWrap" adjustsFontSizeToFit="NO" id="6u6-rR-Dty">
-                                <rect key="frame" x="0.0" y="221" width="320" height="21"/>
+                                <rect key="frame" x="0.0" y="210" width="320" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" textAlignment="center" lineBreakMode="wordWrap" adjustsFontSizeToFit="NO" id="rOP-h8-wPW">
-                                <rect key="frame" x="0.0" y="250" width="320" height="21"/>
+                                <rect key="frame" x="0.0" y="239" width="320" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Publisher" textAlignment="center" lineBreakMode="wordWrap" adjustsFontSizeToFit="NO" id="5n0-gt-JYw">
-                                <rect key="frame" x="0.0" y="308" width="320" height="21"/>
+                                <rect key="frame" x="0.0" y="297" width="320" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edition" textAlignment="center" lineBreakMode="wordWrap" adjustsFontSizeToFit="NO" id="rap-1h-KB7">
-                                <rect key="frame" x="0.0" y="279" width="320" height="21"/>
+                                <rect key="frame" x="0.0" y="268" width="320" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ISBN13" textAlignment="center" lineBreakMode="wordWrap" adjustsFontSizeToFit="NO" id="dE4-ja-a7w">
-                                <rect key="frame" x="0.0" y="366" width="320" height="21"/>
+                                <rect key="frame" x="0.0" y="355" width="320" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comments" textAlignment="center" lineBreakMode="wordWrap" adjustsFontSizeToFit="NO" id="0lQ-Vi-Ej4">
-                                <rect key="frame" x="0.0" y="395" width="320" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Condition" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="EF2-uK-B2t">
-                                <rect key="frame" x="227" y="130" width="42" height="21"/>
+                                <rect key="frame" x="0.0" y="384" width="320" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Language" textAlignment="center" lineBreakMode="wordWrap" adjustsFontSizeToFit="NO" id="b6P-PA-a9Q">
-                                <rect key="frame" x="0.0" y="337" width="320" height="21"/>
+                                <rect key="frame" x="0.0" y="326" width="320" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="YIN-Ri-h3D">
-                                <rect key="frame" x="48" y="453" width="223" height="35"/>
+                                <rect key="frame" x="48" y="413" width="223" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.96281171089999995" green="0.32081731299999999" blue="0.32051487299999998" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="I want this!">
+                                <state key="normal" title="Chat With Seller">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dKO-wC-wkQ">
+                                <rect key="frame" x="188" y="130" width="19" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Condition" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="EF2-uK-B2t">
+                                <rect key="frame" x="194" y="164" width="81" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -798,23 +813,27 @@
                     <connections>
                         <outlet property="author" destination="rOP-h8-wPW" id="vsV-pN-7cO"/>
                         <outlet property="bookTitle" destination="6u6-rR-Dty" id="bIx-rW-5cQ"/>
-                        <outlet property="buy" destination="YIN-Ri-h3D" id="mxV-Lt-UVq"/>
+                        <outlet property="buy" destination="YIN-Ri-h3D" id="LWz-zJ-hlp"/>
                         <outlet property="comments" destination="0lQ-Vi-Ej4" id="HIT-PP-NoS"/>
                         <outlet property="condition" destination="EF2-uK-B2t" id="fHc-JB-xlw"/>
+                        <outlet property="edit" destination="jGA-bV-A5E" id="xPi-KS-rmG"/>
                         <outlet property="editListing" destination="jGA-bV-A5E" id="Azh-R8-6wj"/>
                         <outlet property="edition" destination="rap-1h-KB7" id="Oqp-A3-fcn"/>
                         <outlet property="isbn13" destination="dE4-ja-a7w" id="21w-JZ-e8r"/>
                         <outlet property="language" destination="b6P-PA-a9Q" id="I6X-DZ-TLk"/>
+                        <outlet property="navigationItem" destination="MR8-fD-DdM" id="qLW-cj-F92"/>
                         <outlet property="price" destination="SQc-X5-Jcj" id="HoC-FG-uFa"/>
                         <outlet property="publisher" destination="5n0-gt-JYw" id="H2x-e2-YRg"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xCI-hP-m6q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1733" y="384"/>
         </scene>
     </scenes>
     <resources>
         <image name="cabinet_barcode.jpg" width="510" height="392"/>
+        <image name="image_placeholder.jpg" width="500" height="500"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -823,7 +842,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="dOV-zu-ymH"/>
-        <segue reference="YM5-IV-H5t"/>
-        <segue reference="otY-Wz-0Ag"/>
+        <segue reference="QcH-Gb-e50"/>
     </inferredMetricsTieBreakers>
 </document>

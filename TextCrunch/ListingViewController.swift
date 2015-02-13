@@ -24,15 +24,49 @@ class ListingViewController: UIViewController {
     
     @IBOutlet weak var editListing: UIButton!
     @IBOutlet weak var buy: UIButton!
+    @IBOutlet weak var edit: UIButton!
+    
+    var listing:Listing!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let gradientLayer = BackgroundSetting()
-        let background = gradientLayer.background()
-        background.frame=self.view.bounds
-        self.view.layer.insertSublayer(background, atIndex: 0)
+        //let gradientLayer = BackgroundSetting()
+        //let background = gradientLayer.background()
+        //background.frame=self.view.bounds
+        //self.view.layer.insertSublayer(background, atIndex: 0)
+       
+        // Shows edit button to seller, but not buy button
+        // Shows buy button to potential buyer, but not edit button
+        if (UserController.getCurrentUser() == listing.seller) {
+            buy.hidden = true
+        } else {
+            edit.hidden = true
+        }
         
-        price.text = "$100"
+        setListingElements()
+    }
+    
+    // Populates labels with book/listing data
+    func setListingElements() {
+        bookTitle.text = listing.book.title
+        author.text = listing.book.authorName
+        publisher.text = listing.book.publisherName
+        language.text = listing.book.language
+        edition.text = listing.book.editionInfo
+        isbn13.text = listing.book.isbn13
+        
+        price.text = String(listing.price)
+        condition.text = listing.condition
+        comments.text = listing.comment
+    }
+    
+    // Passes listing to EditListingView
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        if (segue.identifier == "editListing") {
+            var svc = segue.destinationViewController as EditListingViewController;
+            svc.listing = listing
+        }
     }
     
     override func didReceiveMemoryWarning() {
