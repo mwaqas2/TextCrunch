@@ -95,6 +95,7 @@ class EditListingViewController: UIViewController {
             svc.listing = self.listing
         }
         if (segue.identifier == "deleteListing") {
+            listing.book.delete()
             listing.delete()
         }
     }
