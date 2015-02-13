@@ -24,6 +24,7 @@ class EditListingViewController: UIViewController {
     @IBOutlet weak var comments: UITextField!
 
     @IBOutlet var delete: UIButton!
+    @IBOutlet var update: UIButton!
     
     var bookISBN:String!
     var listing:Listing!
@@ -57,6 +58,7 @@ class EditListingViewController: UIViewController {
             
             // Only show delete button if listing previously existed
             delete.hidden = true
+            update.hidden = true
         } else {
             book.isbn13 = listing.book.isbn13
             setListingElements()
@@ -95,8 +97,14 @@ class EditListingViewController: UIViewController {
             svc.listing = self.listing
         }
         if (segue.identifier == "deleteListing") {
+            var svc = segue.destinationViewController as ListingViewController;
+            svc.listing = self.listing
             listing.book.delete()
             listing.delete()
+        }
+        if (segue.identifier == "updateListing") {
+            var svc = segue.destinationViewController as ListingViewController;
+            svc.listing = self.listing
         }
     }
     

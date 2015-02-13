@@ -628,7 +628,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="zjL-W3-xpp">
-                                <rect key="frame" x="49" y="461" width="223" height="40"/>
+                                <rect key="frame" x="49" y="508" width="223" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.96281171089999995" green="0.32081731299999999" blue="0.32051487299999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Delete">
@@ -637,6 +637,19 @@
                                 </state>
                                 <connections>
                                     <segue destination="nHB-jK-Jih" kind="push" identifier="deleteListing" id="kCl-Lq-aUz"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="E0d-sm-kB5">
+                                <rect key="frame" x="49" y="461" width="223" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.96281171089999995" green="0.32081731299999999" blue="0.32051487299999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Update">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="updateListing:" destination="Kzo-BZ-Fi8" eventType="touchUpInside" id="dsj-DG-tBd"/>
+                                    <segue destination="KuW-Cq-17O" kind="push" identifier="updateListing" id="C4x-j3-9t9"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -654,11 +667,12 @@
                         <outlet property="navigationItem" destination="23E-Nu-C7A" id="wfT-cV-0ah"/>
                         <outlet property="price" destination="AJY-Uo-vRI" id="vx3-SE-Rnn"/>
                         <outlet property="publisher" destination="MVF-4i-5pt" id="lnW-jW-Z5p"/>
+                        <outlet property="update" destination="E0d-sm-kB5" id="1EQ-Ti-AWR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="21j-s7-Sy2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1733" y="1090"/>
+            <point key="canvasLocation" x="1756" y="1090"/>
         </scene>
         <!--BillingInfoViewController-->
         <scene sceneID="hvu-h5-OA6">
@@ -834,7 +848,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xCI-hP-m6q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1733" y="384"/>
+            <point key="canvasLocation" x="2115" y="390"/>
         </scene>
     </scenes>
     <resources>
@@ -847,7 +861,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="csL-ll-QId"/>
-        <segue reference="otY-Wz-0Ag"/>
+        <segue reference="QcH-Gb-e50"/>
+        <segue reference="C4x-j3-9t9"/>
+        <segue reference="kCl-Lq-aUz"/>
     </inferredMetricsTieBreakers>
 </document>
