@@ -16,6 +16,8 @@ class Listing : PFObject, PFSubclassing {
     @NSManaged var conversation: PFObject?
     @NSManaged var condition: String?
     @NSManaged var comment: String?
+    @NSManaged var isActive: Bool
+    @NSManaged var isOnHold: Bool
 
     override class func load() {
         self.registerSubclass()
