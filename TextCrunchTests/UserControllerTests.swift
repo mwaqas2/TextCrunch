@@ -28,9 +28,6 @@ class UserControllerTests: XCTestCase {
     }
 
     func testLoginUser(){
-
-        
-        // persist user for login test
         var testPass = "password"
         var uuid = NSUUID().UUIDString
         var testUser = User(email: "testingemail+\(uuid)@testing.com")
@@ -46,6 +43,7 @@ class UserControllerTests: XCTestCase {
         var fakeUser = User(email: "doesntexist@testing.com")
         result = UserController.loginUser(fakeUser.email, password: testPass)
         XCTAssert(result.code == UserController.UCCode.LOGINFAIL_NEXIST, "User account does not exist login test failed.")
+        testUser.delete()
     }
     
     func testCreateUserAccount() {
@@ -56,6 +54,7 @@ class UserControllerTests: XCTestCase {
         
         result = UserController.createUserAccount(testUser.email, password: "password")
         XCTAssert(result.code == UserController.UCCode.CREATEFAIL_EMAILEXISTS, "Email taken account creation test failed.")
+        testUser.delete()
     }
     
     func testDeleteCurrentUserAccount(){
@@ -82,6 +81,7 @@ class UserControllerTests: XCTestCase {
         PFUser.logInWithUsername(testUser.username, password: "password")
         var logoutResult = UserController.logoutCurrentUser()
         XCTAssert(logoutResult == true, "Successful account logout test failed.")
+        testUser.delete()//Delete in order to prevent DB cluttering.
         
     }
     

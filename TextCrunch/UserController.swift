@@ -105,7 +105,12 @@ public class UserController {
     }
     
     class func getCurrentUsersSoldListings() -> [Listing]?{
-        return nil
+        var currentUser = self.getCurrentUser()
+        var query = PFQuery(className: "Listing")
+        query.whereKey("isActive", equalTo: false)
+        query.whereKey("seller", equalTo: currentUser)
+        var results = query.findObjects()
+        return results as? [Listing]
     }
     
     class func getCurrentUsersBoughtListings() -> [Listing]?{
