@@ -43,7 +43,7 @@ class UserControllerTests: XCTestCase {
         var fakeUser = User(email: "doesntexist@testing.com")
         result = UserController.loginUser(fakeUser.email, password: testPass)
         XCTAssert(result.code == UserController.UCCode.LOGINFAIL_NEXIST, "User account does not exist login test failed.")
-        testUser.delete()
+        //testUser.delete()
     }
     
     func testCreateUserAccount() {
@@ -54,7 +54,6 @@ class UserControllerTests: XCTestCase {
         
         result = UserController.createUserAccount(testUser.email, password: "password")
         XCTAssert(result.code == UserController.UCCode.CREATEFAIL_EMAILEXISTS, "Email taken account creation test failed.")
-        testUser.delete()
     }
     
     func testDeleteCurrentUserAccount(){
@@ -81,8 +80,6 @@ class UserControllerTests: XCTestCase {
         PFUser.logInWithUsername(testUser.username, password: "password")
         var logoutResult = UserController.logoutCurrentUser()
         XCTAssert(logoutResult == true, "Successful account logout test failed.")
-        testUser.delete()//Delete in order to prevent DB cluttering.
-        
     }
     
     func testResetPassword(){
@@ -90,6 +87,69 @@ class UserControllerTests: XCTestCase {
     }
     
     func testGetUsersSoldListings(){
+        var uuid = NSUUID().UUIDString
+        var testUser = User(email: "testingemail+\(uuid)@testing.com")
+        testUser.password = "password"
+        testUser.signUp()
+        
+        var testingBook = Book()
+        testingBook.isbn13 = "1122334455667"
+        testingBook.title = "testingTitle"
+        testingBook.language = "Klingon"
+        testingBook.authorName = "Steve Jobs"
+        testingBook.publisherName = "Apple"
+        testingBook.editionInfo = "4th Edition"
+        testingBook.save()
+        
+        var soldListing1 = Listing()
+        soldListing1.book = testingBook
+        soldListing1.price = 35
+        soldListing1.seller = testUser
+        soldListing1.isActive = false
+        soldListing1.isOnHold = false
+        soldListing1.save()
+        
+        var soldListing2 = Listing()
+        soldListing2.book = testingBook
+        soldListing2.price = 40
+        soldListing2.seller = testUser
+        soldListing2.isActive = false
+        soldListing2.isOnHold = false
+        soldListing2.save()
+        
+        var soldListing3 = Listing()
+        soldListing3.book = testingBook
+        soldListing3.price = 82
+        soldListing3.seller = testUser
+        soldListing3.isActive = false
+        soldListing3.isOnHold = false
+        soldListing3.save()
+        
+        var activeListing = Listing()
+        activeListing.book = testingBook
+        activeListing.price = 35
+        activeListing.seller = testUser
+        activeListing.isActive = true
+        activeListing.isOnHold = false
+        activeListing.save()
+        
+        var results : [Listing] = UserController.getCurrentUsersSoldListings()!
+        var resultObjectIds : [String] = []
+        for listing in results{
+            resultObjectIds.append(listing.objectId)
+        }
+        
+        XCTAssert(contains(resultObjectIds, soldListing1.objectId), "First sold listing was not present in results.")
+        XCTAssert(contains(resultObjectIds, soldListing2.objectId), "Second sold listing was not present in results.")
+        XCTAssert(contains(resultObjectIds, soldListing3.objectId), "Third sold listing was not present in results.")
+        XCTAssert(!contains(resultObjectIds, activeListing.objectId), "Active listing was present in results.")
+        
+        //Clean up the objects we created to avoid overfilling the database.
+        activeListing.delete()
+        soldListing3.delete()
+        soldListing2.delete()
+        soldListing1.delete()
+        testingBook.delete()
         
     }
     
