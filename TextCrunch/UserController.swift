@@ -123,7 +123,18 @@ public class UserController {
     }
     
     class func getCurrentUsersActiveListings() -> [Listing]?{
-        return nil
+        var currentUser = self.getCurrentUser()
+        var buyerQuery = PFQuery(className: "Listing")
+        var sellerQuery = PFQuery(className: "Listing")
+        buyerQuery.whereKey("isActive", equalTo: true)
+        buyerQuery.whereKey("buyer", equalTo: currentUser)
+        //Kind of redundant, since we should never have the case where a listing has a buyer and is active.
+        //Unless we want to set up where we set the buyer on putting a listing on hold.
+        sellerQuery.whereKey("isActive", equalTo: true)
+        sellerQuery.whereKey("seller", equalTo: currentUser)
+        var compoundQuery = PFQuery.orQueryWithSubqueries([buyerQuery, sellerQuery])
+        var results = compoundQuery.findObjects()
+        return results as? [Listing]
     }
     
     class func getCurrentUsersCompleteListings() -> [Listing]?{
