@@ -125,6 +125,7 @@ public class UserController {
         return nil
     }
     
+
     class func getAllCurrentUsersListings() -> [Listing]?{
         return nil
     }
