@@ -274,5 +274,141 @@ class UserControllerTests: XCTestCase {
         XCTAssert(!contains(resultObjectIds, soldListing3.objectId), "Third inactive listing was present.")
     }
     
+    func testGetCurrentUsersCompleteListings(){
+        var uuid = NSUUID().UUIDString
+        var testUser = User(email: "testingemail+\(uuid)@testing.com")
+        testUser.password = "password"
+        testUser.signUp()
+        
+        var testingBook = Book()
+        testingBook.isbn13 = "1122334455667"
+        testingBook.title = "testingTitle"
+        testingBook.language = "Klingon"
+        testingBook.authorName = "Steve Jobs"
+        testingBook.publisherName = "Apple"
+        testingBook.editionInfo = "4th Edition"
+        testingBook.save()
+        
+        var soldListing1 = Listing()
+        soldListing1.book = testingBook
+        soldListing1.price = 35
+        soldListing1.seller = testUser
+        soldListing1.isActive = false
+        soldListing1.isOnHold = false
+        soldListing1.save()
+        
+        var soldListing2 = Listing()
+        soldListing2.book = testingBook
+        soldListing2.price = 40
+        soldListing2.buyer = testUser
+        soldListing2.isActive = false
+        soldListing2.isOnHold = false
+        soldListing2.save()
+        
+        var soldListing3 = Listing()
+        soldListing3.book = testingBook
+        soldListing3.price = 82
+        soldListing3.buyer = testUser
+        soldListing3.isActive = false
+        soldListing3.isOnHold = false
+        soldListing3.save()
+        
+        var activeListing1 = Listing()
+        activeListing1.book = testingBook
+        activeListing1.price = 35
+        activeListing1.seller = testUser
+        activeListing1.isActive = true
+        activeListing1.isOnHold = false
+        activeListing1.save()
+        
+        var activeListing2 = Listing()
+        activeListing2.book = testingBook
+        activeListing2.price = 35
+        activeListing2.buyer = testUser
+        activeListing2.isActive = true
+        activeListing2.isOnHold = false
+        activeListing2.save()
+        
+        var results : [Listing] = UserController.getCurrentUsersCompleteListings()!
+        var resultObjectIds : [String] = []
+        for listing in results{
+            resultObjectIds.append(listing.objectId)
+        }
+        
+        XCTAssert(!contains(resultObjectIds, activeListing1.objectId), "First active listing was present.")
+        XCTAssert(!contains(resultObjectIds, activeListing2.objectId), "Second active listing was present.")
+        XCTAssert(contains(resultObjectIds, soldListing1.objectId), "First inactive listing was not present.")
+        XCTAssert(contains(resultObjectIds, soldListing2.objectId), "Second inactive listing was not present.")
+        XCTAssert(contains(resultObjectIds, soldListing3.objectId), "Third inactive listing was not present.")
+    }
+    
+    
+    func testGetAllCurrentUsersListings(){
+        var uuid = NSUUID().UUIDString
+        var testUser = User(email: "testingemail+\(uuid)@testing.com")
+        testUser.password = "password"
+        testUser.signUp()
+        
+        var testingBook = Book()
+        testingBook.isbn13 = "1122334455667"
+        testingBook.title = "testingTitle"
+        testingBook.language = "Klingon"
+        testingBook.authorName = "Steve Jobs"
+        testingBook.publisherName = "Apple"
+        testingBook.editionInfo = "4th Edition"
+        testingBook.save()
+        
+        var soldListing1 = Listing()
+        soldListing1.book = testingBook
+        soldListing1.price = 35
+        soldListing1.seller = testUser
+        soldListing1.isActive = false
+        soldListing1.isOnHold = false
+        soldListing1.save()
+        
+        var soldListing2 = Listing()
+        soldListing2.book = testingBook
+        soldListing2.price = 40
+        soldListing2.buyer = testUser
+        soldListing2.isActive = false
+        soldListing2.isOnHold = false
+        soldListing2.save()
+        
+        var soldListing3 = Listing()
+        soldListing3.book = testingBook
+        soldListing3.price = 82
+        soldListing3.buyer = testUser
+        soldListing3.isActive = false
+        soldListing3.isOnHold = false
+        soldListing3.save()
+        
+        var activeListing1 = Listing()
+        activeListing1.book = testingBook
+        activeListing1.price = 35
+        activeListing1.seller = testUser
+        activeListing1.isActive = true
+        activeListing1.isOnHold = false
+        activeListing1.save()
+        
+        var activeListing2 = Listing()
+        activeListing2.book = testingBook
+        activeListing2.price = 35
+        activeListing2.buyer = testUser
+        activeListing2.isActive = true
+        activeListing2.isOnHold = false
+        activeListing2.save()
+        
+        var results : [Listing] = UserController.getAllCurrentUsersListings()!
+        var resultObjectIds : [String] = []
+        for listing in results{
+            resultObjectIds.append(listing.objectId)
+        }
+        XCTAssert(contains(resultObjectIds, activeListing1.objectId), "First active listing was not present.")
+        XCTAssert(contains(resultObjectIds, activeListing2.objectId), "Second active listing was not present.")
+        XCTAssert(contains(resultObjectIds, soldListing1.objectId), "First inactive listing was not present.")
+        XCTAssert(contains(resultObjectIds, soldListing2.objectId), "Second inactive listing was not present.")
+        XCTAssert(contains(resultObjectIds, soldListing3.objectId), "Third inactive listing was not present.")
+    }
+    
 
 }

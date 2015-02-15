@@ -138,12 +138,28 @@ public class UserController {
     }
     
     class func getCurrentUsersCompleteListings() -> [Listing]?{
-        return nil
+        var currentUser = self.getCurrentUser()
+        var buyerQuery = PFQuery(className: "Listing")
+        var sellerQuery = PFQuery(className: "Listing")
+        buyerQuery.whereKey("isActive", equalTo: false)
+        buyerQuery.whereKey("buyer", equalTo: currentUser)
+        sellerQuery.whereKey("isActive", equalTo: false)
+        sellerQuery.whereKey("seller", equalTo: currentUser)
+        var compoundQuery = PFQuery.orQueryWithSubqueries([buyerQuery, sellerQuery])
+        var results = compoundQuery.findObjects()
+        return results as? [Listing]
     }
     
 
     class func getAllCurrentUsersListings() -> [Listing]?{
-        return nil
+        var currentUser = self.getCurrentUser()
+        var buyerQuery = PFQuery(className: "Listing")
+        var sellerQuery = PFQuery(className: "Listing")
+        buyerQuery.whereKey("buyer", equalTo: currentUser)
+        sellerQuery.whereKey("seller", equalTo: currentUser)
+        var compoundQuery = PFQuery.orQueryWithSubqueries([buyerQuery, sellerQuery])
+        var results = compoundQuery.findObjects()
+        return results as? [Listing]
     }
     
 }
