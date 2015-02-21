@@ -14,8 +14,9 @@ class SellerListingViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Hide the back navigation button in this view
-		self.navigationItem.setHidesBackButton(true, animated: true)
+        // Hide the back navigation button in this views
+		self.navigationItem.hidesBackButton = true
+        self.navigationItem.leftBarButtonItem = nil
         
         currentListings = UserController.getAllCurrentUsersListings()!
         currentListings.sort({
@@ -53,6 +54,13 @@ class SellerListingViewController: UITableViewController {
             } else {
                 priceLabel.text = "$\(listing.price)"
             }
+        }
+        if let imageThumb = cell.viewWithTag(100) as? UIImageView{
+            imageThumb.frame = CGRectMake(0, 0, 100, 100)
+            //Weird issues with the image thumbnail moving to the center of the cell, can't seem to fix in storyboard,
+            //so the location is set here programmatically.
+            //Maybe the view's width and height are changing rather than location?
+            //TODO: Find a fix that doesn't require setting cell programmatically.
         }
         return cell
     }

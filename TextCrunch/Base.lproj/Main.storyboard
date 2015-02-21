@@ -52,7 +52,6 @@
                                 </state>
                                 <connections>
                                     <action selector="loginButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eIe-5i-F4S"/>
-                                    <segue destination="IwN-N3-nSQ" kind="push" identifier="Login" id="svD-U0-jZS"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="9sv-ki-Jyd">
@@ -96,6 +95,7 @@
                         <outlet property="passwordTextField" destination="9sv-ki-Jyd" id="N58-5b-5VU"/>
                         <outlet property="passwordWarningLabel" destination="lAL-YH-Wn5" id="0yO-Se-gwp"/>
                         <segue destination="ngy-G1-Yq7" kind="push" identifier="CreateAccount" id="G4W-pO-MWQ"/>
+                        <segue destination="IwN-N3-nSQ" kind="push" identifier="Login" id="zHb-Ea-0te"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -162,8 +162,8 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView hidden="YES" userInteractionEnabled="NO" tag="100" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SLR Camera-64.png" id="dhf-Og-Mzm">
-                                            <rect key="frame" x="0.0" y="0.0" width="104" height="104"/>
+                                        <imageView userInteractionEnabled="NO" tag="100" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SLR Camera-64.png" id="dhf-Og-Mzm">
+                                            <rect key="frame" x="0.0" y="0.0" width="387" height="219"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </imageView>
                                     </subviews>
@@ -171,13 +171,12 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Sell" image="Money Bag-25.png" id="vjT-vF-DmE"/>
                     <navigationItem key="navigationItem" id="mqf-TX-80O"/>
                     <nil key="simulatedTopBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TZN-99-S9M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="748" y="438"/>
+            <point key="canvasLocation" x="1820" y="-234"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="cl9-ts-XLY">
@@ -192,7 +191,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="HMM-E4-X07" kind="relationship" relationship="viewControllers" id="t6V-CW-v8T"/>
+                        <segue destination="VCP-63-Bea" kind="relationship" relationship="viewControllers" id="t6V-CW-v8T"/>
                         <segue destination="LiZ-Td-fOV" kind="relationship" relationship="viewControllers" id="VA5-j9-MMr"/>
                     </connections>
                 </tabBarController>
@@ -218,7 +217,6 @@
                                 </state>
                                 <connections>
                                     <action selector="createAccountButtonPressed:" destination="ngy-G1-Yq7" eventType="touchUpInside" id="rU3-LG-DpK"/>
-                                    <segue destination="IwN-N3-nSQ" kind="push" id="ruv-aM-a9g"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="Un2-hg-Wtf">
@@ -307,6 +305,7 @@
                         <outlet property="passwordMatchWarningLabel" destination="WdX-gM-Jab" id="dXe-Ax-WSw"/>
                         <outlet property="passwordTextField" destination="9m4-aC-TQD" id="8JN-wf-Y2g"/>
                         <outlet property="uniqueEmailWarningLabel" destination="fho-1I-rSd" id="1YI-4S-m8T"/>
+                        <segue destination="IwN-N3-nSQ" kind="push" identifier="AccountCreationSuccessful" id="gxH-rz-5ly"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wIl-aU-N8G" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -487,7 +486,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E5o-q3-HHT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2864" y="323"/>
+            <point key="canvasLocation" x="3396" y="323"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7Rb-7F-KTa">
@@ -897,7 +896,26 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xCI-hP-m6q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2115" y="390"/>
+            <point key="canvasLocation" x="2647" y="390"/>
+        </scene>
+        <!--Sell-->
+        <scene sceneID="Yfn-Ii-1ql">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="VCP-63-Bea" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Sell" image="Money Bag-25.png" id="vjT-vF-DmE"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="auD-hM-5gy">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="HMM-E4-X07" kind="relationship" relationship="rootViewController" id="ffr-pO-1nG"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f4V-GZ-4iJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1304" y="-234"/>
         </scene>
     </scenes>
     <resources>
@@ -913,7 +931,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="ruv-aM-a9g"/>
+        <segue reference="gxH-rz-5ly"/>
         <segue reference="QcH-Gb-e50"/>
         <segue reference="C4x-j3-9t9"/>
     </inferredMetricsTieBreakers>
