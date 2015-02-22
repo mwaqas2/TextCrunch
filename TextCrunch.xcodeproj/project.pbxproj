@@ -12,7 +12,7 @@
 		1892840C1A97B7AE000B15D6 /* Money Bag-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 1892840A1A97B7AE000B15D6 /* Money Bag-25.png */; };
 		1892840F1A97BD6E000B15D6 /* SellerListingTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1892840E1A97BD6E000B15D6 /* SellerListingTableCell.swift */; };
 		189284111A97C2AB000B15D6 /* SLR Camera-64.png in Resources */ = {isa = PBXBuildFile; fileRef = 189284101A97C2AB000B15D6 /* SLR Camera-64.png */; };
-		18A335841A91617800765B52 /* ProfileViewTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A335831A91617800765B52 /* ProfileViewTableDataSource.swift */; };
+		18A335841A91617800765B52 /* SellerListingViewTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A335831A91617800765B52 /* SellerListingViewTableDataSource.swift */; };
 		18B312CA1A8432EA009EF22B /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B489961A7D5FAD00541D06 /* UserController.swift */; };
 		18B312CB1A8432ED009EF22B /* ListingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B489A61A82D7F300541D06 /* ListingModel.swift */; };
 		18B312CC1A8432F0009EF22B /* GoogleUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4899E1A7D66E000541D06 /* GoogleUserController.swift */; };
@@ -79,7 +79,7 @@
 		1892840A1A97B7AE000B15D6 /* Money Bag-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Money Bag-25.png"; path = "../../../Downloads/Money Bag-25.png"; sourceTree = "<group>"; };
 		1892840E1A97BD6E000B15D6 /* SellerListingTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SellerListingTableCell.swift; sourceTree = "<group>"; };
 		189284101A97C2AB000B15D6 /* SLR Camera-64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SLR Camera-64.png"; path = "../../../Downloads/SLR Camera-64.png"; sourceTree = "<group>"; };
-		18A335831A91617800765B52 /* ProfileViewTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewTableDataSource.swift; sourceTree = "<group>"; };
+		18A335831A91617800765B52 /* SellerListingViewTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SellerListingViewTableDataSource.swift; sourceTree = "<group>"; };
 		18B489961A7D5FAD00541D06 /* UserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = UserController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		18B4899A1A7D66C100541D06 /* TwitterUserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterUserController.swift; sourceTree = "<group>"; };
 		18B4899C1A7D66D100541D06 /* FBUserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBUserController.swift; sourceTree = "<group>"; };
@@ -195,7 +195,7 @@
 				560869C71A8A524F00630C64 /* ListingViewController.swift */,
 				560869C91A8A527B00630C64 /* EditListingViewController.swift */,
 				560869CB1A8A529800630C64 /* IsbnViewController.swift */,
-				18A335831A91617800765B52 /* ProfileViewTableDataSource.swift */,
+				18A335831A91617800765B52 /* SellerListingViewTableDataSource.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -497,7 +497,7 @@
 				18B4899D1A7D66D100541D06 /* FBUserController.swift in Sources */,
 				560869CC1A8A529800630C64 /* IsbnViewController.swift in Sources */,
 				658FCFFB1A64789E004D056D /* AppDelegate.swift in Sources */,
-				18A335841A91617800765B52 /* ProfileViewTableDataSource.swift in Sources */,
+				18A335841A91617800765B52 /* SellerListingViewTableDataSource.swift in Sources */,
 				53F8E5CD1A85DFC600A5D10E /* ConversationModel.swift in Sources */,
 				18B4899B1A7D66C100541D06 /* TwitterUserController.swift in Sources */,
 				32E6E0F41A84599400292B7A /* AccountCreationViewController.swift in Sources */,

@@ -7,21 +7,24 @@
 //
 
 import Foundation
+import UIKit
 
-
-class ProfileViewTableDataSource: NSObject, UITableViewDataSource{
+class SellerListingViewTableDataSource: NSObject, UITableViewDataSource{
     
-    let currentListings: [Listing] = []
+    var currentListings: [Listing]
     
     override init(){
         currentListings = UserController.getAllCurrentUsersListings()!
+        currentListings.sort({
+            $0.createdAt.compare($1.createdAt) == NSComparisonResult.OrderedAscending
+        })
         super.init()
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        return currentListings.count
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return currentListings.count as Int
+        //return 4
     }
-    
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCellWithIdentifier("SellerListingCell", forIndexPath: indexPath) as UITableViewCell
@@ -41,6 +44,17 @@ class ProfileViewTableDataSource: NSObject, UITableViewDataSource{
                 priceLabel.text = "$\(listing.price)"
             }
         }
+        if let imageThumb = cell.viewWithTag(100) as? UIImageView{
+            imageThumb.frame = CGRectMake(0, 0, 100, 100)
+            //Weird issues with the image thumbnail moving to the center of the cell, can't seem to fix in storyboard,
+            //so the location is set here programmatically.
+            //Maybe the view's width and height are changing rather than location?
+            //TODO: Find a fix that doesn't require setting cell programmatically.
+        }
         return cell
+    }
+    
+    deinit{
+        NSLog("The UITableViewDataSource has been deinitialized. This should not happen while the table is open.")
     }
 }
