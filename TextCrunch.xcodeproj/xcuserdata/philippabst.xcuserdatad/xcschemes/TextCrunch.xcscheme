@@ -28,7 +28,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "658FD0091A64789E004D056D"
+               BlueprintIdentifier = "655DEF911A8415D200931A3B"
                BuildableName = "TextCrunchTests.xctest"
                BlueprintName = "TextCrunchTests"
                ReferencedContainer = "container:TextCrunch.xcodeproj">
@@ -46,7 +46,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "658FD0091A64789E004D056D"
+               BlueprintIdentifier = "655DEF911A8415D200931A3B"
                BuildableName = "TextCrunchTests.xctest"
                BlueprintName = "TextCrunchTests"
                ReferencedContainer = "container:TextCrunch.xcodeproj">
@@ -82,6 +82,11 @@
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
+         <AdditionalOption
+            key = "NSZombieEnabled"
+            value = "YES"
+            isEnabled = "YES">
+         </AdditionalOption>
       </AdditionalOptions>
    </LaunchAction>
    <ProfileAction

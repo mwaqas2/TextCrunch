@@ -94,59 +94,129 @@
                         <outlet property="emailWarningLabel" destination="xwg-3F-yrt" id="Q7h-Fi-wIh"/>
                         <outlet property="passwordTextField" destination="9sv-ki-Jyd" id="N58-5b-5VU"/>
                         <outlet property="passwordWarningLabel" destination="lAL-YH-Wn5" id="0yO-Se-gwp"/>
-                        <segue destination="nHB-jK-Jih" kind="push" identifier="Login" id="csL-ll-QId"/>
                         <segue destination="ngy-G1-Yq7" kind="push" identifier="CreateAccount" id="G4W-pO-MWQ"/>
+                        <segue destination="IwN-N3-nSQ" kind="push" identifier="Login" id="zHb-Ea-0te"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="298" y="384"/>
         </scene>
-        <!--ProfileViewController-->
-        <scene sceneID="iIy-Ha-ZVc">
+        <!--Buy-->
+        <scene sceneID="rQO-VV-SJn">
             <objects>
-                <viewController title="ProfileViewController" id="nHB-jK-Jih" customClass="ProfileViewController" customModule="TextCrunch" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="0Y3-Cf-jVY">
+                <viewController id="LiZ-Td-fOV" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TI1-32-7kA">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="L2c-Lz-fCK">
-                                <rect key="frame" x="0.0" y="72" width="122" height="42"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Buy Tab" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sJd-mh-sIh">
+                                <rect key="frame" x="129" y="75" width="62" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <state key="normal" title="Buy">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Buy" image="Literature-25.png" id="kle-hC-P5d"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pwp-vy-PFs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1196" y="438"/>
+        </scene>
+        <!--Seller Listing View Controller-->
+        <scene sceneID="xbT-5o-nhJ">
+            <objects>
+                <viewController id="Jcp-rd-Ddg" customClass="SellerListingViewController" customModule="TextCrunch" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ors-QY-MAc">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="t29-oD-SO0">
+                                <rect key="frame" x="16" y="80" width="288" height="47"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.083453172928843564" green="0.85505445075757569" blue="0.42504926567840612" alpha="0.47000000000000003" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Sell Something"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="o4x-Ic-dg9">
-                                <rect key="frame" x="198" y="64" width="106" height="58"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <state key="normal" title="Sell">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="r4H-4r-PAO" kind="push" id="Qdh-kt-cB2"/>
-                                </connections>
-                            </button>
-                            <searchBar contentMode="redraw" id="UBS-bM-uNV">
-                                <rect key="frame" x="0.0" y="114" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="v6P-xj-vfK">
-                                <rect key="frame" x="-9" y="158" width="329" height="410"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" sectionHeaderHeight="22" sectionFooterHeight="22" id="XsW-w1-Nm9">
+                                <rect key="frame" x="0.0" y="150" width="320" height="418"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SellerListingCell" id="F1R-Vk-lIq">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="F1R-Vk-lIq" id="j8R-jf-tcz">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Book_Title" lineBreakMode="tailTruncation" numberOfLines="101" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5CF-uR-UGP">
+                                                    <rect key="frame" x="121" y="8" width="191" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Book_Author" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3df-7f-cqk">
+                                                    <rect key="frame" x="121" y="31" width="191" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="103" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7dB-e8-3CZ">
+                                                    <rect key="frame" x="121" y="60" width="162" height="51"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" tag="100" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SLR Camera-64.png" id="bBL-bZ-Tbl">
+                                                    <rect key="frame" x="0.0" y="0.0" width="1535" height="695"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Jcp-rd-Ddg" id="Nh7-Mr-gms"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="DQy-mu-uch"/>
+                    <navigationItem key="navigationItem" id="7v5-XQ-hSE"/>
+                    <connections>
+                        <outlet property="listingTable" destination="XsW-w1-Nm9" id="66W-RE-rgf"/>
+                        <outlet property="sellButton" destination="t29-oD-SO0" id="id1-aJ-Aqa"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ctQ-Zb-7K9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="INT-gM-pUQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="748" y="384"/>
+            <point key="canvasLocation" x="1796" y="-234"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="cl9-ts-XLY">
+            <objects>
+                <tabBarController id="IwN-N3-nSQ" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="ynY-mV-pu2"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="YyR-sd-hHA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="VCP-63-Bea" kind="relationship" relationship="viewControllers" id="t6V-CW-v8T"/>
+                        <segue destination="LiZ-Td-fOV" kind="relationship" relationship="viewControllers" id="VA5-j9-MMr"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aUx-IY-0OV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="748" y="-226"/>
         </scene>
         <!--Account Creation View Controller-->
         <scene sceneID="n5n-e4-AQu">
@@ -254,12 +324,12 @@
                         <outlet property="passwordMatchWarningLabel" destination="WdX-gM-Jab" id="dXe-Ax-WSw"/>
                         <outlet property="passwordTextField" destination="9m4-aC-TQD" id="8JN-wf-Y2g"/>
                         <outlet property="uniqueEmailWarningLabel" destination="fho-1I-rSd" id="1YI-4S-m8T"/>
-                        <segue destination="nHB-jK-Jih" kind="push" identifier="AccountCreationSuccessful" id="dOV-zu-ymH"/>
+                        <segue destination="IwN-N3-nSQ" kind="push" identifier="AccountCreationSuccessful" id="gxH-rz-5ly"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wIl-aU-N8G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="298" y="1101"/>
+            <point key="canvasLocation" x="298" y="1099"/>
         </scene>
         <!--SellViewController-->
         <scene sceneID="WIl-Hc-D12">
@@ -435,7 +505,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E5o-q3-HHT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2864" y="323"/>
+            <point key="canvasLocation" x="3396" y="323"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7Rb-7F-KTa">
@@ -635,9 +705,6 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <segue destination="nHB-jK-Jih" kind="push" identifier="deleteListing" id="kCl-Lq-aUz"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="E0d-sm-kB5">
                                 <rect key="frame" x="49" y="461" width="223" height="40"/>
@@ -848,10 +915,32 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xCI-hP-m6q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2115" y="390"/>
+            <point key="canvasLocation" x="2647" y="390"/>
+        </scene>
+        <!--Sell-->
+        <scene sceneID="Yfn-Ii-1ql">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="VCP-63-Bea" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Sell" image="Money Bag-25.png" id="vjT-vF-DmE"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="auD-hM-5gy">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Jcp-rd-Ddg" kind="relationship" relationship="rootViewController" id="AZc-UX-uyJ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f4V-GZ-4iJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1304" y="-234"/>
         </scene>
     </scenes>
     <resources>
+        <image name="Literature-25.png" width="25" height="25"/>
+        <image name="Money Bag-25.png" width="25" height="25"/>
+        <image name="SLR Camera-64.png" width="64" height="64"/>
         <image name="cabinet_barcode.jpg" width="510" height="392"/>
         <image name="image_placeholder.jpg" width="500" height="500"/>
     </resources>
@@ -861,8 +950,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="gxH-rz-5ly"/>
         <segue reference="QcH-Gb-e50"/>
         <segue reference="C4x-j3-9t9"/>
-        <segue reference="kCl-Lq-aUz"/>
     </inferredMetricsTieBreakers>
 </document>

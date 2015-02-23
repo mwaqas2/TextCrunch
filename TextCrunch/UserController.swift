@@ -99,21 +99,79 @@ public class UserController {
         return
     }
     
+    
+    //Returns a User object representing the currently logged in user.
     class func getCurrentUser() -> User{
         var currentUser: User = User.currentUser()
         return currentUser
     }
     
-    class func getUsersSoldListings(user: User) -> [Listing]?{
-        return nil
+    //Returns an array of all the completed Listings in which the current user was
+    //the Listing's seller.
+    class func getCurrentUsersSoldListings() -> [Listing]?{
+        var currentUser = self.getCurrentUser()
+        var query = PFQuery(className: "Listing")
+        query.whereKey("isActive", equalTo: false)
+        query.whereKey("seller", equalTo: currentUser)
+        var results = query.findObjects()
+        return results as? [Listing]
     }
     
-    class func getUsersBoughtListings(user: User) -> [Listing]?{
-        return nil
+    //Returns an array of all the completed Listings in which the current user was
+    //the Listing's buyer.
+    class func getCurrentUsersBoughtListings() -> [Listing]?{
+        var currentUser = self.getCurrentUser()
+        var query = PFQuery(className: "Listing")
+        query.whereKey("isActive", equalTo: false)
+        query.whereKey("buyer", equalTo: currentUser)
+        var results = query.findObjects()
+        return results as? [Listing]
     }
     
-    class func getUsersActiveListings(user: User) -> [Listing]?{
-        return nil
+    //Returns an array of all active Listings in which the user is registered as either
+    //the Listing's buyer or seller.
+    class func getCurrentUsersActiveListings() -> [Listing]?{
+        var currentUser = self.getCurrentUser()
+        var buyerQuery = PFQuery(className: "Listing")
+        var sellerQuery = PFQuery(className: "Listing")
+        buyerQuery.whereKey("isActive", equalTo: true)
+        buyerQuery.whereKey("buyer", equalTo: currentUser)
+        //Kind of redundant, since we should never have the case where a listing has a buyer and is active.
+        //Unless we want to set up where we set the buyer on putting a listing on hold.
+        sellerQuery.whereKey("isActive", equalTo: true)
+        sellerQuery.whereKey("seller", equalTo: currentUser)
+        var compoundQuery = PFQuery.orQueryWithSubqueries([buyerQuery, sellerQuery])
+        var results = compoundQuery.findObjects()
+        return results as? [Listing]
+    }
+    
+    //Returns an array of all completed Listings in which the user is registered as
+    //either the Listing's buyer or seller.
+    class func getCurrentUsersCompleteListings() -> [Listing]?{
+        var currentUser = self.getCurrentUser()
+        var buyerQuery = PFQuery(className: "Listing")
+        var sellerQuery = PFQuery(className: "Listing")
+        buyerQuery.whereKey("isActive", equalTo: false)
+        buyerQuery.whereKey("buyer", equalTo: currentUser)
+        sellerQuery.whereKey("isActive", equalTo: false)
+        sellerQuery.whereKey("seller", equalTo: currentUser)
+        var compoundQuery = PFQuery.orQueryWithSubqueries([buyerQuery, sellerQuery])
+        var results = compoundQuery.findObjects()
+        return results as? [Listing]
+    }
+    
+
+    //Returns an array of all active and completed Listings in which
+    //the user is registered as either the Listing's buyer or seller.
+    class func getAllCurrentUsersListings() -> [Listing]?{
+        var currentUser = self.getCurrentUser()
+        var buyerQuery = PFQuery(className: "Listing")
+        var sellerQuery = PFQuery(className: "Listing")
+        buyerQuery.whereKey("buyer", equalTo: currentUser)
+        sellerQuery.whereKey("seller", equalTo: currentUser)
+        var compoundQuery = PFQuery.orQueryWithSubqueries([buyerQuery, sellerQuery])
+        var results = compoundQuery.findObjects()
+        return results as? [Listing]
     }
     
 }
