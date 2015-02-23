@@ -10,7 +10,6 @@
 		187896C61A8D7A020027C7A1 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187896C41A8D6D7A0027C7A1 /* UserModel.swift */; };
 		1892840B1A97B7AE000B15D6 /* Literature-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 189284091A97B7AE000B15D6 /* Literature-25.png */; };
 		1892840C1A97B7AE000B15D6 /* Money Bag-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 1892840A1A97B7AE000B15D6 /* Money Bag-25.png */; };
-		1892840F1A97BD6E000B15D6 /* SellerListingTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1892840E1A97BD6E000B15D6 /* SellerListingTableCell.swift */; };
 		189284111A97C2AB000B15D6 /* SLR Camera-64.png in Resources */ = {isa = PBXBuildFile; fileRef = 189284101A97C2AB000B15D6 /* SLR Camera-64.png */; };
 		18A335841A91617800765B52 /* SellerListingViewTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A335831A91617800765B52 /* SellerListingViewTableDataSource.swift */; };
 		18B312CA1A8432EA009EF22B /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B489961A7D5FAD00541D06 /* UserController.swift */; };
@@ -77,7 +76,6 @@
 		187896C41A8D6D7A0027C7A1 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		189284091A97B7AE000B15D6 /* Literature-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Literature-25.png"; path = "../../../Downloads/Literature-25.png"; sourceTree = "<group>"; };
 		1892840A1A97B7AE000B15D6 /* Money Bag-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Money Bag-25.png"; path = "../../../Downloads/Money Bag-25.png"; sourceTree = "<group>"; };
-		1892840E1A97BD6E000B15D6 /* SellerListingTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SellerListingTableCell.swift; sourceTree = "<group>"; };
 		189284101A97C2AB000B15D6 /* SLR Camera-64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SLR Camera-64.png"; path = "../../../Downloads/SLR Camera-64.png"; sourceTree = "<group>"; };
 		18A335831A91617800765B52 /* SellerListingViewTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SellerListingViewTableDataSource.swift; sourceTree = "<group>"; };
 		18B489961A7D5FAD00541D06 /* UserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = UserController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -203,7 +201,6 @@
 		1892840D1A97BD4E000B15D6 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
-				1892840E1A97BD6E000B15D6 /* SellerListingTableCell.swift */,
 			);
 			name = CustomViews;
 			sourceTree = "<group>";
@@ -487,7 +484,6 @@
 				535A39441A8D933E00D3F01B /* ViewController.swift in Sources */,
 				560869CA1A8A527B00630C64 /* EditListingViewController.swift in Sources */,
 				658FCFFD1A64789E004D056D /* LoginViewController.swift in Sources */,
-				1892840F1A97BD6E000B15D6 /* SellerListingTableCell.swift in Sources */,
 				18B4899F1A7D66E000541D06 /* GoogleUserController.swift in Sources */,
 				18B489A71A82D7F300541D06 /* ListingModel.swift in Sources */,
 				560869C61A8A522600630C64 /* BillingInfoViewController.swift in Sources */,

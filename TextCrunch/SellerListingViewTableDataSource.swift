@@ -23,7 +23,6 @@ class SellerListingViewTableDataSource: NSObject, UITableViewDataSource{
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return currentListings.count as Int
-        //return 4
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{

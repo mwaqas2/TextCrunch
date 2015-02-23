@@ -99,11 +99,15 @@ public class UserController {
         return
     }
     
+    
+    //Returns a User object representing the currently logged in user.
     class func getCurrentUser() -> User{
         var currentUser: User = User.currentUser()
         return currentUser
     }
     
+    //Returns an array of all the completed Listings in which the current user was
+    //the Listing's seller.
     class func getCurrentUsersSoldListings() -> [Listing]?{
         var currentUser = self.getCurrentUser()
         var query = PFQuery(className: "Listing")
@@ -113,6 +117,8 @@ public class UserController {
         return results as? [Listing]
     }
     
+    //Returns an array of all the completed Listings in which the current user was
+    //the Listing's buyer.
     class func getCurrentUsersBoughtListings() -> [Listing]?{
         var currentUser = self.getCurrentUser()
         var query = PFQuery(className: "Listing")
@@ -122,6 +128,8 @@ public class UserController {
         return results as? [Listing]
     }
     
+    //Returns an array of all active Listings in which the user is registered as either
+    //the Listing's buyer or seller.
     class func getCurrentUsersActiveListings() -> [Listing]?{
         var currentUser = self.getCurrentUser()
         var buyerQuery = PFQuery(className: "Listing")
@@ -137,6 +145,8 @@ public class UserController {
         return results as? [Listing]
     }
     
+    //Returns an array of all completed Listings in which the user is registered as
+    //either the Listing's buyer or seller.
     class func getCurrentUsersCompleteListings() -> [Listing]?{
         var currentUser = self.getCurrentUser()
         var buyerQuery = PFQuery(className: "Listing")
@@ -151,6 +161,8 @@ public class UserController {
     }
     
 
+    //Returns an array of all active and completed Listings in which
+    //the user is registered as either the Listing's buyer or seller.
     class func getAllCurrentUsersListings() -> [Listing]?{
         var currentUser = self.getCurrentUser()
         var buyerQuery = PFQuery(className: "Listing")
