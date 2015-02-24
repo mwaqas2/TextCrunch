@@ -173,7 +173,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" tag="100" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SLR Camera-64.png" id="bBL-bZ-Tbl">
-                                                    <rect key="frame" x="0.0" y="0.0" width="1535" height="695"/>
+                                                    <rect key="frame" x="-1" y="0.0" width="1821" height="812"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
                                             </subviews>
