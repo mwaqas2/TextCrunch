@@ -39,7 +39,7 @@ class LoginViewController: UIViewController {
 	// Handles the Login button press event.
 	@IBAction func loginButtonPressed(sender: AnyObject) {
 		if loginUser() {
-			self.performSegueWithIdentifier("Login",sender: nil)
+			self.performSegueWithIdentifier("SearchLogin",sender: nil)
 		}
 	}
 	

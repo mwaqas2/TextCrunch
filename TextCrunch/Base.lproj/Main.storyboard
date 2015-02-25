@@ -96,6 +96,7 @@
                         <outlet property="passwordWarningLabel" destination="lAL-YH-Wn5" id="0yO-Se-gwp"/>
                         <segue destination="ngy-G1-Yq7" kind="push" identifier="CreateAccount" id="G4W-pO-MWQ"/>
                         <segue destination="IwN-N3-nSQ" kind="push" identifier="Login" id="zHb-Ea-0te"/>
+                        <segue destination="rOS-wc-sWm" kind="push" identifier="SearchLogin" id="q96-Cz-bw7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -127,10 +128,10 @@
             </objects>
             <point key="canvasLocation" x="1196" y="438"/>
         </scene>
-        <!--Seller Listing View Controller-->
+        <!--Seller-->
         <scene sceneID="xbT-5o-nhJ">
             <objects>
-                <viewController id="Jcp-rd-Ddg" customClass="SellerListingViewController" customModule="TextCrunch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Seller" id="Jcp-rd-Ddg" customClass="SellerListingViewController" customModule="TextCrunch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ors-QY-MAc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -173,7 +174,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" tag="100" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SLR Camera-64.png" id="bBL-bZ-Tbl">
-                                                    <rect key="frame" x="-1" y="0.0" width="1821" height="812"/>
+                                                    <rect key="frame" x="-4" y="-2" width="2108" height="932"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
                                             </subviews>
@@ -187,6 +188,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Seller" id="GSh-5O-klN"/>
                     <navigationItem key="navigationItem" id="7v5-XQ-hSE"/>
                     <connections>
                         <outlet property="listingTable" destination="XsW-w1-Nm9" id="66W-RE-rgf"/>
@@ -195,7 +197,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="INT-gM-pUQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1796" y="-234"/>
+            <point key="canvasLocation" x="1312" y="-424"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="cl9-ts-XLY">
@@ -210,13 +212,12 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="VCP-63-Bea" kind="relationship" relationship="viewControllers" id="t6V-CW-v8T"/>
                         <segue destination="LiZ-Td-fOV" kind="relationship" relationship="viewControllers" id="VA5-j9-MMr"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aUx-IY-0OV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="748" y="-226"/>
+            <point key="canvasLocation" x="748" y="-109"/>
         </scene>
         <!--Account Creation View Controller-->
         <scene sceneID="n5n-e4-AQu">
@@ -917,32 +918,170 @@
             </objects>
             <point key="canvasLocation" x="2647" y="390"/>
         </scene>
-        <!--Sell-->
-        <scene sceneID="Yfn-Ii-1ql">
+        <!--Buyer-->
+        <scene sceneID="c5E-Fg-VBA">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="VCP-63-Bea" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Sell" image="Money Bag-25.png" id="vjT-vF-DmE"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="auD-hM-5gy">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
+                <viewController id="7JX-EG-LbB" customClass="SearchViewController" customModule="TextCrunch" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Hgd-nY-zeI">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="FRS-5z-oMQ">
+                                <rect key="frame" x="236" y="64" width="84" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.89411764709999997" green="0.31372549020000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Search">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onSearchButtonClicked:" destination="7JX-EG-LbB" eventType="touchUpInside" id="coO-Ie-pnd"/>
+                                </connections>
+                            </button>
+                            <searchBar contentMode="redraw" text="" id="azS-2Q-aag">
+                                <rect key="frame" x="0.0" y="64" width="236" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" id="NF5-1E-VPr">
+                                <rect key="frame" x="53" y="137" width="214" height="283"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ListingCell" rowHeight="70" id="uTw-sc-m0y" customClass="ListingTableViewCell" customModule="TextCrunch" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="214" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uTw-sc-m0y" id="ZBf-iJ-ucf">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="XAf-E5-TyG">
+                                                    <rect key="frame" x="25" y="4" width="62" height="62"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="by" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7wz-18-Wy3">
+                                                    <rect key="frame" x="95" y="34" width="89" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vnY-bV-aZQ">
+                                                    <rect key="frame" x="95" y="16" width="80" height="28"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$ Price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pGB-hI-eq7">
+                                                    <rect key="frame" x="100" y="46" width="45" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.89411764709999997" green="0.31372549020000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.95052939970000005" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="authorLabel" destination="7wz-18-Wy3" id="Dus-Pg-iLe"/>
+                                            <outlet property="listingImage" destination="XAf-E5-TyG" id="cNp-ri-R9x"/>
+                                            <outlet property="priceLabel" destination="pGB-hI-eq7" id="KlV-iU-TbB"/>
+                                            <outlet property="titleLabel" destination="vnY-bV-aZQ" id="3Ig-Fi-u6s"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="7JX-EG-LbB" id="3JE-48-UNM"/>
+                                    <outlet property="delegate" destination="7JX-EG-LbB" id="2yi-Sv-9O0"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4Bp-QA-NVg">
+                                <rect key="frame" x="8" y="108" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="Title">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onTitleSortButtonClicked:" destination="7JX-EG-LbB" eventType="touchUpInside" id="ziY-71-9bc"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="up_arrow.png" id="6Xo-er-67R">
+                                <rect key="frame" x="46" y="108" width="22" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="down_arrow.png" id="k5Q-Bn-c02">
+                                <rect key="frame" x="46" y="108" width="22" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="down_arrow.png" id="uIc-yO-7N6">
+                                <rect key="frame" x="132" y="111" width="22" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="v3v-Mm-HDl">
+                                <rect key="frame" x="76" y="108" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Author">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onAuthorSortButtonClicked:" destination="7JX-EG-LbB" eventType="touchUpInside" id="o9J-Q8-5n0"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="up_arrow.png" id="FER-7b-pWq">
+                                <rect key="frame" x="132" y="108" width="22" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Buyer" id="IL1-Bz-4JU"/>
                     <connections>
-                        <segue destination="Jcp-rd-Ddg" kind="relationship" relationship="rootViewController" id="AZc-UX-uyJ"/>
+                        <outlet property="authorDownArrow" destination="uIc-yO-7N6" id="lZu-nw-vzL"/>
+                        <outlet property="authorSortButton" destination="v3v-Mm-HDl" id="4sz-TK-aej"/>
+                        <outlet property="authorUpArrow" destination="FER-7b-pWq" id="5Td-lq-w3b"/>
+                        <outlet property="listingTableView" destination="NF5-1E-VPr" id="WM7-Ge-ody"/>
+                        <outlet property="searchBar" destination="azS-2Q-aag" id="J2O-95-0j6"/>
+                        <outlet property="searchButton" destination="FRS-5z-oMQ" id="G1d-H2-BUn"/>
+                        <outlet property="titleDownArrow" destination="k5Q-Bn-c02" id="7QP-lC-Am7"/>
+                        <outlet property="titleSortButton" destination="4Bp-QA-NVg" id="OhV-Jf-4Og"/>
+                        <outlet property="titleUpArrow" destination="6Xo-er-67R" id="cCk-UG-e70"/>
                     </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="f4V-GZ-4iJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="k9t-sY-eu0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1304" y="-234"/>
+            <point key="canvasLocation" x="819" y="-872"/>
+        </scene>
+        <!--Home Tab Bar View Controller-->
+        <scene sceneID="BBW-cg-m1y">
+            <objects>
+                <tabBarController id="rOS-wc-sWm" customClass="HomeTabBarViewController" customModule="TextCrunch" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="K36-lB-h23"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="Ryb-Vu-VtR">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="7JX-EG-LbB" kind="relationship" relationship="viewControllers" id="kQO-cE-OZ2"/>
+                        <segue destination="Jcp-rd-Ddg" kind="relationship" relationship="viewControllers" id="jjw-9g-cOf"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gyy-QL-1KY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="271" y="-505"/>
         </scene>
     </scenes>
     <resources>
         <image name="Literature-25.png" width="25" height="25"/>
-        <image name="Money Bag-25.png" width="25" height="25"/>
         <image name="SLR Camera-64.png" width="64" height="64"/>
         <image name="cabinet_barcode.jpg" width="510" height="392"/>
+        <image name="down_arrow.png" width="201" height="123"/>
         <image name="image_placeholder.jpg" width="500" height="500"/>
+        <image name="up_arrow.png" width="201" height="123"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -950,7 +1089,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="gxH-rz-5ly"/>
+        <segue reference="zHb-Ea-0te"/>
         <segue reference="QcH-Gb-e50"/>
         <segue reference="C4x-j3-9t9"/>
     </inferredMetricsTieBreakers>

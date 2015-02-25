@@ -25,6 +25,12 @@
 		18B489A71A82D7F300541D06 /* ListingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B489A61A82D7F300541D06 /* ListingModel.swift */; };
 		32C890AF1A7FC70A00196E47 /* SellerListingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C890AE1A7FC70A00196E47 /* SellerListingViewController.swift */; };
 		32E6E0F41A84599400292B7A /* AccountCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E6E0F31A84599400292B7A /* AccountCreationViewController.swift */; };
+		32ECF1D31A9D5F3100F65DA5 /* up_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 32ECF1D21A9D5F3100F65DA5 /* up_arrow.png */; };
+		32ECF1D51A9D5F3C00F65DA5 /* down_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 32ECF1D41A9D5F3C00F65DA5 /* down_arrow.png */; };
+		32ECF1D91A9D617100F65DA5 /* HomeTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32ECF1D81A9D617100F65DA5 /* HomeTabBarViewController.swift */; };
+		32ECF1DB1A9D61D000F65DA5 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32ECF1DA1A9D61D000F65DA5 /* SearchViewController.swift */; };
+		32ECF1E31A9D63CD00F65DA5 /* ListingDatabaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32ECF1E21A9D63CD00F65DA5 /* ListingDatabaseController.swift */; };
+		32ECF1E51A9D695200F65DA5 /* ListingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32ECF1E41A9D695100F65DA5 /* ListingTableViewCell.swift */; };
 		535A39331A870BC000D3F01B /* BookModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535A39321A870BC000D3F01B /* BookModelTests.swift */; };
 		535A39361A871EFC00D3F01B /* BookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F8E5CC1A85DFC600A5D10E /* BookModel.swift */; };
 		535A39391A871FAE00D3F01B /* ConversationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F8E5CB1A85DFC600A5D10E /* ConversationModel.swift */; };
@@ -86,6 +92,12 @@
 		18B489A81A82DE2F00541D06 /* UserControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = UserControllerTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		32C890AE1A7FC70A00196E47 /* SellerListingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SellerListingViewController.swift; sourceTree = "<group>"; };
 		32E6E0F31A84599400292B7A /* AccountCreationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountCreationViewController.swift; sourceTree = "<group>"; };
+		32ECF1D21A9D5F3100F65DA5 /* up_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = up_arrow.png; sourceTree = "<group>"; };
+		32ECF1D41A9D5F3C00F65DA5 /* down_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down_arrow.png; sourceTree = "<group>"; };
+		32ECF1D81A9D617100F65DA5 /* HomeTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTabBarViewController.swift; sourceTree = "<group>"; };
+		32ECF1DA1A9D61D000F65DA5 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		32ECF1E21A9D63CD00F65DA5 /* ListingDatabaseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListingDatabaseController.swift; sourceTree = "<group>"; };
+		32ECF1E41A9D695100F65DA5 /* ListingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListingTableViewCell.swift; sourceTree = "<group>"; };
 		535A39321A870BC000D3F01B /* BookModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookModelTests.swift; sourceTree = "<group>"; };
 		535A393D1A874C0A00D3F01B /* ListingModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListingModelTests.swift; sourceTree = "<group>"; };
 		535A39421A8D933E00D3F01B /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -179,6 +191,7 @@
 				18B4899C1A7D66D100541D06 /* FBUserController.swift */,
 				18B4899A1A7D66C100541D06 /* TwitterUserController.swift */,
 				18B489961A7D5FAD00541D06 /* UserController.swift */,
+				32ECF1E21A9D63CD00F65DA5 /* ListingDatabaseController.swift */,
 			);
 			name = ModelControllers;
 			sourceTree = "<group>";
@@ -194,6 +207,9 @@
 				560869C91A8A527B00630C64 /* EditListingViewController.swift */,
 				560869CB1A8A529800630C64 /* IsbnViewController.swift */,
 				18A335831A91617800765B52 /* SellerListingViewTableDataSource.swift */,
+				32ECF1D81A9D617100F65DA5 /* HomeTabBarViewController.swift */,
+				32ECF1DA1A9D61D000F65DA5 /* SearchViewController.swift */,
+				32ECF1E41A9D695100F65DA5 /* ListingTableViewCell.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -266,6 +282,8 @@
 		658FCFF71A64789E004D056D /* TextCrunch */ = {
 			isa = PBXGroup;
 			children = (
+				32ECF1D41A9D5F3C00F65DA5 /* down_arrow.png */,
+				32ECF1D21A9D5F3100F65DA5 /* up_arrow.png */,
 				189284101A97C2AB000B15D6 /* SLR Camera-64.png */,
 				189284091A97B7AE000B15D6 /* Literature-50.png */,
 				1892840A1A97B7AE000B15D6 /* Money Bag-50.png */,
@@ -410,6 +428,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32ECF1D31A9D5F3100F65DA5 /* up_arrow.png in Resources */,
 				658FD0001A64789E004D056D /* Main.storyboard in Resources */,
 				1892840B1A97B7AE000B15D6 /* Literature-50.png in Resources */,
 				658FD0051A64789E004D056D /* LaunchScreen.xib in Resources */,
@@ -418,6 +437,7 @@
 				189284111A97C2AB000B15D6 /* SLR Camera-64.png in Resources */,
 				658FD0021A64789E004D056D /* Images.xcassets in Resources */,
 				560869D01A8A55C500630C64 /* cabinet_barcode.jpg in Resources */,
+				32ECF1D51A9D5F3C00F65DA5 /* down_arrow.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,16 +504,20 @@
 				535A39441A8D933E00D3F01B /* ViewController.swift in Sources */,
 				560869CA1A8A527B00630C64 /* EditListingViewController.swift in Sources */,
 				658FCFFD1A64789E004D056D /* LoginViewController.swift in Sources */,
+				32ECF1E31A9D63CD00F65DA5 /* ListingDatabaseController.swift in Sources */,
 				18B4899F1A7D66E000541D06 /* GoogleUserController.swift in Sources */,
 				18B489A71A82D7F300541D06 /* ListingModel.swift in Sources */,
 				560869C61A8A522600630C64 /* BillingInfoViewController.swift in Sources */,
 				53F8E5CE1A85DFC600A5D10E /* BookModel.swift in Sources */,
 				560869C81A8A524F00630C64 /* ListingViewController.swift in Sources */,
+				32ECF1D91A9D617100F65DA5 /* HomeTabBarViewController.swift in Sources */,
 				535A39401A8D904C00D3F01B /* UserModel.swift in Sources */,
 				18B4899D1A7D66D100541D06 /* FBUserController.swift in Sources */,
+				32ECF1E51A9D695200F65DA5 /* ListingTableViewCell.swift in Sources */,
 				560869CC1A8A529800630C64 /* IsbnViewController.swift in Sources */,
 				658FCFFB1A64789E004D056D /* AppDelegate.swift in Sources */,
 				18A335841A91617800765B52 /* SellerListingViewTableDataSource.swift in Sources */,
+				32ECF1DB1A9D61D000F65DA5 /* SearchViewController.swift in Sources */,
 				53F8E5CD1A85DFC600A5D10E /* ConversationModel.swift in Sources */,
 				18B4899B1A7D66C100541D06 /* TwitterUserController.swift in Sources */,
 				32E6E0F41A84599400292B7A /* AccountCreationViewController.swift in Sources */,
