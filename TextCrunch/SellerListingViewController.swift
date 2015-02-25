@@ -50,10 +50,15 @@ class SellerListingViewController: UIViewController, UITableViewDelegate{
 		//TODO: Add a check to see if payment info has been added
 		// if no payment info, go to payment info page, if payment info has already been
 		// given, transition to the listing creation page.
-		self.performSegueWithIdentifier("StartListingCreation", sender: nil)
+        
+        var user = User.currentUser()
+        
+        if user.paypalId == nil {
+            self.performSegueWithIdentifier("SellerInfoCreation", sender: sender)
+        } else {
+            self.performSegueWithIdentifier("StartListingCreation", sender: sender)
+        }
 	}
-    
-    
     
     @IBAction func switchClicked(sender: AnyObject) {
         if inactiveSwitch.on && activeSwitch.on{
@@ -81,10 +86,12 @@ class SellerListingViewController: UIViewController, UITableViewDelegate{
             var svc = segue.destinationViewController as ListingViewController;
             svc.listing = selectedListing
 			svc.isNewListing = false
+        
+        } else if (segue.identifier == "SellerInfoCreation") {
+            let sic = segue.destinationViewController as BillingInfoViewController
+            sic.seller = true
         }
+        
         super.prepareForSegue(segue, sender: sender)
     }
-
-
-
 }

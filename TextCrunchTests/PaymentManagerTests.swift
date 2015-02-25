@@ -15,13 +15,11 @@ class PaymentManagerTests: XCTestCase {
     var appDelegate: AppDelegate!
     var manager: PaymentManager!
     
-    // stripe pre-created buyer
-    var stripeBuyerId: String = "cus_5fPv3WLmhhIxia"
-    var stripeCardToken: String = "tok_15U56nFCMcNeIOqDcmfCHkS0"
+    var buyerEmail = "me@derekdowling.com"
+    var buyerPW = "test1234"
     
-    // stripe pre-created seller
-    var stripeSellerId: String = "cus_5fPxZXCiBofcDu"
-    var stripeSellerToken: String = ""
+    var sellerEmail = "me-buyer2@derekdowling.com"
+    var sellerPW = "test4567"
     
     var buyer: User!
     var seller: User!
@@ -32,25 +30,18 @@ class PaymentManagerTests: XCTestCase {
         appDelegate = AppDelegate()
         appDelegate.application(UIApplication.sharedApplication(), didFinishLaunchingWithOptions: nil)
         manager = PaymentManager()
-        var uniq = NSUUID().UUIDString
         
-        buyer = User(email: "test+buyer" + uniq + "@txtcrunch.com")
-        buyer.stripeCardToken = stripeCardToken
-        buyer.stripeId = stripeBuyerId
-        buyer.password = "password1"
-        buyer.signUp()
-        
-        seller = User(email: "test+seller" + uniq + "@txtcrunch.com")
-        seller.password = "password1"
-        seller.stripeId = stripeSellerId
-        seller.stripeSellerToken = stripeSellerToken
-        seller.signUp()
+        var query = User.query()
+        query.whereKey("email", equalTo:buyerEmail)
+        buyer = query.findObjects().first as User
+
+        var query2 = User.query()
+        query2.whereKey("email", equalTo:sellerEmail)
+        seller = query2.findObjects().first as User
     }
     
     override func tearDown() {
         super.tearDown()
-        buyer.delete()
-        seller.delete()
     }
 
     func testPay() {

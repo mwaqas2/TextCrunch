@@ -9,7 +9,7 @@
 import Foundation
 
 class PaymentManager {
-    
+
     init() {
         
     }
@@ -28,5 +28,24 @@ class PaymentManager {
         var result: AnyObject! = PFCloud.callFunction("charge", withParameters: data)
         var dict = result as Dictionary<String, String>
         return dict
+    }
+    
+    // converts a paypal code into a long lived refresh token
+    class func convertCode(id: String, code: String) -> Bool {
+        
+        return true;
+        
+        var data = [
+            "id": id,
+            "code": code
+        ]
+        
+        // TODO: parse using JSONSWifty
+        var result: AnyObject! = PFCloud.callFunction("convertCode", withParameters: data)
+        var dict = result as Dictionary<String, String>
+        println(dict)
+        
+        //return dict["result"]
+        return true
     }
 }

@@ -10,9 +10,8 @@ import Foundation
 
 class User : PFUser, PFSubclassing {
     
-    @NSManaged var stripeCardToken: String
-    @NSManaged var stripeId: String
-    @NSManaged var stripeSellerToken: String
+    @NSManaged var paypalId: String?
+    @NSManaged var paypalToken: String?
     
     override init() {
         super.init()

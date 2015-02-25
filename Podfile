@@ -4,8 +4,7 @@ platform :ios, '8.1'
 target 'TextCrunch' do
     pod 'Parse', '~> 1.6.2'
     pod 'ParseCrashReporting', '~> 1.6.2'
-    pod 'PaymentKit'
-    pod 'Stripe'
+    pod 'PayPal-iOS-SDK'
 end
 
 target 'TextCrunchTests' do

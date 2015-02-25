@@ -1,8 +1,7 @@
-var Stripe = require('stripe');
-Stripe.initialize('sk_test_A7mHjFsnnqa1yN5w0U9aA61b');
-
 // Percent service fee applied to all transactions
 var txPercent = "0.05";
+
+var paypalId = "AT_zVdLhRy_IwuNqTMBFPVImboNVwfR6CJXhIp62uSMHcsZhKD3X6y9d-Snn3i679gA8M8yP5Qk32ZEa";
 
 /**
  * HELPERS
@@ -25,47 +24,17 @@ var calculateEarnings = function (amountInCents) {
  * @param object data
  * @param bool error
  */
-var formatResponse = function (msg, data, error) {
-
-    var response = {
+var formatResponse = function (msg, data, success) {
+    return {
         msg: msg,
         data: data,
-        error: false
+        success: success
     };
-
-    if (typeof error !== 'undefined' && error) {
-        response.error = true;
-    }
-
-    return response;
 }
 
 /**
  * TRIGGERS
  */
-
-// Automatically create a Stripe Customer for any newly saved customers
-Parse.Cloud.afterSave(Parse.User, function (request) {
-
-    var stripe_id = request.object.get("stripeId");
-    if (!stripe_id) {
-
-        var data = {
-            email: token
-        };
-
-        Stripe.customers.create(data).then(function (result) {
-
-            stripe_id = result.id;
-
-        }).fail(function (result) {
-            console.log(result);
-        });
-
-        request.object.set("stripeId", stripe_id);
-        request.object.save();
-    }
-});
 
 /**
  * CLOUD FUNCTIONS
@@ -83,7 +52,61 @@ Parse.Cloud.afterSave(Parse.User, function (request) {
  *
  *  @return string msg
  */
-Parse.Cloud.define("charge", function (request, response) {
+Parse.Cloud.define("transfer", function (request, response) {
+
+    var query = new Parse.Query(Parse.User);
+    var buyer, seller;
+
+    // Fetch the buyer
+    query.get(request.params.buyerId).then(function (user) {
+        buyer = user;
+    }, function (error) {
+        response.error(error);
+    });
+
+    // Same for the seller
+    query.get(request.params.sellerId).then(function (user) {
+        seller = user;
+    }, function (error) {
+        response.error(error);
+    });
+
+    var fee = calculateEarnings(request.params.amountCents);
+    var charge;
+
+    Stripe.charges.create(
+        {
+            amount: request.params.amountCents,
+            currency: "CAD",
+            application_fee: fee,
+            description: request.params.textName,
+            card: buyer.stripeCardToken
+        },
+        seller.stripeSellerToken,
+        function (err, charge) {
+            if (err) {
+                response.error(formatResponse(err, null, true));
+            }
+            charge = charge;
+        }
+    );
+
+    response.success(formatResponse("Purchase successful", charge));
+});
+
+/**
+ * Handles converting 
+ *
+ * @params request.params[
+ *  - buyerId
+ *  - sellerId
+ *  - amountCents
+ *  - textName
+ *  ]
+ *
+ *  @return string msg
+ */
+Parse.Cloud.define("transfer", function (request, response) {
 
     var query = new Parse.Query(Parse.User);
     var buyer, seller;
