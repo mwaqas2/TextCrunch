@@ -138,8 +138,13 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t29-oD-SO0">
                                 <rect key="frame" x="16" y="80" width="288" height="47"/>
-                                <color key="backgroundColor" red="0.083453172928843564" green="0.85505445075757569" blue="0.42504926567840612" alpha="0.47000000000000003" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Sell Something"/>
+                                <color key="backgroundColor" red="0.51349161529999998" green="0.72465783539999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Sell Something">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onSellButtonClicked:" destination="Jcp-rd-Ddg" eventType="touchUpInside" id="oan-VZ-N7e"/>
+                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="XsW-w1-Nm9">
                                 <rect key="frame" x="0.0" y="150" width="320" height="418"/>
@@ -182,7 +187,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Seller" id="GSh-5O-klN"/>
+                    <tabBarItem key="tabBarItem" title="Seller" image="Literature-25.png" id="GSh-5O-klN"/>
                     <navigationItem key="navigationItem" id="7v5-XQ-hSE"/>
                     <connections>
                         <outlet property="listingTable" destination="XsW-w1-Nm9" id="66W-RE-rgf"/>
@@ -192,7 +197,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="INT-gM-pUQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1543" y="346"/>
+            <point key="canvasLocation" x="1539" y="390"/>
         </scene>
         <!--Account Creation View Controller-->
         <scene sceneID="n5n-e4-AQu">
@@ -901,6 +906,31 @@
                                     <constraint firstAttribute="width" constant="15" id="DXb-DT-gc7"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s4m-hd-4xt">
+                                <rect key="frame" x="162" y="118" width="46" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="Price">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onPriceSortButtonClicked:" destination="7JX-EG-LbB" eventType="touchUpInside" id="kmv-Hb-zen"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="down_arrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="CYF-m9-U0R">
+                                <rect key="frame" x="217" y="118" width="22" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="15" id="evY-6e-qOr"/>
+                                    <constraint firstAttribute="height" constant="15" id="hhs-XN-eWI"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="up_arrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="JpY-hG-xfn">
+                                <rect key="frame" x="229" y="122" width="22" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="15" id="5aH-uv-Llb"/>
+                                    <constraint firstAttribute="height" constant="15" id="rRQ-3r-YNV"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -912,14 +942,20 @@
                             <constraint firstItem="4Bp-QA-NVg" firstAttribute="leading" secondItem="Hgd-nY-zeI" secondAttribute="leading" constant="15" id="9ir-PQ-U45"/>
                             <constraint firstItem="azS-2Q-aag" firstAttribute="leading" secondItem="Hgd-nY-zeI" secondAttribute="leading" constant="1" id="BJb-CA-gLe"/>
                             <constraint firstAttribute="trailing" secondItem="FRS-5z-oMQ" secondAttribute="trailing" id="EZR-lp-iMR"/>
+                            <constraint firstItem="CYF-m9-U0R" firstAttribute="top" secondItem="azS-2Q-aag" secondAttribute="bottom" constant="7" id="HJZ-px-wH4"/>
+                            <constraint firstItem="CYF-m9-U0R" firstAttribute="leading" secondItem="s4m-hd-4xt" secondAttribute="trailing" constant="3" id="Ic0-TI-YAX"/>
                             <constraint firstAttribute="trailing" secondItem="NF5-1E-VPr" secondAttribute="trailing" constant="1" id="IuB-ih-riA"/>
                             <constraint firstItem="FRS-5z-oMQ" firstAttribute="top" secondItem="u4O-iX-nMh" secondAttribute="bottom" id="JrR-No-scs"/>
                             <constraint firstItem="FER-7b-pWq" firstAttribute="top" secondItem="azS-2Q-aag" secondAttribute="bottom" constant="8" id="K0Y-gh-XJ0"/>
                             <constraint firstItem="uIc-yO-7N6" firstAttribute="top" secondItem="azS-2Q-aag" secondAttribute="bottom" constant="7" id="LzI-mZ-A3G"/>
+                            <constraint firstItem="s4m-hd-4xt" firstAttribute="top" secondItem="azS-2Q-aag" secondAttribute="bottom" constant="1" id="Pkx-8F-M3H"/>
                             <constraint firstItem="k5Q-Bn-c02" firstAttribute="leading" secondItem="4Bp-QA-NVg" secondAttribute="trailing" constant="4" id="T99-9H-o4p"/>
                             <constraint firstItem="NF5-1E-VPr" firstAttribute="top" secondItem="4Bp-QA-NVg" secondAttribute="bottom" constant="5" id="ZmI-f3-3kD"/>
+                            <constraint firstItem="JpY-hG-xfn" firstAttribute="top" secondItem="azS-2Q-aag" secondAttribute="bottom" constant="8" id="aYS-nG-SRq"/>
                             <constraint firstItem="uIc-yO-7N6" firstAttribute="leading" secondItem="v3v-Mm-HDl" secondAttribute="trailing" constant="5" id="b1O-Ra-FHy"/>
+                            <constraint firstItem="JpY-hG-xfn" firstAttribute="leading" secondItem="s4m-hd-4xt" secondAttribute="trailing" constant="3" id="e4E-z8-Zpn"/>
                             <constraint firstItem="6Xo-er-67R" firstAttribute="top" secondItem="azS-2Q-aag" secondAttribute="bottom" constant="8" id="eHd-oI-YcS"/>
+                            <constraint firstItem="s4m-hd-4xt" firstAttribute="leading" secondItem="uIc-yO-7N6" secondAttribute="trailing" constant="7" id="jDO-2o-BT8"/>
                             <constraint firstAttribute="trailingMargin" secondItem="azS-2Q-aag" secondAttribute="trailing" constant="75" id="sd6-Vb-LfZ"/>
                             <constraint firstItem="298-lh-QuL" firstAttribute="top" secondItem="NF5-1E-VPr" secondAttribute="bottom" constant="1" id="vD7-xT-quY"/>
                             <constraint firstItem="v3v-Mm-HDl" firstAttribute="leading" secondItem="6Xo-er-67R" secondAttribute="trailing" constant="10" id="vYJ-sR-7zk"/>
@@ -928,22 +964,25 @@
                             <constraint firstItem="k5Q-Bn-c02" firstAttribute="top" secondItem="azS-2Q-aag" secondAttribute="bottom" constant="7" id="x5T-or-npq"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Buyer" id="IL1-Bz-4JU"/>
+                    <tabBarItem key="tabBarItem" title="Buyer" image="Money Bag-25.png" id="IL1-Bz-4JU"/>
                     <connections>
                         <outlet property="authorDownArrow" destination="uIc-yO-7N6" id="lZu-nw-vzL"/>
                         <outlet property="authorSortButton" destination="v3v-Mm-HDl" id="4sz-TK-aej"/>
                         <outlet property="authorUpArrow" destination="FER-7b-pWq" id="5Td-lq-w3b"/>
                         <outlet property="listingTableView" destination="NF5-1E-VPr" id="WM7-Ge-ody"/>
+                        <outlet property="priceDownArrow" destination="CYF-m9-U0R" id="uPG-r2-sAb"/>
+                        <outlet property="priceUpArrow" destination="JpY-hG-xfn" id="FUG-qe-sXL"/>
                         <outlet property="searchBar" destination="azS-2Q-aag" id="J2O-95-0j6"/>
                         <outlet property="searchButton" destination="FRS-5z-oMQ" id="G1d-H2-BUn"/>
                         <outlet property="titleDownArrow" destination="k5Q-Bn-c02" id="7QP-lC-Am7"/>
                         <outlet property="titleSortButton" destination="4Bp-QA-NVg" id="OhV-Jf-4Og"/>
                         <outlet property="titleUpArrow" destination="6Xo-er-67R" id="cCk-UG-e70"/>
+                        <segue destination="KuW-Cq-17O" kind="push" identifier="ViewSearchListing" id="woX-PM-BQN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k9t-sY-eu0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1543" y="-278"/>
+            <point key="canvasLocation" x="1749" y="-286"/>
         </scene>
         <!--Home Tab Bar View Controller-->
         <scene sceneID="BBW-cg-m1y">
@@ -967,6 +1006,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Literature-25.png" width="50" height="50"/>
+        <image name="Money Bag-25.png" width="50" height="50"/>
         <image name="SLR Camera-64.png" width="64" height="64"/>
         <image name="cabinet_barcode.jpg" width="510" height="392"/>
         <image name="down_arrow.png" width="201" height="123"/>
@@ -980,7 +1021,7 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="ADF-Af-iZP"/>
-        <segue reference="C4x-j3-9t9"/>
+        <segue reference="woX-PM-BQN"/>
         <segue reference="QcH-Gb-e50"/>
     </inferredMetricsTieBreakers>
 </document>
