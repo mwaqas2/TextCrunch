@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SellerListingViewController: UIViewController{
+class SellerListingViewController: UIViewController, UITableViewDelegate{
 
     @IBOutlet weak var inactiveSwitch: UISwitch!
     
@@ -20,10 +20,11 @@ class SellerListingViewController: UIViewController{
     @IBOutlet weak var sellButton: UIButton!
     
     var tableDataSource : SellerListingViewTableDataSource
+    var selectedListing: Listing?
     
     
     required init(coder aDecoder: NSCoder) {
-        //fatalError("init(coder:) has not been implemented")
+        selectedListing = nil
         tableDataSource = SellerListingViewTableDataSource()
         //We initialize the table's data source here because of some issues with
         //it being deallocated while the table was still active, causing a crash.
@@ -39,7 +40,7 @@ class SellerListingViewController: UIViewController{
 		self.navigationItem.hidesBackButton = true
         self.navigationItem.leftBarButtonItem = nil
         self.listingTable!.dataSource = tableDataSource
-        self.listingTable!.delegate = tableDataSource
+        self.listingTable!.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,14 +48,6 @@ class SellerListingViewController: UIViewController{
         // Dispose of any resources that can be recreated.
     }
     
-    // MARK: - Navigation
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        super.prepareForSegue(segue, sender: sender)
-        return
-    }
     
     
     @IBAction func switchClicked(sender: AnyObject) {
@@ -71,6 +64,21 @@ class SellerListingViewController: UIViewController{
             tableDataSource.modifyDisplay(.NONE)
             listingTable.reloadData()
         }
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        selectedListing = tableDataSource.currentListings[indexPath.row]
+        self.performSegueWithIdentifier("SellerViewCell", sender: nil)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        if (segue.identifier == "SellerViewCell") {
+            var svc = segue.destinationViewController as ListingViewController;
+            // Hide back bar to avoid resubmission of listing
+            // Only occurs when ViewListing is accessed via EditListing
+            svc.listing = selectedListing
+        }
+        super.prepareForSegue(segue, sender: sender)
     }
 
 

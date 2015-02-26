@@ -216,7 +216,7 @@
                         <outlet property="inactiveSwitch" destination="HAR-xE-RSL" id="6q0-gS-JT1"/>
                         <outlet property="listingTable" destination="XsW-w1-Nm9" id="66W-RE-rgf"/>
                         <outlet property="sellButton" destination="t29-oD-SO0" id="id1-aJ-Aqa"/>
-                        <segue destination="KuW-Cq-17O" kind="push" identifier="sellerCellSegue" id="5IO-gn-bey"/>
+                        <segue destination="KuW-Cq-17O" kind="push" identifier="SellerViewCell" id="5IO-gn-bey"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="INT-gM-pUQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
