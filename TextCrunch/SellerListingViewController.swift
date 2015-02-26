@@ -11,12 +11,8 @@ import UIKit
 class SellerListingViewController: UIViewController, UITableViewDelegate{
 
     @IBOutlet weak var inactiveSwitch: UISwitch!
-    
-    
     @IBOutlet weak var activeSwitch: UISwitch!
-    
     @IBOutlet weak var listingTable: UITableView!
-    
     @IBOutlet weak var sellButton: UIButton!
     
     var tableDataSource : SellerListingViewTableDataSource
@@ -74,8 +70,6 @@ class SellerListingViewController: UIViewController, UITableViewDelegate{
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if (segue.identifier == "SellerViewCell") {
             var svc = segue.destinationViewController as ListingViewController;
-            // Hide back bar to avoid resubmission of listing
-            // Only occurs when ViewListing is accessed via EditListing
             svc.listing = selectedListing
         }
         super.prepareForSegue(segue, sender: sender)

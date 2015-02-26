@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class SellerListingViewTableDataSource: NSObject, UITableViewDataSource, UITableViewDelegate{
+class SellerListingViewTableDataSource: NSObject, UITableViewDataSource{
     
     enum DisplayType : Int {
         case ALL = 0
@@ -23,7 +23,6 @@ class SellerListingViewTableDataSource: NSObject, UITableViewDataSource, UITable
     var activeListings: [Listing]
     var inactiveListings: [Listing]
     var currentDisplay : DisplayType
-    //var selectedListing : Listing?
     
     override init(){
         totalListings = UserController.getAllCurrentUsersListings()!
@@ -99,18 +98,7 @@ class SellerListingViewTableDataSource: NSObject, UITableViewDataSource, UITable
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-         var selectedListing = currentListings[indexPath.row] as Listing
-        //This is very ugly, as we're setting this variable then accessing it when performing
-        //a segue. But having a common issue where an exception is thrown where the receiver cannot
-        //identify a segue, even though the segue with the given identifier exists.
-        var targetVC = ListingViewController()
-        targetVC.listing = selectedListing
-        targetVC.performSegueWithIdentifier("sellerCellSegue", sender: nil)
-    }
-    
-    
-    
+
     deinit{
         NSLog("The UITableViewDataSource has been deinitialized. This should not happen while the table is open.")
     }
