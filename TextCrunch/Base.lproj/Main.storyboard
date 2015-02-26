@@ -970,6 +970,8 @@
                         <outlet property="authorSortButton" destination="v3v-Mm-HDl" id="4sz-TK-aej"/>
                         <outlet property="authorUpArrow" destination="FER-7b-pWq" id="5Td-lq-w3b"/>
                         <outlet property="listingTableView" destination="NF5-1E-VPr" id="WM7-Ge-ody"/>
+                        <outlet property="priceDownArrow" destination="CYF-m9-U0R" id="uPG-r2-sAb"/>
+                        <outlet property="priceUpArrow" destination="JpY-hG-xfn" id="FUG-qe-sXL"/>
                         <outlet property="searchBar" destination="azS-2Q-aag" id="J2O-95-0j6"/>
                         <outlet property="searchButton" destination="FRS-5z-oMQ" id="G1d-H2-BUn"/>
                         <outlet property="titleDownArrow" destination="k5Q-Bn-c02" id="7QP-lC-Am7"/>

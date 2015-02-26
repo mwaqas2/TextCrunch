@@ -27,14 +27,14 @@ class SearchViewController: UIViewController, UITableViewDataSource {
 	
 	@IBOutlet weak var titleSortButton: UIButton!
 	@IBOutlet weak var authorSortButton: UIButton!
-	//@IBOutlet weak var priceSortButton: UIButton!
 	
 	@IBOutlet weak var titleUpArrow: UIImageView!
 	@IBOutlet weak var titleDownArrow: UIImageView!
 	@IBOutlet weak var authorDownArrow: UIImageView!
 	@IBOutlet weak var authorUpArrow: UIImageView!
-	//@IBOutlet weak var sortDownArrow: UIImageView!
-	//@IBOutlet weak var sortUpArrow: UIImageView!
+	@IBOutlet weak var priceDownArrow: UIImageView!
+	@IBOutlet weak var priceUpArrow: UIImageView!
+
 	
 	// Array of Listings returned by a search
 	var listings: [Listing] = []
@@ -158,6 +158,8 @@ class SearchViewController: UIViewController, UITableViewDataSource {
 		titleUpArrow.hidden = hideTitleUp
 		authorDownArrow.hidden = hideAuthorDown
 		authorUpArrow.hidden = hideAuthorUp
+		priceDownArrow.hidden = hidePriceDown
+		priceUpArrow.hidden = hidePriceUp
 	}
 	
 	// Sorts the array of listings returned by the current search according to the
@@ -229,16 +231,6 @@ class SearchViewController: UIViewController, UITableViewDataSource {
 	
 	// Called when price sort button clicked action occurs. Sorts the query
 	// results and update's the UI
-	/*@IBAction func onPriceSortButtonClicked(sender: AnyObject) {
-		if currentSortMode == SortMode.PriceDec {
-			currentSortMode = SortMode.PriceInc
-		} else {
-			currentSortMode = SortMode.PriceDec
-		}
-		
-		updateSortArrows()
-		sortListings()
-	}*/
 	@IBAction func onPriceSortButtonClicked(sender: AnyObject) {
 		if currentSortMode == SortMode.PriceDec {
 			currentSortMode = SortMode.PriceInc
