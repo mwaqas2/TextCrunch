@@ -27,10 +27,25 @@ class ListingDatabaseControllerTests: XCTestCase {
 		super.tearDown()
 	}
 	
+	func createTestListings () {
+		
+	}
+	
+	func deleteTestListings () {
+		
+	}
+	
 	func testAuthorSearch(){
 		var working = true
 		
 		XCTAssert(working == true, "Lising search test failed.")
 
+	}
+	
+	func testTitleSearch(){
+		var working = true
+		
+		XCTAssert(working == true, "Lising search test failed.")
+		
 	}
 }

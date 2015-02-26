@@ -18,6 +18,8 @@ class ListingDatabaseController {
 		
 		// TODO: change title and author search to use canonical values
 		
+		// TODO: add search by subject matter
+		
 		// Search for Listing with Books whose title matches the keywords
 		var titleQuery = PFQuery(className: "Book")
 		titleQuery.whereKey("canonicalTitle", containedIn: searchKeywords)

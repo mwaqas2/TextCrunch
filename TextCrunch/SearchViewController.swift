@@ -17,6 +17,8 @@ class SearchViewController: UIViewController, UITableViewDataSource {
 		case TitleDec
 		case AuthorInc
 		case AuthorDec
+		case PriceInc
+		case PriceDec
 	}
 	
 	@IBOutlet weak var searchBar: UISearchBar!
@@ -25,16 +27,20 @@ class SearchViewController: UIViewController, UITableViewDataSource {
 	
 	@IBOutlet weak var titleSortButton: UIButton!
 	@IBOutlet weak var authorSortButton: UIButton!
+	//@IBOutlet weak var priceSortButton: UIButton!
 	
 	@IBOutlet weak var titleUpArrow: UIImageView!
 	@IBOutlet weak var titleDownArrow: UIImageView!
 	@IBOutlet weak var authorDownArrow: UIImageView!
 	@IBOutlet weak var authorUpArrow: UIImageView!
+	//@IBOutlet weak var sortDownArrow: UIImageView!
+	//@IBOutlet weak var sortUpArrow: UIImageView!
 	
 	// Array of Listings returned by a search
-	var listings:[Listing] = []
+	var listings: [Listing] = []
 	var currentSortMode: SortMode = SortMode.None
 	var currentSearchKeywords: [String] = []
+	var selectedListing: Listing!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -122,6 +128,8 @@ class SearchViewController: UIViewController, UITableViewDataSource {
 		var hideTitleUp: Bool = true
 		var hideAuthorDown: Bool = true
 		var hideAuthorUp: Bool = true
+		var hidePriceDown: Bool = true
+		var hidePriceUp: Bool = true
 		
 		switch (currentSortMode) {
 		case SortMode.TitleInc:
@@ -136,10 +144,16 @@ class SearchViewController: UIViewController, UITableViewDataSource {
 		case SortMode.AuthorDec:
 			hideAuthorDown = false
 			break
+		case SortMode.PriceInc:
+			hidePriceUp = false
+			break
+		case SortMode.PriceDec:
+			hidePriceDown = false
+			break
 		default:
 			break
 		}
-		//images.sort({ $0.fileID > $1.fileID })
+
 		titleDownArrow.hidden = hideTitleDown
 		titleUpArrow.hidden = hideTitleUp
 		authorDownArrow.hidden = hideAuthorDown
@@ -161,6 +175,12 @@ class SearchViewController: UIViewController, UITableViewDataSource {
 			break
 		case SortMode.AuthorDec:
 			listings.sort({ $0.book.authorName < $1.book.authorName })
+			break
+		case SortMode.PriceInc:
+			listings.sort({ $0.price > $1.price })
+			break
+		case SortMode.PriceDec:
+			listings.sort({ $0.price < $1.price })
 			break
 		default:
 			break
@@ -205,6 +225,46 @@ class SearchViewController: UIViewController, UITableViewDataSource {
 		
 		updateSortArrows()
 		sortListings()
+	}
+	
+	// Called when price sort button clicked action occurs. Sorts the query
+	// results and update's the UI
+	/*@IBAction func onPriceSortButtonClicked(sender: AnyObject) {
+		if currentSortMode == SortMode.PriceDec {
+			currentSortMode = SortMode.PriceInc
+		} else {
+			currentSortMode = SortMode.PriceDec
+		}
+		
+		updateSortArrows()
+		sortListings()
+	}*/
+	@IBAction func onPriceSortButtonClicked(sender: AnyObject) {
+		if currentSortMode == SortMode.PriceDec {
+			currentSortMode = SortMode.PriceInc
+		} else {
+			currentSortMode = SortMode.PriceDec
+		}
+		
+		updateSortArrows()
+		sortListings()
+	}
+	
+	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+		// Get the row data for the selected row
+		selectedListing = listings[indexPath.row]
+		
+		// Segue to a view of the selected listing
+		self.performSegueWithIdentifier("ViewSearchListing", sender: nil)
+	}
+	
+	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+		if (segue.identifier == "ViewSearchListing") {
+			var svc = segue.destinationViewController as ListingViewController;
+			// Hide back bar to avoid resubmission of listing
+			// Only occurs when ViewListing is accessed via EditListing
+			svc.listing = selectedListing
+		}
 	}
 	
 }
