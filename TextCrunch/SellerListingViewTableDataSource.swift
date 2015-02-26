@@ -106,7 +106,7 @@ class SellerListingViewTableDataSource: NSObject, UITableViewDataSource, UITable
         //identify a segue, even though the segue with the given identifier exists.
         var targetVC = ListingViewController()
         targetVC.listing = selectedListing
-        targetVC.performSegueWithIdentifier("SellerCelltoListingView", sender: self)
+        targetVC.performSegueWithIdentifier("sellerCellSegue", sender: nil)
     }
     
     

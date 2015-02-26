@@ -140,6 +140,9 @@
                                 <rect key="frame" x="16" y="80" width="288" height="47"/>
                                 <color key="backgroundColor" red="0.083453172928843564" green="0.85505445075757569" blue="0.42504926567840612" alpha="0.47000000000000003" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Sell Something"/>
+                                <connections>
+                                    <segue destination="r4H-4r-PAO" kind="push" identifier="StartListingCreation" id="leQ-JD-Azf"/>
+                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="XsW-w1-Nm9">
                                 <rect key="frame" x="0.0" y="189" width="320" height="379"/>
@@ -173,9 +176,6 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="KuW-Cq-17O" kind="push" id="y8r-T9-qO5"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -216,7 +216,7 @@
                         <outlet property="inactiveSwitch" destination="HAR-xE-RSL" id="6q0-gS-JT1"/>
                         <outlet property="listingTable" destination="XsW-w1-Nm9" id="66W-RE-rgf"/>
                         <outlet property="sellButton" destination="t29-oD-SO0" id="id1-aJ-Aqa"/>
-                        <segue destination="r4H-4r-PAO" kind="push" identifier="StartListingCreation" id="at4-WO-Ocg"/>
+                        <segue destination="KuW-Cq-17O" kind="push" identifier="sellerCellSegue" id="5IO-gn-bey"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="INT-gM-pUQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1008,8 +1008,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="q96-Cz-bw7"/>
-        <segue reference="y8r-T9-qO5"/>
+        <segue reference="ADF-Af-iZP"/>
+        <segue reference="5IO-gn-bey"/>
         <segue reference="QcH-Gb-e50"/>
     </inferredMetricsTieBreakers>
 </document>
