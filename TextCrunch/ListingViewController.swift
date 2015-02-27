@@ -11,6 +11,7 @@ import UIKit
 
 class ListingViewController: UIViewController {
     
+    @IBOutlet var imageHolder: UIImageView!
 
     @IBOutlet weak var price: UILabel!
     @IBOutlet weak var condition: UILabel!
@@ -27,7 +28,11 @@ class ListingViewController: UIViewController {
     @IBOutlet weak var edit: UIButton!
     
     var listing:Listing!
+    var data:NSData? = nil
 
+    @IBAction func EditListingButton(sender: AnyObject) {
+        self.performSegueWithIdentifier("editListing", sender: nil)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,7 +40,13 @@ class ListingViewController: UIViewController {
         //let background = gradientLayer.background()
         //background.frame=self.view.bounds
         //self.view.layer.insertSublayer(background, atIndex: 0)
-       
+        
+        if (data != nil){
+            imageHolder!.frame = CGRectMake(31,31,136,140)
+            imageHolder.image = UIImage(data: data!)
+            
+        }
+        
         // Shows edit button to seller, but not buy button
         // Shows buy button to potential buyer, but not edit button
         if (UserController.getCurrentUser() == listing.seller) {
@@ -61,11 +72,18 @@ class ListingViewController: UIViewController {
         comments.text = listing.comment
     }
     
-    // Passes listing to EditListingView
+    // Passes listing to to Edit Listing View Controller
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if (segue.identifier == "editListing") {
             var svc = segue.destinationViewController as EditListingViewController;
-            svc.listing = listing
+            
+            if (data != nil){
+                //image data
+                svc.data = data
+            }
+            
+            svc.bookISBN = self.isbn13.text
+            svc.listing = self.listing
         }
     }
     
@@ -73,5 +91,4 @@ class ListingViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 }
