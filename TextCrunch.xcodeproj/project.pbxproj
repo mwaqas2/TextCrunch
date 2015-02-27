@@ -47,6 +47,7 @@
 		560869CA1A8A527B00630C64 /* EditListingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560869C91A8A527B00630C64 /* EditListingViewController.swift */; };
 		560869CC1A8A529800630C64 /* IsbnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560869CB1A8A529800630C64 /* IsbnViewController.swift */; };
 		560869D01A8A55C500630C64 /* cabinet_barcode.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 560869CF1A8A55C500630C64 /* cabinet_barcode.jpg */; };
+		564724341AA0329A004AA76D /* json.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564724331AA0329A004AA76D /* json.swift */; };
 		655DEF9D1A8416DD00931A3B /* UserControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B489A81A82DE2F00541D06 /* UserControllerTests.swift */; };
 		658FCFFB1A64789E004D056D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658FCFFA1A64789E004D056D /* AppDelegate.swift */; };
 		658FCFFD1A64789E004D056D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658FCFFC1A64789E004D056D /* LoginViewController.swift */; };
@@ -112,6 +113,7 @@
 		560869C91A8A527B00630C64 /* EditListingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditListingViewController.swift; sourceTree = "<group>"; };
 		560869CB1A8A529800630C64 /* IsbnViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IsbnViewController.swift; sourceTree = "<group>"; };
 		560869CF1A8A55C500630C64 /* cabinet_barcode.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cabinet_barcode.jpg; sourceTree = "<group>"; };
+		564724331AA0329A004AA76D /* json.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = json.swift; path = json/json.swift; sourceTree = "<group>"; };
 		655DEF7E1A84105D00931A3B /* libPods-TextCrunch-Bolts.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-TextCrunch-Bolts.a"; path = "Pods/build/Debug-iphoneos/libPods-TextCrunch-Bolts.a"; sourceTree = "<group>"; };
 		655DEF7F1A84105D00931A3B /* libPods-TextCrunch-Braintree.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-TextCrunch-Braintree.a"; path = "Pods/build/Debug-iphoneos/libPods-TextCrunch-Braintree.a"; sourceTree = "<group>"; };
 		655DEF801A84105D00931A3B /* libPods-TextCrunch-Parse.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-TextCrunch-Parse.a"; path = "Pods/build/Debug-iphoneos/libPods-TextCrunch-Parse.a"; sourceTree = "<group>"; };
@@ -231,6 +233,14 @@
 			name = UISettings;
 			sourceTree = "<group>";
 		};
+		564724321AA0326E004AA76D /* JsonParser */ = {
+			isa = PBXGroup;
+			children = (
+				564724331AA0329A004AA76D /* json.swift */,
+			);
+			name = JsonParser;
+			sourceTree = "<group>";
+		};
 		655DEF931A8415D200931A3B /* TextCrunchTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -285,6 +295,7 @@
 		658FCFF71A64789E004D056D /* TextCrunch */ = {
 			isa = PBXGroup;
 			children = (
+				564724321AA0326E004AA76D /* JsonParser */,
 				32ECF1D41A9D5F3C00F65DA5 /* down_arrow.png */,
 				32ECF1D21A9D5F3100F65DA5 /* up_arrow.png */,
 				189284101A97C2AB000B15D6 /* SLR Camera-64.png */,
@@ -527,6 +538,7 @@
 				32E6E0F41A84599400292B7A /* AccountCreationViewController.swift in Sources */,
 				32C890AF1A7FC70A00196E47 /* SellerListingViewController.swift in Sources */,
 				560869C41A8A51B300630C64 /* Background.swift in Sources */,
+				564724341AA0329A004AA76D /* json.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
