@@ -256,6 +256,7 @@ class SearchViewController: UIViewController, UITableViewDataSource {
 			// Hide back bar to avoid resubmission of listing
 			// Only occurs when ViewListing is accessed via EditListing
 			svc.listing = selectedListing
+			svc.isNewListing = false
 		}
 	}
 	

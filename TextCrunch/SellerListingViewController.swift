@@ -80,6 +80,7 @@ class SellerListingViewController: UIViewController, UITableViewDelegate{
         if (segue.identifier == "SellerViewCell") {
             var svc = segue.destinationViewController as ListingViewController;
             svc.listing = selectedListing
+			svc.isNewListing = false
         }
         super.prepareForSegue(segue, sender: sender)
     }

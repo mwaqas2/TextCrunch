@@ -16,6 +16,10 @@ class Book : PFObject, PFSubclassing {
     @NSManaged var authorName: String
     @NSManaged var publisherName: String
     @NSManaged var editionInfo: String
+	
+	// canonical fields for search keywords in lowercase
+	@NSManaged var canonicalTitle: [String]
+	@NSManaged var canonicalAuthor: [String]
     
     override class func load() {
         self.registerSubclass()
