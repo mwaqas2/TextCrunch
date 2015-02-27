@@ -72,6 +72,7 @@ class IsbnViewController: UIViewController {
         if ((segue.identifier == "searchBookIsbn")/* && checkIsbnInput()*/) {
             var svc = segue.destinationViewController as EditListingViewController;
             svc.bookISBN = isbn.text
+			svc.isNewListing = true
             
         }
     }

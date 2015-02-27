@@ -26,13 +26,12 @@ class ListingViewController: UIViewController {
     @IBOutlet weak var editListing: UIButton!
     @IBOutlet weak var buy: UIButton!
     @IBOutlet weak var edit: UIButton!
-    
+	@IBOutlet weak var doneButton: UIButton!
+	
     var listing:Listing!
     var data:NSData? = nil
+	var isNewListing = false
 
-    @IBAction func EditListingButton(sender: AnyObject) {
-        self.performSegueWithIdentifier("editListing", sender: nil)
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,7 +39,10 @@ class ListingViewController: UIViewController {
         //let background = gradientLayer.background()
         //background.frame=self.view.bounds
         //self.view.layer.insertSublayer(background, atIndex: 0)
-        
+		
+		self.navigationItem.setHidesBackButton(isNewListing, animated: true)
+		doneButton.hidden = !isNewListing
+		
         if (data != nil){
             imageHolder!.frame = CGRectMake(31,31,136,140)
             imageHolder.image = UIImage(data: data!)
@@ -57,7 +59,7 @@ class ListingViewController: UIViewController {
         
         setListingElements()
     }
-    
+	
     // Populates labels with book/listing data
     func setListingElements() {
         bookTitle.text = listing.book.title
@@ -71,6 +73,15 @@ class ListingViewController: UIViewController {
         condition.text = listing.condition
         comments.text = listing.comment
     }
+	
+	@IBAction func EditListingButton(sender: AnyObject) {
+		self.performSegueWithIdentifier("editListing", sender: nil)
+	}
+	
+	// Segues to the Seller home page when Done button pressed
+	@IBAction func onDoneButtonClicked(sender: AnyObject) {
+		self.performSegueWithIdentifier("DoneViewingListing", sender: nil)
+	}
     
     // Passes listing to to Edit Listing View Controller
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
@@ -84,6 +95,7 @@ class ListingViewController: UIViewController {
             
             svc.bookISBN = self.isbn13.text
             svc.listing = self.listing
+			svc.isNewListing = false
         }
     }
     

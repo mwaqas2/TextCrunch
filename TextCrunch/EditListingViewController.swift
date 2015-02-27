@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class EditListingViewController: UIViewController {
-
+	
     @IBOutlet var bookimage: UIImageView!
     @IBOutlet var bookTitle: UITextField!
     @IBOutlet var author: UITextField!
@@ -32,6 +32,7 @@ class EditListingViewController: UIViewController {
     var data: NSData? = nil
     var json: JSON!
     var numberofbooks = 0;
+	var isNewListing = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -125,6 +126,8 @@ class EditListingViewController: UIViewController {
             listing = Listing()
             listing.book = book
             listing.seller = UserController.getCurrentUser()
+			listing.isActive = true
+			listing.isOnHold = false
             setBookElements(book)
             
             // Only show delete button if listing previously existed
@@ -184,19 +187,38 @@ class EditListingViewController: UIViewController {
     
     func saveTextFieldsToModel(){
         var book = Book()
-        println("were here")
         book.title = bookTitle.text
         book.language = language.text
         book.authorName = author.text
         book.publisherName = publisher.text
         book.editionInfo = edition.text
         book.isbn13 = isbn13.text
+		book.canonicalTitle = getCanonicalStrings(bookTitle.text)
+		book.canonicalAuthor = getCanonicalStrings(author.text)
         book.save()
-        listing = Listing()
+		
+		listing = Listing()
         listing.book = book
         listing.seller = UserController.getCurrentUser()
         setBookElements(book)
     }
+	
+	// Functio that takes a string and returns an array of strings created
+	// by parsing the input case and setting the string to lower cased.
+	// Useful for retrieving arrays of keywords for book search.
+	func getCanonicalStrings(inputString: String) -> [String] {
+		var outputStrings: [String] = []
+		
+		// Retrieve the strings in the input string separated by spaces
+		var inputWords: [String] = inputString.componentsSeparatedByString(" ")
+		
+		// Ensure all output words are lower case
+		for word:String in inputWords {
+			outputStrings.append(word.lowercaseString)
+		}
+		
+		return outputStrings
+	}
     
     @IBAction func updateListing(sender: AnyObject) {
         
@@ -211,6 +233,10 @@ class EditListingViewController: UIViewController {
         }
         //listing.condition = condition.text
         listing.comment = comments.text
+		if isNewListing {
+			listing.isOnHold = false
+			listing.isActive = true
+		}
         listing.save()
         
         self.performSegueWithIdentifier("updateListing", sender: nil)
@@ -227,16 +253,16 @@ class EditListingViewController: UIViewController {
             // Hide back bar to avoid resubmission of listing
             // Only occurs when ViewListing is accessed via EditListing
             svc.listing = self.listing
-        }
-        if (segue.identifier == "deleteListing") {
+			svc.isNewListing = isNewListing
+        } else if (segue.identifier == "deleteListing") {
             var svc = segue.destinationViewController as IsbnViewController;
             //svc.listing = self.listing
             listing.book.delete()
             listing.delete()
-        }
-        if (segue.identifier == "updateListing") {
+        } else if (segue.identifier == "updateListing") {
             var svc = segue.destinationViewController as ListingViewController;
             svc.listing = self.listing
+			svc.isNewListing = isNewListing
             
             if (imageExist & (data != nil)){
                 svc.data = data
