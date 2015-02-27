@@ -11,18 +11,63 @@ import UIKit
 
 class SellerListingViewTableDataSource: NSObject, UITableViewDataSource{
     
+    enum DisplayType : Int {
+        case ALL = 0
+        case ACTIVE
+        case INACTIVE
+        case NONE
+    }
+    
     var currentListings: [Listing]
+    var totalListings: [Listing]
+    var activeListings: [Listing]
+    var inactiveListings: [Listing]
+    var currentDisplay : DisplayType
     
     override init(){
-        currentListings = UserController.getAllCurrentUsersListings()!
-        currentListings.sort({
+        totalListings = UserController.getAllCurrentUsersListings()!
+        totalListings.sort({
             $0.createdAt.compare($1.createdAt) == NSComparisonResult.OrderedAscending
         })
+        //selectedListing = nil
+        currentListings = totalListings
+        activeListings = []
+        inactiveListings = []
+        for listing in totalListings{
+            if listing.isActive{
+                activeListings.append(listing)
+            } else {
+                inactiveListings.append(listing)
+            }
+        }
+        currentDisplay = .ALL
         super.init()
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return currentListings.count as Int
+    }
+    
+    func modifyDisplay(newDisplay : DisplayType){
+        switch newDisplay{
+        case .ALL:
+            currentListings = totalListings
+            currentDisplay = .ALL
+            break
+        case .ACTIVE:
+            currentListings = activeListings
+            currentDisplay = .ACTIVE
+            break
+        case .INACTIVE:
+            currentListings = inactiveListings
+            currentDisplay = .INACTIVE
+            break
+        case .NONE:
+            currentListings = []
+            currentDisplay = .NONE
+        default:
+            break
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
@@ -34,7 +79,7 @@ class SellerListingViewTableDataSource: NSObject, UITableViewDataSource{
             titleLabel.text = book.title
         }
         if let authorLabel = cell.viewWithTag(102) as? UILabel{
-            authorLabel.text = book.authorName
+            authorLabel.text = "by \(book.authorName)"
         }
         if let priceLabel = cell.viewWithTag(103) as? UILabel{
             if(listing.isActive == false){
@@ -53,6 +98,7 @@ class SellerListingViewTableDataSource: NSObject, UITableViewDataSource{
         return cell
     }
     
+
     deinit{
         NSLog("The UITableViewDataSource has been deinitialized. This should not happen while the table is open.")
     }
