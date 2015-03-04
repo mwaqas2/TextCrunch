@@ -1,5 +1,5 @@
 //
-//  MessageModel.swift
+//  ConversationModel.swift
 //  TextCrunch
 //
 //  Created by George Coomber on 2015-03-04.
