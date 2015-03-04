@@ -1056,6 +1056,9 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="onChatButtonClicked:" destination="4KC-lZ-eN4" eventType="touchUpInside" id="LPD-Cb-Xxy"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1077,11 +1080,39 @@
                         <outlet property="publisher" destination="Rfa-aQ-v2G" id="XHW-WW-3ES"/>
                         <segue destination="MYE-RU-plS" kind="push" identifier="editListing" id="efr-3O-uBy"/>
                         <segue destination="rOS-wc-sWm" kind="push" identifier="DoneViewingListing" id="vX5-LY-AnJ"/>
+                        <segue destination="oYe-ts-w60" kind="push" identifier="chat" id="wZB-RO-bmV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="chU-oP-Phr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2219" y="1882"/>
+            <point key="canvasLocation" x="2206" y="1892"/>
+        </scene>
+        <!--Chat View Controller-->
+        <scene sceneID="gNr-1l-0MM">
+            <objects>
+                <viewController id="oYe-ts-w60" customClass="ChatViewController" customModule="TextCrunch" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="deT-1o-Ugy"/>
+                        <viewControllerLayoutGuide type="bottom" id="N09-Y5-2DX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fap-7U-Hhf">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Testing" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Dm-ZF-6ga">
+                                <rect key="frame" x="159" y="233" width="55" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="hng-Pb-WIc"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Ig-pd-aJX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2616" y="1892"/>
         </scene>
     </scenes>
     <resources>
@@ -1099,9 +1130,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="8yV-Do-QqQ"/>
-        <segue reference="vX5-LY-AnJ"/>
-        <segue reference="efr-3O-uBy"/>
         <segue reference="8iV-l4-1e5"/>
+        <segue reference="efr-3O-uBy"/>
+        <segue reference="GKd-2p-xF5"/>
+        <segue reference="vX5-LY-AnJ"/>
     </inferredMetricsTieBreakers>
 </document>
