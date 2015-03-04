@@ -82,6 +82,10 @@ class ListingViewController: UIViewController {
 	@IBAction func onDoneButtonClicked(sender: AnyObject) {
 		self.performSegueWithIdentifier("DoneViewingListing", sender: nil)
 	}
+	
+	@IBAction func onChatButtonClicked(sender: AnyObject) {
+		self.performSegueWithIdentifier("chat", sender: nil)
+	}
     
     // Passes listing to to Edit Listing View Controller
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
@@ -97,8 +101,12 @@ class ListingViewController: UIViewController {
             svc.listing = self.listing
 			svc.isNewListing = false
         }
+		//else if (segue.identifier == "chat") {
+		//	var svc = segue.destinationViewController as EditListingViewController;
+		//	svc.listing = listing
+		//}
     }
-    
+	
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

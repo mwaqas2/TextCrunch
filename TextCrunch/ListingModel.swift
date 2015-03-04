@@ -13,7 +13,6 @@ class Listing : PFObject, PFSubclassing {
     @NSManaged var price: Int
     @NSManaged var seller: PFObject
     @NSManaged var buyer: PFObject?
-    @NSManaged var conversation: PFObject?
     @NSManaged var condition: String?
     @NSManaged var comment: String?
     @NSManaged var isActive: Bool
