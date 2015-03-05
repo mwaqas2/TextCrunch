@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="SlN-8A-vyZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="SlN-8A-vyZ">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -927,6 +927,17 @@
                                     <action selector="deleteListingAction:" destination="MYE-RU-plS" eventType="touchUpInside" id="jgd-1G-XM5"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dww-0U-Rwb">
+                                <rect key="frame" x="207" y="181" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hFe-Za-Vgd">
+                                <rect key="frame" x="132" y="187" width="67" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -940,6 +951,7 @@
                         <outlet property="edition" destination="n4w-x9-zSi" id="wFL-OA-DF0"/>
                         <outlet property="isbn13" destination="y9L-o7-cbq" id="PRc-FS-fH0"/>
                         <outlet property="language" destination="vh4-js-rIx" id="tH5-lm-qQG"/>
+                        <outlet property="locationtext" destination="dww-0U-Rwb" id="IHI-Cb-DZn"/>
                         <outlet property="price" destination="RjW-tm-8Kd" id="4Sf-rf-i6h"/>
                         <outlet property="publisher" destination="PIs-YI-djN" id="nyZ-b9-83I"/>
                         <outlet property="update" destination="hIx-gv-jlL" id="crR-ek-dop"/>
@@ -950,7 +962,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xLJ-Ye-uLD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1670" y="1986"/>
+            <point key="canvasLocation" x="1520" y="1959"/>
         </scene>
         <!--ListingViewController-->
         <scene sceneID="OFU-kh-aU0">
@@ -1101,7 +1113,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="vX5-LY-AnJ"/>
         <segue reference="S6U-8h-8D6"/>
-        <segue reference="efr-3O-uBy"/>
+        <segue reference="U5M-7W-DjL"/>
         <segue reference="8iV-l4-1e5"/>
     </inferredMetricsTieBreakers>
 </document>

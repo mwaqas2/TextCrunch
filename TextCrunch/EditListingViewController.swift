@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import CoreLocation
+
 
 class EditListingViewController: UIViewController {
 	
@@ -24,6 +26,8 @@ class EditListingViewController: UIViewController {
     
     @IBOutlet var delete: UIButton!
     @IBOutlet var update: UIButton!
+    
+    @IBOutlet var locationtext: UITextField!
     
     var bookISBN:String!
     var listing:Listing!
@@ -121,6 +125,46 @@ class EditListingViewController: UIViewController {
             book.publisherName = publisher
             book.editionInfo = contentversion
             book.isbn13 = isbn_13
+            
+            /*
+            var locationstring = toString(locationtext)
+            print("locationstring \(locationstring)")
+            var escapedlocation = locationstring.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
+            
+            print("escapedlocation \(escapedlocation)")
+
+            
+            
+            var dictionarycoordinates:NSMutableArray = getCoordinates(escapedlocation!)
+            
+            print("dictionary location: \(dictionarycoordinates)")
+            
+            var gotoif = ((dictionarycoordinates[0]) as NSObject == true)
+            print("gotoif \(gotoif)")
+            if((dictionarycoordinates[0]) as NSObject == true){
+                
+                var lat:Double = dictionarycoordinates[1] as Double
+                var lng:Double = dictionarycoordinates[2] as Double
+                //let point = EditListingViewController.PFGeoPoint(latitude: CGFloat(lat), longitude: CGFloat(lng))
+                
+                var point:PFGeoPoint = PFGeoPoint(location: CLLocation(latitude: lat, longitude: lng)!)
+
+                
+                
+                book["location"] = point
+            
+            }*/
+            
+            //let point = PFGeoPoint(latitude: CGFloat(3), CGFloat(3))
+
+            
+            //var numberofbooks = toString(json["totalItems"]).toInt()
+            
+            //let point = PFGeoPoint(latitude:40.0, longitude:-30.0)
+            //book["location"] = point
+            
+            
+            
             book.save()
             
             listing = Listing()
@@ -153,6 +197,74 @@ class EditListingViewController: UIViewController {
         isbn13.text = book.isbn13
     }
     
+    func getCoordinates(address: String) -> NSMutableArray{
+
+        let url = "https://maps.googleapis.com/maps/api/geocode/json?address="
+        
+        let urlandisbn = url+address
+        
+        println("urlandisbn \(urlandisbn)")
+        
+        json = JSON(url:urlandisbn)
+        
+        
+        //so here we check if we can give them an address by a for loop
+        
+        //if yes grab the latitude and longitude
+        
+        
+        var responsestatus =  toString(json["status"])
+        
+        var ourarray:NSMutableArray = [false,0,0,""]
+        
+        println(" responsestatus \(responsestatus)")
+        var x = (responsestatus == "OK")
+        println(" equal? \(x)")
+
+        
+        if (responsestatus == "OK"){
+        
+            var addressname = toString(json["results"][0]["formatted_address"])
+            
+            println(addressname)
+            var longitude =  ((toString(json["results"][0]["geometry"]["location"]["lng"])) as NSString).floatValue
+            var latitude =  (toString(json["results"][0]["geometry"]["location"]["lat"]) as NSString).floatValue
+            
+            println("types")
+            
+            print(json["results"].type)
+            print(json["results"][0].type)
+            print(json["results"][0]["geometry"]["location"].type)
+            print(json["results"][0]["geometry"]["location"]["lng"].type)
+            print(json["results"][0]["geometry"]["location"])
+            
+            //print("separate")
+            //print(json["results"]["location"])
+
+
+            
+            println("types")
+
+            
+            print("longitude \(longitude)")
+            print("longitude \(latitude)")
+
+        
+            ourarray[0] = true
+            ourarray[1] = latitude
+            ourarray[2] = longitude
+            ourarray[3] = addressname
+
+            
+
+            
+        }
+        //var longitude =  toString(json["totalItems"]).toInt()
+        //var latitude =  toString(json["totalItems"]).toInt()
+        println("inside array \(ourarray)")
+        //return bookcount!
+        return ourarray
+    }
     
     // returns the number of books in google books
     func getGoogleCount(theisbn: String) -> Int{
@@ -237,6 +349,35 @@ class EditListingViewController: UIViewController {
 			listing.isOnHold = false
 			listing.isActive = true
 		}
+        
+        
+        var locationstring = toString(locationtext.text)
+        print("locationstring \(locationstring)")
+        var escapedlocation = locationstring.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
+        
+        print("escapedlocation \(escapedlocation)")
+        
+        
+        
+        var dictionarycoordinates:NSMutableArray = getCoordinates(escapedlocation!)
+        
+        print("dictionary location: \(dictionarycoordinates)")
+        
+        var gotoif = ((dictionarycoordinates[0]) as NSObject == true)
+        print("gotoif \(gotoif)")
+        if((dictionarycoordinates[0]) as NSObject == true){
+            
+            var lat:Double = dictionarycoordinates[1] as Double
+            var lng:Double = dictionarycoordinates[2] as Double
+            //let point = EditListingViewController.PFGeoPoint(latitude: CGFloat(lat), longitude: CGFloat(lng))
+            
+            var point:PFGeoPoint = PFGeoPoint(location: CLLocation(latitude: lat, longitude: lng)!)
+            
+            var book = listing.book
+            book["location"] = point
+            
+        }
+        
         listing.save()
         
         self.performSegueWithIdentifier("updateListing", sender: nil)
