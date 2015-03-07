@@ -38,6 +38,9 @@ class ListingDatabaseController {
 		var query = PFQuery(className: "Listing")
 		query.whereKey("isActive", equalTo: true)
 		query.whereKey("book", matchesQuery:bookQuery)
+        
+        //Only consider listings which are not on hold.
+        query.whereKey("isOnHold", equalTo: false)
 		
 		// Load the Book data for each Listing result of the query
 		query.includeKey("book")
@@ -52,4 +55,40 @@ class ListingDatabaseController {
 			}
 		}
 	}
+    
+    //Sets the passed in listing to be inactive.
+    class func setInactive(listing: Listing) -> Void{
+        listing.isActive = false
+        listing.save()
+        return
+    }
+    
+    //Toggles the isOnHold state of the passed in listing.
+    //After toggling the state, the method returns false if
+    //the listing is no longer on hold, and true if the listing is
+    //now on hold. Will return false as well if the listing's isOnHold wasn't
+    //true or false for some reason. This should NEVER be the case.
+    class func toggleHold(listing: Listing) -> Bool{
+        if(listing.isOnHold == true){
+            listing.isOnHold = false
+            listing.save()
+            return false
+        } else if (listing.isOnHold == false){
+            listing.isOnHold = true
+            listing.save()
+            return true
+        } else {
+            NSLog("Error: Could not toggle listing hold state because it was neither true nor false.")
+            return false
+        }
+    }
+    
+    //Deletes the passed in listing from our database.
+    class func deleteListing(listing: Listing) -> Void{
+        //May need to change this in the future, but we don't need to do anything once
+        //it starts getting deleted asynchronously for now.
+        listing.deleteInBackgroundWithBlock({(result: Bool, error: NSError!) -> Void in
+        })
+        return
+    }
 }

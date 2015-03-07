@@ -22,7 +22,6 @@ class EditListingViewController: UIViewController {
     @IBOutlet var price: UITextField!
     @IBOutlet var comments: UITextField!
     
-    @IBOutlet var delete: UIButton!
     @IBOutlet var update: UIButton!
     
     var bookISBN:String!
@@ -130,8 +129,6 @@ class EditListingViewController: UIViewController {
 			listing.isOnHold = false
             setBookElements(book)
             
-            // Only show delete button if listing previously existed
-            delete.hidden = true
             update.hidden = true
             
         } else if (numberofbooks>0) {
@@ -156,12 +153,9 @@ class EditListingViewController: UIViewController {
     
     // returns the number of books in google books
     func getGoogleCount(theisbn: String) -> Int{
-        
         // google rest api
         let url = "https://www.googleapis.com/books/v1/volumes?q=isbn:"
-        
         let urlandisbn = url+theisbn
-        
         json = JSON(url:urlandisbn)
         var bookcount =  toString(json["totalItems"]).toInt()
         return bookcount!
@@ -186,7 +180,7 @@ class EditListingViewController: UIViewController {
     }
     
     func saveTextFieldsToModel(){
-        var book = Book()
+        /**var book = Book()
         book.title = bookTitle.text
         book.language = language.text
         book.authorName = author.text
@@ -200,7 +194,17 @@ class EditListingViewController: UIViewController {
 		listing = Listing()
         listing.book = book
         listing.seller = UserController.getCurrentUser()
-        setBookElements(book)
+        setBookElements(book)**/
+        var book : Book = self.listing.book.fetchIfNeeded() as Book
+        book.title = bookTitle.text
+        book.language = language.text
+        book.authorName = author.text
+        book.publisherName = publisher.text
+        book.editionInfo = edition.text
+        book.isbn13 = isbn13.text
+        book.canonicalTitle = getCanonicalStrings(bookTitle.text)
+        book.canonicalAuthor = getCanonicalStrings(author.text)
+        book.save()
     }
 	
 	// Functio that takes a string and returns an array of strings created
@@ -221,10 +225,7 @@ class EditListingViewController: UIViewController {
 	}
     
     @IBAction func updateListing(sender: AnyObject) {
-        
         var priceLen = countElements(price.text)
-        
-        
         saveTextFieldsToModel()
         if (priceLen > 0){
             listing.price = price.text.toInt()!
@@ -238,13 +239,8 @@ class EditListingViewController: UIViewController {
 			listing.isActive = true
 		}
         listing.save()
-        
         self.performSegueWithIdentifier("updateListing", sender: nil)
         
-    }
-    
-    @IBAction func deleteListingAction(sender: AnyObject) {
-        self.performSegueWithIdentifier("deleteListing", sender: nil)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
