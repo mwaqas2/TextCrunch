@@ -15,9 +15,6 @@ class ListingDatabaseController {
 	// the provided query. Accepts a callback function that is called when
 	// the query is complete
 	class func searchListings(searchKeywords: [String], callback: ([Listing]) -> Void) {
-		
-		// TODO: change title and author search to use canonical values
-		
 		// TODO: add search by subject matter
 		
 		// Search for Listing with Books whose title matches the keywords
@@ -41,6 +38,7 @@ class ListingDatabaseController {
 		
 		// Load the Book data for each Listing result of the query
 		query.includeKey("book")
+		query.includeKey("seller")
 		
 		query.findObjectsInBackgroundWithBlock {
 			(objects: [AnyObject]!, error: NSError!) -> Void in
