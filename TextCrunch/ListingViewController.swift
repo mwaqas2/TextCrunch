@@ -82,7 +82,7 @@ class ListingViewController: UIViewController {
 	
 	// Segues to the Seller home page when Done button pressed
 	@IBAction func onDoneButtonClicked(sender: AnyObject) {
-		self.performSegueWithIdentifier("DoneViewingListing", sender: nil)
+		self.performSegueWithIdentifier("toSellerHomepage", sender: nil)
 	}
 	
 	@IBAction func onChatButtonClicked(sender: AnyObject) {
