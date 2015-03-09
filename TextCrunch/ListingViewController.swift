@@ -27,7 +27,8 @@ class ListingViewController: UIViewController {
     @IBOutlet weak var buy: UIButton!
     @IBOutlet weak var edit: UIButton!
 	@IBOutlet weak var doneButton: UIButton!
-	
+    @IBOutlet weak var removeButton: UIButton!
+    
     var listing:Listing!
     var data:NSData? = nil
 	var isNewListing = false
@@ -51,26 +52,27 @@ class ListingViewController: UIViewController {
         
         // Shows edit button to seller, but not buy button
         // Shows buy button to potential buyer, but not edit button
-        if (UserController.getCurrentUser() == listing.seller) {
+        var listingSeller : User = listing.seller.fetchIfNeeded() as User
+        if (UserController.getCurrentUser().email == listingSeller.email) {
             buy.hidden = true
         } else {
             edit.hidden = true
+            removeButton.hidden = true
         }
-        
         setListingElements()
     }
 	
     // Populates labels with book/listing data
     func setListingElements() {
-        bookTitle.text = listing.book.title
-        author.text = listing.book.authorName
-        publisher.text = listing.book.publisherName
-        language.text = listing.book.language
-        edition.text = listing.book.editionInfo
-        isbn13.text = listing.book.isbn13
+        bookTitle.text = "Title: \(listing.book.title)"
+        author.text = "Author: \(listing.book.authorName)"
+        publisher.text = "Publisher: \(listing.book.publisherName)"
+        language.text = "Language: \(listing.book.language)"
+        edition.text = "Edition: \(listing.book.editionInfo)"
+        isbn13.text = "ISBN: \(listing.book.isbn13)"
         
         price.text = String(listing.price)
-        condition.text = listing.condition
+        condition.text = "Condition: \(listing.condition)"
         comments.text = listing.comment
     }
 	
@@ -80,12 +82,31 @@ class ListingViewController: UIViewController {
 	
 	// Segues to the Seller home page when Done button pressed
 	@IBAction func onDoneButtonClicked(sender: AnyObject) {
-		self.performSegueWithIdentifier("DoneViewingListing", sender: nil)
+		self.performSegueWithIdentifier("toSellerHomepage", sender: nil)
 	}
 	
 	@IBAction func onChatButtonClicked(sender: AnyObject) {
 		self.performSegueWithIdentifier("chat", sender: nil)
 	}
+    
+    @IBAction func onRemoveButtonClicked(sender: AnyObject) {
+        var alert = UIAlertController(title:"Remove Listing", message: "Warning: A listing is gone forever if you choose to remove it. Are you sure you want to remove this listing?", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "I'm Sure", style: UIAlertActionStyle.Default,handler: {
+            action in switch action.style{
+            case .Default:
+                NSLog("I'm Sure button pressed.")
+                //Don't need to do anything while this runs for now.
+                ListingDatabaseController.deleteListing(self.listing)
+                self.performSegueWithIdentifier("toSellerHomepage", sender: nil)
+                break
+            default:
+                break
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler:nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
     
     // Passes listing to to Edit Listing View Controller
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
@@ -97,7 +118,7 @@ class ListingViewController: UIViewController {
                 svc.data = data
             }
             
-            svc.bookISBN = self.isbn13.text
+            svc.bookISBN = self.listing.book.isbn13
             svc.listing = self.listing
 			svc.isNewListing = false
         }
