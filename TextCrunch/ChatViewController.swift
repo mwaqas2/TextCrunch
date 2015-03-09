@@ -12,106 +12,116 @@
 import UIKit
 import Foundation
 
-class ChatViewController : UIViewController {
+class ChatViewController : UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate {
+	@IBOutlet weak var messageTextView: UITextView!
+	@IBOutlet weak var sendButton: UIButton!
+	@IBOutlet weak var messageTableView: UITableView!
+	
+	let cellIdentifier = "MessageCell"
+	let MAX_MESSAGE_LENGTH = 200
+	
+	var listing: Listing!
+	var conversation = Conversation()
+	var conversationQuery = PFQuery(className: "Conversation")
+	var isNewListing = true
+	var isNewConversation = false
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		// Do any additional setup after loading the view.
+		messageTextView.delegate = self
+		messageTableView.delegate = self
+		messageTableView.dataSource = self
+		self.messageTableView?.registerClass(UITableViewCell.self, forCellReuseIdentifier: self.cellIdentifier)
+		
+		// Do not autoscroll UITextViews within this view controller
+		self.automaticallyAdjustsScrollViewInsets = false
+		
+		isNewConversation = false
+		var bookTitle = ""
+		if isNewListing {
+			listing = Listing()
+		}
+		else {
+			bookTitle = listing.book.title
+		}
+		
+		// Set navigation bar title
+		self.title = bookTitle
+		
+		// Set message box boarder appearance
+		self.messageTextView.layer.borderWidth = 2
+		self.messageTextView.layer.borderColor = UIColor.lightGrayColor().CGColor
+		self.messageTextView.layer.cornerRadius = 8
+		self.messageTextView.contentInset = UIEdgeInsetsMake(2.0, 1.0 , 0.0, 0.0)
+		
+		// If segue-ing from Inbox don't call this function, just pass in conversation object through via PrepareForSegue in the InboxViewController
+		// TODO: Add statement to skip segueFromListing if segue-ing from Inbox
+		getListingConversation()
+		
+		NSTimer.scheduledTimerWithTimeInterval(15, target: self, selector: "reloadMessageViewTable:", userInfo: nil, repeats: true)
 	}
 	
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
 		// Dispose of any resources that can be recreated.
 	}
-}
-
-/*
-class ChatViewController : UIViewController, UITableViewDataSource, UITableViewDelegate {
-	@IBOutlet var messagesTableView: UITableView!
-	@IBOutlet var messageInput: UITextView!
-	var listing = Listing()
-	var conversation = Conversation()
-	let cellIdentifier = "MessageCell"
-	var query = PFQuery(className: "Conversation")
 	
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		self.messagesTableView?.registerClass(UITableViewCell.self, forCellReuseIdentifier: self.cellIdentifier)
-		
-		// Add border to TextView to make it more obvious
-		messageInput!.layer.borderWidth = 1
-		messageInput!.layer.borderColor = UIColor.blueColor().CGColor
-		
-		// If segue-ing from Inbox don't call this function, just pass in conversation object through via PrepareForSegue in the InboxViewController
-		// TODO: Add statement to skip segueFromListing if segue-ing from Inbox
-		segueFromListing()
-		
-		NSTimer.scheduledTimerWithTimeInterval(15, target: self, selector: "reloadMessageViewTable:", userInfo: nil, repeats: true)
+	// Callback for the UITextView that returns true if the text in the TextView should
+	// be updated. Only allows the user to enter MAX_MESSAGE_LENGTH chars into the textbox
+	func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+		return countElements(messageTextView.text) + (countElements(text) - range.length) <= MAX_MESSAGE_LENGTH
 	}
 	
 	// Check if conversation with this seller and listingId exsts
 	// If not, create a new conversation
-	func segueFromListing() {
-		// UNCOMMENT THIS ONCE LISTINGS CAN BE VIEWED
-		//query.whereKey("listingId", equalTo:listing.objectId)
-		//query.whereKey("buyer", equalTo:UserController.getCurrentUser())
-		//query.includeKey("messages")
-		//query.includeKey("sender")
+	func getListingConversation() {
+		// Search for Conversations who's listing id matches that of the current listing
+		conversationQuery.whereKey("listingId", equalTo:listing.objectId)
+		conversationQuery.whereKey("buyer", equalTo:UserController.getCurrentUser())
+		conversationQuery.includeKey("messages")
+		conversationQuery.includeKey("sender")
 		
-		//var results = query.findObjects()
-		//if (results.count > 1) {
-		//    println("Something is wrong. Multiple conversations found for buyer on listing: " + listing.objectId)
-		//} else if (results.count == 1) {
-		//    conversation = results[0] as Conversation
-		//}else {
-		//    // Create new Conversation object
-		//    conversation.seller = listing.seller as User
-		//    conversation.buyer = UserController.getCurrentUser()
-		//    conversation.listingId = listing.objectId
-		//    conversation.isActive = 1
-		//}
-		// END
-		
-		// TESTING DATA -- Use this until Inbox is created, as inbox should pass in Conversation object, or objectID
-		query.whereKey("objectId", equalTo:"QFTirbJIZn")
-		query.includeKey("messages")
-		conversation = query.findObjects()[0] as Conversation
-		
-		// Code to create array of pointers to messages because who the hell knows how to do that manually.
-		//var m1 = Message()
-		//m1.receiver = conversation.buyer
-		//m1.sender = conversation.seller
-		//m1.content = "I want to buy this book, yo."
-		//var m2 = Message()
-		//m2.receiver = conversation.seller
-		//m2.sender = conversation.buyer
-		//m2.content = "Sounds good, meet me in the dark where the critters lies waiting."
-		//conversation.messages = [m1, m2]
-		//conversation.save()
-		// END
+		var results = conversationQuery.findObjects()
+		if (results.count > 1) {
+		    println("Something is wrong. Multiple conversations found for buyer on listing: " + listing.objectId)
+		} else if (results.count == 1) {
+		    conversation = results[0] as Conversation
+		} else {
+		    // Create new Conversation object
+			conversation.seller = listing.seller as User
+		    conversation.buyer = UserController.getCurrentUser()
+		    conversation.listingId = listing.objectId
+			conversation.messages = []
+		}
 	}
 	
-	func reloadMessageViewTable(timer:NSTimer!) {
-		conversation = query.findObjects()[0] as Conversation
-		messagesTableView.reloadData()
-	}
-	
-	@IBAction func sendMessage(sender: AnyObject) {
+	// Sends a message between users when the send button is pressed
+	@IBAction func onSendButtonClicked(sender: AnyObject) {
 		var message = Message()
 		message.sender = UserController.getCurrentUser()
 		
-		if (UserController.getCurrentUser().email == conversation.seller) {
+		if (UserController.getCurrentUser() == conversation.seller) {
 			message.receiver = conversation.buyer
 		} else {
-			message.sender = conversation.seller
+			message.receiver = conversation.seller
 		}
 		
-		message.content = messageInput.text
-		conversation.messages.append(message as Message)
+		message.content = messageTextView.text
+		conversation.messages.append(message)
 		conversation.save()
+		
 		// Clear the textview when message is sent.
-		messageInput.text = ""
-		messagesTableView.reloadData()
+		messageTextView.text = ""
+		messageTableView.reloadData()
+	}
+	
+	func reloadMessageViewTable(timer:NSTimer!) {
+		var results = conversationQuery.findObjects()
+		if (results.count == 1) {
+			conversation = results[0] as Conversation
+			messageTableView.reloadData()
+		}
 	}
 	
 	// Mandatory UITableViewDelete function
@@ -148,4 +158,3 @@ class ChatViewController : UIViewController, UITableViewDataSource, UITableViewD
 		println(conversation.messages[row].content)
 	}
 }
-*/

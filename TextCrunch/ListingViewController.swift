@@ -122,10 +122,11 @@ class ListingViewController: UIViewController {
             svc.listing = self.listing
 			svc.isNewListing = false
         }
-		//else if (segue.identifier == "chat") {
-		//	var svc = segue.destinationViewController as EditListingViewController;
-		//	svc.listing = listing
-		//}
+		else if (segue.identifier == "chat") {
+			var svc = segue.destinationViewController as ChatViewController;
+			svc.listing = listing
+			svc.isNewListing = false
+		}
     }
 	
     override func didReceiveMemoryWarning() {
