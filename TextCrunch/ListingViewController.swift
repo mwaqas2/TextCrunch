@@ -28,10 +28,12 @@ class ListingViewController: UIViewController {
     @IBOutlet weak var edit: UIButton!
 	@IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var removeButton: UIButton!
+    @IBOutlet weak var holdButton: UIButton!
     
     var listing:Listing!
     var data:NSData? = nil
 	var isNewListing = false
+    var userIsSeller : Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,18 +49,23 @@ class ListingViewController: UIViewController {
         if (data != nil){
             imageHolder!.frame = CGRectMake(31,31,136,140)
             imageHolder.image = UIImage(data: data!)
-            
         }
         
         // Shows edit button to seller, but not buy button
         // Shows buy button to potential buyer, but not edit button
         var listingSeller : User = listing.seller.fetchIfNeeded() as User
-        if (UserController.getCurrentUser().email == listingSeller.email) {
+        userIsSeller = (UserController.getCurrentUser().email == listingSeller.email)
+        if (userIsSeller) {
             buy.hidden = true
+            if(listing.isOnHold){ holdButton.setTitle("Remove Hold", forState: .Normal)}
+            else {holdButton.setTitle("Hold", forState: .Normal)}
         } else {
             edit.hidden = true
             removeButton.hidden = true
         }
+        //Show hold button only is the viewing user is the listing's seller
+        //and they're not looking at a new listing.
+        holdButton.hidden = !(!isNewListing && userIsSeller)
         setListingElements()
     }
 	
@@ -107,6 +114,18 @@ class ListingViewController: UIViewController {
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
+    @IBAction func onHoldButtonClicked(sender: AnyObject) {
+        if(listing.isOnHold){
+            listing.isOnHold = false
+            listing.save()
+            holdButton.setTitle("Hold", forState: .Normal)
+        } else if (!listing.isOnHold){
+            listing.isOnHold = true
+            listing.save()
+            holdButton.setTitle("Remove Hold", forState: .Normal)
+        }
+        return
+    }
     
     // Passes listing to to Edit Listing View Controller
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {

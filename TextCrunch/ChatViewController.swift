@@ -16,7 +16,8 @@ class ChatViewController : UIViewController, UITableViewDataSource, UITableViewD
 	@IBOutlet weak var messageTextView: UITextView!
 	@IBOutlet weak var sendButton: UIButton!
 	@IBOutlet weak var messageTableView: UITableView!
-	
+    @IBOutlet weak var holdButton: UIButton!
+    
 	let cellIdentifier = "MessageCell"
 	let MAX_MESSAGE_LENGTH = 200
 	
@@ -25,6 +26,7 @@ class ChatViewController : UIViewController, UITableViewDataSource, UITableViewD
 	var conversationQuery = PFQuery(className: "Conversation")
 	var isNewListing = true
 	var isNewConversation = false
+    var userIsSeller : Bool = false
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -45,7 +47,15 @@ class ChatViewController : UIViewController, UITableViewDataSource, UITableViewD
 		else {
 			bookTitle = listing.book.title
 		}
-		
+        var seller = listing.seller.fetchIfNeeded() as User
+        userIsSeller = (seller.email == UserController.getCurrentUser().email)
+        userIsSeller = true//For testing purposes.
+        if(userIsSeller){
+            userIsSeller = true
+            holdButton.hidden = false
+            if(listing.isOnHold){ holdButton.setTitle("Remove Hold", forState: .Normal)}
+            else {holdButton.setTitle("Hold", forState: .Normal)}
+        }
 		// Set navigation bar title
 		self.title = bookTitle
 		
@@ -54,6 +64,7 @@ class ChatViewController : UIViewController, UITableViewDataSource, UITableViewD
 		self.messageTextView.layer.borderColor = UIColor.lightGrayColor().CGColor
 		self.messageTextView.layer.cornerRadius = 8
 		self.messageTextView.contentInset = UIEdgeInsetsMake(2.0, 1.0 , 0.0, 0.0)
+        
 		
 		// If segue-ing from Inbox don't call this function, just pass in conversation object through via PrepareForSegue in the InboxViewController
 		// TODO: Add statement to skip segueFromListing if segue-ing from Inbox
@@ -157,4 +168,18 @@ class ChatViewController : UIViewController, UITableViewDataSource, UITableViewD
 		let row = indexPath.row
 		println(conversation.messages[row].content)
 	}
+    
+    @IBAction func toggleListingHold(sender: AnyObject) {
+        if(listing.isOnHold){
+            listing.isOnHold = false
+            listing.save()
+            holdButton.setTitle("Hold", forState: .Normal)
+        } else if (!listing.isOnHold){
+            listing.isOnHold = true
+            listing.save()
+            holdButton.setTitle("Remove Hold", forState: .Normal)
+        }
+        return
+    }
+    
 }
