@@ -191,6 +191,7 @@ class ChatViewController : UIViewController, UITableViewDataSource, UITableViewD
             action in switch action.style{
             case .Default:
                 self.listing.isActive = false
+                self.listing.buyer = self.conversation.buyer
                 self.listing.save()
                 self.performSegueWithIdentifier("soldButtonSegue", sender: nil)
                 break
