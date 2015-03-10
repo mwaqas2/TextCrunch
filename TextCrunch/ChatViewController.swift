@@ -17,6 +17,7 @@ class ChatViewController : UIViewController, UITableViewDataSource, UITableViewD
 	@IBOutlet weak var sendButton: UIButton!
 	@IBOutlet weak var messageTableView: UITableView!
     @IBOutlet weak var holdButton: UIButton!
+    @IBOutlet weak var soldButton: UIButton!
     
 	let cellIdentifier = "MessageCell"
 	let MAX_MESSAGE_LENGTH = 200
@@ -53,6 +54,7 @@ class ChatViewController : UIViewController, UITableViewDataSource, UITableViewD
         if(userIsSeller){
             userIsSeller = true
             holdButton.hidden = false
+            soldButton.hidden = false
             if(listing.isOnHold){ holdButton.setTitle("Remove Hold", forState: .Normal)}
             else {holdButton.setTitle("Hold", forState: .Normal)}
         }
@@ -180,6 +182,24 @@ class ChatViewController : UIViewController, UITableViewDataSource, UITableViewD
             holdButton.setTitle("Remove Hold", forState: .Normal)
         }
         return
+    }
+    
+    
+    @IBAction func onSoldButtonClicked(sender: AnyObject) {
+        var alert = UIAlertController(title: "Mark as Sold", message: "Warning: Once you mark a listing as sold it will no longer show up in search results and this cannot be reversed. Continue?", preferredStyle: UIAlertControllerStyle.Alert);
+        alert.addAction(UIAlertAction(title: "I'm Sure", style: UIAlertActionStyle.Default, handler: {
+            action in switch action.style{
+            case .Default:
+                self.listing.isActive = false
+                self.listing.save()
+                self.performSegueWithIdentifier("soldButtonSegue", sender: nil)
+                break
+            default:
+                break
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
     }
     
 }
