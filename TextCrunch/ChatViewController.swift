@@ -50,13 +50,15 @@ class ChatViewController : UIViewController, UITableViewDataSource, UITableViewD
 		}
         var seller = listing.seller.fetchIfNeeded() as User
         userIsSeller = (seller.email == UserController.getCurrentUser().email)
-        userIsSeller = true//For testing purposes.
         if(userIsSeller){
             userIsSeller = true
             holdButton.hidden = false
             soldButton.hidden = false
-            if(listing.isOnHold){ holdButton.setTitle("Remove Hold", forState: .Normal)}
-            else {holdButton.setTitle("Hold", forState: .Normal)}
+            if(listing.isOnHold){
+                holdButton.setTitle("Remove Hold", forState: .Normal)
+            } else {
+                holdButton.setTitle("Hold", forState: .Normal)
+            }
         }
 		// Set navigation bar title
 		self.title = bookTitle

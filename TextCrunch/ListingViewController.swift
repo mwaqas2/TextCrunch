@@ -57,8 +57,11 @@ class ListingViewController: UIViewController {
         userIsSeller = (UserController.getCurrentUser().email == listingSeller.email)
         if (userIsSeller) {
             buy.hidden = true
-            if(listing.isOnHold){ holdButton.setTitle("Remove Hold", forState: .Normal)}
-            else {holdButton.setTitle("Hold", forState: .Normal)}
+            if(listing.isOnHold){
+                holdButton.setTitle("Remove Hold", forState: .Normal)
+            } else {
+                holdButton.setTitle("Hold", forState: .Normal)
+            }
         } else {
             edit.hidden = true
             removeButton.hidden = true
