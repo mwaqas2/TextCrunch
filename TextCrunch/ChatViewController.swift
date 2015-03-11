@@ -16,7 +16,9 @@ class ChatViewController : UIViewController, UITableViewDataSource, UITableViewD
 	@IBOutlet weak var messageTextView: UITextView!
 	@IBOutlet weak var sendButton: UIButton!
 	@IBOutlet weak var messageTableView: UITableView!
-	
+    @IBOutlet weak var holdButton: UIButton!
+    @IBOutlet weak var soldButton: UIButton!
+    
 	let cellIdentifier = "MessageCell"
 	let MAX_MESSAGE_LENGTH = 200
 	
@@ -25,6 +27,7 @@ class ChatViewController : UIViewController, UITableViewDataSource, UITableViewD
 	var conversationQuery = PFQuery(className: "Conversation")
 	var isNewListing = true
 	var isNewConversation = false
+    var userIsSeller : Bool = false
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -45,7 +48,18 @@ class ChatViewController : UIViewController, UITableViewDataSource, UITableViewD
 		else {
 			bookTitle = listing.book.title
 		}
-		
+        var seller = listing.seller.fetchIfNeeded() as User
+        userIsSeller = (seller.email == UserController.getCurrentUser().email)
+        if(userIsSeller){
+            userIsSeller = true
+            holdButton.hidden = false
+            soldButton.hidden = false
+            if(listing.isOnHold){
+                holdButton.setTitle("Remove Hold", forState: .Normal)
+            } else {
+                holdButton.setTitle("Hold", forState: .Normal)
+            }
+        }
 		// Set navigation bar title
 		self.title = bookTitle
 		
@@ -54,6 +68,7 @@ class ChatViewController : UIViewController, UITableViewDataSource, UITableViewD
 		self.messageTextView.layer.borderColor = UIColor.lightGrayColor().CGColor
 		self.messageTextView.layer.cornerRadius = 8
 		self.messageTextView.contentInset = UIEdgeInsetsMake(2.0, 1.0 , 0.0, 0.0)
+        
 		
 		// If segue-ing from Inbox don't call this function, just pass in conversation object through via PrepareForSegue in the InboxViewController
 		// TODO: Add statement to skip segueFromListing if segue-ing from Inbox
@@ -157,4 +172,37 @@ class ChatViewController : UIViewController, UITableViewDataSource, UITableViewD
 		let row = indexPath.row
 		println(conversation.messages[row].content)
 	}
+    
+    @IBAction func toggleListingHold(sender: AnyObject) {
+        if(listing.isOnHold){
+            listing.isOnHold = false
+            listing.save()
+            holdButton.setTitle("Hold", forState: .Normal)
+        } else if (!listing.isOnHold){
+            listing.isOnHold = true
+            listing.save()
+            holdButton.setTitle("Remove Hold", forState: .Normal)
+        }
+        return
+    }
+    
+    
+    @IBAction func onSoldButtonClicked(sender: AnyObject) {
+        var alert = UIAlertController(title: "Mark as Sold", message: "Warning: Once you mark a listing as sold it will no longer show up in search results and this cannot be reversed. Continue?", preferredStyle: UIAlertControllerStyle.Alert);
+        alert.addAction(UIAlertAction(title: "I'm Sure", style: UIAlertActionStyle.Default, handler: {
+            action in switch action.style{
+            case .Default:
+                self.listing.isActive = false
+                self.listing.buyer = self.conversation.buyer
+                self.listing.save()
+                self.performSegueWithIdentifier("soldButtonSegue", sender: nil)
+                break
+            default:
+                break
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
 }
