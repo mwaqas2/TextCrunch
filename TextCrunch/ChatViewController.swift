@@ -152,6 +152,8 @@ class ChatViewController : UIViewController, UITableViewDataSource, UITableViewD
 		
 		cell.textLabel?.sizeToFit()
 		cell.textLabel?.numberOfLines = 0
+		cell.backgroundColor = UIColor.clearColor()
+		cell.selectionStyle = UITableViewCellSelectionStyle.None
 		
 		var content = conversation.messages[indexPath.row].content
 		if (conversation.messages[indexPath.row].sender.objectId == UserController.getCurrentUser().objectId) {
