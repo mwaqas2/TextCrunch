@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import CoreLocation
 
-class SearchViewController: UIViewController, UITableViewDataSource {
-	
+class SearchViewController: UIViewController, UITableViewDataSource, CLLocationManagerDelegate {
+	    
 	// Enum representing the sorting state
 	enum SortMode: Int{
 		case None = 0
@@ -41,11 +42,22 @@ class SearchViewController: UIViewController, UITableViewDataSource {
 	var currentSortMode: SortMode = SortMode.None
 	var currentSearchKeywords: [String] = []
 	var selectedListing: Listing!
-	
+    
+    var currentLocation = CLLocation()
+    var locationManager: CLLocationManager! = nil
+    var occurError : Bool = false
+    var latitude:Double!
+    var longitude:Double!
+    var locationStatus : NSString = "Not Started"
+    var locationFixAchieved : Bool = false
+
+    var Gps = GPS()
+    
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
-		listingTableView.reloadData()
+        
+        Gps.startTracking()
+        listingTableView.reloadData()
 		
 		// Update sort UI elements
 		currentSortMode = SortMode.None
@@ -195,7 +207,7 @@ class SearchViewController: UIViewController, UITableViewDataSource {
 	// database for active Listings that match the keywords given by the user in the
 	// search bar
 	@IBAction func onSearchButtonClicked(sender: UIButton) {
-		// Update sort UI elements
+        // Update sort UI elements
 		currentSortMode = SortMode.None
 		updateSortArrows()
 		
@@ -259,5 +271,6 @@ class SearchViewController: UIViewController, UITableViewDataSource {
 			svc.isNewListing = false
 		}
 	}
-	
+    
+    
 }

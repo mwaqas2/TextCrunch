@@ -19,8 +19,12 @@ class IsbnViewController: UIViewController {
             self.performSegueWithIdentifier("searchBookIsbn", sender: nil)}
     }
     
+    var Gps = GPS()
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        Gps.startTracking()
+
         
         //hide warnings
         showISBNWarning(true)
