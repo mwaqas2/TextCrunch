@@ -18,6 +18,7 @@ class ChatViewController : UIViewController, UITableViewDataSource, UITableViewD
 	@IBOutlet weak var messageTableView: UITableView!
     @IBOutlet weak var holdButton: UIButton!
     @IBOutlet weak var soldButton: UIButton!
+	@IBOutlet weak var buyerHoldWarningLabel: UILabel!
     
 	let cellIdentifier = "MessageCell"
 	let MAX_MESSAGE_LENGTH = 200
@@ -40,7 +41,9 @@ class ChatViewController : UIViewController, UITableViewDataSource, UITableViewD
 		// Do not autoscroll UITextViews within this view controller
 		self.automaticallyAdjustsScrollViewInsets = false
 		
+		buyerHoldWarningLabel.hidden = true
 		isNewConversation = false
+		
 		var bookTitle = ""
 		if isNewListing {
 			listing = Listing()
@@ -60,6 +63,10 @@ class ChatViewController : UIViewController, UITableViewDataSource, UITableViewD
                 holdButton.setTitle("Hold", forState: .Normal)
             }
         }
+		else {
+			buyerHoldWarningLabel.hidden = !listing.isOnHold
+		}
+		
 		// Set navigation bar title
 		self.title = bookTitle
 		
@@ -136,6 +143,16 @@ class ChatViewController : UIViewController, UITableViewDataSource, UITableViewD
 		if (results.count == 1) {
 			conversation = results[0] as Conversation
 			messageTableView.reloadData()
+		}
+		
+		ListingDatabaseController.isListingOnHold(listing.objectId, callback: updateHoldWarningVisibility)
+	}
+	
+	// Updates the UI element that informs the buyer if the Listing has 
+	// been put on hold by the seller
+	func updateHoldWarningVisibility(isOnHold: Bool) {
+		if(!userIsSeller){
+			buyerHoldWarningLabel.hidden = !isOnHold
 		}
 	}
 	

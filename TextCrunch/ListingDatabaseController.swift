@@ -89,4 +89,22 @@ class ListingDatabaseController {
         })
         return
     }
+	
+	class func isListingOnHold(listingId: String, callback: (Bool) -> Void) {
+		var listingQuery = PFQuery(className: "Listing")
+		listingQuery.whereKey("objectId", equalTo:listingId)
+		
+		listingQuery.findObjectsInBackgroundWithBlock {
+			(objects: [AnyObject]!, error: NSError!) -> Void in
+			if error == nil {
+				// The query succeeded. Pass the matching Listings to the callback function.
+				if let listings = objects as? [Listing] {
+					if listings.count > 0 {
+						let listing = listings[0]
+						callback(listing.isOnHold)
+					}
+				}
+			}
+		}
+	}
 }

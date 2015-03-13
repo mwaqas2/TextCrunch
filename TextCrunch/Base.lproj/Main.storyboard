@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="SlN-8A-vyZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="SlN-8A-vyZ">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -948,17 +947,11 @@
                                     <action selector="updateListing:" destination="MYE-RU-plS" eventType="touchUpInside" id="skU-8V-cYf"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ek3-Ef-Bjj">
-                                <rect key="frame" x="0.0" y="420" width="320" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.6588235294" green="0.83137254900000002" blue="0.78823529410000004" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="pHg-jT-hx8"/>
                     <connections>
-                        <outlet property="Location" destination="ek3-Ef-Bjj" id="S4l-Ob-aM2"/>
                         <outlet property="author" destination="yJd-aN-pxq" id="f6G-0K-iZn"/>
                         <outlet property="bookTitle" destination="dsg-mm-6bE" id="W4t-kq-YGO"/>
                         <outlet property="bookimage" destination="gl0-Mp-ro9" id="Uv3-55-c1D"/>
@@ -1155,7 +1148,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="49" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ww3-II-FHo">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="49" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ww3-II-FHo">
                                 <rect key="frame" x="16" y="28" width="288" height="396"/>
                                 <color key="backgroundColor" red="0.59999999999999998" green="0.79607843140000001" blue="0.74117647060000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -1203,6 +1196,12 @@
                                     <action selector="onSoldButtonClicked:" destination="oYe-ts-w60" eventType="touchUpInside" id="ycP-wy-I6v"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Listing Put on Hold by Seller" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CQ1-OX-fSc">
+                                <rect key="frame" x="47" y="447" width="218" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.59999999999999998" green="0.79607843140000001" blue="0.74117647060000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -1215,10 +1214,13 @@
                             <constraint firstAttribute="trailingMargin" secondItem="Jvh-17-Fq9" secondAttribute="trailing" constant="-9" id="Who-dU-9dR"/>
                             <constraint firstItem="ww3-II-FHo" firstAttribute="trailing" secondItem="fap-7U-Hhf" secondAttribute="trailingMargin" id="dxq-0b-G9n"/>
                             <constraint firstItem="N09-Y5-2DX" firstAttribute="top" secondItem="Jvh-17-Fq9" secondAttribute="bottom" constant="32" id="fWD-Kc-Bx7"/>
+                            <constraint firstItem="CQ1-OX-fSc" firstAttribute="top" secondItem="ww3-II-FHo" secondAttribute="bottom" constant="23" id="hhE-ch-hVX"/>
+                            <constraint firstItem="CQ1-OX-fSc" firstAttribute="centerX" secondItem="ww3-II-FHo" secondAttribute="centerX" constant="-4" id="lgu-EP-HYL"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="hng-Pb-WIc"/>
                     <connections>
+                        <outlet property="buyerHoldWarningLabel" destination="CQ1-OX-fSc" id="cM7-Ug-31D"/>
                         <outlet property="holdButton" destination="5g5-3C-TQb" id="Loh-ho-sat"/>
                         <outlet property="messageTableView" destination="ww3-II-FHo" id="CY4-Ue-ZTk"/>
                         <outlet property="messageTextView" destination="Kgs-aO-NN4" id="jab-D4-h4M"/>
@@ -1248,9 +1250,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="q96-Cz-bw7"/>
+        <segue reference="3f1-9h-r6A"/>
         <segue reference="S6U-8h-8D6"/>
-        <segue reference="U5M-7W-DjL"/>
+        <segue reference="efr-3O-uBy"/>
         <segue reference="8iV-l4-1e5"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
