@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import CoreLocation
+
 
 class EditListingViewController: UIViewController {
 	
@@ -24,6 +26,8 @@ class EditListingViewController: UIViewController {
     
     @IBOutlet var update: UIButton!
     
+    @IBOutlet var Location: UITextField!
+    
     var bookISBN:String!
     var listing:Listing!
     
@@ -33,7 +37,9 @@ class EditListingViewController: UIViewController {
     var numberofbooks = 0;
 	var isNewListing = false
     
-    
+    var GpsAddr = GpsAddress()
+    var lat_float = 53.544389
+    var long_float = -113.4909267
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +47,20 @@ class EditListingViewController: UIViewController {
             setListingElements()
             numberofbooks = 1
         }
+        
+        var userlocation =  UserController.getCurrentUser()
+
+        PFGeoPoint.geoPointForCurrentLocationInBackground {
+            (geoPoint: PFGeoPoint!, error: NSError!) -> Void in
+            if error == nil {
+                self.lat_float = (geoPoint.latitude)
+                self.long_float = (geoPoint.longitude)
+                self.Location.text = (self.GpsAddr.getAddress(toString(geoPoint.latitude), lng: toString (geoPoint.longitude)))
+                // do something with the new geoPoint
+            }
+            
+        }
+        
         var title = ""
         var authors = ""
         var edition = ""
@@ -215,7 +235,27 @@ class EditListingViewController: UIViewController {
 			listing.isOnHold = false
 			listing.isActive = true
 		}
+
+        /* uncomment
+        if you want to update your listing location based 
+        on new address place in textbox
+        
+        var address = Location.text
+        var coord = GpsAddr.getCoordinates(address)
+        print(coord)
+        var coordArr = coord.componentsSeparatedByString(",")
+        var newlat = (coordArr[0] as NSString).floatValue
+        var newlong = (coordArr[1] as NSString).floatValue
+        self.late_float = newlat
+        self.lat_float = newlong
+        */
+        
+        var point:PFGeoPoint = PFGeoPoint(location: CLLocation(latitude: self.lat_float, longitude: self.long_float)!)
+        
+        listing["location"] = point
+        
         listing.save()
+        print(listing)
         self.performSegueWithIdentifier("updateListing", sender: nil)
         
     }
@@ -243,7 +283,6 @@ class EditListingViewController: UIViewController {
             }
         }
     }
-    
     
     
     override func didReceiveMemoryWarning() {

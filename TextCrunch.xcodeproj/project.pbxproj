@@ -50,6 +50,8 @@
 		560869CC1A8A529800630C64 /* IsbnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560869CB1A8A529800630C64 /* IsbnViewController.swift */; };
 		560869D01A8A55C500630C64 /* cabinet_barcode.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 560869CF1A8A55C500630C64 /* cabinet_barcode.jpg */; };
 		564724341AA0329A004AA76D /* json.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564724331AA0329A004AA76D /* json.swift */; };
+		566FD8F21AB29AD300E1C6E6 /* GPS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566FD8F11AB29AD300E1C6E6 /* GPS.swift */; };
+		566FD8F41AB29D8B00E1C6E6 /* GpsAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566FD8F31AB29D8B00E1C6E6 /* GpsAddress.swift */; };
 		655DEF9D1A8416DD00931A3B /* UserControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B489A81A82DE2F00541D06 /* UserControllerTests.swift */; };
 		658FCFFB1A64789E004D056D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658FCFFA1A64789E004D056D /* AppDelegate.swift */; };
 		658FCFFD1A64789E004D056D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658FCFFC1A64789E004D056D /* LoginViewController.swift */; };
@@ -119,6 +121,8 @@
 		560869CB1A8A529800630C64 /* IsbnViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IsbnViewController.swift; sourceTree = "<group>"; };
 		560869CF1A8A55C500630C64 /* cabinet_barcode.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cabinet_barcode.jpg; sourceTree = "<group>"; };
 		564724331AA0329A004AA76D /* json.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = json.swift; path = json/json.swift; sourceTree = "<group>"; };
+		566FD8F11AB29AD300E1C6E6 /* GPS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPS.swift; sourceTree = "<group>"; };
+		566FD8F31AB29D8B00E1C6E6 /* GpsAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GpsAddress.swift; sourceTree = "<group>"; };
 		655DEF7E1A84105D00931A3B /* libPods-TextCrunch-Bolts.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-TextCrunch-Bolts.a"; path = "Pods/build/Debug-iphoneos/libPods-TextCrunch-Bolts.a"; sourceTree = "<group>"; };
 		655DEF7F1A84105D00931A3B /* libPods-TextCrunch-Braintree.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-TextCrunch-Braintree.a"; path = "Pods/build/Debug-iphoneos/libPods-TextCrunch-Braintree.a"; sourceTree = "<group>"; };
 		655DEF801A84105D00931A3B /* libPods-TextCrunch-Parse.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-TextCrunch-Parse.a"; path = "Pods/build/Debug-iphoneos/libPods-TextCrunch-Parse.a"; sourceTree = "<group>"; };
@@ -164,6 +168,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65A9FD1C1A705A670095F48C /* CoreLocation.framework in Frameworks */,
 				65A9FD2C1A705B400095F48C /* libsqlite3.0.dylib in Frameworks */,
 				65A9FD281A705A9B0095F48C /* SystemConfiguration.framework in Frameworks */,
 				65A9FD261A705A910095F48C /* StoreKit.framework in Frameworks */,
@@ -171,7 +176,6 @@
 				65A9FD221A705A820095F48C /* QuartzCore.framework in Frameworks */,
 				65A9FD201A705A7B0095F48C /* MobileCoreServices.framework in Frameworks */,
 				65A9FD1E1A705A710095F48C /* libz.dylib in Frameworks */,
-				65A9FD1C1A705A670095F48C /* CoreLocation.framework in Frameworks */,
 				65A9FD1A1A705A5D0095F48C /* CoreGraphics.framework in Frameworks */,
 				65A9FD181A705A460095F48C /* CFNetwork.framework in Frameworks */,
 				65A9FD161A705A3B0095F48C /* AudioToolbox.framework in Frameworks */,
@@ -248,6 +252,15 @@
 			name = JsonParser;
 			sourceTree = "<group>";
 		};
+		566FD8F01AB29AC400E1C6E6 /* GPS */ = {
+			isa = PBXGroup;
+			children = (
+				566FD8F11AB29AD300E1C6E6 /* GPS.swift */,
+				566FD8F31AB29D8B00E1C6E6 /* GpsAddress.swift */,
+			);
+			name = GPS;
+			sourceTree = "<group>";
+		};
 		655DEF931A8415D200931A3B /* TextCrunchTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -302,6 +315,7 @@
 		658FCFF71A64789E004D056D /* TextCrunch */ = {
 			isa = PBXGroup;
 			children = (
+				566FD8F01AB29AC400E1C6E6 /* GPS */,
 				564724321AA0326E004AA76D /* JsonParser */,
 				32ECF1D41A9D5F3C00F65DA5 /* down_arrow.png */,
 				32ECF1D21A9D5F3100F65DA5 /* up_arrow.png */,
@@ -534,6 +548,7 @@
 				53F8E5CE1A85DFC600A5D10E /* BookModel.swift in Sources */,
 				560869C81A8A524F00630C64 /* ListingViewController.swift in Sources */,
 				32ECF1D91A9D617100F65DA5 /* HomeTabBarViewController.swift in Sources */,
+				566FD8F41AB29D8B00E1C6E6 /* GpsAddress.swift in Sources */,
 				535A39401A8D904C00D3F01B /* UserModel.swift in Sources */,
 				18B4899D1A7D66D100541D06 /* FBUserController.swift in Sources */,
 				32ECF1E51A9D695200F65DA5 /* ListingTableViewCell.swift in Sources */,
@@ -549,6 +564,7 @@
 				32C890AF1A7FC70A00196E47 /* SellerListingViewController.swift in Sources */,
 				560869C41A8A51B300630C64 /* Background.swift in Sources */,
 				564724341AA0329A004AA76D /* json.swift in Sources */,
+				566FD8F21AB29AD300E1C6E6 /* GPS.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -715,7 +731,7 @@
 					"$(PROJECT_DIR)/vendor",
 				);
 				INFOPLIST_FILE = TextCrunch/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -740,7 +756,7 @@
 					"$(PROJECT_DIR)/vendor",
 				);
 				INFOPLIST_FILE = TextCrunch/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
