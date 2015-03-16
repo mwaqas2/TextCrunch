@@ -81,7 +81,7 @@ class ChatViewController : UIViewController, UITableViewDataSource, UITableViewD
 		// TODO: Add statement to skip segueFromListing if segue-ing from Inbox
 		getListingConversation()
 		
-		NSTimer.scheduledTimerWithTimeInterval(15, target: self, selector: "reloadMessageViewTable:", userInfo: nil, repeats: true)
+		NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "reloadMessageViewTable:", userInfo: nil, repeats: true)
 	}
 	
 	override func didReceiveMemoryWarning() {
