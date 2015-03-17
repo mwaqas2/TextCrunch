@@ -79,7 +79,9 @@ class ChatViewController : UIViewController, UITableViewDataSource, UITableViewD
 		
 		// If segue-ing from Inbox don't call this function, just pass in conversation object through via PrepareForSegue in the InboxViewController
 		// TODO: Add statement to skip segueFromListing if segue-ing from Inbox
-		getListingConversation()
+		if !userIsSeller {
+			getListingConversation()
+		}
 		
 		NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "reloadMessageViewTable:", userInfo: nil, repeats: true)
 	}

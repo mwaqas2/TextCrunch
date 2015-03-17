@@ -23,6 +23,9 @@
 		18B4899D1A7D66D100541D06 /* FBUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4899C1A7D66D100541D06 /* FBUserController.swift */; };
 		18B4899F1A7D66E000541D06 /* GoogleUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4899E1A7D66E000541D06 /* GoogleUserController.swift */; };
 		18B489A71A82D7F300541D06 /* ListingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B489A61A82D7F300541D06 /* ListingModel.swift */; };
+		322A93D61AB7586E001765DB /* Message-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 322A93D51AB7586E001765DB /* Message-50.png */; };
+		322A93D81AB75CBC001765DB /* MailboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322A93D71AB75CBC001765DB /* MailboxViewController.swift */; };
+		322A93DA1AB77145001765DB /* Star-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 322A93D91AB77145001765DB /* Star-50.png */; };
 		324AD2621AA7625300A6FE26 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324AD2611AA7625300A6FE26 /* ChatViewController.swift */; };
 		324AD26F1AA77ED100A6FE26 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324AD26E1AA77ED100A6FE26 /* MessageModel.swift */; };
 		324AD2711AA77F2100A6FE26 /* ConversationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324AD2701AA77F2100A6FE26 /* ConversationModel.swift */; };
@@ -96,6 +99,9 @@
 		18B4899E1A7D66E000541D06 /* GoogleUserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleUserController.swift; sourceTree = "<group>"; };
 		18B489A61A82D7F300541D06 /* ListingModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ListingModel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		18B489A81A82DE2F00541D06 /* UserControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = UserControllerTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		322A93D51AB7586E001765DB /* Message-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Message-50.png"; sourceTree = "<group>"; };
+		322A93D71AB75CBC001765DB /* MailboxViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailboxViewController.swift; sourceTree = "<group>"; };
+		322A93D91AB77145001765DB /* Star-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Star-50.png"; sourceTree = "<group>"; };
 		324AD2611AA7625300A6FE26 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		324AD26E1AA77ED100A6FE26 /* MessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
 		324AD2701AA77F2100A6FE26 /* ConversationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationModel.swift; sourceTree = "<group>"; };
@@ -225,6 +231,7 @@
 				32ECF1DA1A9D61D000F65DA5 /* SearchViewController.swift */,
 				32ECF1E41A9D695100F65DA5 /* ListingTableViewCell.swift */,
 				324AD2611AA7625300A6FE26 /* ChatViewController.swift */,
+				322A93D71AB75CBC001765DB /* MailboxViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -321,6 +328,8 @@
 				32ECF1D21A9D5F3100F65DA5 /* up_arrow.png */,
 				189284101A97C2AB000B15D6 /* SLR Camera-64.png */,
 				324AD2721AA77FC500A6FE26 /* send_arrow.png */,
+				322A93D51AB7586E001765DB /* Message-50.png */,
+				322A93D91AB77145001765DB /* Star-50.png */,
 				189284091A97B7AE000B15D6 /* Literature-25.png */,
 				1892840A1A97B7AE000B15D6 /* Money Bag-25.png */,
 				560869CF1A8A55C500630C64 /* cabinet_barcode.jpg */,
@@ -472,7 +481,9 @@
 				1892840C1A97B7AE000B15D6 /* Money Bag-25.png in Resources */,
 				535A39461A8D938400D3F01B /* image_placeholder.jpg in Resources */,
 				189284111A97C2AB000B15D6 /* SLR Camera-64.png in Resources */,
+				322A93D61AB7586E001765DB /* Message-50.png in Resources */,
 				658FD0021A64789E004D056D /* Images.xcassets in Resources */,
+				322A93DA1AB77145001765DB /* Star-50.png in Resources */,
 				560869D01A8A55C500630C64 /* cabinet_barcode.jpg in Resources */,
 				32ECF1D51A9D5F3C00F65DA5 /* down_arrow.png in Resources */,
 			);
@@ -563,6 +574,7 @@
 				324AD2711AA77F2100A6FE26 /* ConversationModel.swift in Sources */,
 				32C890AF1A7FC70A00196E47 /* SellerListingViewController.swift in Sources */,
 				560869C41A8A51B300630C64 /* Background.swift in Sources */,
+				322A93D81AB75CBC001765DB /* MailboxViewController.swift in Sources */,
 				564724341AA0329A004AA76D /* json.swift in Sources */,
 				566FD8F21AB29AD300E1C6E6 /* GPS.swift in Sources */,
 			);
