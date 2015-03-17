@@ -10,13 +10,13 @@ import UIKit
 
 class SellerListingViewController: UIViewController, UITableViewDelegate{
 
-    @IBOutlet weak var inactiveSwitch: UISwitch!
-    @IBOutlet weak var activeSwitch: UISwitch!
-    @IBOutlet weak var listingTable: UITableView!
-    @IBOutlet weak var sellButton: UIButton!
+    @IBOutlet weak var inactiveSwitch: UISwitch!//Switch for displaying inactive listings.
+    @IBOutlet weak var activeSwitch: UISwitch!//Switch for displaying active listings.
+    @IBOutlet weak var listingTable: UITableView!//The table view used to display all of the listings.
+    @IBOutlet weak var sellButton: UIButton!//The button used to segue the user to a screen for selling listings.
     
-    var tableDataSource : SellerListingViewTableDataSource
-    var selectedListing: Listing?
+    var tableDataSource : SellerListingViewTableDataSource//Custom class implementing UITableViewDataSource.
+    var selectedListing: Listing?//The listing a user presses on. When pressed the user is segued to the listing screen for this listing.
     
     
     required init(coder aDecoder: NSCoder) {
@@ -43,6 +43,12 @@ class SellerListingViewController: UIViewController, UITableViewDelegate{
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    //Method required by UITableViewDelegate
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        selectedListing = tableDataSource.currentListings[indexPath.row]
+        self.performSegueWithIdentifier("SellerViewCell", sender: nil)
+    }
 	
 	// Called when the "Sell" button is clicked. Transitions to the screen for adding
 	// user payment information or the screen to create a listing
@@ -53,28 +59,20 @@ class SellerListingViewController: UIViewController, UITableViewDelegate{
 		self.performSegueWithIdentifier("StartListingCreation", sender: nil)
 	}
     
-    
-    
+    //Called when either the inactiveSwitch or activeSwitch are pressed.
     @IBAction func switchClicked(sender: AnyObject) {
         if inactiveSwitch.on && activeSwitch.on{
             tableDataSource.modifyDisplay(.ALL)
-            listingTable.reloadData()
         } else if inactiveSwitch.on && !activeSwitch.on{
             tableDataSource.modifyDisplay(.INACTIVE)
-            listingTable.reloadData()
         } else if !inactiveSwitch.on && activeSwitch.on {
             tableDataSource.modifyDisplay(.ACTIVE)
-            listingTable.reloadData()
         } else if !inactiveSwitch.on && !activeSwitch.on{
             tableDataSource.modifyDisplay(.NONE)
-            listingTable.reloadData()
         }
+        listingTable.reloadData()
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        selectedListing = tableDataSource.currentListings[indexPath.row]
-        self.performSegueWithIdentifier("SellerViewCell", sender: nil)
-    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if (segue.identifier == "SellerViewCell") {

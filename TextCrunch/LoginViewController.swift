@@ -17,12 +17,9 @@ class LoginViewController: UIViewController {
 	@IBOutlet weak var emailWarningLabel: UILabel!
 	@IBOutlet weak var passwordWarningLabel: UILabel!
 	
-	// User Controller
-	//var controller = UserController()
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-
 		showLoginWarning(false, showPasswordWarning: false)
     }
 
@@ -34,6 +31,7 @@ class LoginViewController: UIViewController {
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		// Get the new view controller using segue.destinationViewController.
 		// Pass the selected object to the new view controller.
+        super.prepareForSegue(segue, sender: sender)
 	}
 	
 	// Handles the Login button press event.
@@ -48,7 +46,7 @@ class LoginViewController: UIViewController {
 		self.performSegueWithIdentifier("CreateAccount", sender: nil)
 	}
 	
-	// Attempts to login the User in, with the given email and password
+	// Attempts to log the User in, with the given email and password
 	// returns true if the User has been successfully logged in
 	// returns false if the login was unsuccessful
 	func loginUser() -> Bool {
