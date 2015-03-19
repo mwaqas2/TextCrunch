@@ -9,43 +9,65 @@
 import Foundation
 
 class PaymentManager {
-
-    init() {
-        
-    }
     
-    class func pay(dollarAmnt: Float, buyerId: String, sellerId: String, textName: String) -> [String: String] {
-        // convert dollars to cents for Stripe
-        var amntCents = dollarAmnt * 100
+    // Charges a buyer and then pays the seller in the cloud
+    class func charge(dollarAmnt: Float, buyerMetaDataId: String, sellerEmail: String, textName: String) -> Bool {
         
         var data = [
-            "buyerId": buyerId,
-            "sellerId": sellerId,
-            "amountCents": NSString(format: "%.2f", amntCents),
-            "textName": textName
+            "buyerMetaDataId": buyerMetaDataId,
+            "sellerEmail": sellerEmail,
+            "paymentAmount": NSString(format: "%.2f", dollarAmnt),
+            "description": "Purchase of " + textName
         ]
         
-        var result: AnyObject! = PFCloud.callFunction("charge", withParameters: data)
-        var dict = result as Dictionary<String, String>
-        return dict
+        var success = PFCloud.callFunction("charge", withParameters: data) { (result: AnyObject!, error: NSError!) -> Bool in
+            if error == nil {
+                return true
+            } else {
+                print(error)
+                return false
+            }
+            
+        }
+        
+        return success
     }
     
     // converts a paypal code into a long lived refresh token
-    class func convertCode(id: String, code: String) -> Bool {
-        
-        return true;
+    class func saveBuyerCodeAsToken(buyerId: String, code: String) -> Bool {
+        return PaymentManager.saveCodeAsToken(
+            buyerId,
+            code: code,
+            type: "buyer"
+        )
+    }
+    
+    // converts a paypal seller code into a refresh token
+    class func saveSellerCodeAsToken(sellerId: String, code: String) -> Bool {
+        return PaymentManager.saveCodeAsToken(
+            sellerId,
+            code: code,
+            type: "seller"
+        )
+    }
+    
+    class func saveCodeAsToken(userEmail: String, code: String, type: String) -> Bool {
         
         var data = [
-            "id": id,
-            "code": code
+            "userEmail": userEmail,
+            "code": code,
+            "type": type
         ]
         
-        // TODO: parse using JSONSWifty
-        var result: AnyObject! = PFCloud.callFunction("convertCode", withParameters: data)
-        var dict = result as Dictionary<String, String>
-        println(dict)
-        
-        //return dict["result"]
-        return true
+        var success = PFCloud.callFunction("paypalCodeToToken", withParameters: data) { (result: AnyObject!, error: NSError!) -> Bool in
+            if error == nil {
+                return true
+            } else {
+                print(error)
+                return false
+            }
+
+        }
+        return success
     }
 }

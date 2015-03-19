@@ -78,11 +78,12 @@ class BillingInfoViewController: UIViewController, PayPalFuturePaymentDelegate, 
         // send authorizaiton to your server to get refresh token.
         futurePaymentViewController?.dismissViewControllerAnimated(true, completion: { () -> Void in
             
-            if (self.convertCodeToToken(response)) {
+            if (self.convertPaymentCodeToToken(response, mode:"buyer")) {
                 self.performSegueWithIdentifier("EditSearchListing", sender: nil)
             } else {
                 // TODO: error
             }
+            
         })
     }
     
@@ -92,33 +93,59 @@ class BillingInfoViewController: UIViewController, PayPalFuturePaymentDelegate, 
         profileSharingViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func payPalProfileSharingViewController(profileSharingViewController: PayPalProfileSharingViewController!, userDidLogInWithAuthorization response: [NSObject : AnyObject]!) {
+    // Called when seller completes Profile Sharing View Controller
+    func payPalProfileSharingViewController(
+        profileSharingViewController: PayPalProfileSharingViewController!,
+        userDidLogInWithAuthorization response: [NSObject : AnyObject]!
+    ) {
         
         // send authorization to your server
         profileSharingViewController?.dismissViewControllerAnimated(true, completion: { () -> Void in
-            if (self.convertCodeToToken(response)) {
+            
+            if (self.convertPaymentCodeToToken(response, mode: "seller")) {
                 self.performSegueWithIdentifier("ViewSearchListing", sender: nil)
             } else {
                 // TODO: error
             }
+            
         })
     }
     
     // Handles making the appropriate calls to extract and save a the user's paypal info
-    func convertCodeToToken(response: [NSObject : AnyObject]!) -> Bool {
+    // for sellers
+    func convertPaymentCodeToToken(response: [NSObject : AnyObject]!, mode: String) -> Bool {
+  
+        var response = response["response"] as? [String: String]
         
-        return true
+        if response!["code"] != nil {
         
-        let response = response["response"] as? [String: String]
-        //if response["code"] != nil {
-        if response != nil {
-            // Convert access token to refresh token asynchronously
-            //if (PaymentManager.convertCode(User.currentUser().objectId, code: response["code"])) {
-               // return true
-            //}
+            var userEmail = User.currentUser().email
+            var code = response?["code"]
             
+            if code? != nil {
+            
+                if mode == "buyer" {
+                    return PaymentManager.saveBuyerCodeAsToken(userEmail, code: code!)
+                } else {
+                    return PaymentManager.saveSellerCodeAsToken(userEmail, code: code!)
+                }
+            }
         }
+        
+        // if we get to here something went wrong
         return false
+    }
+    
+    @IBAction func confirmPaymentButtonPressed(sender: AnyObject) {
+        
+        // TODO hook these all up to pull name and seller parse id from the view
+        var amount: Float = 20.00
+        var paypalMetaDataID = PayPalMobile.clientMetadataID()
+        var sellerEmail = User.currentUser().email
+        var bookTitle = "Tom Sawyer"
+        
+        var result = PaymentManager.charge(amount, buyerMetaDataId: paypalMetaDataID, sellerEmail: sellerEmail, textName: bookTitle)
+        print(result)
     }
     
     func showSuccess() {
