@@ -48,6 +48,9 @@ class LoginViewController: UIViewController {
 		self.performSegueWithIdentifier("CreateAccount", sender: nil)
 	}
 	
+    @IBAction func facebookLoginButton(sender: AnyObject) {
+        
+    }
 	// Attempts to login the User in, with the given email and password
 	// returns true if the User has been successfully logged in
 	// returns false if the login was unsuccessful

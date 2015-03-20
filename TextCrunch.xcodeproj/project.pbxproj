@@ -52,6 +52,9 @@
 		564724341AA0329A004AA76D /* json.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564724331AA0329A004AA76D /* json.swift */; };
 		566FD8F21AB29AD300E1C6E6 /* GPS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566FD8F11AB29AD300E1C6E6 /* GPS.swift */; };
 		566FD8F41AB29D8B00E1C6E6 /* GpsAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566FD8F31AB29D8B00E1C6E6 /* GpsAddress.swift */; };
+		56E1A32A1ABBFE0E00600519 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56E1A3291ABBFE0E00600519 /* ParseFacebookUtils.framework */; };
+		56E1A32D1ABC009800600519 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56E1A32B1ABC009800600519 /* FacebookSDK.framework */; };
+		56E1A32E1ABC009800600519 /* FBAudienceNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56E1A32C1ABC009800600519 /* FBAudienceNetwork.framework */; };
 		655DEF9D1A8416DD00931A3B /* UserControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B489A81A82DE2F00541D06 /* UserControllerTests.swift */; };
 		658FCFFB1A64789E004D056D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658FCFFA1A64789E004D056D /* AppDelegate.swift */; };
 		658FCFFD1A64789E004D056D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658FCFFC1A64789E004D056D /* LoginViewController.swift */; };
@@ -123,6 +126,9 @@
 		564724331AA0329A004AA76D /* json.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = json.swift; path = json/json.swift; sourceTree = "<group>"; };
 		566FD8F11AB29AD300E1C6E6 /* GPS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPS.swift; sourceTree = "<group>"; };
 		566FD8F31AB29D8B00E1C6E6 /* GpsAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GpsAddress.swift; sourceTree = "<group>"; };
+		56E1A3291ABBFE0E00600519 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
+		56E1A32B1ABC009800600519 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		56E1A32C1ABC009800600519 /* FBAudienceNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBAudienceNetwork.framework; sourceTree = "<group>"; };
 		655DEF7E1A84105D00931A3B /* libPods-TextCrunch-Bolts.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-TextCrunch-Bolts.a"; path = "Pods/build/Debug-iphoneos/libPods-TextCrunch-Bolts.a"; sourceTree = "<group>"; };
 		655DEF7F1A84105D00931A3B /* libPods-TextCrunch-Braintree.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-TextCrunch-Braintree.a"; path = "Pods/build/Debug-iphoneos/libPods-TextCrunch-Braintree.a"; sourceTree = "<group>"; };
 		655DEF801A84105D00931A3B /* libPods-TextCrunch-Parse.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-TextCrunch-Parse.a"; path = "Pods/build/Debug-iphoneos/libPods-TextCrunch-Parse.a"; sourceTree = "<group>"; };
@@ -171,6 +177,7 @@
 				65A9FD1C1A705A670095F48C /* CoreLocation.framework in Frameworks */,
 				65A9FD2C1A705B400095F48C /* libsqlite3.0.dylib in Frameworks */,
 				65A9FD281A705A9B0095F48C /* SystemConfiguration.framework in Frameworks */,
+				56E1A32E1ABC009800600519 /* FBAudienceNetwork.framework in Frameworks */,
 				65A9FD261A705A910095F48C /* StoreKit.framework in Frameworks */,
 				65A9FD241A705A8A0095F48C /* Security.framework in Frameworks */,
 				65A9FD221A705A820095F48C /* QuartzCore.framework in Frameworks */,
@@ -180,6 +187,8 @@
 				65A9FD181A705A460095F48C /* CFNetwork.framework in Frameworks */,
 				65A9FD161A705A3B0095F48C /* AudioToolbox.framework in Frameworks */,
 				D21F77DABE882B4DF078A486 /* libPods-TextCrunch.a in Frameworks */,
+				56E1A32A1ABBFE0E00600519 /* ParseFacebookUtils.framework in Frameworks */,
+				56E1A32D1ABC009800600519 /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,6 +293,9 @@
 		658FCFEC1A64789E004D056D = {
 			isa = PBXGroup;
 			children = (
+				56E1A32B1ABC009800600519 /* FacebookSDK.framework */,
+				56E1A32C1ABC009800600519 /* FBAudienceNetwork.framework */,
+				56E1A3291ABBFE0E00600519 /* ParseFacebookUtils.framework */,
 				65A9FD2B1A705B400095F48C /* libsqlite3.0.dylib */,
 				65A9FD271A705A9B0095F48C /* SystemConfiguration.framework */,
 				65A9FD251A705A910095F48C /* StoreKit.framework */,
@@ -729,6 +741,7 @@
 					"/Users/derek/Downloads/parse-library-1.6.1",
 					2,
 					"$(PROJECT_DIR)/vendor",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = TextCrunch/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -754,6 +767,7 @@
 					"/Users/derek/Downloads/parse-library-1.6.1",
 					2,
 					"$(PROJECT_DIR)/vendor",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = TextCrunch/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
