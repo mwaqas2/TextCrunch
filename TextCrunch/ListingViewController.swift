@@ -23,7 +23,10 @@ class ListingViewController: UIViewController {
     @IBOutlet weak var comments: UILabel!//UILabel for any comments attached to the Listing.
     @IBOutlet weak var language: UILabel!//UILbael for the language the book attached to the listing is in.
     
-    @IBOutlet weak var chatButton: UIButton!//Button that segues the User to a screen for chatting with the Listing's seller.
+    
+    @IBOutlet weak var chatButton: UIButton!
+    
+    //@IBOutlet weak var chatButton: UIButton!//Button that segues the User to a screen for chatting with the Listing's seller.
     @IBOutlet weak var edit: UIButton!//Button that segues the User to a screen for editting a listing.
 	@IBOutlet weak var doneButton: UIButton!//Button that the user presses to indicate they are done editting a listing.
     @IBOutlet weak var removeButton: UIButton!//Button that the user presses to delete the listing.

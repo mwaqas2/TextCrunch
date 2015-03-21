@@ -24,7 +24,10 @@ class EditListingViewController: UIViewController {
     @IBOutlet var price: UITextField! //Label for the price attached to the listing.
     @IBOutlet var comments: UITextField! //Label for any comments attached to the listing.
     
-    @IBOutlet var updateButton: UIButton! //Button that updates the state of the listing and segues back to the listing view screen.
+    
+    @IBOutlet weak var updateButton: UIButton!//Button that updates the state of the listing and segues back to the listing view screen.
+    
+    //@IBOutlet var updateButton: UIButton! //Button that updates the state of the listing and segues back to the listing view screen.
     
     @IBOutlet var Location: UITextField! //Text field for the location attached to the listing.
     
