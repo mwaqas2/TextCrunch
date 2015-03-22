@@ -64,7 +64,8 @@ class ConversationDatabaseController {
 		conversationQuery.includeKey("listing.buyer")
 		conversationQuery.includeKey("listing.book")
 		
-		//conversationQuery.orderByAscending("Dat time ting")
+		// TODO: order conversations buy most recent message.
+		//conversationQuery.orderByAscending("")
 		
 		var conversation = Conversation()
 		var results = conversationQuery.findObjects()
@@ -72,9 +73,7 @@ class ConversationDatabaseController {
 			println("Something is wrong. Multiple conversations found for buyer on listing: " + listing.objectId)
 		} else if (results.count == 1) {
 			conversation = results[0] as Conversation
-		}
-		else
-		{
+		} else {
 			// Create new Conversation object
 			conversation.seller = listing.seller as User
 			conversation.buyer = UserController.getCurrentUser()

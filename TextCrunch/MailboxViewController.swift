@@ -38,7 +38,7 @@ class MailboxViewController: UIViewController, 	UITableViewDataSource, UITableVi
 	var viewBuyerConversations:Bool!
 	
 	override func viewDidLoad() {
-        super.viewDidLoad()
+		super.viewDidLoad()
 
 		// Register delegates for conversation table view
 		conversationTableView.delegate = self
@@ -53,7 +53,7 @@ class MailboxViewController: UIViewController, 	UITableViewDataSource, UITableVi
     }
 
     override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+		super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 	
