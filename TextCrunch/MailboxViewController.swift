@@ -28,9 +28,11 @@ class MailboxTableViewCell: UITableViewCell {
 
 class MailboxViewController: UIViewController, 	UITableViewDataSource, UITableViewDelegate {
 	@IBOutlet weak var conversationTableView: UITableView!
+	@IBOutlet weak var userSegmentControl: UISegmentedControl!
 	
 	let cellIdentifier: String = "ConversationCell"
 	
+	var selectedConversation: Conversation!
 	var conversationQuery:PFQuery!
 	var conversations: [Conversation] = []
 	var viewBuyerConversations:Bool!
@@ -44,13 +46,10 @@ class MailboxViewController: UIViewController, 	UITableViewDataSource, UITableVi
 		
 		viewBuyerConversations = true
 		
-		// Set the conversation query parameters
-		updateConversationQuery()
-		
 		// Register timed callback the refreshes the conversation list every 5 seconds
 		NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "reloadConversationViewTable:", userInfo: nil, repeats: true)
 		
-        conversationTableView.reloadData()
+		ConversationDatabaseController.getUserConversations(viewBuyerConversations, callback: updateConversations)
     }
 
     override func didReceiveMemoryWarning() {
@@ -58,19 +57,16 @@ class MailboxViewController: UIViewController, 	UITableViewDataSource, UITableVi
         // Dispose of any resources that can be recreated.
     }
 	
-	// Update the requirements for the conversation query
-	func updateConversationQuery() {
-		conversationQuery = PFQuery(className: "Conversation")
-		conversationQuery.whereKey("buyer", equalTo:UserController.getCurrentUser())
-		conversationQuery.includeKey("messages")
-		conversationQuery.includeKey("sender")
-		//conversationQuery.orderByAscending("Dat time ting")
+	// Refresh the list of conversations displayed in the TableView	
+	func reloadConversationViewTable(timer:NSTimer!) {
+		ConversationDatabaseController.getUserConversations(viewBuyerConversations, callback: updateConversations)
 	}
 	
-	// Callback that refreshes the conversation data.
-	func reloadConversationViewTable(timer:NSTimer!) {
-		var conversations = conversationQuery.findObjects()
-		
+	// Callback function for Parse DB search. Called when
+	// the query of the Parse DB is complete. Accepts a list of PFObjects
+	// containing the results of the most recent query
+	func updateConversations(queryResults: [Conversation]) {
+		conversations = queryResults
 		conversationTableView.reloadData()
 	}
 
@@ -85,15 +81,46 @@ class MailboxViewController: UIViewController, 	UITableViewDataSource, UITableVi
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell: MailboxTableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as MailboxTableViewCell
 
-		cell.bookTitleLabel?.text = "Test title"
+		let conversation = conversations[indexPath.row]
+		let mostRecentMessage: Message? = conversation.messages.last!
+		
+		cell.bookTitleLabel?.text = conversation.listing.book.title
+		cell.latestMessageLabel?.text = mostRecentMessage?.content
+		
 		cell.newMessageIcon?.hidden = false
+		
 		return cell
 	}
 	
 	// Mandatory UITableViewDelete function
-	// Populates cells with message data
+	// Called when tableView row is selected
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+		selectedConversation = conversations[indexPath.row]
 		tableView.deselectRowAtIndexPath(indexPath, animated: false)
-		let row = indexPath.row
+		
+		// Segue to a view of the selected listing
+		self.performSegueWithIdentifier("ViewChat", sender: nil)
+	}
+	
+	// Called when the user selects a tab from the segment control. Switch between buyer
+	// and seller conversations
+	@IBAction func onSegmentControlPressed(sender: AnyObject) {
+		viewBuyerConversations = !viewBuyerConversations
+		
+		// Update the table view
+		ConversationDatabaseController.getUserConversations(viewBuyerConversations, callback: updateConversations)
+	}
+	
+	// Called before seguing to another view
+	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+		if (segue.identifier == "ViewChat") {
+			var svc = segue.destinationViewController as ChatViewController;
+			// Hide back bar to avoid resubmission of listing
+			// Only occurs when ViewListing is accessed via EditListing
+			svc.conversation = selectedConversation
+			svc.listing = selectedConversation.listing
+			svc.isNewListing = false
+			svc.seguedFromMailbox = true
+		}
 	}
 }

@@ -26,8 +26,9 @@ class EditListingViewController: UIViewController {
     
     @IBOutlet var update: UIButton!
     
-    @IBOutlet var Location: UITextField!
-    
+
+	@IBOutlet weak var locationText: UITextField!
+	
     var bookISBN:String!
     var listing:Listing!
     
@@ -55,7 +56,7 @@ class EditListingViewController: UIViewController {
             if error == nil {
                 self.lat_float = (geoPoint.latitude)
                 self.long_float = (geoPoint.longitude)
-                self.Location.text = (self.GpsAddr.getAddress(toString(geoPoint.latitude), lng: toString (geoPoint.longitude)))
+                self.locationText.text = (self.GpsAddr.getAddress(toString(geoPoint.latitude), lng: toString (geoPoint.longitude)))
                 // do something with the new geoPoint
             }
             

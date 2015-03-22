@@ -42,6 +42,7 @@ class ListingDatabaseController {
 		// Load the Book data for each Listing result of the query
 		query.includeKey("book")
 		query.includeKey("seller")
+		query.includeKey("buyer")
 		
 		query.findObjectsInBackgroundWithBlock {
 			(objects: [AnyObject]!, error: NSError!) -> Void in

@@ -23,6 +23,7 @@
 		18B4899D1A7D66D100541D06 /* FBUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4899C1A7D66D100541D06 /* FBUserController.swift */; };
 		18B4899F1A7D66E000541D06 /* GoogleUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4899E1A7D66E000541D06 /* GoogleUserController.swift */; };
 		18B489A71A82D7F300541D06 /* ListingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B489A61A82D7F300541D06 /* ListingModel.swift */; };
+		321E58F71ABB988C00271AE2 /* ConversationDatabaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321E58F61ABB988C00271AE2 /* ConversationDatabaseController.swift */; };
 		322A93D61AB7586E001765DB /* Message-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 322A93D51AB7586E001765DB /* Message-50.png */; };
 		322A93D81AB75CBC001765DB /* MailboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322A93D71AB75CBC001765DB /* MailboxViewController.swift */; };
 		322A93DA1AB77145001765DB /* Star-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 322A93D91AB77145001765DB /* Star-50.png */; };
@@ -99,6 +100,7 @@
 		18B4899E1A7D66E000541D06 /* GoogleUserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleUserController.swift; sourceTree = "<group>"; };
 		18B489A61A82D7F300541D06 /* ListingModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ListingModel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		18B489A81A82DE2F00541D06 /* UserControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = UserControllerTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		321E58F61ABB988C00271AE2 /* ConversationDatabaseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationDatabaseController.swift; sourceTree = "<group>"; };
 		322A93D51AB7586E001765DB /* Message-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Message-50.png"; sourceTree = "<group>"; };
 		322A93D71AB75CBC001765DB /* MailboxViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailboxViewController.swift; sourceTree = "<group>"; };
 		322A93D91AB77145001765DB /* Star-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Star-50.png"; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 				18B4899A1A7D66C100541D06 /* TwitterUserController.swift */,
 				18B489961A7D5FAD00541D06 /* UserController.swift */,
 				32ECF1E21A9D63CD00F65DA5 /* ListingDatabaseController.swift */,
+				321E58F61ABB988C00271AE2 /* ConversationDatabaseController.swift */,
 			);
 			name = ModelControllers;
 			sourceTree = "<group>";
@@ -563,6 +566,7 @@
 				535A39401A8D904C00D3F01B /* UserModel.swift in Sources */,
 				18B4899D1A7D66D100541D06 /* FBUserController.swift in Sources */,
 				32ECF1E51A9D695200F65DA5 /* ListingTableViewCell.swift in Sources */,
+				321E58F71ABB988C00271AE2 /* ConversationDatabaseController.swift in Sources */,
 				560869CC1A8A529800630C64 /* IsbnViewController.swift in Sources */,
 				658FCFFB1A64789E004D056D /* AppDelegate.swift in Sources */,
 				18A335841A91617800765B52 /* SellerListingViewTableDataSource.swift in Sources */,
