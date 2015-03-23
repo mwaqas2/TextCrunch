@@ -13,140 +13,61 @@ import CoreLocation
 
 class EditListingViewController: UIViewController {
 	
-    @IBOutlet var bookimage: UIImageView!
-    @IBOutlet var bookTitle: UITextField!
-    @IBOutlet var author: UITextField!
-    @IBOutlet var edition: UITextField!
-    @IBOutlet var publisher: UITextField!
-    @IBOutlet var language: UITextField!
-    @IBOutlet var isbn13: UITextField!
+    @IBOutlet var bookimage: UIImageView! //Image view displaying a thumbnail of the image attached to a listing.
+    @IBOutlet var bookTitle: UITextField! //Label of the book title.
+    @IBOutlet var author: UITextField! //Label of the book's authour.
+    @IBOutlet var edition: UITextField! //Label of the book's edition.
+    @IBOutlet var publisher: UITextField! //Label of the book's publisher.
+    @IBOutlet var language: UITextField! //Label for the language the book is in.
+    @IBOutlet var isbn13: UITextField! //Label for the ISBN13 attached to the book.
 
-    @IBOutlet var price: UITextField!
-    @IBOutlet var comments: UITextField!
-    
-    @IBOutlet var update: UIButton!
+    @IBOutlet var price: UITextField! //Label for the price attached to the listing.
+    @IBOutlet var comments: UITextField! //Label for any comments attached to the listing.
     
 
 	@IBOutlet weak var locationText: UITextField!
-	
+    
+    @IBOutlet weak var updateButton: UIButton!
+    
     var bookISBN:String!
     var listing:Listing!
-    
+
     var imageExist = false
     var data: NSData? = nil
     var json: JSON!
-    var numberofbooks = 0;
-	var isNewListing = false
+    var numberofbooks = 0
+	var isNewListing = false //Set to true before segue if a new listing is being editted rather than one that already exists.
     
     var GpsAddr = GpsAddress()
     var lat_float = 53.544389
     var long_float = -113.4909267
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        if (listing != nil){
+        if (self.listing != nil){
             setListingElements()
-            numberofbooks = 1
+            self.numberofbooks = 1
+        } else {
+            self.numberofbooks = getGoogleCount(self.bookISBN)
         }
-        
-        var userlocation =  UserController.getCurrentUser()
-
-        PFGeoPoint.geoPointForCurrentLocationInBackground {
-            (geoPoint: PFGeoPoint!, error: NSError!) -> Void in
-            if error == nil {
-                self.lat_float = (geoPoint.latitude)
-                self.long_float = (geoPoint.longitude)
-                self.locationText.text = (self.GpsAddr.getAddress(toString(geoPoint.latitude), lng: toString (geoPoint.longitude)))
-                // do something with the new geoPoint
-            }
-            
+        initializeGeopoint()
+        if (self.data != nil){
+            self.bookimage!.frame = CGRectMake(31,31,136,140)
+            self.bookimage.image = UIImage(data: data!)
+            self.imageExist = true
         }
-        
-        var title = ""
-        var authors = ""
-        var edition = ""
-        var publisher = ""
-        var language = ""
-        var isbn_13 = ""
-        var contentversion = ""
-        //var numberofbooks = 0
-        if (listing == nil){
-            numberofbooks = getGoogleCount(bookISBN)
-        }
-        if (data != nil){
-            bookimage!.frame = CGRectMake(31,31,136,140)
-            bookimage.image = UIImage(data: data!)
-            imageExist = true
-        }
-        if (numberofbooks>0 && (listing == nil)){
-            //var bookdiction = json["totalItems"]
-            var bookdictionary = json["items"][0]["volumeInfo"]
-
-            //title
-            title = toString(bookdictionary["title"])
-            
-            //language
-            language = toString(bookdictionary["language"])
-            
-            //contentVersion
-            contentversion = toString(bookdictionary["contentVersion"])
-            
-            //publisher
-            publisher = toString(bookdictionary["publisher"])
-            
-            //authors in an array!
-            authors = toString(bookdictionary["authors"][0])
-            
-            //isbn13
-            isbn_13 = toString(bookdictionary["industryIdentifiers"][1]["identifier"])
-            
-            //isbn10
-            var isbn10 = toString(bookdictionary["industryIdentifiers"][0]["identifier"])
-            
-            imageExist = (bookdictionary["imageLinks"]["smallThumbnail"].asString) != nil
-            if (imageExist){
-                var smallthumbnail = toString(bookdictionary["imageLinks"]["smallThumbnail"])
-                var largethumbnail = toString(bookdictionary["imageLinks"]["thumbnail"])
-                let url = NSURL(string:"\(smallthumbnail)")
-                data = NSData(contentsOfURL: url!) //make sure your image in this url does exist
-                bookimage!.frame = CGRectMake(31,31,136,140)
-                bookimage.image = UIImage(data: data!)
-            }
-        }
-        
-        // Set Background
-        //let gradientLayer = BackgroundSetting()
-        //let background = gradientLayer.background()
-        //background.frame=self.view.bounds
-        //self.view.layer.insertSublayer(background, atIndex: 0)
-        if (listing == nil && numberofbooks > 0) {
-            var book = Book()
-            book.title = title
-            book.language = language
-            book.authorName = authors
-            book.publisherName = publisher
-            book.editionInfo = contentversion
-            book.isbn13 = isbn_13
-            book.save()
-            listing = Listing()
-            listing.book = book
-            listing.seller = UserController.getCurrentUser()
-			listing.isActive = true
-			listing.isOnHold = false
-            setBookElements(book)
-            update.hidden = true
-        } else if (numberofbooks>0) {
-            listing.book.isbn13 = bookISBN
+        if ((self.listing == nil) && (self.numberofbooks > 0)){
+            initializeListing()
+        } else if (self.numberofbooks > 0) {
+            self.listing.book.isbn13 = bookISBN
             setListingElements()
         }
     }
     
     
-    
+    //Sets text labels according to the passed in Book.
     func setBookElements(book: Book){
-        // Load listing data into labels
-        
-        //labels.text = "TEXT BOOK"
         bookTitle.text = book.title
         author.text = book.authorName
         publisher.text = book.publisherName
@@ -157,7 +78,7 @@ class EditListingViewController: UIViewController {
     
     
     
-    // returns the number of books in google books
+    //Returns the number of books in google books
     func getGoogleCount(theisbn: String) -> Int{
         // google rest api
         let url = "https://www.googleapis.com/books/v1/volumes?q=isbn:"
@@ -168,26 +89,22 @@ class EditListingViewController: UIViewController {
     }
     
     
-    
+    //Sets text labels according to the book attached to the current listing.
     func setListingElements() {
-        
         price.text = String(listing.price)
         comments.text = listing.comment
-        
         bookTitle!.text = listing.book.title
         author!.text = listing.book.authorName
         publisher!.text = listing.book.publisherName
         language!.text = listing.book.language
         edition!.text = listing.book.editionInfo
         isbn13!.text = listing.book.isbn13
-        
         price!.text = String(listing.price)
-        //condition.text = listing.condition
         comments!.text = listing.comment
     }
     
     
-    
+    //Saves the values in the different text fields to the book model.
     func saveTextFieldsToModel(){
         var book : Book = self.listing.book.fetchIfNeeded() as Book
         book.title = bookTitle.text
@@ -220,21 +137,72 @@ class EditListingViewController: UIViewController {
 		return outputStrings
 	}
     
+    //Initializes the elements of a new listing according the values fetched by our JSON query.
+    func initializeListing(){
+        var bookdictionary = json["items"][0]["volumeInfo"]
+        var title = toString(bookdictionary["title"])
+        var language = toString(bookdictionary["language"])
+        var contentversion = toString(bookdictionary["contentVersion"])
+        var publisher = toString(bookdictionary["publisher"])
+        var authors = toString(bookdictionary["authors"][0])
+        var isbn_13 = toString(bookdictionary["industryIdentifiers"][1]["identifier"])
+        var isbn10 = toString(bookdictionary["industryIdentifiers"][0]["identifier"])
+        
+        self.imageExist = (bookdictionary["imageLinks"]["smallThumbnail"].asString) != nil
+        if (self.imageExist){
+            var smallthumbnail = toString(bookdictionary["imageLinks"]["smallThumbnail"])
+            var largethumbnail = toString(bookdictionary["imageLinks"]["thumbnail"])
+            let url = NSURL(string:"\(smallthumbnail)")
+            self.data = NSData(contentsOfURL: url!) //make sure your image in this url does exist
+            self.bookimage!.frame = CGRectMake(31,31,136,140)
+            self.bookimage.image = UIImage(data: data!)
+        }
+        var book = Book()
+        book.title = title
+        book.language = language
+        book.authorName = authors
+        book.publisherName = publisher
+        book.editionInfo = contentversion
+        book.isbn13 = isbn_13
+        book.save()
+        self.listing = Listing()
+        self.listing.book = book
+        self.listing.seller = UserController.getCurrentUser()
+        self.listing.isActive = true
+        self.listing.isOnHold = false
+        setBookElements(book)
+        updateButton.hidden = true
+    }
+    
+    
+    //Initializes location data asynchronously.
+    func initializeGeopoint(){
+        var userlocation =  UserController.getCurrentUser()
+        PFGeoPoint.geoPointForCurrentLocationInBackground {
+            (geoPoint: PFGeoPoint!, error: NSError!) -> Void in
+            if error == nil {
+                self.lat_float = (geoPoint.latitude)
+                self.long_float = (geoPoint.longitude)
+                self.locationText.text = (self.GpsAddr.getAddress(toString(geoPoint.latitude), lng: toString (geoPoint.longitude)))
+                // do something with the new geoPoint
+            }
+        }
+    }
+    
     
     
     @IBAction func updateListing(sender: AnyObject) {
         var priceLen = countElements(price.text)
         saveTextFieldsToModel()
         if (priceLen > 0){
-            listing.price = price.text.toInt()!
+            self.listing.price = price.text.toInt()!
         }else{
-            listing.price = 0
+            self.listing.price = 0
         }
-        //listing.condition = condition.text
-        listing.comment = comments.text
-		if isNewListing {
-			listing.isOnHold = false
-			listing.isActive = true
+        self.listing.comment = self.comments.text
+		if self.isNewListing {
+			self.listing.isOnHold = false
+			self.listing.isActive = true
 		}
 
         /* uncomment
@@ -253,10 +221,10 @@ class EditListingViewController: UIViewController {
         
         var point:PFGeoPoint = PFGeoPoint(location: CLLocation(latitude: self.lat_float, longitude: self.long_float)!)
         
-        listing["location"] = point
+        self.listing["location"] = point
         
-        listing.save()
-        print(listing)
+        self.listing.save()
+        //print(self.listing)//Why do we have a print here?
         self.performSegueWithIdentifier("updateListing", sender: nil)
         
     }
@@ -272,7 +240,6 @@ class EditListingViewController: UIViewController {
 			svc.isNewListing = isNewListing
         } else if (segue.identifier == "deleteListing") {
             var svc = segue.destinationViewController as IsbnViewController;
-            //svc.listing = self.listing
             listing.book.delete()
             listing.delete()
         } else if (segue.identifier == "updateListing") {

@@ -23,24 +23,25 @@ class AccountCreationViewController: UIViewController {
 	
 	let minPasswordLength = 8
 	
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Init all warning labels as hidden
+        showAccountInfoWarning(UserController.UCCode.CREATESUCCESS, isEmailValid: true, isPassValid: true, isConfirmPassValid: true)
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    
 	// Handles the Create Account button press event.
 	@IBAction func createAccountButtonPressed(sender: AnyObject) {
 		if createAccount() {
 			self.performSegueWithIdentifier("AccountCreationSuccessful", sender: nil)			
 		}
 	}
-	
-    override func viewDidLoad() {
-        super.viewDidLoad()
-		
-		// Init all warning labels as hidden
-		showAccountInfoWarning(UserController.UCCode.CREATESUCCESS, isEmailValid: true, isPassValid: true, isConfirmPassValid: true)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
 	
 	// Checks if the User has entered an email and if the email is valid.
@@ -49,8 +50,11 @@ class AccountCreationViewController: UIViewController {
 		if emailTextField.text.isEmpty {
 			return false
 		}
-		
-		// TODO: Check if the entered email is a valid email
+        //Sourced from http://stackoverflow.com/questions/25471114/how-to-validate-an-e-mail-address-in-swift
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
+        if let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx) {
+            return emailTest.evaluateWithObject(emailTextField.text)
+        }
 		return true
 	}
 	
@@ -59,22 +63,22 @@ class AccountCreationViewController: UIViewController {
 		if (passwordTextField.text.utf16Count < minPasswordLength) {
 			return false
 		}
-		
 		// TODO: Check if the given password contains valid characters
 		return true
 	}
 	
+    
 	// Checks if the User has entered the confirmation password. Returns true if the confirmation password
 	// is correct
 	func isValidConfirmPass() -> Bool {
 		if (confirmPasswordTextField.text.utf16Count < minPasswordLength) {
-			
+			return false
 		}
-		
 		// Check that the password and confirmed password match
 		return (passwordTextField.text == confirmPasswordTextField.text)
 	}
 	
+    
 	// Creates a new User in the parse database
 	func createAccount() -> Bool {
 		var accountCreated = false
@@ -97,6 +101,7 @@ class AccountCreationViewController: UIViewController {
 		return accountCreated
 	}
 	
+    
 	// Shows or hides the warnings related to the input User Email
 	func showAccountInfoWarning(errorCode: UserController.UCCode, isEmailValid: Bool, isPassValid: Bool, isConfirmPassValid: Bool) {
 		// Hide all warning labels by default

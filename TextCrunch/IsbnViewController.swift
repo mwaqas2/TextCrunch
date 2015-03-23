@@ -24,16 +24,7 @@ class IsbnViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         Gps.startTracking()
-
-        
-        //hide warnings
         showISBNWarning(true)
-        
-        //let gradientLayer = BackgroundSetting()
-        //let background = gradientLayer.background()
-        //background.frame=self.view.bounds
-        //self.view.layer.insertSublayer(background, atIndex: 0)
-        
     }
     
     //We check the isbn textbos if the length of the input is 10 or 13
@@ -73,7 +64,7 @@ class IsbnViewController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        if ((segue.identifier == "searchBookIsbn")/* && checkIsbnInput()*/) {
+        if (segue.identifier == "searchBookIsbn") {
             var svc = segue.destinationViewController as EditListingViewController;
             svc.bookISBN = isbn.text
 			svc.isNewListing = true

@@ -9,27 +9,27 @@
 import Foundation
 import UIKit
 
+//This class is used as the data source for the main table in the seller's listing screen (SellerListingViewController).
 class SellerListingViewTableDataSource: NSObject, UITableViewDataSource{
     
-    enum DisplayType : Int {
-        case ALL = 0
-        case ACTIVE
-        case INACTIVE
-        case NONE
+    enum DisplayType : Int {//Describes which listings should be shown to the user.
+        case ALL = 0//Both active and inactive listings are shown.
+        case ACTIVE//Only active listings are shown.
+        case INACTIVE//Only inactive listings are shown.
+        case NONE//No listings are shown.
     }
     
-    var currentListings: [Listing]
-    var totalListings: [Listing]
-    var activeListings: [Listing]
-    var inactiveListings: [Listing]
-    var currentDisplay : DisplayType
+    var currentListings: [Listing] //Array of the current listings being shown to the user.
+    var totalListings: [Listing] //All of the listings found associated with the user.
+    var activeListings: [Listing] //The active listings found associated with the user.
+    var inactiveListings: [Listing] //The inactive listings found associated with the user.
+    var currentDisplay : DisplayType //Describes which combination of listing types the user wants to be shown.
     
     override init(){
         totalListings = UserController.getAllCurrentUsersListings()!
         totalListings.sort({
             $0.createdAt.compare($1.createdAt) == NSComparisonResult.OrderedAscending
         })
-        //selectedListing = nil
         currentListings = totalListings
         activeListings = []
         inactiveListings = []
@@ -98,7 +98,7 @@ class SellerListingViewTableDataSource: NSObject, UITableViewDataSource{
         return cell
     }
     
-
+    //Present because of strange memory issues. Instances would be deallocated despite strong references to them. GG swift.
     deinit{
         NSLog("The UITableViewDataSource has been deinitialized. This should not happen while the table is open.")
     }
