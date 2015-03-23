@@ -271,6 +271,4 @@ class SearchViewController: UIViewController, UITableViewDataSource, CLLocationM
 			svc.isNewListing = false
 		}
 	}
-    
-    
 }

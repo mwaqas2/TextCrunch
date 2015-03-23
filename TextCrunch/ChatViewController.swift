@@ -25,10 +25,10 @@ class ChatViewController : UIViewController, UITableViewDataSource, UITableViewD
 	
 	var listing: Listing!
 	var conversation = Conversation()
-	var conversationQuery = PFQuery(className: "Conversation")
 	var isNewListing = true
 	var isNewConversation = false
-    var userIsSeller : Bool = false
+    var userIsSeller = false
+	var seguedFromMailbox = false
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -51,10 +51,10 @@ class ChatViewController : UIViewController, UITableViewDataSource, UITableViewD
 		else {
 			bookTitle = listing.book.title
 		}
+
         var seller = listing.seller.fetchIfNeeded() as User
         userIsSeller = (seller.email == UserController.getCurrentUser().email)
         if(userIsSeller){
-            userIsSeller = true
             holdButton.hidden = false
             soldButton.hidden = false
             if(listing.isOnHold){
@@ -75,11 +75,10 @@ class ChatViewController : UIViewController, UITableViewDataSource, UITableViewD
 		self.messageTextView.layer.borderColor = UIColor.lightGrayColor().CGColor
 		self.messageTextView.layer.cornerRadius = 8
 		self.messageTextView.contentInset = UIEdgeInsetsMake(2.0, 1.0 , 0.0, 0.0)
-        
 		
-		// If segue-ing from Inbox don't call this function, just pass in conversation object through via PrepareForSegue in the InboxViewController
-		// TODO: Add statement to skip segueFromListing if segue-ing from Inbox
-		if !userIsSeller {
+		// If segued from Mailbox, the conversation has been passed in. If not, query the database
+		// for the conversation.
+		if !seguedFromMailbox {
 			getListingConversation()
 		}
 		
@@ -100,23 +99,12 @@ class ChatViewController : UIViewController, UITableViewDataSource, UITableViewD
 	// Check if conversation with this seller and listingId exsts
 	// If not, create a new conversation
 	func getListingConversation() {
-		// Search for Conversations who's listing id matches that of the current listing
-		conversationQuery.whereKey("listingId", equalTo:listing.objectId)
-		conversationQuery.whereKey("buyer", equalTo:UserController.getCurrentUser())
-		conversationQuery.includeKey("messages")
-		conversationQuery.includeKey("sender")
+		// Search for Conversations who's buyer matches that of the current listing
+		var listingBuyer: User = UserController.getCurrentUser()
+		var resultConversation: Conversation? = ConversationDatabaseController.getListingConversation(listing, buyer: listingBuyer)
 		
-		var results = conversationQuery.findObjects()
-		if (results.count > 1) {
-		    println("Something is wrong. Multiple conversations found for buyer on listing: " + listing.objectId)
-		} else if (results.count == 1) {
-		    conversation = results[0] as Conversation
-		} else {
-		    // Create new Conversation object
-			conversation.seller = listing.seller as User
-		    conversation.buyer = UserController.getCurrentUser()
-		    conversation.listingId = listing.objectId
-			conversation.messages = []
+		if (resultConversation != nil) {
+			conversation = resultConversation!
 		}
 	}
 	
@@ -141,12 +129,14 @@ class ChatViewController : UIViewController, UITableViewDataSource, UITableViewD
 	}
 	
 	func reloadMessageViewTable(timer:NSTimer!) {
-		var results = conversationQuery.findObjects()
-		if (results.count == 1) {
-			conversation = results[0] as Conversation
-			messageTableView.reloadData()
+		var listingBuyer: User? = conversation.listing.buyer?.fetchIfNeeded() as? User
+		var resultConversation: Conversation? = ConversationDatabaseController.getListingConversation(listing, buyer: listingBuyer)
+		
+		if (resultConversation != nil) {
+			conversation = resultConversation!
 		}
 		
+		messageTableView.reloadData()
 		ListingDatabaseController.isListingOnHold(listing.objectId, callback: updateHoldWarningVisibility)
 	}
 	

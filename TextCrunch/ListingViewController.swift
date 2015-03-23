@@ -29,6 +29,8 @@ class ListingViewController: UIViewController {
 	@IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var removeButton: UIButton!
     @IBOutlet weak var holdButton: UIButton!
+	@IBOutlet weak var chatButton: UIButton!
+
     
     var listing:Listing!
     var data:NSData? = nil
@@ -70,6 +72,8 @@ class ListingViewController: UIViewController {
         //and they're not looking at a new listing.
         holdButton.hidden = !(!isNewListing && userIsSeller)
         setListingElements()
+		
+		chatButton.hidden = userIsSeller
     }
 	
     // Populates labels with book/listing data
@@ -148,6 +152,7 @@ class ListingViewController: UIViewController {
 			var svc = segue.destinationViewController as ChatViewController;
 			svc.listing = listing
 			svc.isNewListing = false
+			svc.seguedFromMailbox = false
 		}
     }
 	

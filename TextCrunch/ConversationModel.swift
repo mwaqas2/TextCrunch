@@ -12,8 +12,7 @@ class Conversation : PFObject, PFSubclassing {
 	@NSManaged var buyer: User
 	@NSManaged var seller: User
 	@NSManaged var messages: [Message]
-	@NSManaged var listingId: String
-	@NSManaged var title: String
+	@NSManaged var listing: Listing
 	@NSManaged var isActive: Boolean
 	
 	override class func load() {

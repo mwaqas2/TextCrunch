@@ -243,6 +243,9 @@
                                     <segment title="Seller"/>
                                 </segments>
                                 <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="onSegmentControlPressed:" destination="29t-dm-utF" eventType="valueChanged" id="31h-rk-Fu4"/>
+                                </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="57" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="NW9-e0-kQf">
                                 <rect key="frame" x="10" y="89" width="301" height="422"/>
@@ -318,6 +321,8 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="conversationTableView" destination="NW9-e0-kQf" id="1Lu-QO-edn"/>
+                        <outlet property="userSegmentControl" destination="7D0-Fr-CML" id="Du6-ur-GEC"/>
+                        <segue destination="oYe-ts-w60" kind="push" identifier="ViewChat" id="Kr0-Hl-yHk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PJA-99-cEy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -951,48 +956,42 @@
                                 <rect key="frame" x="11" y="73" width="136" height="140"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Author" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7CE-5h-pr7">
-                                <rect key="frame" x="-127" y="248" width="320" height="21"/>
+                                <rect key="frame" x="-127" y="251" width="320" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Edition" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SUA-kj-2hM">
-                                <rect key="frame" x="-127" y="277" width="320" height="21"/>
+                                <rect key="frame" x="-127" y="279" width="320" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Publisher" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AkS-Ou-OIy">
-                                <rect key="frame" x="-119" y="306" width="320" height="21"/>
+                                <rect key="frame" x="-119" y="311" width="320" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Language" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9um-5H-aAg">
-                                <rect key="frame" x="-119" y="335" width="320" height="21"/>
+                                <rect key="frame" x="-119" y="342" width="320" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ISBN13" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ABr-9O-2GB">
-                                <rect key="frame" x="-127" y="361" width="320" height="21"/>
+                                <rect key="frame" x="-127" y="375" width="320" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Comments" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dY4-fu-oH2">
-                                <rect key="frame" x="0.0" y="390" width="320" height="30"/>
-                                <accessibility key="accessibilityConfiguration" hint="Comments" label=""/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Price" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RjW-tm-8Kd">
                                 <rect key="frame" x="207" y="130" width="97" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IVf-YZ-fPD">
-                                <rect key="frame" x="49" y="501" width="223" height="40"/>
+                                <rect key="frame" x="49" y="507" width="223" height="40"/>
                                 <color key="backgroundColor" red="0.2156862745" green="0.64313725489999995" blue="0.4941176471" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Post Listing">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1009,37 +1008,37 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dsg-mm-6bE">
-                                <rect key="frame" x="91" y="216" width="229" height="30"/>
+                                <rect key="frame" x="91" y="213" width="229" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yJd-aN-pxq">
-                                <rect key="frame" x="91" y="248" width="229" height="30"/>
+                                <rect key="frame" x="91" y="245" width="229" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="n4w-x9-zSi">
-                                <rect key="frame" x="91" y="277" width="229" height="30"/>
+                                <rect key="frame" x="91" y="276" width="229" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PIs-YI-djN">
-                                <rect key="frame" x="91" y="306" width="229" height="30"/>
+                                <rect key="frame" x="91" y="307" width="229" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vh4-js-rIx">
-                                <rect key="frame" x="91" y="335" width="229" height="30"/>
+                                <rect key="frame" x="91" y="338" width="229" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y9L-o7-cbq">
-                                <rect key="frame" x="91" y="361" width="229" height="30"/>
+                                <rect key="frame" x="91" y="369" width="229" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hIx-gv-jlL">
-                                <rect key="frame" x="49" y="453" width="223" height="40"/>
+                                <rect key="frame" x="49" y="463" width="223" height="40"/>
                                 <color key="backgroundColor" red="0.2156862745" green="0.64313725489999995" blue="0.4941176471" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Update">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1049,6 +1048,23 @@
                                     <action selector="updateListing:" destination="MYE-RU-plS" eventType="touchUpInside" id="skU-8V-cYf"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O0h-bF-yVj">
+                                <rect key="frame" x="91" y="399" width="229" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ljF-7F-3LD">
+                                <rect key="frame" x="3" y="402" width="67" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Comments" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dY4-fu-oH2">
+                                <rect key="frame" x="0.0" y="429" width="320" height="30"/>
+                                <accessibility key="accessibilityConfiguration" hint="Comments" label=""/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.6588235294" green="0.83137254900000002" blue="0.78823529410000004" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -1061,6 +1077,7 @@
                         <outlet property="edition" destination="n4w-x9-zSi" id="wFL-OA-DF0"/>
                         <outlet property="isbn13" destination="y9L-o7-cbq" id="PRc-FS-fH0"/>
                         <outlet property="language" destination="vh4-js-rIx" id="tH5-lm-qQG"/>
+                        <outlet property="locationText" destination="O0h-bF-yVj" id="J1T-Aa-9ga"/>
                         <outlet property="price" destination="RjW-tm-8Kd" id="4Sf-rf-i6h"/>
                         <outlet property="publisher" destination="PIs-YI-djN" id="nyZ-b9-83I"/>
                         <outlet property="update" destination="hIx-gv-jlL" id="crR-ek-dop"/>
@@ -1170,19 +1187,8 @@
                                     <action selector="onDoneButtonClicked:" destination="4KC-lZ-eN4" eventType="touchUpInside" id="5C8-kT-psG"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AMF-gm-Trv">
-                                <rect key="frame" x="49" y="440" width="223" height="35"/>
-                                <color key="backgroundColor" red="0.21568627450980393" green="0.64313725490196083" blue="0.49411764705882355" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Chat With Seller">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="onChatButtonClicked:" destination="4KC-lZ-eN4" eventType="touchUpInside" id="LPD-Cb-Xxy"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tVr-7q-0zU">
-                                <rect key="frame" x="49" y="440" width="223" height="35"/>
+                                <rect key="frame" x="49" y="436" width="223" height="35"/>
                                 <color key="backgroundColor" red="0.2156862745" green="0.64313725489999995" blue="0.4941176471" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Remove Listing">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1202,6 +1208,17 @@
                                     <action selector="onHoldButtonClicked:" destination="4KC-lZ-eN4" eventType="touchUpInside" id="Y7a-3Q-1Fw"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AMF-gm-Trv">
+                                <rect key="frame" x="49" y="436" width="223" height="35"/>
+                                <color key="backgroundColor" red="0.21568627450980393" green="0.64313725490196083" blue="0.49411764705882355" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Chat With Seller">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onChatButtonClicked:" destination="4KC-lZ-eN4" eventType="touchUpInside" id="LPD-Cb-Xxy"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.6588235294117647" green="0.83137254901960789" blue="0.78823529411764703" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -1210,6 +1227,7 @@
                         <outlet property="author" destination="MSs-8D-TvA" id="EWg-CZ-rHE"/>
                         <outlet property="bookTitle" destination="9yK-Cj-4k3" id="BH4-si-mgQ"/>
                         <outlet property="buy" destination="AMF-gm-Trv" id="R3J-7z-fwY"/>
+                        <outlet property="chatButton" destination="AMF-gm-Trv" id="GSb-h2-OZh"/>
                         <outlet property="comments" destination="MND-zv-vq9" id="p0n-wh-r8a"/>
                         <outlet property="condition" destination="TwW-ZZ-WMB" id="I0R-KM-HZM"/>
                         <outlet property="doneButton" destination="D22-7M-cdv" id="Nwd-32-tH0"/>
@@ -1379,10 +1397,11 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="3f1-9h-r6A"/>
-        <segue reference="LSY-0b-oyb"/>
+        <segue reference="vX5-LY-AnJ"/>
+        <segue reference="S6U-8h-8D6"/>
         <segue reference="efr-3O-uBy"/>
         <segue reference="8iV-l4-1e5"/>
+        <segue reference="wZB-RO-bmV"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>
