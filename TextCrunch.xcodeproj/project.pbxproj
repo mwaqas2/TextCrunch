@@ -327,15 +327,7 @@
 			children = (
 				566FD8F01AB29AC400E1C6E6 /* GPS */,
 				564724321AA0326E004AA76D /* JsonParser */,
-				32ECF1D41A9D5F3C00F65DA5 /* down_arrow.png */,
-				32ECF1D21A9D5F3100F65DA5 /* up_arrow.png */,
-				189284101A97C2AB000B15D6 /* SLR Camera-64.png */,
-				324AD2721AA77FC500A6FE26 /* send_arrow.png */,
-				322A93D51AB7586E001765DB /* Message-50.png */,
-				322A93D91AB77145001765DB /* Star-50.png */,
-				189284091A97B7AE000B15D6 /* Literature-25.png */,
-				1892840A1A97B7AE000B15D6 /* Money Bag-25.png */,
-				560869CF1A8A55C500630C64 /* cabinet_barcode.jpg */,
+				65E8326A1AC089CF00FACC73 /* Images */,
 				1892840D1A97BD4E000B15D6 /* CustomViews */,
 				560869C21A8A515900630C64 /* UISettings */,
 				188A77A11A896B5A0068587A /* ViewControllers */,
@@ -345,7 +337,6 @@
 				658FCFFE1A64789E004D056D /* Main.storyboard */,
 				535A39421A8D933E00D3F01B /* ViewController.swift */,
 				658FD0011A64789E004D056D /* Images.xcassets */,
-				535A39451A8D938400D3F01B /* image_placeholder.jpg */,
 				658FD0031A64789E004D056D /* LaunchScreen.xib */,
 				658FCFF81A64789E004D056D /* Supporting Files */,
 				65A9FD0E1A70571B0095F48C /* TextCrunch-Bridging-Header.h */,
@@ -359,6 +350,23 @@
 				658FCFF91A64789E004D056D /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		65E8326A1AC089CF00FACC73 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				535A39451A8D938400D3F01B /* image_placeholder.jpg */,
+				32ECF1D41A9D5F3C00F65DA5 /* down_arrow.png */,
+				32ECF1D21A9D5F3100F65DA5 /* up_arrow.png */,
+				189284101A97C2AB000B15D6 /* SLR Camera-64.png */,
+				324AD2721AA77FC500A6FE26 /* send_arrow.png */,
+				322A93D51AB7586E001765DB /* Message-50.png */,
+				322A93D91AB77145001765DB /* Star-50.png */,
+				189284091A97B7AE000B15D6 /* Literature-25.png */,
+				1892840A1A97B7AE000B15D6 /* Money Bag-25.png */,
+				560869CF1A8A55C500630C64 /* cabinet_barcode.jpg */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 		82130BAA12009FEBF7DF72FF /* Frameworks */ = {
