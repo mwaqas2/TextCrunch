@@ -466,71 +466,6 @@
             </objects>
             <point key="canvasLocation" x="298" y="1099"/>
         </scene>
-        <!--SearchViewController-->
-        <scene sceneID="20p-fX-JVd">
-            <objects>
-                <collectionViewController title="SearchViewController" id="svY-YW-DcW" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="zER-gl-h12">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="jrL-Gm-yrS">
-                            <size key="itemSize" width="50" height="50"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Dve-qz-DLl">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                            </collectionViewCell>
-                        </cells>
-                        <connections>
-                            <outlet property="dataSource" destination="svY-YW-DcW" id="zTA-nH-rqh"/>
-                            <outlet property="delegate" destination="svY-YW-DcW" id="CA2-KT-2Kl"/>
-                        </connections>
-                    </collectionView>
-                    <navigationItem key="navigationItem" id="W5B-3r-s6f"/>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Kos-VC-MFW" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3396" y="1068"/>
-        </scene>
-        <!--ScannerViewController-->
-        <scene sceneID="esk-cA-FeK">
-            <objects>
-                <viewController title="ScannerViewController" id="7Vn-kv-UDX" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="qxv-ss-eqf"/>
-                        <viewControllerLayoutGuide type="bottom" id="bg9-zM-yEW"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Vx6-T5-aFY">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YdJ-YR-5fc">
-                                <rect key="frame" x="124" y="269" width="73" height="30"/>
-                                <state key="normal" title="Start Scan">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="svY-YW-DcW" kind="push" id="Fl8-LK-V1R"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="IHf-Gh-lJ2"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="E5o-q3-HHT" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3396" y="323"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="7Rb-7F-KTa">
             <objects>
@@ -863,6 +798,28 @@
             </objects>
             <point key="canvasLocation" x="877" y="321"/>
         </scene>
+        <!--Barcode Scan View Controller-->
+        <scene sceneID="JDO-qH-siN">
+            <objects>
+                <viewController id="dDK-zd-Dc6" customClass="BarcodeScanViewController" customModule="TextCrunch" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zQ4-S3-5nL"/>
+                        <viewControllerLayoutGuide type="bottom" id="pF3-b9-SH2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1aO-LK-Q6w">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="zLP-Df-bDI"/>
+                    <connections>
+                        <segue destination="MYE-RU-plS" kind="push" identifier="isbnScanSegue" id="7iJ-M2-vr9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hIO-7v-o9r" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1219" y="2700"/>
+        </scene>
         <!--IsbnViewController-->
         <scene sceneID="vkv-Ps-8rm">
             <objects>
@@ -892,6 +849,9 @@
                                 <state key="normal" title="Scan Barcode">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="dDK-zd-Dc6" kind="push" id="Yyt-IX-7nh"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cabinet_barcode.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="vwe-5Z-8jb">
                                 <rect key="frame" x="86" y="134" width="149" height="111"/>
@@ -1532,8 +1492,8 @@
         <segue reference="3f1-9h-r6A"/>
         <segue reference="wZB-RO-bmV"/>
         <segue reference="8yV-Do-QqQ"/>
-        <segue reference="efr-3O-uBy"/>
         <segue reference="8iV-l4-1e5"/>
+        <segue reference="7iJ-M2-vr9"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>

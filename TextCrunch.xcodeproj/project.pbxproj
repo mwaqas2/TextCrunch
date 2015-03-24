@@ -12,6 +12,7 @@
 		1892840C1A97B7AE000B15D6 /* Money Bag-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 1892840A1A97B7AE000B15D6 /* Money Bag-25.png */; };
 		189284111A97C2AB000B15D6 /* SLR Camera-64.png in Resources */ = {isa = PBXBuildFile; fileRef = 189284101A97C2AB000B15D6 /* SLR Camera-64.png */; };
 		18A335841A91617800765B52 /* SellerListingViewTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A335831A91617800765B52 /* SellerListingViewTableDataSource.swift */; };
+		18AB867A1AC0C03F00BD59EA /* BarcodeScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AB86791AC0C03F00BD59EA /* BarcodeScanViewController.swift */; };
 		18B312CA1A8432EA009EF22B /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B489961A7D5FAD00541D06 /* UserController.swift */; };
 		18B312CB1A8432ED009EF22B /* ListingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B489A61A82D7F300541D06 /* ListingModel.swift */; };
 		18B312CC1A8432F0009EF22B /* GoogleUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4899E1A7D66E000541D06 /* GoogleUserController.swift */; };
@@ -94,6 +95,7 @@
 		1892840A1A97B7AE000B15D6 /* Money Bag-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Money Bag-25.png"; sourceTree = "<group>"; };
 		189284101A97C2AB000B15D6 /* SLR Camera-64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SLR Camera-64.png"; sourceTree = "<group>"; };
 		18A335831A91617800765B52 /* SellerListingViewTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SellerListingViewTableDataSource.swift; sourceTree = "<group>"; };
+		18AB86791AC0C03F00BD59EA /* BarcodeScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarcodeScanViewController.swift; sourceTree = "<group>"; };
 		18B489961A7D5FAD00541D06 /* UserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = UserController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		18B4899A1A7D66C100541D06 /* TwitterUserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterUserController.swift; sourceTree = "<group>"; };
 		18B4899C1A7D66D100541D06 /* FBUserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBUserController.swift; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 				32ECF1E41A9D695100F65DA5 /* ListingTableViewCell.swift */,
 				324AD2611AA7625300A6FE26 /* ChatViewController.swift */,
 				322A93D71AB75CBC001765DB /* MailboxViewController.swift */,
+				18AB86791AC0C03F00BD59EA /* BarcodeScanViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -573,6 +576,7 @@
 				566FD8F41AB29D8B00E1C6E6 /* GpsAddress.swift in Sources */,
 				535A39401A8D904C00D3F01B /* UserModel.swift in Sources */,
 				18B4899D1A7D66D100541D06 /* FBUserController.swift in Sources */,
+				18AB867A1AC0C03F00BD59EA /* BarcodeScanViewController.swift in Sources */,
 				32ECF1E51A9D695200F65DA5 /* ListingTableViewCell.swift in Sources */,
 				321E58F71ABB988C00271AE2 /* ConversationDatabaseController.swift in Sources */,
 				560869CC1A8A529800630C64 /* IsbnViewController.swift in Sources */,
