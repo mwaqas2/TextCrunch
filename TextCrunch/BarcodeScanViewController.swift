@@ -21,7 +21,7 @@ class BarcodeScanViewController: UIViewController, AVCaptureMetadataOutputObject
         super.viewDidLoad()
         
         // Allow the view to resize freely
-        self.highlightView.autoresizingMask =   UIViewAutoresizing.FlexibleTopMargin |
+        self.highlightView.autoresizingMask =  UIViewAutoresizing.FlexibleTopMargin |
             UIViewAutoresizing.FlexibleBottomMargin |
             UIViewAutoresizing.FlexibleLeftMargin |
             UIViewAutoresizing.FlexibleRightMargin
@@ -33,7 +33,6 @@ class BarcodeScanViewController: UIViewController, AVCaptureMetadataOutputObject
         // Add it to our controller's view as a subview.
         self.view.addSubview(self.highlightView)
         
-        
         // For the sake of discussion this is the camera
         let device = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
         
@@ -41,14 +40,12 @@ class BarcodeScanViewController: UIViewController, AVCaptureMetadataOutputObject
         // Make sure to use the "var" keyword and not "let"
         var error : NSError? = nil
         
-        
         let input : AVCaptureDeviceInput? = AVCaptureDeviceInput.deviceInputWithDevice(device, error: &error) as? AVCaptureDeviceInput
         
         // If our input is not nil then add it to the session, otherwise we're kind of done!
         if input != nil {
             session.addInput(input)
         } else {
-            // This is fine for a demo, do something real with this in your app. :)
             println(error)
         }
         
@@ -57,13 +54,11 @@ class BarcodeScanViewController: UIViewController, AVCaptureMetadataOutputObject
         session.addOutput(output)
         output.metadataObjectTypes = output.availableMetadataObjectTypes
         
-        
         previewLayer = AVCaptureVideoPreviewLayer.layerWithSession(session) as AVCaptureVideoPreviewLayer
         previewLayer.frame = self.view.bounds
         previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
         self.view.layer.addSublayer(previewLayer)
         
-
         // Start the scanner. You'll have to end it yourself later.
         session.startRunning()
         
@@ -71,11 +66,8 @@ class BarcodeScanViewController: UIViewController, AVCaptureMetadataOutputObject
     
     // This is called when we find a known barcode type with the camera.
     func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!) {
-        
         var highlightViewRect = CGRectZero
-        
         var barCodeObject : AVMetadataObject!
-        
         var detectionString : String!
         
         let barCodeTypes = [AVMetadataObjectTypeUPCECode,
@@ -89,8 +81,6 @@ class BarcodeScanViewController: UIViewController, AVCaptureMetadataOutputObject
             AVMetadataObjectTypeQRCode,
             AVMetadataObjectTypeAztecCode
         ]
-        
-        
         
         // The scanner is capable of capturing multiple 2-dimensional barcodes in one scan.
         for metadata in metadataObjects {
