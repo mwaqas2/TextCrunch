@@ -57,6 +57,7 @@
 		564724341AA0329A004AA76D /* json.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564724331AA0329A004AA76D /* json.swift */; };
 		566FD8F21AB29AD300E1C6E6 /* GPS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566FD8F11AB29AD300E1C6E6 /* GPS.swift */; };
 		566FD8F41AB29D8B00E1C6E6 /* GpsAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566FD8F31AB29D8B00E1C6E6 /* GpsAddress.swift */; };
+		56FA22821AC26F5500FCA139 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56FA22811AC26F5500FCA139 /* FacebookSDK.framework */; };
 		655DEF9D1A8416DD00931A3B /* UserControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B489A81A82DE2F00541D06 /* UserControllerTests.swift */; };
 		658FCFFB1A64789E004D056D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658FCFFA1A64789E004D056D /* AppDelegate.swift */; };
 		658FCFFD1A64789E004D056D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658FCFFC1A64789E004D056D /* LoginViewController.swift */; };
@@ -133,6 +134,7 @@
 		564724331AA0329A004AA76D /* json.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = json.swift; path = json/json.swift; sourceTree = "<group>"; };
 		566FD8F11AB29AD300E1C6E6 /* GPS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPS.swift; sourceTree = "<group>"; };
 		566FD8F31AB29D8B00E1C6E6 /* GpsAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GpsAddress.swift; sourceTree = "<group>"; };
+		56FA22811AC26F5500FCA139 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		655DEF7E1A84105D00931A3B /* libPods-TextCrunch-Bolts.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-TextCrunch-Bolts.a"; path = "Pods/build/Debug-iphoneos/libPods-TextCrunch-Bolts.a"; sourceTree = "<group>"; };
 		655DEF7F1A84105D00931A3B /* libPods-TextCrunch-Braintree.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-TextCrunch-Braintree.a"; path = "Pods/build/Debug-iphoneos/libPods-TextCrunch-Braintree.a"; sourceTree = "<group>"; };
 		655DEF801A84105D00931A3B /* libPods-TextCrunch-Parse.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-TextCrunch-Parse.a"; path = "Pods/build/Debug-iphoneos/libPods-TextCrunch-Parse.a"; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 				65A9FD221A705A820095F48C /* QuartzCore.framework in Frameworks */,
 				65A9FD201A705A7B0095F48C /* MobileCoreServices.framework in Frameworks */,
 				65A9FD1E1A705A710095F48C /* libz.dylib in Frameworks */,
+				56FA22821AC26F5500FCA139 /* FacebookSDK.framework in Frameworks */,
 				65A9FD1A1A705A5D0095F48C /* CoreGraphics.framework in Frameworks */,
 				65A9FD181A705A460095F48C /* CFNetwork.framework in Frameworks */,
 				65A9FD161A705A3B0095F48C /* AudioToolbox.framework in Frameworks */,
@@ -375,6 +378,7 @@
 		82130BAA12009FEBF7DF72FF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				56FA22811AC26F5500FCA139 /* FacebookSDK.framework */,
 				655DEF861A84107900931A3B /* libPods-TextCrunch-Bolts.a */,
 				655DEF871A84107900931A3B /* libPods-TextCrunch-Braintree.a */,
 				655DEF881A84107900931A3B /* libPods-TextCrunch-Parse.a */,
@@ -757,6 +761,7 @@
 					"/Users/derek/Downloads/parse-library-1.6.1",
 					2,
 					"$(PROJECT_DIR)/vendor",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = TextCrunch/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -782,6 +787,7 @@
 					"/Users/derek/Downloads/parse-library-1.6.1",
 					2,
 					"$(PROJECT_DIR)/vendor",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = TextCrunch/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
