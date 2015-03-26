@@ -17,7 +17,7 @@ class LoginViewController: UIViewController {
 	@IBOutlet weak var emailWarningLabel: UILabel!
 	@IBOutlet weak var passwordWarningLabel: UILabel!
 	
-	
+	let permissions = ["public_profile"]
     override func viewDidLoad() {
         super.viewDidLoad()
 		showLoginWarning(false, showPasswordWarning: false)
@@ -41,6 +41,11 @@ class LoginViewController: UIViewController {
 		}
 	}
 	
+    @IBAction func facebookLoginButton(sender: AnyObject) {
+        PFFacebookUtils.logInWithPermissions(self.permissions, { (user: PFUser!, error: NSError!) -> Void in if user == nil { NSLog("Uh oh. The user cancelled the Facebook login.") } else if user.isNew { NSLog("User signed up and logged in through Facebook! \(user)") } else { NSLog("User logged in through Facebook! \(user)") } })
+    }
+    
+    
 	// Handles the Create Account button press event.
 	@IBAction func createAccountButtonPressed(sender: AnyObject) {
 		self.performSegueWithIdentifier("CreateAccount", sender: nil)

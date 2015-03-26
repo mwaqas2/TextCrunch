@@ -1630,7 +1630,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="chU-oP-Phr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4136" y="1998"/>
+            <point key="canvasLocation" x="4062" y="2013"/>
         </scene>
         <!--Chat View Controller-->
         <scene sceneID="gNr-1l-0MM">
@@ -1740,7 +1740,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Ig-pd-aJX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4899.375" y="2005.9859154929577"/>
+            <point key="canvasLocation" x="4973" y="2013"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="sry-p0-buV">
@@ -1801,10 +1801,10 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="vX5-LY-AnJ"/>
-        <segue reference="S6U-8h-8D6"/>
-        <segue reference="U5M-7W-DjL"/>
+        <segue reference="8yV-Do-QqQ"/>
+        <segue reference="wZB-RO-bmV"/>
+        <segue reference="efr-3O-uBy"/>
         <segue reference="8iV-l4-1e5"/>
-        <segue reference="Kr0-Hl-yHk"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>
