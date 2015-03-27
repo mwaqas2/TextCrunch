@@ -82,6 +82,8 @@ class SearchViewController: UIViewController, UITableViewDataSource, CLLocationM
 		let listing = listings[indexPath.row]
 		let listingBook = listing.book
 		
+		cell.backgroundColor = UIColor.clearColor()
+		
 		// Set the cell's text and image
 		cell.titleLabel?.text = listingBook.title
 		cell.authorLabel?.text = "by " + listingBook.authorName

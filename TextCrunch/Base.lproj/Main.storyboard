@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="SlN-8A-vyZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="SlN-8A-vyZ">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -1647,6 +1647,9 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kgs-aO-NN4">
                                 <rect key="frame" x="25" y="485" width="520" height="63"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="3Lv-9c-woX"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -1681,7 +1684,7 @@
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5g5-3C-TQb">
-                                <rect key="frame" x="16" y="447" width="424" height="30"/>
+                                <rect key="frame" x="16" y="491" width="424" height="30"/>
                                 <state key="normal" title="Put On Hold">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1707,8 +1710,8 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D26-zh-b3c">
-                                <rect key="frame" x="218" y="440" width="134" height="33"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D26-zh-b3c">
+                                <rect key="frame" x="417" y="440" width="134" height="33"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="28"/>
                                 <state key="normal" title="Purchase"/>
                                 <connections>
@@ -1722,6 +1725,7 @@
                             <constraint firstItem="ww3-II-FHo" firstAttribute="leading" secondItem="fap-7U-Hhf" secondAttribute="leadingMargin" id="85P-6r-wLS"/>
                             <constraint firstItem="5g5-3C-TQb" firstAttribute="leading" secondItem="ww3-II-FHo" secondAttribute="leading" id="9bf-q6-g9c"/>
                             <constraint firstItem="Kgs-aO-NN4" firstAttribute="top" secondItem="5g5-3C-TQb" secondAttribute="bottom" constant="8" symbolic="YES" id="Ai5-PC-Gli"/>
+                            <constraint firstItem="D26-zh-b3c" firstAttribute="trailing" secondItem="Kgs-aO-NN4" secondAttribute="trailing" constant="6" id="Fhh-0Q-L7n"/>
                             <constraint firstItem="Kgs-aO-NN4" firstAttribute="leading" secondItem="fap-7U-Hhf" secondAttribute="leadingMargin" constant="9" id="HcP-sv-HOT"/>
                             <constraint firstItem="LEl-xu-Dq9" firstAttribute="trailing" secondItem="ww3-II-FHo" secondAttribute="trailing" id="QO5-r4-KvA"/>
                             <constraint firstAttribute="bottom" secondItem="Kgs-aO-NN4" secondAttribute="bottom" constant="20" symbolic="YES" id="Sik-n2-IX8"/>
@@ -1729,6 +1733,7 @@
                             <constraint firstItem="Jvh-17-Fq9" firstAttribute="leading" secondItem="Kgs-aO-NN4" secondAttribute="trailing" constant="13" id="VQP-Q2-x64"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Jvh-17-Fq9" secondAttribute="trailing" constant="-9" id="Who-dU-9dR"/>
                             <constraint firstItem="LEl-xu-Dq9" firstAttribute="leading" secondItem="5g5-3C-TQb" secondAttribute="trailing" constant="8" symbolic="YES" id="bpx-dI-fns"/>
+                            <constraint firstItem="D26-zh-b3c" firstAttribute="centerY" secondItem="CQ1-OX-fSc" secondAttribute="centerY" constant="-5" id="dki-pn-umP"/>
                             <constraint firstItem="ww3-II-FHo" firstAttribute="trailing" secondItem="fap-7U-Hhf" secondAttribute="trailingMargin" id="dxq-0b-G9n"/>
                             <constraint firstItem="N09-Y5-2DX" firstAttribute="top" secondItem="Jvh-17-Fq9" secondAttribute="bottom" constant="32" id="fWD-Kc-Bx7"/>
                             <constraint firstItem="CQ1-OX-fSc" firstAttribute="top" secondItem="ww3-II-FHo" secondAttribute="bottom" constant="23" id="hhE-ch-hVX"/>
@@ -1809,11 +1814,11 @@
         <image name="up_arrow.png" width="201" height="123"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="8iV-l4-1e5"/>
+        <segue reference="efr-3O-uBy"/>
+        <segue reference="8yV-Do-QqQ"/>
         <segue reference="3f1-9h-r6A"/>
         <segue reference="wZB-RO-bmV"/>
-        <segue reference="8yV-Do-QqQ"/>
-        <segue reference="efr-3O-uBy"/>
-        <segue reference="8iV-l4-1e5"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>
