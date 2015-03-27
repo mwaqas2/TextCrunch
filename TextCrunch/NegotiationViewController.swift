@@ -1,5 +1,5 @@
 //
-//  ChatViewController.swift
+//  NegotiationViewController.swift
 //  TextCrunch
 //
 //  Created by Ern on 2015-02-24.
@@ -12,13 +12,14 @@
 import UIKit
 import Foundation
 
-class ChatViewController : UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate {
+class NegotiationViewController : UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate {
 	@IBOutlet weak var messageTextView: UITextView!
 	@IBOutlet weak var sendButton: UIButton!
 	@IBOutlet weak var messageTableView: UITableView!
     @IBOutlet weak var holdButton: UIButton!
     @IBOutlet weak var soldButton: UIButton!
 	@IBOutlet weak var buyerHoldWarningLabel: UILabel!
+    @IBOutlet weak var purchaseButton: UIButton!
     
 	let cellIdentifier = "MessageCell"
 	let MAX_MESSAGE_LENGTH = 200
@@ -55,6 +56,7 @@ class ChatViewController : UIViewController, UITableViewDataSource, UITableViewD
         var seller = listing.seller.fetchIfNeeded() as User
         userIsSeller = (seller.email == UserController.getCurrentUser().email)
         if(userIsSeller){
+            purchaseButton.hidden = true
             holdButton.hidden = false
             soldButton.hidden = false
             if(listing.isOnHold){
@@ -64,7 +66,12 @@ class ChatViewController : UIViewController, UITableViewDataSource, UITableViewD
             }
         }
 		else {
+            
+            // show warning if on hold
 			buyerHoldWarningLabel.hidden = !listing.isOnHold
+            
+            // hide purchase button if on hold
+            purchaseButton.hidden = listing.isOnHold
 		}
 		
 		// Set navigation bar title
@@ -197,7 +204,6 @@ class ChatViewController : UIViewController, UITableViewDataSource, UITableViewD
         return
     }
     
-    
     @IBAction func onSoldButtonClicked(sender: AnyObject) {
         var alert = UIAlertController(title: "Mark as Sold", message: "Warning: Once you mark a listing as sold it will no longer show up in search results and this cannot be reversed. Continue?", preferredStyle: UIAlertControllerStyle.Alert);
         alert.addAction(UIAlertAction(title: "I'm Sure", style: UIAlertActionStyle.Default, handler: {
@@ -214,6 +220,11 @@ class ChatViewController : UIViewController, UITableViewDataSource, UITableViewD
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func onPurchaseButtonClicked(sender: AnyObject) {
+        
+        
     }
     
 }

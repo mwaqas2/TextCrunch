@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="SlN-8A-vyZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="SlN-8A-vyZ">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -446,7 +446,7 @@
                     <connections>
                         <outlet property="conversationTableView" destination="NW9-e0-kQf" id="1Lu-QO-edn"/>
                         <outlet property="userSegmentControl" destination="7D0-Fr-CML" id="Du6-ur-GEC"/>
-                        <segue destination="oYe-ts-w60" kind="show" identifier="ViewChat" id="Kr0-Hl-yHk"/>
+                        <segue destination="oYe-ts-w60" kind="show" identifier="ViewNegotiation" id="Kr0-Hl-yHk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PJA-99-cEy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1546,12 +1546,12 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="503" id="xXH-2k-HT3"/>
                                 </constraints>
-                                <state key="normal" title="Chat With Seller">
+                                <state key="normal" title="Negotiation With Seller">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="onChatButtonClicked:" destination="4KC-lZ-eN4" eventType="touchUpInside" id="LPD-Cb-Xxy"/>
+                                    <action selector="onNegotiationButtonClicked:" destination="4KC-lZ-eN4" eventType="touchUpInside" id="LPD-Cb-Xxy"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1607,9 +1607,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="bR1-Px-ikT"/>
                     <connections>
+                        <outlet property="NegotiationButton" destination="AMF-gm-Trv" id="GSb-h2-OZh"/>
                         <outlet property="author" destination="MSs-8D-TvA" id="EWg-CZ-rHE"/>
                         <outlet property="bookTitle" destination="9yK-Cj-4k3" id="BH4-si-mgQ"/>
-                        <outlet property="chatButton" destination="AMF-gm-Trv" id="GSb-h2-OZh"/>
                         <outlet property="comments" destination="MND-zv-vq9" id="p0n-wh-r8a"/>
                         <outlet property="condition" destination="TwW-ZZ-WMB" id="I0R-KM-HZM"/>
                         <outlet property="doneButton" destination="D22-7M-cdv" id="Nwd-32-tH0"/>
@@ -1624,7 +1624,7 @@
                         <outlet property="removeButton" destination="tVr-7q-0zU" id="7eM-CR-w2L"/>
                         <segue destination="MYE-RU-plS" kind="show" identifier="editListing" id="efr-3O-uBy"/>
                         <segue destination="rOS-wc-sWm" kind="show" identifier="toSellerHomepage" id="vX5-LY-AnJ"/>
-                        <segue destination="oYe-ts-w60" kind="show" identifier="chat" id="wZB-RO-bmV"/>
+                        <segue destination="oYe-ts-w60" kind="show" identifier="negotiation" id="wZB-RO-bmV"/>
                         <segue destination="rOS-wc-sWm" kind="show" id="Lrg-jM-kO3"/>
                     </connections>
                 </viewController>
@@ -1632,10 +1632,10 @@
             </objects>
             <point key="canvasLocation" x="4062" y="2013"/>
         </scene>
-        <!--Chat View Controller-->
+        <!--Negotiation View Controller-->
         <scene sceneID="gNr-1l-0MM">
             <objects>
-                <viewController id="oYe-ts-w60" customClass="ChatViewController" customModule="TextCrunch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="oYe-ts-w60" customClass="NegotiationViewController" customModule="TextCrunch" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="deT-1o-Ugy"/>
                         <viewControllerLayoutGuide type="bottom" id="N09-Y5-2DX"/>
@@ -1650,8 +1650,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="49" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ww3-II-FHo">
-                                <rect key="frame" x="16" y="28" width="568" height="396"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="49" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ww3-II-FHo">
+                                <rect key="frame" x="25" y="20" width="559" height="404"/>
                                 <color key="backgroundColor" red="0.59999999999999998" green="0.79607843140000001" blue="0.74117647060000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="396" id="lzE-6a-n1E"/>
@@ -1701,12 +1701,20 @@
                                     <action selector="onSoldButtonClicked:" destination="oYe-ts-w60" eventType="touchUpInside" id="ycP-wy-I6v"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Listing Put on Hold by Seller" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CQ1-OX-fSc">
-                                <rect key="frame" x="187" y="447" width="218" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Listing Put on Hold by Seller" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CQ1-OX-fSc">
+                                <rect key="frame" x="191" y="451" width="218" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D26-zh-b3c">
+                                <rect key="frame" x="218" y="440" width="134" height="33"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="28"/>
+                                <state key="normal" title="Purchase"/>
+                                <connections>
+                                    <action selector="onPurchaseButtonClicked:" destination="oYe-ts-w60" eventType="touchUpInside" id="R0R-Hb-WAj"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.59999999999999998" green="0.79607843140000001" blue="0.74117647060000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -1733,6 +1741,7 @@
                         <outlet property="holdButton" destination="5g5-3C-TQb" id="Loh-ho-sat"/>
                         <outlet property="messageTableView" destination="ww3-II-FHo" id="CY4-Ue-ZTk"/>
                         <outlet property="messageTextView" destination="Kgs-aO-NN4" id="jab-D4-h4M"/>
+                        <outlet property="purchaseButton" destination="D26-zh-b3c" id="rAM-fb-FUh"/>
                         <outlet property="sendButton" destination="Jvh-17-Fq9" id="O8g-zl-dcC"/>
                         <outlet property="soldButton" destination="LEl-xu-Dq9" id="E9r-W6-ysv"/>
                         <segue destination="rOS-wc-sWm" kind="show" identifier="soldButtonSegue" id="3f1-9h-r6A"/>
@@ -1740,7 +1749,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Ig-pd-aJX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4973" y="2013"/>
+            <point key="canvasLocation" x="5030" y="1975"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="sry-p0-buV">
@@ -1800,9 +1809,9 @@
         <image name="up_arrow.png" width="201" height="123"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="vX5-LY-AnJ"/>
-        <segue reference="8yV-Do-QqQ"/>
+        <segue reference="3f1-9h-r6A"/>
         <segue reference="wZB-RO-bmV"/>
+        <segue reference="8yV-Do-QqQ"/>
         <segue reference="efr-3O-uBy"/>
         <segue reference="8iV-l4-1e5"/>
     </inferredMetricsTieBreakers>
