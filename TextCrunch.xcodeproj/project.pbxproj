@@ -30,7 +30,7 @@
 		322A93DA1AB77145001765DB /* Star-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 322A93D91AB77145001765DB /* Star-50.png */; };
 		324AD2621AA7625300A6FE26 /* NegotiationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324AD2611AA7625300A6FE26 /* NegotiationViewController.swift */; };
 		324AD26F1AA77ED100A6FE26 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324AD26E1AA77ED100A6FE26 /* MessageModel.swift */; };
-		324AD2711AA77F2100A6FE26 /* ConversationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324AD2701AA77F2100A6FE26 /* ConversationModel.swift */; };
+		324AD2711AA77F2100A6FE26 /* NegotiationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324AD2701AA77F2100A6FE26 /* NegotiationModel.swift */; };
 		324AD2731AA77FC500A6FE26 /* send_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 324AD2721AA77FC500A6FE26 /* send_arrow.png */; };
 		32922C3A1A9E237100CEC74C /* ListingDatabaseControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32922C391A9E237100CEC74C /* ListingDatabaseControllerTests.swift */; };
 		32C890AF1A7FC70A00196E47 /* SellerListingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C890AE1A7FC70A00196E47 /* SellerListingViewController.swift */; };
@@ -108,7 +108,7 @@
 		322A93D91AB77145001765DB /* Star-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Star-50.png"; sourceTree = "<group>"; };
 		324AD2611AA7625300A6FE26 /* NegotiationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NegotiationViewController.swift; sourceTree = "<group>"; };
 		324AD26E1AA77ED100A6FE26 /* MessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
-		324AD2701AA77F2100A6FE26 /* ConversationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationModel.swift; sourceTree = "<group>"; };
+		324AD2701AA77F2100A6FE26 /* NegotiationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NegotiationModel.swift; sourceTree = "<group>"; };
 		324AD2721AA77FC500A6FE26 /* send_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = send_arrow.png; sourceTree = "<group>"; };
 		32922C391A9E237100CEC74C /* ListingDatabaseControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListingDatabaseControllerTests.swift; sourceTree = "<group>"; };
 		32C890AE1A7FC70A00196E47 /* SellerListingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SellerListingViewController.swift; sourceTree = "<group>"; };
@@ -203,7 +203,7 @@
 				53F8E5CC1A85DFC600A5D10E /* BookModel.swift */,
 				187896C41A8D6D7A0027C7A1 /* UserModel.swift */,
 				324AD26E1AA77ED100A6FE26 /* MessageModel.swift */,
-				324AD2701AA77F2100A6FE26 /* ConversationModel.swift */,
+				324AD2701AA77F2100A6FE26 /* NegotiationModel.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -587,7 +587,7 @@
 				18B4899B1A7D66C100541D06 /* TwitterUserController.swift in Sources */,
 				324AD26F1AA77ED100A6FE26 /* MessageModel.swift in Sources */,
 				32E6E0F41A84599400292B7A /* AccountCreationViewController.swift in Sources */,
-				324AD2711AA77F2100A6FE26 /* ConversationModel.swift in Sources */,
+				324AD2711AA77F2100A6FE26 /* NegotiationModel.swift in Sources */,
 				32C890AF1A7FC70A00196E47 /* SellerListingViewController.swift in Sources */,
 				560869C41A8A51B300630C64 /* Background.swift in Sources */,
 				322A93D81AB75CBC001765DB /* MailboxViewController.swift in Sources */,

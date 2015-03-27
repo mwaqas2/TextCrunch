@@ -10,6 +10,8 @@ import Foundation
 
 class User : PFUser, PFSubclassing {
     
+    @NSManaged var buyerRefreshToken: String
+    
     override init() {
         super.init()
     }

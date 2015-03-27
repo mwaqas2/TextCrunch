@@ -369,7 +369,7 @@
                                 <rect key="frame" x="10" y="89" width="301" height="422"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ConversationCell" rowHeight="57" id="gxg-as-Xfg" customClass="MailboxTableViewCell" customModule="TextCrunch" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NegotiationCell" rowHeight="57" id="gxg-as-Xfg" customClass="MailboxTableViewCell" customModule="TextCrunch" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="301" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gxg-as-Xfg" id="atX-Bh-QA1">
@@ -444,7 +444,7 @@
                     <tabBarItem key="tabBarItem" title="" image="Message-50.png" id="miv-6W-pSu"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="conversationTableView" destination="NW9-e0-kQf" id="1Lu-QO-edn"/>
+                        <outlet property="negotiationTableView" destination="NW9-e0-kQf" id="1Lu-QO-edn"/>
                         <outlet property="userSegmentControl" destination="7D0-Fr-CML" id="Du6-ur-GEC"/>
                         <segue destination="oYe-ts-w60" kind="show" identifier="ViewNegotiation" id="Kr0-Hl-yHk"/>
                     </connections>
