@@ -99,7 +99,7 @@ class MailboxViewController: UIViewController, 	UITableViewDataSource, UITableVi
 		tableView.deselectRowAtIndexPath(indexPath, animated: false)
 		
 		// Segue to a view of the selected listing
-		self.performSegueWithIdentifier("ViewChat", sender: nil)
+		self.performSegueWithIdentifier("ViewNegotiation", sender: nil)
 	}
 	
 	// Called when the user selects a tab from the segment control. Switch between buyer
@@ -113,8 +113,8 @@ class MailboxViewController: UIViewController, 	UITableViewDataSource, UITableVi
 	
 	// Called before seguing to another view
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-		if (segue.identifier == "ViewChat") {
-			var svc = segue.destinationViewController as ChatViewController;
+		if (segue.identifier == "ViewNegotiation") {
+			var svc = segue.destinationViewController as NegotiationViewController;
 			// Hide back bar to avoid resubmission of listing
 			// Only occurs when ViewListing is accessed via EditListing
 			svc.conversation = selectedConversation

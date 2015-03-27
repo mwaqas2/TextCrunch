@@ -24,9 +24,9 @@ class ListingViewController: UIViewController {
     @IBOutlet weak var language: UILabel!//UILbael for the language the book attached to the listing is in.
     
     
-    @IBOutlet weak var chatButton: UIButton!
+    @IBOutlet weak var NegotiationButton: UIButton!
     
-    //@IBOutlet weak var chatButton: UIButton!//Button that segues the User to a screen for chatting with the Listing's seller.
+    //@IBOutlet weak var NegotiationButton: UIButton!//Button that segues the User to a screen for Negotiationting with the Listing's seller.
     @IBOutlet weak var edit: UIButton!//Button that segues the User to a screen for editting a listing.
 	@IBOutlet weak var doneButton: UIButton!//Button that the user presses to indicate they are done editting a listing.
     @IBOutlet weak var removeButton: UIButton!//Button that the user presses to delete the listing.
@@ -64,7 +64,7 @@ class ListingViewController: UIViewController {
         // Shows buy button to potential buyer, but not edit button
         
         if (userIsSeller) {
-            chatButton.hidden = true
+            NegotiationButton.hidden = true
             if(listing.isOnHold){
                 holdButton.setTitle("Remove Hold", forState: .Normal)
             } else {
@@ -79,7 +79,7 @@ class ListingViewController: UIViewController {
         holdButton.hidden = !(!isNewListing && userIsSeller)
         setListingElements()
 		
-		chatButton.hidden = userIsSeller
+		NegotiationButton.hidden = userIsSeller
     }
 	
     
@@ -107,9 +107,9 @@ class ListingViewController: UIViewController {
 		self.performSegueWithIdentifier("toSellerHomepage", sender: nil)
 	}
 	
-    //Called when the chat button is pressed.
-	@IBAction func onChatButtonClicked(sender: AnyObject) {
-		self.performSegueWithIdentifier("chat", sender: nil)
+    //Called when the negotiation button is pressed.
+	@IBAction func onNegotiationButtonClicked(sender: AnyObject) {
+		self.performSegueWithIdentifier("negotiation", sender: nil)
 	}
     
     
@@ -156,8 +156,8 @@ class ListingViewController: UIViewController {
             svc.listing = self.listing
 			svc.isNewListing = false
         }
-		else if (segue.identifier == "chat") {
-			var svc = segue.destinationViewController as ChatViewController;
+		else if (segue.identifier == "negotiation") {
+			var svc = segue.destinationViewController as NegotiationViewController;
 			svc.listing = listing
 			svc.isNewListing = false
 			svc.seguedFromMailbox = false
