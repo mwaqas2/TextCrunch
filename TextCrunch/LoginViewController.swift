@@ -43,6 +43,7 @@ class LoginViewController: UIViewController {
 
     @IBAction func facebookLogin(sender: AnyObject) {
         
+        
         PFFacebookUtils.logInWithPermissions(self.permissions, { (user: PFUser!, error: NSError!) -> Void in if user == nil { NSLog("Click the button to log in") }
             
         else if user.isNew {
@@ -52,28 +53,38 @@ class LoginViewController: UIViewController {
                     println("Error Getting ME: \(error)");
                 }
                 else{
-                    user.email = result.email
-                    user.username = result.first_name
-                    self.performSegueWithIdentifier("SearchLogin",sender: nil)
+                    
+                    if result.email != nil {
+                        user.email = result.email
+                        user.username = result.first_name
+                        user.save()
+                        if PFUser.currentUser().email != nil{
+                            self.performSegueWithIdentifier("SearchLogin",sender: nil)}
+                    } //if email!=nil
                 }
             })
             
         } else {
             FBRequest.requestForMe()?.startWithCompletionHandler({(connection:FBRequestConnection!, result:AnyObject!, error:NSError!) in
-                
                 if(error != nil){
                     println("Error Getting ME: \(error)");
                 }
                 else{
-                    //this is here for scenarios, wherein breakpoints are not disabled
-                    user.email = result.email
-                    user.username = result.first_name
-                    self.performSegueWithIdentifier("SearchLogin",sender: nil)
+                    if result.email != nil {
+                        //this is here for scenarios, wherein breakpoints are not disabled
+                        user.email = result.email
+                        user.username = result.first_name
+                        user.save()
+                        if PFUser.currentUser().email != nil {
+                            self.performSegueWithIdentifier("SearchLogin",sender: nil)
+                        }//if email!=nil
+                    }
                 }
             }); //FBrequest
             }
         }) //PFfacebookutils
     }
+
     
 	// Handles the Create Account button press event.
 	@IBAction func createAccountButtonPressed(sender: AnyObject) {
