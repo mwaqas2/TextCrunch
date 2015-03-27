@@ -223,7 +223,32 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
     }
     
     @IBAction func onPurchaseButtonClicked(sender: AnyObject) {
+        var alert = UIAlertController(
+            title: "Confirm Purchase",
+            message: "Are you sure you'd like to purchase this textbook?",
+            preferredStyle: UIAlertControllerStyle.Alert
+        );
         
+        alert.addAction(UIAlertAction(
+            title: "Continue",
+            style: UIAlertActionStyle.Default,
+            handler: {
+            
+            action in switch action.style {
+                case .Default:
+                    self.listing.isActive = false
+                    self.listing.buyer = self.conversation.buyer
+                    self.listing.save()
+                    self.performSegueWithIdentifier("soldButtonSegue", sender: nil)
+                break
+            default:
+                break
+            }
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
+        
+        self.presentViewController(alert, animated: true, completion: nil)
         
     }
     
