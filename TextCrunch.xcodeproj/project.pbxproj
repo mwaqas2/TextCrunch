@@ -58,6 +58,11 @@
 		566FD8F21AB29AD300E1C6E6 /* GPS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566FD8F11AB29AD300E1C6E6 /* GPS.swift */; };
 		566FD8F41AB29D8B00E1C6E6 /* GpsAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566FD8F31AB29D8B00E1C6E6 /* GpsAddress.swift */; };
 		655DEF9D1A8416DD00931A3B /* UserControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B489A81A82DE2F00541D06 /* UserControllerTests.swift */; };
+		656F7C681AC5050F003A5507 /* PaymentManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656F7C671AC5050F003A5507 /* PaymentManagerTests.swift */; };
+		656F7C711AC53D8F003A5507 /* PaymentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656F7C701AC53D8F003A5507 /* PaymentManager.swift */; };
+		656F7C721AC53D8F003A5507 /* PaymentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656F7C701AC53D8F003A5507 /* PaymentManager.swift */; };
+		656F7C731AC53DCB003A5507 /* NegotiationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324AD2701AA77F2100A6FE26 /* NegotiationModel.swift */; };
+		656F7C741AC53DEC003A5507 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324AD26E1AA77ED100A6FE26 /* MessageModel.swift */; };
 		658FCFFB1A64789E004D056D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658FCFFA1A64789E004D056D /* AppDelegate.swift */; };
 		658FCFFD1A64789E004D056D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658FCFFC1A64789E004D056D /* LoginViewController.swift */; };
 		658FD0001A64789E004D056D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 658FCFFE1A64789E004D056D /* Main.storyboard */; };
@@ -143,6 +148,8 @@
 		655DEF891A84107900931A3B /* libPods-TextCrunch.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-TextCrunch.a"; path = "Pods/build/Debug-iphoneos/libPods-TextCrunch.a"; sourceTree = "<group>"; };
 		655DEF921A8415D200931A3B /* TextCrunchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TextCrunchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		655DEF951A8415D200931A3B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		656F7C671AC5050F003A5507 /* PaymentManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentManagerTests.swift; sourceTree = "<group>"; };
+		656F7C701AC53D8F003A5507 /* PaymentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentManager.swift; sourceTree = "<group>"; };
 		658FCFF51A64789E004D056D /* TextCrunch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextCrunch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		658FCFF91A64789E004D056D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		658FCFFA1A64789E004D056D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -211,6 +218,7 @@
 		188A77A01A896B3E0068587A /* ModelControllers */ = {
 			isa = PBXGroup;
 			children = (
+				656F7C701AC53D8F003A5507 /* PaymentManager.swift */,
 				18B4899E1A7D66E000541D06 /* GoogleUserController.swift */,
 				18B4899C1A7D66D100541D06 /* FBUserController.swift */,
 				18B4899A1A7D66C100541D06 /* TwitterUserController.swift */,
@@ -277,6 +285,7 @@
 		655DEF931A8415D200931A3B /* TextCrunchTests */ = {
 			isa = PBXGroup;
 			children = (
+				656F7C671AC5050F003A5507 /* PaymentManagerTests.swift */,
 				18B489A81A82DE2F00541D06 /* UserControllerTests.swift */,
 				535A39321A870BC000D3F01B /* BookModelTests.swift */,
 				535A393D1A874C0A00D3F01B /* ListingModelTests.swift */,
@@ -543,8 +552,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				656F7C741AC53DEC003A5507 /* MessageModel.swift in Sources */,
+				656F7C731AC53DCB003A5507 /* NegotiationModel.swift in Sources */,
 				535A393F1A874C0A00D3F01B /* ListingModelTests.swift in Sources */,
 				655DEF9D1A8416DD00931A3B /* UserControllerTests.swift in Sources */,
+				656F7C721AC53D8F003A5507 /* PaymentManager.swift in Sources */,
+				656F7C681AC5050F003A5507 /* PaymentManagerTests.swift in Sources */,
 				18B312CA1A8432EA009EF22B /* UserController.swift in Sources */,
 				18B312CF1A8442B9009EF22B /* AppDelegate.swift in Sources */,
 				187896C61A8D7A020027C7A1 /* UserModel.swift in Sources */,
@@ -570,6 +583,7 @@
 				18B4899F1A7D66E000541D06 /* GoogleUserController.swift in Sources */,
 				18B489A71A82D7F300541D06 /* ListingModel.swift in Sources */,
 				560869C61A8A522600630C64 /* BillingInfoViewController.swift in Sources */,
+				656F7C711AC53D8F003A5507 /* PaymentManager.swift in Sources */,
 				53F8E5CE1A85DFC600A5D10E /* BookModel.swift in Sources */,
 				560869C81A8A524F00630C64 /* ListingViewController.swift in Sources */,
 				32ECF1D91A9D617100F65DA5 /* HomeTabBarViewController.swift in Sources */,
@@ -698,7 +712,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -737,7 +751,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "TextCrunch/TextCrunch-Bridging-Header.h";

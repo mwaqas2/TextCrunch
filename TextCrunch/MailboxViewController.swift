@@ -96,6 +96,7 @@ class MailboxViewController: UIViewController, 	UITableViewDataSource, UITableVi
 	// Called when tableView row is selected
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		selectedNegotiation = negotiations[indexPath.row]
+        
 		tableView.deselectRowAtIndexPath(indexPath, animated: false)
 		
 		// Segue to a view of the selected listing

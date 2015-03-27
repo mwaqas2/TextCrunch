@@ -13,10 +13,10 @@ class Negotiation : PFObject, PFSubclassing {
 	@NSManaged var seller: User
 	@NSManaged var messages: [Message]
 	@NSManaged var listing: Listing
-	@NSManaged var isActive: Boolean
-    @NSManaged var paymentRequest: Boolean
-    @NSManaged var sellerConfirmation: Boolean
-    @NSManaged var paymentCaptureUrl: String
+	@NSManaged var completed: Bool
+    @NSManaged var purchaseRequested: Bool
+    @NSManaged var sellerConfirmation: Bool
+    @NSManaged var paymentCaptureUrl: String?
 	
 	override class func load() {
 		self.registerSubclass()
