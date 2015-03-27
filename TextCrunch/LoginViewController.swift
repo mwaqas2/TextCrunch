@@ -40,11 +40,40 @@ class LoginViewController: UIViewController {
 			self.performSegueWithIdentifier("SearchLogin",sender: nil)
 		}
 	}
-	
-    @IBAction func facebookLoginButton(sender: AnyObject) {
-        PFFacebookUtils.logInWithPermissions(self.permissions, { (user: PFUser!, error: NSError!) -> Void in if user == nil { NSLog("Uh oh. The user cancelled the Facebook login.") } else if user.isNew { NSLog("User signed up and logged in through Facebook! \(user)") } else { NSLog("User logged in through Facebook! \(user)") } })
+
+    @IBAction func facebookLogin(sender: AnyObject) {
+        
+        PFFacebookUtils.logInWithPermissions(self.permissions, { (user: PFUser!, error: NSError!) -> Void in if user == nil { NSLog("Click the button to log in") }
+            
+        else if user.isNew {
+            FBRequest.requestForMe()?.startWithCompletionHandler({(connection:FBRequestConnection!, result:AnyObject!, error:NSError!) in
+                
+                if(error != nil){
+                    println("Error Getting ME: \(error)");
+                }
+                else{
+                    user.email = result.email
+                    user.username = result.first_name
+                    self.performSegueWithIdentifier("SearchLogin",sender: nil)
+                }
+            })
+            
+        } else {
+            FBRequest.requestForMe()?.startWithCompletionHandler({(connection:FBRequestConnection!, result:AnyObject!, error:NSError!) in
+                
+                if(error != nil){
+                    println("Error Getting ME: \(error)");
+                }
+                else{
+                    //this is here for scenarios, wherein breakpoints are not disabled
+                    user.email = result.email
+                    user.username = result.first_name
+                    self.performSegueWithIdentifier("SearchLogin",sender: nil)
+                }
+            }); //FBrequest
+            }
+        }) //PFfacebookutils
     }
-    
     
 	// Handles the Create Account button press event.
 	@IBAction func createAccountButtonPressed(sender: AnyObject) {
