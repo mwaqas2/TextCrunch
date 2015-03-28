@@ -55,9 +55,9 @@ class ListingViewController: UIViewController {
     //Sets up the state of the non-label views of the ListingView screen.
     func initializeViews(){
         doneButton.hidden = !isNewListing
-        if (data != nil){
+        if (listing.image != nil){
             imageHolder!.frame = CGRectMake(31,31,136,140)
-            imageHolder.image = UIImage(data: data!)
+            imageHolder.image = UIImage(data: listing.image!.getData())
         }
         
         // Shows edit button to seller, but not buy button

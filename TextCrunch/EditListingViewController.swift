@@ -52,16 +52,18 @@ class EditListingViewController: UIViewController {
             self.numberofbooks = getGoogleCount(self.bookISBN)
         }
         initializeGeopoint()
-        if (self.data != nil){
-            self.bookimage!.frame = CGRectMake(31,31,136,140)
-            self.bookimage.image = UIImage(data: data!)
-            self.imageExist = true
-        }
         if ((self.listing == nil) && (self.numberofbooks > 0)){
             initializeListing()
         } else if (self.numberofbooks > 0) {
             self.listing.book.isbn13 = bookISBN
             setListingElements()
+        }
+        if (self.data != nil){
+            self.bookimage!.frame = CGRectMake(31,31,136,140)
+            self.bookimage.image = UIImage(data: data!)
+            self.listing.image = PFFile(name:"image", data:data)
+            listing.save()
+            self.imageExist = true
         }
     }
     
