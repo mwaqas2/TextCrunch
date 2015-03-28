@@ -24,6 +24,7 @@ class EditListingViewController: UIViewController {
     @IBOutlet var price: UITextField! //Label for the price attached to the listing.
     @IBOutlet var comments: UITextField! //Label for any comments attached to the listing.
     
+    @IBOutlet var attachPhotoButton: UIButton!
 
 	@IBOutlet weak var locationText: UITextField!
     
@@ -60,9 +61,13 @@ class EditListingViewController: UIViewController {
         }
         if (self.data != nil){
             self.bookimage!.frame = CGRectMake(31,31,136,140)
-            self.bookimage.image = UIImage(data: data!)
-            self.listing.image = PFFile(name:"image", data:data)
-            listing.save()
+            if(self.listing.image == nil){
+                self.bookimage.image = UIImage(data: data!)
+                self.listing.image = PFFile(name:"image", data:data)
+                listing.save()
+            } else {
+                self.bookimage.image = UIImage(data: self.listing.image!.getData())
+            }
             self.imageExist = true
         }
     }
@@ -233,6 +238,11 @@ class EditListingViewController: UIViewController {
     
     
     
+    @IBAction func attachPhoto(sender: AnyObject) {
+        self.performSegueWithIdentifier("photoAttachSegue", sender:nil)
+    }
+    
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if (segue.identifier == "viewListing") {
             var svc = segue.destinationViewController as ListingViewController;
@@ -251,6 +261,9 @@ class EditListingViewController: UIViewController {
             if (imageExist & (data != nil)){
                 svc.data = data
             }
+        } else if (segue.identifier == "photoAttachSegue"){
+            var svc = segue.destinationViewController as TakePictureViewController
+            svc.listing = self.listing
         }
     }
     
