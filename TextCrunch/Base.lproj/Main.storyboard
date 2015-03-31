@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="SlN-8A-vyZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="SlN-8A-vyZ">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -1013,6 +1013,22 @@
                                     <action selector="takePhoto:" destination="hc5-Ek-cXq" eventType="touchUpInside" id="aH1-Uc-FYh"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="coE-L9-aAw">
+                                <rect key="frame" x="100" y="28" width="400" height="400"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="coE-L9-aAw" secondAttribute="height" multiplier="1:1" id="s4V-tZ-rxa"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oMl-n4-evx">
+                                <rect key="frame" x="75" y="514" width="184" height="30"/>
+                                <state key="normal" title="Add Photo From Library">
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="attachLibraryPhoto:" destination="hc5-Ek-cXq" eventType="touchUpInside" id="qnj-eb-zpj"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ajF-1i-DSS">
                                 <rect key="frame" x="404" y="476" width="96" height="30"/>
                                 <state key="normal" title="Attach Photo">
@@ -1023,20 +1039,16 @@
                                     <action selector="attachPhoto:" destination="hc5-Ek-cXq" eventType="touchUpInside" id="rM9-Xg-ZBb"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="coE-L9-aAw">
-                                <rect key="frame" x="100" y="28" width="400" height="400"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="coE-L9-aAw" secondAttribute="height" multiplier="1:1" id="s4V-tZ-rxa"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="g5C-2i-x9I" firstAttribute="leading" secondItem="coE-L9-aAw" secondAttribute="leading" id="3an-bV-0vp"/>
+                            <constraint firstItem="g5C-2i-x9I" firstAttribute="centerX" secondItem="oMl-n4-evx" secondAttribute="centerX" constant="5.5" id="8LQ-GK-Bld"/>
                             <constraint firstAttribute="centerY" secondItem="coE-L9-aAw" secondAttribute="centerY" constant="72" id="FHA-jU-Ayi"/>
                             <constraint firstItem="coE-L9-aAw" firstAttribute="trailing" secondItem="ajF-1i-DSS" secondAttribute="trailing" id="Jeq-uR-Wkn"/>
                             <constraint firstItem="h02-2G-cnd" firstAttribute="top" secondItem="g5C-2i-x9I" secondAttribute="bottom" constant="94" id="QdO-aD-Og6"/>
                             <constraint firstItem="ajF-1i-DSS" firstAttribute="top" secondItem="coE-L9-aAw" secondAttribute="bottom" constant="48" id="bDN-CM-HKE"/>
+                            <constraint firstItem="oMl-n4-evx" firstAttribute="top" secondItem="g5C-2i-x9I" secondAttribute="bottom" constant="8" id="ksf-hn-WBY"/>
                             <constraint firstAttribute="centerX" secondItem="coE-L9-aAw" secondAttribute="centerX" id="lHz-d2-qOK"/>
                             <constraint firstAttribute="trailingMargin" secondItem="coE-L9-aAw" secondAttribute="trailing" constant="84" id="lrE-BX-kne"/>
                             <constraint firstItem="g5C-2i-x9I" firstAttribute="top" secondItem="coE-L9-aAw" secondAttribute="bottom" constant="48" id="mOS-cT-qqq"/>
@@ -1048,6 +1060,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="addPhoto" destination="oMl-n4-evx" id="x7j-GN-VsE"/>
                         <outlet property="attachPhoto" destination="ajF-1i-DSS" id="Tlf-FE-Khd"/>
                         <outlet property="imageView" destination="coE-L9-aAw" id="fCh-3d-KM9"/>
                         <outlet property="takePhoto" destination="g5C-2i-x9I" id="EXz-gK-3xi"/>
@@ -1070,7 +1083,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ISBN13" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RQZ-fM-9pn">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ISBN13" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RQZ-fM-9pn">
                                 <rect key="frame" x="48" y="370" width="503" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="OAy-jh-V5K"/>
@@ -1078,7 +1091,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T8E-lr-5A6">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T8E-lr-5A6">
                                 <rect key="frame" x="49" y="246" width="503" height="35"/>
                                 <color key="backgroundColor" red="0.2156862745" green="0.64313725489999995" blue="0.4941176471" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -1091,7 +1104,7 @@
                                     <segue destination="dDK-zd-Dc6" kind="show" id="Yyt-IX-7nh"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BEw-NL-hlk">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BEw-NL-hlk">
                                 <rect key="frame" x="49" y="431" width="503" height="35"/>
                                 <color key="backgroundColor" red="0.2156862745" green="0.64313725489999995" blue="0.4941176471" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -1106,7 +1119,7 @@
                                     <action selector="SearchBooksButton:" destination="z2C-fy-ceA" eventType="touchUpInside" id="dkN-re-4U4"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xZ3-BU-4P9">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xZ3-BU-4P9">
                                 <rect key="frame" x="0.0" y="303" width="600" height="68"/>
                                 <color key="backgroundColor" red="0.6588235294" green="0.83137254900000002" blue="0.78823529410000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <attributedString key="attributedText">
@@ -1120,7 +1133,7 @@
                                 </attributedString>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e9O-vO-226">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e9O-vO-226">
                                 <rect key="frame" x="49" y="112" width="502" height="68"/>
                                 <color key="backgroundColor" red="0.6588235294" green="0.83137254900000002" blue="0.78823529410000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -1144,7 +1157,7 @@
                                     </mask>
                                 </variation>
                             </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We only take 10 or 13 characters" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TnH-y7-mTg">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="We only take 10 or 13 characters" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TnH-y7-mTg">
                                 <rect key="frame" x="49" y="408" width="252" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="IFg-s5-GSk"/>
@@ -1153,7 +1166,7 @@
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cabinet_barcode.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="vwe-5Z-8jb">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="cabinet_barcode.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="vwe-5Z-8jb">
                                 <rect key="frame" x="262" y="170" width="74" height="55"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="80" id="9JL-UB-Z53"/>
@@ -1374,13 +1387,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="image_placeholder.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="gl0-Mp-ro9">
-                                <rect key="frame" x="40" y="63" width="136" height="140"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="3Z5-Yy-ip7"/>
-                                    <constraint firstAttribute="width" constant="100" id="GbO-n8-EFL"/>
-                                </constraints>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EBQ-xY-qLb">
                                 <rect key="frame" x="54" y="28" width="108" height="30"/>
                                 <state key="normal" title="Attach a Photo">
@@ -1398,6 +1404,13 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="image_placeholder.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="gl0-Mp-ro9">
+                                <rect key="frame" x="40" y="63" width="136" height="140"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="3Z5-Yy-ip7"/>
+                                    <constraint firstAttribute="width" constant="100" id="GbO-n8-EFL"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.6588235294" green="0.83137254900000002" blue="0.78823529410000004" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -1751,7 +1764,7 @@
                                     <action selector="onSendButtonClicked:" destination="oYe-ts-w60" eventType="touchUpInside" id="N0r-vc-Kfk"/>
                                 </connections>
                             </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5g5-3C-TQb">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5g5-3C-TQb">
                                 <rect key="frame" x="16" y="491" width="424" height="30"/>
                                 <state key="normal" title="Put On Hold">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1884,9 +1897,9 @@
     <inferredMetricsTieBreakers>
         <segue reference="8iV-l4-1e5"/>
         <segue reference="fa7-S4-vYW"/>
-        <segue reference="q96-Cz-bw7"/>
-        <segue reference="LSY-0b-oyb"/>
+        <segue reference="S6U-8h-8D6"/>
         <segue reference="wZB-RO-bmV"/>
+        <segue reference="q96-Cz-bw7"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>

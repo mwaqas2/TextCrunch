@@ -14,6 +14,7 @@ class TakePictureViewController : UIViewController, UINavigationControllerDelega
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var takePhoto: UIButton!
     @IBOutlet var attachPhoto: UIButton!
+    @IBOutlet var addPhoto: UIButton!
     
     var listing: Listing!
     var data : NSData!
@@ -42,6 +43,16 @@ class TakePictureViewController : UIViewController, UINavigationControllerDelega
         
         presentViewController(imagePicker, animated:true, completion: nil);
     }
+    
+
+    @IBAction func attachLibraryPhoto(sender: AnyObject) {
+        imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .PhotoLibrary
+        
+        presentViewController(imagePicker, animated:true, completion: nil)
+    }
+    
     
     @IBAction func attachPhoto(sender: AnyObject) {
         //listing.image = PFFile(data: UIImagePNGRepresentation(imageView.image))

@@ -59,17 +59,7 @@ class EditListingViewController: UIViewController {
             self.listing.book.isbn13 = bookISBN
             setListingElements()
         }
-        if (self.data != nil){
-            self.bookimage!.frame = CGRectMake(31,31,136,140)
-            if(self.listing.image == nil){
-                self.bookimage.image = UIImage(data: data!)
-                self.listing.image = PFFile(name:"image", data:data)
-                listing.save()
-            } else {
-                self.bookimage.image = UIImage(data: self.listing.image!.getData())
-            }
-            self.imageExist = true
-        }
+            //self.bookimage!.frame = CGRectMake(31,31,136,140)
     }
     
     
@@ -108,6 +98,15 @@ class EditListingViewController: UIViewController {
         isbn13!.text = listing.book.isbn13
         price!.text = String(listing.price)
         comments!.text = listing.comment
+        if(listing.image != nil){
+            bookimage.image = UIImage(data: listing.image!.getData())
+            imageExist = true
+        } else if (data != nil && listing.image == nil){
+            bookimage.image = UIImage(data: data!)
+            imageExist = true
+            listing.image = PFFile(name: "image", data: data)
+            listing.save()
+        }
     }
     
     
