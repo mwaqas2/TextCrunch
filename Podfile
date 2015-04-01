@@ -6,6 +6,7 @@ target 'TextCrunch' do
     pod 'ParseCrashReporting', '~> 1.6.2'
     pod 'Facebook-iOS-SDK', '~> 3.23'
     pod 'ParseFacebookUtils', '~> 1.6'
+    pod 'PayPal-iOS-SDK'
 end
 
 target 'TextCrunchTests' do

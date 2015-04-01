@@ -9,12 +9,14 @@ PODS:
   - ParseFacebookUtils (1.6.5):
     - Facebook-iOS-SDK (~> 3.20)
     - Parse (~> 1.6.5)
+  - PayPal-iOS-SDK (2.9.0)
 
 DEPENDENCIES:
   - Facebook-iOS-SDK (~> 3.23)
   - Parse (~> 1.6.2)
   - ParseCrashReporting (~> 1.6.2)
   - ParseFacebookUtils (~> 1.6)
+  - PayPal-iOS-SDK
 
 SPEC CHECKSUMS:
   Bolts: dd9fb8433d67f5acc3b6b4d1379bbc5513d716c1
@@ -22,5 +24,6 @@ SPEC CHECKSUMS:
   Parse: a21db4037d70a68a4ec64ecc0f327ed475cc14f8
   ParseCrashReporting: bc2418de3e198d032e8263c68fa2b98d6bcd964e
   ParseFacebookUtils: 4d58d0f133fa1af52f3a8d5caaa55cd435118ac4
+  PayPal-iOS-SDK: 11e0adaee51c9edef35d6864ecfa927a8cf673cd
 
 COCOAPODS: 0.35.0
