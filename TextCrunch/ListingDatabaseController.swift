@@ -44,13 +44,10 @@ class ListingDatabaseController {
 		if sortByLocation
 		{
 			let currentUser: User =  UserController.getCurrentUser() as User
-			let userLocation: PFGeoPoint! = currentUser["location"] as PFGeoPoint
-			if userLocation != nil {
-				
-			} else {
-				print("nil location!!!")
+			let userGeoPoint: PFGeoPoint! = currentUser["location"] as PFGeoPoint
+			if userGeoPoint != nil {
+				query.whereKey("location", nearGeoPoint: userGeoPoint)
 			}
-			var test = 1
 		}
 		
 		// Load the Book data for each Listing result of the query
