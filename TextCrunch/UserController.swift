@@ -102,8 +102,7 @@ public class UserController {
     
     //Returns a User object representing the currently logged in user.
     class func getCurrentUser() -> User{
-        var currentUser: User = User.currentUser()
-        return currentUser
+        return User.currentUser()
     }
     
     //Returns an array of all the completed Listings in which the current user was

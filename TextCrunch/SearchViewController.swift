@@ -28,6 +28,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, CLLocationM
 	
 	@IBOutlet weak var titleSortButton: UIButton!
 	@IBOutlet weak var authorSortButton: UIButton!
+	@IBOutlet weak var locationSortButton: UIButton!
 	
 	@IBOutlet weak var titleUpArrow: UIImageView!
 	@IBOutlet weak var titleDownArrow: UIImageView!
@@ -214,7 +215,20 @@ class SearchViewController: UIViewController, UITableViewDataSource, CLLocationM
 		updateSortArrows()
 		
 		currentSearchKeywords = getSearchKeywords()
-		ListingDatabaseController.searchListings(currentSearchKeywords, callback: updateListings)
+		ListingDatabaseController.searchListings(currentSearchKeywords, sortByLocation: false, callback: updateListings)
+	}
+	
+	// Called when location sort button clicked action occurs. Queries the parse
+	// database for active Listings that match the current search keywords. Returns
+	// the query results in order of closest listing to the current user
+	@IBAction func onLocationSortButtonClicked(sender: AnyObject) {
+		if currentSearchKeywords.count != 0 {
+			// Update sort UI elements
+			currentSortMode = SortMode.None
+		
+			// Search using the previous keywords, but sort the results by location
+			ListingDatabaseController.searchListings(currentSearchKeywords, sortByLocation: true, callback: updateListings)
+		}
 	}
 	
 	// Called when title sort button clicked action occurs. Sorts the query
