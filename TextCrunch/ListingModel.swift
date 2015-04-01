@@ -17,6 +17,8 @@ class Listing : PFObject, PFSubclassing {
     @NSManaged var comment: String?
     @NSManaged var isActive: Bool
     @NSManaged var isOnHold: Bool
+    @NSManaged var image: PFFile?
+    @NSManaged var thumbnail: PFFile?
 
     override class func load() {
         self.registerSubclass()
