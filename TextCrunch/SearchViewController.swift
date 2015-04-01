@@ -90,13 +90,10 @@ class SearchViewController: UIViewController, UITableViewDataSource, CLLocationM
 		cell.priceLabel?.text = "$ " + String(listing.price)
         if(listing.image != nil){
             cell.listingImage.image = UIImage(data: listing.image!.getData())
+        } else {
+            let image = UIImage(named: "effective_cpp.jpeg")
+            cell.listingImage.image = image
         }
-		
-		// TODO: Add book image to cell
-		
-		let image = UIImage(named: "effective_cpp.jpeg")
-		cell.listingImage.image = image
-		
 		return cell
 	}
 	
