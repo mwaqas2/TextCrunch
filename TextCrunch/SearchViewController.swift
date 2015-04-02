@@ -20,6 +20,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, CLLocationM
 		case AuthorDec
 		case PriceInc
 		case PriceDec
+		case LocationDec
 	}
 	
 	@IBOutlet weak var searchBar: UISearchBar!
@@ -28,6 +29,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, CLLocationM
 	
 	@IBOutlet weak var titleSortButton: UIButton!
 	@IBOutlet weak var authorSortButton: UIButton!
+	@IBOutlet weak var locationSortButton: UIButton!
 	
 	@IBOutlet weak var titleUpArrow: UIImageView!
 	@IBOutlet weak var titleDownArrow: UIImageView!
@@ -35,6 +37,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, CLLocationM
 	@IBOutlet weak var authorUpArrow: UIImageView!
 	@IBOutlet weak var priceDownArrow: UIImageView!
 	@IBOutlet weak var priceUpArrow: UIImageView!
+	@IBOutlet weak var locationArrowDown: UIImageView!
 
 	
 	// Array of Listings returned by a search
@@ -144,6 +147,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, CLLocationM
 		var hideAuthorUp: Bool = true
 		var hidePriceDown: Bool = true
 		var hidePriceUp: Bool = true
+		var hideLocationDown: Bool = true
 		
 		switch (currentSortMode) {
 		case SortMode.TitleInc:
@@ -164,6 +168,9 @@ class SearchViewController: UIViewController, UITableViewDataSource, CLLocationM
 		case SortMode.PriceDec:
 			hidePriceDown = false
 			break
+		case SortMode.LocationDec:
+			hideLocationDown = false
+			break
 		default:
 			break
 		}
@@ -174,6 +181,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, CLLocationM
 		authorUpArrow.hidden = hideAuthorUp
 		priceDownArrow.hidden = hidePriceDown
 		priceUpArrow.hidden = hidePriceUp
+		locationArrowDown.hidden = hideLocationDown
 	}
 	
 	// Sorts the array of listings returned by the current search according to the
@@ -214,7 +222,21 @@ class SearchViewController: UIViewController, UITableViewDataSource, CLLocationM
 		updateSortArrows()
 		
 		currentSearchKeywords = getSearchKeywords()
-		ListingDatabaseController.searchListings(currentSearchKeywords, callback: updateListings)
+		ListingDatabaseController.searchListings(currentSearchKeywords, sortByLocation: false, callback: updateListings)
+	}
+	
+	// Called when location sort button clicked action occurs. Queries the parse
+	// database for active Listings that match the current search keywords. Returns
+	// the query results in order of closest listing to the current user
+	@IBAction func onLocationSortButtonClicked(sender: AnyObject) {
+		if currentSearchKeywords.count != 0 {
+			// Update sort UI elements
+			currentSortMode = SortMode.LocationDec
+			updateSortArrows()
+		
+			// Search using the previous keywords, but sort the results by location
+			ListingDatabaseController.searchListings(currentSearchKeywords, sortByLocation: true, callback: updateListings)
+		}
 	}
 	
 	// Called when title sort button clicked action occurs. Sorts the query

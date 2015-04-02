@@ -25,7 +25,6 @@ class GPS: NSObject, CLLocationManagerDelegate {
         // inside location manager function
         // self.locationManager.stopUpdatingLocation()
 
-        print("here")
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -47,20 +46,20 @@ class GPS: NSObject, CLLocationManagerDelegate {
     
     //Sometimes this doesnt get called
       func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-        print("here2")
+
         var latValue = self.locationManager.location.coordinate.latitude
         var lonValue = self.locationManager.location.coordinate.longitude
         
         //just update it here
         self.latitude = (latValue) as Double
         self.longitude = (lonValue) as Double
-        print("user")
+ 
         var point:PFGeoPoint = PFGeoPoint(location: CLLocation(latitude: self.latitude, longitude: self.longitude)!)
         var userlocation =  UserController.getCurrentUser()
         print(userlocation)
         userlocation["location"] = point
         userlocation.save()
-        print("here3")
+
         self.locationManager.stopUpdatingLocation()
 
     }

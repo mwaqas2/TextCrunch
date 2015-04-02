@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="SlN-8A-vyZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="SlN-8A-vyZ">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
@@ -895,6 +895,23 @@
                                     <constraint firstAttribute="height" constant="15" id="rRQ-3r-YNV"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xXr-NA-IXm">
+                                <rect key="frame" x="267" y="117" width="102" height="32"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="Show Nearest">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onLocationSortButtonClicked:" destination="7JX-EG-LbB" eventType="touchUpInside" id="n0U-mn-2p6"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="down_arrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="IxP-y6-iNG">
+                                <rect key="frame" x="377" y="118" width="32" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="15" id="2bx-gi-ZUu"/>
+                                    <constraint firstAttribute="height" constant="15" id="3am-OV-fPN"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.59999999999999998" green="0.79607843140000001" blue="0.74117647060000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -906,14 +923,18 @@
                             <constraint firstItem="4Bp-QA-NVg" firstAttribute="leading" secondItem="Hgd-nY-zeI" secondAttribute="leading" constant="15" id="9ir-PQ-U45"/>
                             <constraint firstItem="azS-2Q-aag" firstAttribute="leading" secondItem="Hgd-nY-zeI" secondAttribute="leading" constant="1" id="BJb-CA-gLe"/>
                             <constraint firstAttribute="trailing" secondItem="FRS-5z-oMQ" secondAttribute="trailing" id="EZR-lp-iMR"/>
+                            <constraint firstItem="IxP-y6-iNG" firstAttribute="leading" secondItem="xXr-NA-IXm" secondAttribute="trailing" constant="3" id="FlW-zG-nwq"/>
                             <constraint firstItem="CYF-m9-U0R" firstAttribute="top" secondItem="azS-2Q-aag" secondAttribute="bottom" constant="7" id="HJZ-px-wH4"/>
                             <constraint firstItem="CYF-m9-U0R" firstAttribute="leading" secondItem="s4m-hd-4xt" secondAttribute="trailing" constant="3" id="Ic0-TI-YAX"/>
                             <constraint firstAttribute="trailing" secondItem="NF5-1E-VPr" secondAttribute="trailing" constant="1" id="IuB-ih-riA"/>
+                            <constraint firstItem="xXr-NA-IXm" firstAttribute="leading" secondItem="JpY-hG-xfn" secondAttribute="trailing" constant="7" id="J5M-Wq-0Mq"/>
                             <constraint firstItem="FRS-5z-oMQ" firstAttribute="top" secondItem="u4O-iX-nMh" secondAttribute="bottom" id="JrR-No-scs"/>
                             <constraint firstItem="FER-7b-pWq" firstAttribute="top" secondItem="azS-2Q-aag" secondAttribute="bottom" constant="8" id="K0Y-gh-XJ0"/>
                             <constraint firstItem="uIc-yO-7N6" firstAttribute="top" secondItem="azS-2Q-aag" secondAttribute="bottom" constant="7" id="LzI-mZ-A3G"/>
                             <constraint firstItem="s4m-hd-4xt" firstAttribute="top" secondItem="azS-2Q-aag" secondAttribute="bottom" constant="1" id="Pkx-8F-M3H"/>
                             <constraint firstItem="k5Q-Bn-c02" firstAttribute="leading" secondItem="4Bp-QA-NVg" secondAttribute="trailing" constant="4" id="T99-9H-o4p"/>
+                            <constraint firstItem="xXr-NA-IXm" firstAttribute="centerY" secondItem="s4m-hd-4xt" secondAttribute="centerY" id="Uuo-bY-lfI"/>
+                            <constraint firstItem="IxP-y6-iNG" firstAttribute="centerY" secondItem="CYF-m9-U0R" secondAttribute="centerY" constant="0.5" id="Xrt-zU-au6"/>
                             <constraint firstItem="NF5-1E-VPr" firstAttribute="top" secondItem="4Bp-QA-NVg" secondAttribute="bottom" constant="5" id="ZmI-f3-3kD"/>
                             <constraint firstItem="JpY-hG-xfn" firstAttribute="top" secondItem="azS-2Q-aag" secondAttribute="bottom" constant="8" id="aYS-nG-SRq"/>
                             <constraint firstItem="uIc-yO-7N6" firstAttribute="leading" secondItem="v3v-Mm-HDl" secondAttribute="trailing" constant="5" id="b1O-Ra-FHy"/>
@@ -934,6 +955,8 @@
                         <outlet property="authorSortButton" destination="v3v-Mm-HDl" id="4sz-TK-aej"/>
                         <outlet property="authorUpArrow" destination="FER-7b-pWq" id="5Td-lq-w3b"/>
                         <outlet property="listingTableView" destination="NF5-1E-VPr" id="WM7-Ge-ody"/>
+                        <outlet property="locationArrowDown" destination="IxP-y6-iNG" id="4hS-N9-1bR"/>
+                        <outlet property="locationSortButton" destination="xXr-NA-IXm" id="Ps4-GN-VKe"/>
                         <outlet property="priceDownArrow" destination="CYF-m9-U0R" id="uPG-r2-sAb"/>
                         <outlet property="priceUpArrow" destination="JpY-hG-xfn" id="FUG-qe-sXL"/>
                         <outlet property="searchBar" destination="azS-2Q-aag" id="J2O-95-0j6"/>
@@ -946,7 +969,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k9t-sY-eu0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2874.375" y="-140.49295774647885"/>
+            <point key="canvasLocation" x="2874" y="-141"/>
         </scene>
         <!--Home Tab Bar View Controller-->
         <scene sceneID="BBW-cg-m1y">
@@ -1800,7 +1823,7 @@
                                     <action selector="onSendButtonClicked:" destination="oYe-ts-w60" eventType="touchUpInside" id="N0r-vc-Kfk"/>
                                 </connections>
                             </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5g5-3C-TQb">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5g5-3C-TQb">
                                 <rect key="frame" x="16" y="491" width="424" height="30"/>
                                 <state key="normal" title="Put On Hold">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>

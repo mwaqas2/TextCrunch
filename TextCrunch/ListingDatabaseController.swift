@@ -14,7 +14,7 @@ class ListingDatabaseController {
 	// Type method that searches the parse db for listings that match
 	// the provided query. Accepts a callback function that is called when
 	// the query is complete
-	class func searchListings(searchKeywords: [String], callback: ([Listing]) -> Void) {
+	class func searchListings(searchKeywords: [String], sortByLocation: Bool, callback: ([Listing]) -> Void) {
 		// TODO: add search by subject matter
 		
 		// Search for Listing with Books whose title matches the keywords
@@ -38,6 +38,16 @@ class ListingDatabaseController {
         
         //Only consider listings which are not on hold.
         query.whereKey("isOnHold", equalTo: false)
+		
+		// If results should be sorted by location, return results in ascending distance from
+		// current user location
+		if sortByLocation {
+			let currentUser: User =  UserController.getCurrentUser() as User
+			let userGeoPoint: PFGeoPoint! = currentUser["location"] as PFGeoPoint
+			if userGeoPoint != nil {
+				query.whereKey("location", nearGeoPoint: userGeoPoint)
+			}
+		}
 		
 		// Load the Book data for each Listing result of the query
 		query.includeKey("book")
