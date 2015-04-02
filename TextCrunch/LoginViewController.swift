@@ -20,6 +20,8 @@ class LoginViewController: UIViewController {
 	let permissions = ["public_profile"]
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "pentagon.png")!)
+
 		showLoginWarning(false, showPasswordWarning: false)
     }
 
