@@ -90,6 +90,9 @@ class SellerListingViewTableDataSource: NSObject, UITableViewDataSource{
         }
         if let imageThumb = cell.viewWithTag(100) as? UIImageView{
             imageThumb.frame = CGRectMake(0, 0, 100, 100)
+            if(listing.image != nil){
+                imageThumb.image = UIImage(data: listing.image!.getData())
+            }
             //Weird issues with the image thumbnail moving to the center of the cell, can't seem to fix in storyboard,
             //so the location is set here programmatically.
             //Maybe the view's width and height are changing rather than location?

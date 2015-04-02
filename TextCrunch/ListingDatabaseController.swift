@@ -41,8 +41,7 @@ class ListingDatabaseController {
 		
 		// If results should be sorted by location, return results in ascending distance from
 		// current user location
-		if sortByLocation
-		{
+		if sortByLocation {
 			let currentUser: User =  UserController.getCurrentUser() as User
 			let userGeoPoint: PFGeoPoint! = currentUser["location"] as PFGeoPoint
 			if userGeoPoint != nil {

@@ -48,15 +48,18 @@ class NegotiationDatabaseController {
 	// Type method that searches the parse db for listings that match
 	// the provided query. Accepts a callback function that is called when
 	// the query is complete
-	class func getListingNegotiation(listing: Listing, buyer: User?) -> Negotiation? {
-		if (buyer == nil) {
-			return nil
-		}
+	class func getListingNegotiation(listing: Listing, isSeller: Bool) -> Negotiation? {
+
+        var search: String = "seller"
+        
+        if !isSeller {
+            search = "buyer"
+        }
 		
 		// Search for Negotiations where the user ID matches that of the current user
 		var negotiationQuery = PFQuery(className: "Negotiation")
 		negotiationQuery.whereKey("listing", equalTo:listing)
-		negotiationQuery.whereKey("buyer", equalTo:buyer)
+		negotiationQuery.whereKey(search, equalTo:PFUser.currentUser() as User)
 		negotiationQuery.includeKey("messages")
 		negotiationQuery.includeKey("buyer")
 		negotiationQuery.includeKey("sender")

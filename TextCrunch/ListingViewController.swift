@@ -11,7 +11,8 @@ import UIKit
 
 class ListingViewController: UIViewController {
     
-    @IBOutlet var imageHolder: UIImageView!//UIImageView showing a thumbnail of the image attached to the listing.
+
+    @IBOutlet var imageButton: UIButton!
 
     @IBOutlet weak var price: UILabel!//UILabel for the selected Listing's price.
     @IBOutlet weak var condition: UILabel!//UILabel for the selected Listing's condition.
@@ -55,9 +56,9 @@ class ListingViewController: UIViewController {
     //Sets up the state of the non-label views of the ListingView screen.
     func initializeViews(){
         doneButton.hidden = !isNewListing
-        if (data != nil){
-            imageHolder!.frame = CGRectMake(31,31,136,140)
-            imageHolder.image = UIImage(data: data!)
+        if (listing.image != nil){
+            //imageHolder!.frame = CGRectMake(31,31,136,140)
+            imageButton.setImage(UIImage(data: listing.image!.getData()), forState: .Normal)
         }
         
         // Shows edit button to seller, but not buy button
@@ -142,6 +143,11 @@ class ListingViewController: UIViewController {
         return
     }
     
+    @IBAction func onImageButtonClicked(sender: AnyObject) {
+        if(listing.image != nil){
+            self.performSegueWithIdentifier("viewPictureSegue", sender: nil)
+        }
+    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if (segue.identifier == "editListing") {
@@ -151,7 +157,6 @@ class ListingViewController: UIViewController {
                 //image data
                 svc.data = data
             }
-            
             svc.bookISBN = self.listing.book.isbn13
             svc.listing = self.listing
 			svc.isNewListing = false
@@ -161,7 +166,10 @@ class ListingViewController: UIViewController {
 			svc.listing = listing
 			svc.isNewListing = false
 			svc.seguedFromMailbox = false
-		}
+        } else if (segue.identifier == "viewPictureSegue"){
+            var svc = segue.destinationViewController as ViewPictureViewController
+            svc.image = UIImage(data: listing.image!.getData())
+        }
     }
 	
     override func didReceiveMemoryWarning() {

@@ -12,7 +12,8 @@
 import UIKit
 import Foundation
 
-class NegotiationViewController : UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate {
+class NegotiationViewController : UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, PayPalFuturePaymentDelegate {
+    
 	@IBOutlet weak var messageTextView: UITextView!
 	@IBOutlet weak var sendButton: UIButton!
 	@IBOutlet weak var messageTableView: UITableView!
@@ -30,6 +31,7 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
 	var isNewNegotiation = false
     var userIsSeller = false
 	var seguedFromMailbox = false
+    var config = PayPalConfiguration()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -71,7 +73,10 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
 			buyerHoldWarningLabel.hidden = !listing.isOnHold
             
             // hide purchase button if on hold
-            purchaseButton.hidden = listing.isOnHold
+            if (listing.isOnHold || negotiation.purchaseRequested) {
+                purchaseButton.hidden = true
+            }
+            
 		}
 		
 		// Set navigation bar title
@@ -88,8 +93,19 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
 		if !seguedFromMailbox {
 			getListingNegotiation()
 		}
-		
-		NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "reloadMessageViewTable:", userInfo: nil, repeats: true)
+        
+        // Sets some handy sandbox defaults for PayPal
+        config.forceDefaultsInSandbox = true
+        config.sandboxUserPassword = "test1234"
+        
+        // TODO in production use currentUser for default email
+        config.defaultUserEmail = "me-buyer@derekdowling.com"
+        config.rememberUser = true
+        config.merchantName = "TxtCrunch"
+        config.merchantPrivacyPolicyURL = NSURL(string: "http://txtcrunch.com/privacy")
+        config.merchantUserAgreementURL = NSURL(string: "http://txtcrunch.com/user-agreement")
+        
+        NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "updateNegotiationState:", userInfo: nil, repeats: true)
 	}
 	
 	override func didReceiveMemoryWarning() {
@@ -107,8 +123,7 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
 	// If not, create a new negotiation
 	func getListingNegotiation() {
 		// Search for Negotiations who's buyer matches that of the current listing
-		var listingBuyer: User = UserController.getCurrentUser()
-		var resultNegotiation: Negotiation? = NegotiationDatabaseController.getListingNegotiation(listing, buyer: listingBuyer)
+		var resultNegotiation: Negotiation? = NegotiationDatabaseController.getListingNegotiation(listing, isSeller: self.userIsSeller)
 		
 		if (resultNegotiation != nil) {
 			negotiation = resultNegotiation!
@@ -135,12 +150,49 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
 		messageTableView.reloadData()
 	}
 	
-	func reloadMessageViewTable(timer:NSTimer!) {
-		var listingBuyer: User? = negotiation.listing.buyer?.fetchIfNeeded() as? User
-		var resultNegotiation: Negotiation? = NegotiationDatabaseController.getListingNegotiation(listing, buyer: listingBuyer)
+    // Called via timer, in a perfect world we could scrap (pieces of) this for
+    // push notifications
+	func updateNegotiationState(timer:NSTimer!) {
+        
+		var resultNegotiation: Negotiation? = NegotiationDatabaseController.getListingNegotiation(listing, isSeller: self.userIsSeller)
 		
 		if (resultNegotiation != nil) {
-			negotiation = resultNegotiation!
+            // ask the seller if they'd like to sell if the buyer has offered
+            if  (self.negotiation.purchaseRequested == false &&
+                resultNegotiation?.purchaseRequested == true &&
+                userIsSeller == true
+            )
+            {
+                self.confirmSale()
+                
+            // if the seller confirms, pay up and complete from the user side
+            // because we need their PayPal metadata
+            } else if (
+                self.negotiation.sellerConfirmation == false &&
+                resultNegotiation?.sellerConfirmation == true &&
+                userIsSeller == false
+            ) {
+                var paypalMetaDataID = PayPalMobile.clientMetadataID()
+                if (PaymentManager.charge(self.negotiation, buyerMetaDataId: paypalMetaDataID))
+                {
+                    resultNegotiation?.completed = true
+                    //resultNegotiation?.listing.isActive = false
+                    resultNegotiation?.listing.save()
+                    resultNegotiation?.save()
+                }
+                else {
+                    // TODO error handling
+                }
+            }
+            
+            // update with newest negotiation, TODO: perhaps check if this is dirty
+            // or something so we don't end up in a bizarre state
+            self.negotiation = resultNegotiation!
+            
+            // TODO fix this, it's not being called
+            if (self.negotiation.completed == true) {
+                self.notifySuccess()
+            }
 		}
 		
 		messageTableView.reloadData()
@@ -205,6 +257,7 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
     }
     
     @IBAction func onSoldButtonClicked(sender: AnyObject) {
+        
         var alert = UIAlertController(title: "Mark as Sold", message: "Warning: Once you mark a listing as sold it will no longer show up in search results and this cannot be reversed. Continue?", preferredStyle: UIAlertControllerStyle.Alert);
         alert.addAction(UIAlertAction(title: "I'm Sure", style: UIAlertActionStyle.Default, handler: {
             action in switch action.style{
@@ -218,7 +271,9 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
                 break
             }
         }))
+        
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
+        
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
@@ -236,7 +291,7 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
             
             action in switch action.style {
                 case .Default:
-                    self.handlePayment()
+                    self.prepareBuyer()
                 break
             default:
                 break
@@ -249,14 +304,167 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
         
     }
     
-    // Called when a user confirms to purchase a textbook
-    func handlePayment() {
+    // Called when the entire payment flow has completed successfully
+    func notifySuccess() {
+        var alert = UIAlertController(
+            title: "Transaction Complete",
+            message: "The Textbook was exchanged successfully",
+            preferredStyle: UIAlertControllerStyle.Alert
+        );
         
-//        buyer = self.negotiation.buyer
-//        
-//        if !buyer.buyerRefreshToken {
-//            // TODO PAYPAL AUTH
-//        }
+        alert.addAction(UIAlertAction(
+            title: "Ok",
+            style: UIAlertActionStyle.Default,
+            handler: {
+                
+                action in switch action.style {
+                case .Default:
+                    // TODO SEGUE HOME
+                    break
+                default:
+                    break
+                }
+                
+        }))
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func confirmSale() {
+        
+        var alert = UIAlertController(
+            title: "Confirm Sale",
+            message: "Are you sure you'd like to sell this textbook?",
+            preferredStyle: UIAlertControllerStyle.Alert
+        );
+        
+        alert.addAction(UIAlertAction(
+            title: "Yes",
+            style: UIAlertActionStyle.Default,
+            handler: {
+                action in switch action.style {
+                case .Default:
+                    self.negotiation.sellerConfirmation = true
+                    self.negotiation.save()
+                    // TODO pending message, spinner maybe
+                    break
+                default:
+                    break
+                }
+                
+        }))
+        
+        // TODO: need to reset state if the seller bails
+        alert.addAction(UIAlertAction(
+            title: "Cancel",
+            style: UIAlertActionStyle.Cancel,
+            handler: {
+                action in switch action.style {
+                case .Cancel:
+                    // if seller cancels, reset flow
+                    self.negotiation.purchaseRequested = false
+                    self.negotiation.save()
+                    break
+                default:
+                    break
+                }
+        }))
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+        
+    }
+    
+    // Called when a buyer initiates textbook purchase. Checks PayPal
+    // authorization and then prepares a charge
+    func prepareBuyer() {
+        
+        PayPalMobile.preconnectWithEnvironment(PayPalEnvironmentSandbox)
+        
+        var buyer: User? = negotiation.listing.buyer?.fetchIfNeeded() as? User
+        
+        if buyer?.buyerRefreshToken == nil {
+        
+            // call PayPals future payment OAuth Controller, result handler is
+            // "payPalFuturePaymentViewController" function below
+            let newPaymentInfoController = PayPalFuturePaymentViewController(configuration: config, delegate: self)
+            presentViewController(newPaymentInfoController, animated: true, completion: nil)
+        
+        } else {
+            // use existing PayPal info to prepare a payment
+            self.doubleCheckBuyer()
+        }
+    }
+    
+    // Called when a buyer completes the Future Payment Flow
+    func payPalFuturePaymentViewController(
+        futurePaymentViewController: PayPalFuturePaymentViewController!,
+        didAuthorizeFuturePayment response: [NSObject : AnyObject]!
+        ) {
+            
+            // send authorizaiton to your server to get refresh token.
+            futurePaymentViewController?.dismissViewControllerAnimated(true, completion: { () -> Void in
+                
+                if (self.convertPaymentCodeToToken(response)) {
+                    self.doubleCheckBuyer()
+                } else {
+                    // TODO: error
+                }
+                
+            })
+    }
+    
+    func doubleCheckBuyer() {
+        var alert = UIAlertController(
+            title: "Confirm Purchase",
+            message: "Press Yes To Finalize",
+            preferredStyle: UIAlertControllerStyle.Alert
+        );
+        
+        alert.addAction(UIAlertAction(
+            title: "Yes",
+            style: UIAlertActionStyle.Default,
+            handler: {
+                
+                action in switch action.style {
+                case .Default:
+                    self.negotiation.purchaseRequested = true
+                    self.negotiation.save()
+                    self.purchaseButton.hidden = true
+                    break
+                default:
+                    break
+                }
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    // Handles making the appropriate calls to extract and save a the user's paypal info
+    // for sellers
+    func convertPaymentCodeToToken(response: [NSObject : AnyObject]!) -> Bool {
+        
+        var response = response["response"] as? [String: String]
+        
+        if response!["code"] != nil {
+            
+            var userEmail = User.currentUser().email
+            var code = response?["code"]
+            
+            if code? != nil {
+                return PaymentManager.saveCodeAsToken(userEmail, code: code!)
+            }
+        }
+        
+        // if we get to here something went wrong
+        return false
+    }
+    
+    // Called when a user cancels authorizing a payment
+    func payPalFuturePaymentDidCancel(futurePaymentViewController: PayPalFuturePaymentViewController!) {
+        println("PayPal Future Payment Authorizaiton Canceled")
+        futurePaymentViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
     
 }

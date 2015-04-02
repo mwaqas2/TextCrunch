@@ -24,6 +24,7 @@ class EditListingViewController: UIViewController {
     @IBOutlet var price: UITextField! //Label for the price attached to the listing.
     @IBOutlet var comments: UITextField! //Label for any comments attached to the listing.
     
+    @IBOutlet var attachPhotoButton: UIButton!
 
 	@IBOutlet weak var locationText: UITextField!
     
@@ -52,17 +53,13 @@ class EditListingViewController: UIViewController {
             self.numberofbooks = getGoogleCount(self.bookISBN)
         }
         initializeGeopoint()
-        if (self.data != nil){
-            self.bookimage!.frame = CGRectMake(31,31,136,140)
-            self.bookimage.image = UIImage(data: data!)
-            self.imageExist = true
-        }
         if ((self.listing == nil) && (self.numberofbooks > 0)){
             initializeListing()
         } else if (self.numberofbooks > 0) {
             self.listing.book.isbn13 = bookISBN
             setListingElements()
         }
+            //self.bookimage!.frame = CGRectMake(31,31,136,140)
     }
     
     
@@ -101,6 +98,15 @@ class EditListingViewController: UIViewController {
         isbn13!.text = listing.book.isbn13
         price!.text = String(listing.price)
         comments!.text = listing.comment
+        if(listing.image != nil){
+            bookimage.image = UIImage(data: listing.image!.getData())
+            imageExist = true
+        } else if (data != nil && listing.image == nil){
+            bookimage.image = UIImage(data: data!)
+            imageExist = true
+            listing.image = PFFile(name: "image", data: data)
+            listing.save()
+        }
     }
     
     
@@ -231,6 +237,11 @@ class EditListingViewController: UIViewController {
     
     
     
+    @IBAction func attachPhoto(sender: AnyObject) {
+        self.performSegueWithIdentifier("photoAttachSegue", sender:nil)
+    }
+    
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if (segue.identifier == "viewListing") {
             var svc = segue.destinationViewController as ListingViewController;
@@ -249,6 +260,9 @@ class EditListingViewController: UIViewController {
             if (imageExist & (data != nil)){
                 svc.data = data
             }
+        } else if (segue.identifier == "photoAttachSegue"){
+            var svc = segue.destinationViewController as TakePictureViewController
+            svc.listing = self.listing
         }
     }
     

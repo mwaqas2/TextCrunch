@@ -1,0 +1,14 @@
+{
+    "applications": {
+        "TextCrunch": {
+            "applicationId": "bd9pkI4jclGiICv1xM5YQiDfsxUD4SB4c3jQvBHW", 
+            "masterKey": "cIcfm0w4gjL4T8j7FjXVnrkOgzU6MJ1VZk51Do6c"
+        }, 
+        "_default": {
+            "link": "TextCrunch"
+        }
+    }, 
+    "global": {
+        "parseVersion": "1.3.4"
+    }
+}

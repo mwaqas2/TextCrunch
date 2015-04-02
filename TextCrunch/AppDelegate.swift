@@ -23,10 +23,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Book.registerSubclass()
         Parse.setApplicationId("bd9pkI4jclGiICv1xM5YQiDfsxUD4SB4c3jQvBHW", clientKey: "nyPjmHMJAacFQVQSg7CTxZj3DWp1pKW9RBVsOPGK")
         PFFacebookUtils.initializeFacebook()
-        //var object = PFObject(className: "TestClass")
-        //object.addObject("Banana", forKey: "favoriteFood")
-        //object.addObject("Chocolate", forKey: "favoriteIceCream")
-        //object.save()
+        
+        PayPalMobile.initializeWithClientIdsForEnvironments([PayPalEnvironmentSandbox: "AT_zVdLhRy_IwuNqTMBFPVImboNVwfR6CJXhIp62uSMHcsZhKD3X6y9d-Snn3i679gA8M8yP5Qk32ZEa"])
+        
+        
         return true
     }
 

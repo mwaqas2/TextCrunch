@@ -8,3 +8,5 @@
 
 #import <FacebookSDK/FacebookSDK.h>
 #import <ParseFacebookUtils/PFFacebookUtils.h>
+
+#import <PayPalMobile.h>
