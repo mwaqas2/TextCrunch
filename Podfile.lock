@@ -19,7 +19,7 @@ DEPENDENCIES:
   - PayPal-iOS-SDK
 
 SPEC CHECKSUMS:
-  Bolts: dd9fb8433d67f5acc3b6b4d1379bbc5513d716c1
+  Bolts: f8e2f94edbf9fec7bb8de5ecaaa3aa6b7de6f64e
   Facebook-iOS-SDK: cd87f0b2f0c1d9574b44e8fa2baacc275524bac3
   Parse: a21db4037d70a68a4ec64ecc0f327ed475cc14f8
   ParseCrashReporting: bc2418de3e198d032e8263c68fa2b98d6bcd964e
