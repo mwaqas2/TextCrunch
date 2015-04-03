@@ -36,6 +36,7 @@ class MailboxViewController: UIViewController, 	UITableViewDataSource, UITableVi
 	var negotiationQuery:PFQuery!
 	var negotiations: [Negotiation] = []
 	var viewBuyerNegotiations:Bool!
+	var timer: NSTimer!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -47,7 +48,7 @@ class MailboxViewController: UIViewController, 	UITableViewDataSource, UITableVi
 		viewBuyerNegotiations = true
 		
 		// Register timed callback the refreshes the negotiation list every 5 seconds
-		NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "reloadNegotiationViewTable:", userInfo: nil, repeats: true)
+		timer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "reloadNegotiationViewTable:", userInfo: nil, repeats: true)
 		
 		NegotiationDatabaseController.getUserNegotiations(viewBuyerNegotiations, callback: updateNegotiations)
     }
@@ -110,6 +111,23 @@ class MailboxViewController: UIViewController, 	UITableViewDataSource, UITableVi
 		
 		// Update the table view
 		NegotiationDatabaseController.getUserNegotiations(viewBuyerNegotiations, callback: updateNegotiations)
+	}
+	
+	// Called when the current view appears
+	override func viewDidAppear(animated: Bool) {
+		// Instantiate the timer if the timer has been destroyed
+		if timer == nil {
+			timer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "reloadNegotiationViewTable:", userInfo: nil, repeats: true)
+		}
+	}
+	
+	// Called when the current view disappears
+	override func viewDidDisappear(animated: Bool) {
+		// Invalidate the timer when leaving the view
+		if timer != nil {
+			timer.invalidate()
+			timer = nil
+		}
 	}
 	
 	// Called before seguing to another view

@@ -35,6 +35,7 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
     var userIsSeller = false
 	var seguedFromMailbox = false
     var config = PayPalConfiguration()
+	var timer: NSTimer!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -108,7 +109,7 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
         config.merchantPrivacyPolicyURL = NSURL(string: "http://txtcrunch.com/privacy")
         config.merchantUserAgreementURL = NSURL(string: "http://txtcrunch.com/user-agreement")
         
-        NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "updateNegotiationState:", userInfo: nil, repeats: true)
+        timer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "updateNegotiationState:", userInfo: nil, repeats: true)
 	}
 	
 	override func didReceiveMemoryWarning() {
@@ -135,43 +136,30 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
 	
 	// Sends a message between users when the send button is pressed
 	@IBAction func onSendButtonClicked(sender: AnyObject) {
-		var message = Message()
-		message.sender = UserController.getCurrentUser()
+		if !messageTextView.text.isEmpty {
+			var message = Message()
+			message.sender = UserController.getCurrentUser()
 		
-		if (UserController.getCurrentUser() == negotiation.seller) {
-			message.receiver = negotiation.buyer
-            installation["selleruser"] = negotiation.seller
-            installation["buyeruser"] = negotiation.buyer
-            installation.saveInBackground()
-            
-            /*pushQuery.whereKey("buyer", equalTo: negotiation.buyer.username)
-            
-            let push = PFPush()
-            push.setQuery(pushQuery)
-            push.setMessage(message.content)
-            push.sendPushInBackground()*/
-            
-		} else {
-			message.receiver = negotiation.seller
-            installation["buyeruser"] = negotiation.buyer
-            installation["selleruser"] = negotiation.seller
-            installation.saveInBackground()
-            /*
-            pushQuery.whereKey("seller", equalTo: negotiation.seller.username)
-
-            let push = PFPush()
-            push.setQuery(pushQuery)
-            push.setMessage(message.content)
-            push.sendPushInBackground()*/
+			if (UserController.getCurrentUser() == negotiation.seller) {
+				message.receiver = negotiation.buyer
+				installation["selleruser"] = negotiation.seller
+				installation["buyeruser"] = negotiation.buyer
+				installation.saveInBackground()
+			} else {
+				message.receiver = negotiation.seller
+				installation["buyeruser"] = negotiation.buyer
+				installation["selleruser"] = negotiation.seller
+				installation.saveInBackground()
+			}
+		
+			message.content = messageTextView.text
+			negotiation.messages.append(message)
+			negotiation.save()
+		
+			// Clear the textview when message is sent.
+			messageTextView.text = ""
+			messageTableView.reloadData()
 		}
-		
-		message.content = messageTextView.text
-		negotiation.messages.append(message)
-		negotiation.save()
-		
-		// Clear the textview when message is sent.
-		messageTextView.text = ""
-		messageTableView.reloadData()
 	}
 	
     // Called via timer, in a perfect world we could scrap (pieces of) this for
@@ -490,5 +478,22 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
         println("PayPal Future Payment Authorizaiton Canceled")
         futurePaymentViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
-    
+	
+	
+	// Called when the current view appears
+	override func viewDidAppear(animated: Bool) {
+		// Instantiate the timer if the timer has been destroyed
+		if timer == nil {
+			timer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "reloadNegotiationViewTable:", userInfo: nil, repeats: true)
+		}
+	}
+	
+	// Called when the current view disappears
+	override func viewDidDisappear(animated: Bool) {
+		// Invalidate the timer when leaving the view
+		if timer != nil {
+			timer.invalidate()
+			timer = nil
+		}
+	}
 }
