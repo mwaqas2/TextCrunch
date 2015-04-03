@@ -140,10 +140,6 @@ class MailboxViewController: UIViewController, 	UITableViewDataSource, UITableVi
 			svc.listing = selectedNegotiation.listing
 			svc.isNewListing = false
 			svc.seguedFromMailbox = true
-		} else if (segue.identifier == "LogoutSegue") {
-			var test = 1
-			test = 2
-			test = 3 * test
 		}
 	}
 }
