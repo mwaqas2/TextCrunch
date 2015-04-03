@@ -26,10 +26,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         PayPalMobile.initializeWithClientIdsForEnvironments([PayPalEnvironmentSandbox: "AT_zVdLhRy_IwuNqTMBFPVImboNVwfR6CJXhIp62uSMHcsZhKD3X6y9d-Snn3i679gA8M8yP5Qk32ZEa"])
         
+        var types: UIUserNotificationType =
+        UIUserNotificationType.Alert |
+            UIUserNotificationType.Badge |
+            UIUserNotificationType.Sound
+        
+        var settings: UIUserNotificationSettings = UIUserNotificationSettings( forTypes: types, categories: nil )
+        
+        application.registerUserNotificationSettings(settings)
+        application.registerForRemoteNotifications()
         
         return true
     }
-
+    
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        let installation = PFInstallation.currentInstallation()
+        installation.setDeviceTokenFromData(deviceToken)
+        installation.saveInBackground()
+    }
+    
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
