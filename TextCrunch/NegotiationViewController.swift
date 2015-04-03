@@ -15,6 +15,7 @@ import Foundation
 class NegotiationViewController : UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, PayPalFuturePaymentDelegate {
     
     let installation = PFInstallation.currentInstallation()
+    let pushQuery = PFInstallation.query()
     
 	@IBOutlet weak var messageTextView: UITextView!
 	@IBOutlet weak var sendButton: UIButton!
@@ -139,32 +140,29 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
 		
 		if (UserController.getCurrentUser() == negotiation.seller) {
 			message.receiver = negotiation.buyer
-            installation["Seller"] = PFUser.currentUser()
-            installation["Buyer"] = message.receiver
+            installation["selleruser"] = negotiation.seller
+            installation["buyeruser"] = negotiation.buyer
             installation.saveInBackground()
-            let pushQuery = PFInstallation.query()
             
-            pushQuery.whereKey("Buyer", equalTo: message.receiver)
+            /*pushQuery.whereKey("buyer", equalTo: negotiation.buyer.username)
             
             let push = PFPush()
             push.setQuery(pushQuery)
             push.setMessage(message.content)
-            push.sendPushInBackground()
+            push.sendPushInBackground()*/
             
 		} else {
 			message.receiver = negotiation.seller
-            message.receiver = negotiation.seller
-            installation["Buyer"] = PFUser.currentUser()
-            installation["Seller"] = message.receiver
+            installation["buyeruser"] = negotiation.buyer
+            installation["selleruser"] = negotiation.seller
             installation.saveInBackground()
-            let pushQuery = PFInstallation.query()
-            
-            pushQuery.whereKey("Seller", equalTo: message.receiver)
+            /*
+            pushQuery.whereKey("seller", equalTo: negotiation.seller.username)
 
             let push = PFPush()
             push.setQuery(pushQuery)
             push.setMessage(message.content)
-            push.sendPushInBackground()
+            push.sendPushInBackground()*/
 		}
 		
 		message.content = messageTextView.text
