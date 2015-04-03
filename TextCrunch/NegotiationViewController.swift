@@ -14,6 +14,8 @@ import Foundation
 
 class NegotiationViewController : UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, PayPalFuturePaymentDelegate {
     
+    let installation = PFInstallation.currentInstallation()
+    
 	@IBOutlet weak var messageTextView: UITextView!
 	@IBOutlet weak var sendButton: UIButton!
 	@IBOutlet weak var messageTableView: UITableView!
@@ -137,8 +139,32 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
 		
 		if (UserController.getCurrentUser() == negotiation.seller) {
 			message.receiver = negotiation.buyer
+            installation["Seller"] = PFUser.currentUser()
+            installation["Buyer"] = message.receiver
+            installation.saveInBackground()
+            let pushQuery = PFInstallation.query()
+            
+            pushQuery.whereKey("Buyer", equalTo: message.receiver)
+            
+            let push = PFPush()
+            push.setQuery(pushQuery)
+            push.setMessage(message.content)
+            push.sendPushInBackground()
+            
 		} else {
 			message.receiver = negotiation.seller
+            message.receiver = negotiation.seller
+            installation["Buyer"] = PFUser.currentUser()
+            installation["Seller"] = message.receiver
+            installation.saveInBackground()
+            let pushQuery = PFInstallation.query()
+            
+            pushQuery.whereKey("Seller", equalTo: message.receiver)
+
+            let push = PFPush()
+            push.setQuery(pushQuery)
+            push.setMessage(message.content)
+            push.sendPushInBackground()
 		}
 		
 		message.content = messageTextView.text
