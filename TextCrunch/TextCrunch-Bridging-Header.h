@@ -10,3 +10,5 @@
 #import <ParseFacebookUtils/PFFacebookUtils.h>
 
 #import <PayPalMobile.h>
+
+#import <Bolts/Bolts.h>

@@ -45,7 +45,7 @@ class LoginViewController: UIViewController {
 
     @IBAction func facebookLogin(sender: AnyObject) {
         
-        
+        //Remember users are not synced!
         PFFacebookUtils.logInWithPermissions(self.permissions, { (user: PFUser!, error: NSError!) -> Void in if user == nil { NSLog("Click the button to log in") }
             
         else if user.isNew {
@@ -58,7 +58,7 @@ class LoginViewController: UIViewController {
                     
                     if result.email != nil {
                         user.email = result.email
-                        user.username = result.first_name
+                        user.username = result.email
                         user.save()
                         if PFUser.currentUser().email != nil{
                             self.performSegueWithIdentifier("SearchLogin",sender: nil)}
@@ -73,9 +73,8 @@ class LoginViewController: UIViewController {
                 }
                 else{
                     if result.email != nil {
-                        //this is here for scenarios, wherein breakpoints are not disabled
                         user.email = result.email
-                        user.username = result.first_name
+                        user.username = result.email
                         user.save()
                         if PFUser.currentUser().email != nil {
                             self.performSegueWithIdentifier("SearchLogin",sender: nil)
