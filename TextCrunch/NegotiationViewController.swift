@@ -12,6 +12,25 @@
 import UIKit
 import Foundation
 
+class MessageTableViewCell: UITableViewCell {
+	@IBOutlet weak var receiverImageView: UIView!
+	@IBOutlet weak var senderImageView: UIImageView!
+	@IBOutlet weak var receiverTextView: UITextView!
+	@IBOutlet weak var senderTextView: UITextView!
+	
+	override func awakeFromNib() {
+		super.awakeFromNib()
+		// Initialization code
+	}
+	
+	override func setSelected(selected: Bool, animated: Bool) {
+		super.setSelected(selected, animated: false)
+		
+		// Configure the view for the selected state
+	}
+	
+}
+
 class NegotiationViewController : UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, PayPalFuturePaymentDelegate {
     
     let installation = PFInstallation.currentInstallation()
@@ -25,7 +44,7 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
 	@IBOutlet weak var buyerHoldWarningLabel: UILabel!
     @IBOutlet weak var purchaseButton: UIButton!
     
-	let cellIdentifier = "MessageCell"
+	let cellIdentifier = "NegotiationMessageCell"
 	let MAX_MESSAGE_LENGTH = 200
 	
 	var listing: Listing!
@@ -43,7 +62,7 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
 		messageTextView.delegate = self
 		messageTableView.delegate = self
 		messageTableView.dataSource = self
-		self.messageTableView?.registerClass(UITableViewCell.self, forCellReuseIdentifier: self.cellIdentifier)
+		//self.messageTableView?.registerClass(UITableViewCell.self, forCellReuseIdentifier: self.cellIdentifier)
 		
 		// Do not autoscroll UITextViews within this view controller
 		self.automaticallyAdjustsScrollViewInsets = false
@@ -228,22 +247,52 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
 	// Mandatory UITableViewDelete function
 	// Creates cell to be put into the listview
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		var cell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as UITableViewCell
+		var test = 1
+		test = test * 2
 		
-		cell.textLabel?.sizeToFit()
-		cell.textLabel?.numberOfLines = 0
+		var cell: MessageTableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as MessageTableViewCell
+		//var cell:MessageTableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as MessageTableViewCell
+		
+		//cell.textLabel?.sizeToFit()
+		//cell.textLabel?.numberOfLines = 0
 		cell.backgroundColor = UIColor.clearColor()
 		cell.selectionStyle = UITableViewCellSelectionStyle.None
 		
+		// Do not allow user to interact with displayed messaged
+		cell.receiverTextView.editable = false
+		cell.senderTextView.editable = false
+		
+		cell.receiverTextView.scrollEnabled = false
+		cell.senderTextView.scrollEnabled = false
+		
+		var isSenderMessage: Bool = (negotiation.messages[indexPath.row].sender.objectId == UserController.getCurrentUser().objectId)
 		var content = negotiation.messages[indexPath.row].content
-		if (negotiation.messages[indexPath.row].sender.objectId == UserController.getCurrentUser().objectId) {
-			cell.textLabel?.textAlignment = NSTextAlignment.Right
-			content += " >"
+		
+		if isSenderMessage {
+			//cell.textLabel?.textAlignment = NSTextAlignment.Right
+			//content += " >"
+			
+			cell.senderTextView.text = content
+			//cell.receiverTextView.hidden = true
+			//cell.receiverImageView.hidden = true
 		} else {
-			cell.textLabel?.textAlignment = NSTextAlignment.Left
-			content = "< " + content
+			//cell.textLabel?.textAlignment = NSTextAlignment.Left
+			//content = "< " + content
+			isSenderMessage = false
+			cell.receiverTextView.text = content
+			//cell.senderTextView.hidden = true
+			//cell.senderImageView.hidden = true
 		}
-		cell.textLabel?.text = content
+		//cell.textLabel?.text = content
+		cell.receiverTextView.hidden = true
+		cell.receiverImageView.hidden = true
+		cell.senderTextView.hidden = false
+		cell.senderImageView.hidden = false
+		//cell.receiverTextView.hidden = isSenderMessage
+		//cell.receiverImageView.hidden = isSenderMessage
+		//cell.senderTextView.hidden = !isSenderMessage
+		//cell.senderImageView.hidden = !isSenderMessage
+		
 		return cell
 	}
 	
