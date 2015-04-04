@@ -16,7 +16,7 @@ class MessageTableViewCell: UITableViewCell {
 	@IBOutlet weak var receiverImageView: UIView!
 	@IBOutlet weak var senderImageView: UIImageView!
 	@IBOutlet weak var receiverTextView: UITextView!
-	@IBOutlet weak var senderTextView: UITextView!
+	@IBOutlet weak var recipientImageView: UIImageView!
 	
 	override func awakeFromNib() {
 		super.awakeFromNib()
@@ -247,51 +247,27 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
 	// Mandatory UITableViewDelete function
 	// Creates cell to be put into the listview
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		var test = 1
-		test = test * 2
-		
 		var cell: MessageTableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as MessageTableViewCell
-		//var cell:MessageTableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as MessageTableViewCell
-		
-		//cell.textLabel?.sizeToFit()
-		//cell.textLabel?.numberOfLines = 0
+
 		cell.backgroundColor = UIColor.clearColor()
 		cell.selectionStyle = UITableViewCellSelectionStyle.None
 		
-		// Do not allow user to interact with displayed messaged
+		// Do not allow user to interact with displayed message
 		cell.receiverTextView.editable = false
-		cell.senderTextView.editable = false
-		
 		cell.receiverTextView.scrollEnabled = false
-		cell.senderTextView.scrollEnabled = false
 		
 		var isSenderMessage: Bool = (negotiation.messages[indexPath.row].sender.objectId == UserController.getCurrentUser().objectId)
-		var content = negotiation.messages[indexPath.row].content
+		cell.recipientImageView.hidden = isSenderMessage
+		cell.senderImageView.hidden = !isSenderMessage
 		
 		if isSenderMessage {
-			//cell.textLabel?.textAlignment = NSTextAlignment.Right
-			//content += " >"
-			
-			cell.senderTextView.text = content
-			//cell.receiverTextView.hidden = true
-			//cell.receiverImageView.hidden = true
+			cell.receiverTextView.textAlignment = NSTextAlignment.Right
 		} else {
-			//cell.textLabel?.textAlignment = NSTextAlignment.Left
-			//content = "< " + content
-			isSenderMessage = false
-			cell.receiverTextView.text = content
-			//cell.senderTextView.hidden = true
-			//cell.senderImageView.hidden = true
+			cell.receiverTextView.textAlignment = NSTextAlignment.Left
 		}
-		//cell.textLabel?.text = content
-		cell.receiverTextView.hidden = true
-		cell.receiverImageView.hidden = true
-		cell.senderTextView.hidden = false
-		cell.senderImageView.hidden = false
-		//cell.receiverTextView.hidden = isSenderMessage
-		//cell.receiverImageView.hidden = isSenderMessage
-		//cell.senderTextView.hidden = !isSenderMessage
-		//cell.senderImageView.hidden = !isSenderMessage
+		
+		var content = negotiation.messages[indexPath.row].content
+		cell.receiverTextView.text = content
 		
 		return cell
 	}
@@ -535,6 +511,10 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
 		if timer == nil {
 			timer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "reloadNegotiationViewTable:", userInfo: nil, repeats: true)
 		}
+		
+		// Ensure tableview starts at bottom (most recent messages)
+		var indexPath = NSIndexPath(forRow: self.messageTableView.numberOfRowsInSection(0)-1, inSection: self.messageTableView.numberOfSections()-1)
+		self.messageTableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Bottom, animated: false)
 	}
 	
 	// Called when the current view disappears
