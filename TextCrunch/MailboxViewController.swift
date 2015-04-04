@@ -47,6 +47,8 @@ class MailboxViewController: UIViewController, 	UITableViewDataSource, UITableVi
 		
 		viewBuyerNegotiations = true
 		
+		self.view.backgroundColor = UIColor(patternImage: UIImage(named: "pentagon.png")!)
+		
 		// Register timed callback the refreshes the negotiation list every 5 seconds
 		timer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "reloadNegotiationViewTable:", userInfo: nil, repeats: true)
 		

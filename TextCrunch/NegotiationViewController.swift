@@ -12,6 +12,25 @@
 import UIKit
 import Foundation
 
+class MessageTableViewCell: UITableViewCell {
+	@IBOutlet weak var receiverImageView: UIView!
+	@IBOutlet weak var senderImageView: UIImageView!
+	@IBOutlet weak var receiverTextView: UITextView!
+	@IBOutlet weak var recipientImageView: UIImageView!
+	
+	override func awakeFromNib() {
+		super.awakeFromNib()
+		// Initialization code
+	}
+	
+	override func setSelected(selected: Bool, animated: Bool) {
+		super.setSelected(selected, animated: false)
+		
+		// Configure the view for the selected state
+	}
+	
+}
+
 class NegotiationViewController : UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, PayPalFuturePaymentDelegate {
     
     let installation = PFInstallation.currentInstallation()
@@ -25,8 +44,8 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
 	@IBOutlet weak var buyerHoldWarningLabel: UILabel!
     @IBOutlet weak var purchaseButton: UIButton!
     
-	let cellIdentifier = "MessageCell"
-	let MAX_MESSAGE_LENGTH = 200
+	let cellIdentifier = "NegotiationMessageCell"
+	let MAX_MESSAGE_LENGTH = 140
 	
 	var listing: Listing!
 	var negotiation = Negotiation()
@@ -43,11 +62,11 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
 		messageTextView.delegate = self
 		messageTableView.delegate = self
 		messageTableView.dataSource = self
-		self.messageTableView?.registerClass(UITableViewCell.self, forCellReuseIdentifier: self.cellIdentifier)
 		
 		// Do not autoscroll UITextViews within this view controller
 		self.automaticallyAdjustsScrollViewInsets = false
 		
+		self.view.backgroundColor = UIColor(patternImage: UIImage(named: "pentagon.png")!)
 		buyerHoldWarningLabel.hidden = true
 		isNewNegotiation = false
 		
@@ -72,7 +91,6 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
             }
         }
 		else {
-            
             // show warning if on hold
 			buyerHoldWarningLabel.hidden = !listing.isOnHold
             
@@ -80,7 +98,6 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
             if (listing.isOnHold || negotiation.purchaseRequested) {
                 purchaseButton.hidden = true
             }
-            
 		}
 		
 		// Set navigation bar title
@@ -228,22 +245,28 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
 	// Mandatory UITableViewDelete function
 	// Creates cell to be put into the listview
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		var cell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as UITableViewCell
-		
-		cell.textLabel?.sizeToFit()
-		cell.textLabel?.numberOfLines = 0
+		var cell: MessageTableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as MessageTableViewCell
+
 		cell.backgroundColor = UIColor.clearColor()
 		cell.selectionStyle = UITableViewCellSelectionStyle.None
 		
-		var content = negotiation.messages[indexPath.row].content
-		if (negotiation.messages[indexPath.row].sender.objectId == UserController.getCurrentUser().objectId) {
-			cell.textLabel?.textAlignment = NSTextAlignment.Right
-			content += " >"
+		// Do not allow user to interact with displayed message
+		cell.receiverTextView.editable = false
+		cell.receiverTextView.scrollEnabled = false
+		
+		var isSenderMessage: Bool = (negotiation.messages[indexPath.row].sender.objectId == UserController.getCurrentUser().objectId)
+		cell.recipientImageView.hidden = isSenderMessage
+		cell.senderImageView.hidden = !isSenderMessage
+		
+		if isSenderMessage {
+			cell.receiverTextView.textAlignment = NSTextAlignment.Right
 		} else {
-			cell.textLabel?.textAlignment = NSTextAlignment.Left
-			content = "< " + content
+			cell.receiverTextView.textAlignment = NSTextAlignment.Left
 		}
-		cell.textLabel?.text = content
+		
+		var content = negotiation.messages[indexPath.row].content
+		cell.receiverTextView.text = content
+		cell.receiverTextView.sizeToFit()
 		return cell
 	}
 	
@@ -253,6 +276,17 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
 		tableView.deselectRowAtIndexPath(indexPath, animated: false)
 		let row = indexPath.row
 		println(negotiation.messages[row].content)
+	}
+	
+	// Sets the cell height for each message cell in the tableview
+	func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+		var cell: MessageTableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as MessageTableViewCell
+		var content = negotiation.messages[indexPath.row].content
+		
+		// Calculate the height required to contain the message text
+		cell.receiverTextView.text = content
+		cell.receiverTextView.sizeToFit()
+		return cell.receiverTextView.frame.size.height + 20.0
 	}
     
     @IBAction func toggleListingHold(sender: AnyObject) {
@@ -486,6 +520,10 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
 		if timer == nil {
 			timer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "reloadNegotiationViewTable:", userInfo: nil, repeats: true)
 		}
+		
+		// Ensure tableview starts at bottom (most recent messages)
+		var indexPath = NSIndexPath(forRow: self.messageTableView.numberOfRowsInSection(0)-1, inSection: self.messageTableView.numberOfSections()-1)
+		self.messageTableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Bottom, animated: false)
 	}
 	
 	// Called when the current view disappears
