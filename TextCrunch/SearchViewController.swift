@@ -65,6 +65,8 @@ class SearchViewController: UIViewController, UITableViewDataSource, CLLocationM
 		// Update sort UI elements
 		currentSortMode = SortMode.None
 		updateSortArrows()
+		
+		self.view.backgroundColor = UIColor(patternImage: UIImage(named: "pentagon.png")!)
 	}
 	
 	

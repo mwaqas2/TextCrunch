@@ -66,6 +66,7 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
 		// Do not autoscroll UITextViews within this view controller
 		self.automaticallyAdjustsScrollViewInsets = false
 		
+		self.view.backgroundColor = UIColor(patternImage: UIImage(named: "pentagon.png")!)
 		buyerHoldWarningLabel.hidden = true
 		isNewNegotiation = false
 		
@@ -90,7 +91,6 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
             }
         }
 		else {
-            
             // show warning if on hold
 			buyerHoldWarningLabel.hidden = !listing.isOnHold
             
@@ -98,7 +98,6 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
             if (listing.isOnHold || negotiation.purchaseRequested) {
                 purchaseButton.hidden = true
             }
-            
 		}
 		
 		// Set navigation bar title
