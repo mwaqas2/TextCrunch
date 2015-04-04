@@ -145,11 +145,25 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
 				installation["selleruser"] = negotiation.seller
 				installation["buyeruser"] = negotiation.buyer
 				installation.saveInBackground()
+                
+                pushQuery.whereKey("buyeruser", equalTo: negotiation.buyer)
+                
+                let push = PFPush()
+                push.setQuery(pushQuery)
+                push.setMessage(messageTextView.text)
+                push.sendPushInBackground()
 			} else {
 				message.receiver = negotiation.seller
 				installation["buyeruser"] = negotiation.buyer
 				installation["selleruser"] = negotiation.seller
 				installation.saveInBackground()
+                
+                pushQuery.whereKey("selleruser", equalTo: negotiation.seller)
+                
+                let push = PFPush()
+                push.setQuery(pushQuery)
+                push.setMessage(messageTextView.text)
+                push.sendPushInBackground()
 			}
 		
 			message.content = messageTextView.text
