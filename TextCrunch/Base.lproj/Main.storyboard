@@ -1828,40 +1828,36 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cmR-6Q-AWK" id="lTw-kz-L0U">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="User Male2-25.png" translatesAutoresizingMaskIntoConstraints="NO" id="klh-98-2nK">
-                                                    <rect key="frame" x="15" y="5" width="49" height="50"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="2wg-Pt-s72"/>
-                                                        <constraint firstAttribute="width" constant="30" id="lv8-uX-vQ5"/>
-                                                    </constraints>
-                                                </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="User Male4-25.png" translatesAutoresizingMaskIntoConstraints="NO" id="Hbb-WL-RiH">
-                                                    <rect key="frame" x="500" y="10" width="51" height="45"/>
+                                                    <rect key="frame" x="500" y="12" width="51" height="45"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="30" id="Yi0-ct-8I4"/>
-                                                        <constraint firstAttribute="height" constant="30" id="bK9-47-upo"/>
+                                                        <constraint firstAttribute="height" constant="30" id="OXE-Ys-z8h"/>
+                                                        <constraint firstAttribute="width" constant="30" id="Vvg-ic-5YS"/>
                                                     </constraints>
                                                 </imageView>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lsQ-QH-JM5">
-                                                    <rect key="frame" x="72" y="12" width="280" height="41"/>
-                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                    <rect key="frame" x="72" y="9" width="280" height="41"/>
+                                                    <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="User Male2-25.png" translatesAutoresizingMaskIntoConstraints="NO" id="klh-98-2nK">
+                                                    <rect key="frame" x="15" y="7" width="49" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="30" id="c1D-iM-EMg"/>
+                                                        <constraint firstAttribute="height" constant="30" id="yAw-pI-oyf"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="Hbb-WL-RiH" secondAttribute="trailing" constant="3" id="BMN-Sy-enY"/>
-                                                <constraint firstItem="Hbb-WL-RiH" firstAttribute="top" secondItem="lTw-kz-L0U" secondAttribute="topMargin" constant="3" id="D6X-se-bgw"/>
-                                                <constraint firstItem="klh-98-2nK" firstAttribute="top" secondItem="lTw-kz-L0U" secondAttribute="topMargin" constant="3" id="L2t-fj-YAE"/>
-                                                <constraint firstItem="klh-98-2nK" firstAttribute="bottom" secondItem="lTw-kz-L0U" secondAttribute="bottomMargin" constant="3" id="OHS-Wr-NDh"/>
+                                                <constraint firstItem="Hbb-WL-RiH" firstAttribute="trailing" secondItem="lTw-kz-L0U" secondAttribute="trailingMargin" constant="1" id="N1d-Ge-rOU"/>
+                                                <constraint firstAttribute="centerY" secondItem="klh-98-2nK" secondAttribute="centerY" constant="6" id="QV1-Y6-WDb"/>
                                                 <constraint firstItem="lsQ-QH-JM5" firstAttribute="leading" secondItem="klh-98-2nK" secondAttribute="trailing" constant="5" id="Uq5-My-a32"/>
-                                                <constraint firstAttribute="centerY" secondItem="klh-98-2nK" secondAttribute="centerY" constant="1" id="Yv7-oZ-SYg"/>
-                                                <constraint firstAttribute="centerY" secondItem="Hbb-WL-RiH" secondAttribute="centerY" constant="-1.5" id="cKM-lF-6pR"/>
-                                                <constraint firstItem="lsQ-QH-JM5" firstAttribute="top" secondItem="lTw-kz-L0U" secondAttribute="topMargin" constant="1" id="fne-Q6-a64"/>
+                                                <constraint firstItem="lsQ-QH-JM5" firstAttribute="top" secondItem="lTw-kz-L0U" secondAttribute="topMargin" id="fne-Q6-a64"/>
                                                 <constraint firstItem="klh-98-2nK" firstAttribute="leading" secondItem="lTw-kz-L0U" secondAttribute="leadingMargin" constant="3" id="gbb-Ra-0lN"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="lsQ-QH-JM5" secondAttribute="bottom" constant="1" id="kvI-gZ-btl"/>
+                                                <constraint firstAttribute="centerY" secondItem="Hbb-WL-RiH" secondAttribute="centerY" constant="3.5" id="hKF-GH-nbE"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="lsQ-QH-JM5" secondAttribute="bottom" id="kvI-gZ-btl"/>
                                                 <constraint firstItem="Hbb-WL-RiH" firstAttribute="leading" secondItem="lsQ-QH-JM5" secondAttribute="trailing" constant="5" id="qQt-e8-DGC"/>
-                                                <constraint firstItem="Hbb-WL-RiH" firstAttribute="bottom" secondItem="lTw-kz-L0U" secondAttribute="bottomMargin" constant="3" id="tBt-R7-KCC"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -1955,7 +1951,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Ig-pd-aJX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5030" y="1968"/>
+            <point key="canvasLocation" x="5030" y="1967"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="sry-p0-buV">

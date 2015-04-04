@@ -45,7 +45,7 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
     @IBOutlet weak var purchaseButton: UIButton!
     
 	let cellIdentifier = "NegotiationMessageCell"
-	let MAX_MESSAGE_LENGTH = 200
+	let MAX_MESSAGE_LENGTH = 140
 	
 	var listing: Listing!
 	var negotiation = Negotiation()
@@ -62,7 +62,6 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
 		messageTextView.delegate = self
 		messageTableView.delegate = self
 		messageTableView.dataSource = self
-		//self.messageTableView?.registerClass(UITableViewCell.self, forCellReuseIdentifier: self.cellIdentifier)
 		
 		// Do not autoscroll UITextViews within this view controller
 		self.automaticallyAdjustsScrollViewInsets = false
@@ -268,7 +267,7 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
 		
 		var content = negotiation.messages[indexPath.row].content
 		cell.receiverTextView.text = content
-		
+		cell.receiverTextView.sizeToFit()
 		return cell
 	}
 	
@@ -278,6 +277,17 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
 		tableView.deselectRowAtIndexPath(indexPath, animated: false)
 		let row = indexPath.row
 		println(negotiation.messages[row].content)
+	}
+	
+	// Sets the cell height for each message cell in the tableview
+	func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+		var cell: MessageTableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as MessageTableViewCell
+		var content = negotiation.messages[indexPath.row].content
+		
+		// Calculate the height required to contain the message text
+		cell.receiverTextView.text = content
+		cell.receiverTextView.sizeToFit()
+		return cell.receiverTextView.frame.size.height + 20.0
 	}
     
     @IBAction func toggleListingHold(sender: AnyObject) {
