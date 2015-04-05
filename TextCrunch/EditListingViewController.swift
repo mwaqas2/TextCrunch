@@ -13,7 +13,8 @@ import CoreLocation
 
 class EditListingViewController: UIViewController {
 	
-    @IBOutlet var bookimage: UIImageView! //Image view displaying a thumbnail of the image attached to a listing.
+    @IBOutlet var bookImageButton: UIButton!
+    //@IBOutlet var bookimage: UIImageView! //Image view displaying a thumbnail of the image attached to a listing.
     @IBOutlet var bookTitle: UITextField! //Label of the book title.
     @IBOutlet var author: UITextField! //Label of the book's authour.
     @IBOutlet var edition: UITextField! //Label of the book's edition.
@@ -24,7 +25,7 @@ class EditListingViewController: UIViewController {
     @IBOutlet var price: UITextField! //Label for the price attached to the listing.
     @IBOutlet var comments: UITextField! //Label for any comments attached to the listing.
     
-    @IBOutlet var attachPhotoButton: UIButton!
+    //@IBOutlet var attachPhotoButton: UIButton!
 
 	@IBOutlet weak var locationText: UITextField!
     
@@ -99,10 +100,10 @@ class EditListingViewController: UIViewController {
         price!.text = String(listing.price)
         comments!.text = listing.comment
         if(listing.image != nil){
-            bookimage.image = UIImage(data: listing.image!.getData())
+            bookImageButton.setImage(UIImage(data: listing.image!.getData()), forState: .Normal)
             imageExist = true
         } else if (data != nil && listing.image == nil){
-            bookimage.image = UIImage(data: data!)
+            bookImageButton.setImage(UIImage(data: data!), forState: .Normal)
             imageExist = true
             listing.image = PFFile(name: "image", data: data)
             listing.save()
@@ -160,8 +161,9 @@ class EditListingViewController: UIViewController {
             var largethumbnail = toString(bookdictionary["imageLinks"]["thumbnail"])
             let url = NSURL(string:"\(smallthumbnail)")
             self.data = NSData(contentsOfURL: url!) //make sure your image in this url does exist
-            self.bookimage!.frame = CGRectMake(31,31,136,140)
-            self.bookimage.image = UIImage(data: data!)
+            //self.bookimage!.frame = CGRectMake(31,31,136,140)
+            //self.bookimage.image = UIImage(data: data!)
+            self.bookImageButton.setImage(UIImage(data: data!), forState: .Normal)
         }
         var book = Book()
         book.title = title
@@ -236,10 +238,8 @@ class EditListingViewController: UIViewController {
         
     }
     
-    
-    
-    @IBAction func attachPhoto(sender: AnyObject) {
-        self.performSegueWithIdentifier("photoAttachSegue", sender:nil)
+    @IBAction func imageButtonPressed(sender: AnyObject) {
+        self.performSegueWithIdentifier("photoAttachSegue", sender: nil)
     }
     
     
