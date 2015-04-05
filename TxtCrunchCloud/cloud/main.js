@@ -132,13 +132,19 @@ Parse.Cloud.define("paypalCodeToToken", function (request, response) {
                 // we can't find a refresh token
                 if (res.status === 200) {
 
-                    // otherwise get it and save to the user
-                    var refreshToken = res.text.refresh_token;
                     user.save({
-                        "buyerRefreshToken": refreshToken
-                    }).then(function () {
-                        response.success(formatResponse("Code converted successfully", true, res.text));
-                    }, response.error(formatResponse("Error saving buyerRefreshToken", false)));
+
+                        "buyerRefreshToken": res.data.refresh_token
+
+                    }).then(function (user) {
+
+                        response.success(formatResponse("Code converted successfully", true));
+
+                    }, function (error) {
+
+                        response.success(formatResponse("Error saving buyerRefreshToken", false, error));
+
+                    });
 
                     // persist changes and send back a success
 
@@ -149,7 +155,7 @@ Parse.Cloud.define("paypalCodeToToken", function (request, response) {
                 }
             },
             error: function(error) {
-                response.error(
+                response.success(
                     formatResponse('Failed to convert PayPal Code to Token.', false, error.text)
                 );
             }
@@ -200,7 +206,7 @@ var refreshAccessToken = function (refreshToken) {
  *  - sellerParseId: the sellers Parse User Id
  * ]
  */
-Parse.Cloud.define("charge", function (request, response) {
+Parse.Cloud.define("prepareCharge", function (request, response) {
 
     var metadataId = request.params.metadataId;
     var negotiationId = request.params.negotiationId;
@@ -277,7 +283,7 @@ Parse.Cloud.define("charge", function (request, response) {
 
     // error handler catches eeverything
     }, function(msg, result) {
-        response.error(
+        response.success(
             formatResponse(msg, false, result)
         );
     });

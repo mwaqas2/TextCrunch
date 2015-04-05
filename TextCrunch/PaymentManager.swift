@@ -42,8 +42,7 @@ class PaymentManager {
             "code": code
         ]
         
-        var success = PFCloud.callFunction("paypalCodeToToken", withParameters: data) as [String:AnyObject]
-        print(success)
-        return success["success"] as Bool
+        var response = PFCloud.callFunction("paypalCodeToToken", withParameters: data) as [String:AnyObject]
+        return response["success"] as Bool
     }
 }

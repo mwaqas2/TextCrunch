@@ -534,7 +534,7 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
 	override func viewDidAppear(animated: Bool) {
 		// Instantiate the timer if the timer has been destroyed
 		if timer == nil {
-			timer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "reloadNegotiationViewTable:", userInfo: nil, repeats: true)
+			timer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "updateNegotiationState:", userInfo: nil, repeats: true)
 		}
 		
 		// Ensure tableview starts at bottom (most recent messages)
