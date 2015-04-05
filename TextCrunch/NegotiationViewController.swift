@@ -95,7 +95,7 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
 			buyerHoldWarningLabel.hidden = !listing.isOnHold
             
             // hide purchase button if on hold
-            if (listing.isOnHold || negotiation.purchaseRequested) {
+            if (listing.isOnHold || self.negotiation.purchaseRequested) {
                 purchaseButton.hidden = true
             }
 		}
@@ -127,6 +127,8 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
         config.merchantUserAgreementURL = NSURL(string: "http://txtcrunch.com/user-agreement")
         
         timer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "updateNegotiationState:", userInfo: nil, repeats: true)
+		
+		updateNewMessageFlags()
 	}
 	
 	override func didReceiveMemoryWarning() {
@@ -147,7 +149,7 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
 		var resultNegotiation: Negotiation? = NegotiationDatabaseController.getListingNegotiation(listing, isSeller: self.userIsSeller)
 		
 		if (resultNegotiation != nil) {
-			negotiation = resultNegotiation!
+			self.negotiation = resultNegotiation!
 		}
 	}
 	
@@ -157,25 +159,38 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
 			var message = Message()
 			message.sender = UserController.getCurrentUser()
 		
-			if (UserController.getCurrentUser() == negotiation.seller) {
-				message.receiver = negotiation.buyer
-				installation["selleruser"] = negotiation.seller
-				installation["buyeruser"] = negotiation.buyer
+			if (UserController.getCurrentUser() == self.negotiation.seller) {
+				message.receiver = self.negotiation.buyer
+				installation["selleruser"] = self.negotiation.seller
+				installation["buyeruser"] = self.negotiation.buyer
 				installation.saveInBackground()
 			} else {
-				message.receiver = negotiation.seller
-				installation["buyeruser"] = negotiation.buyer
-				installation["selleruser"] = negotiation.seller
+				message.receiver = self.negotiation.seller
+				installation["buyeruser"] = self.negotiation.buyer
+				installation["selleruser"] = self.negotiation.seller
 				installation.saveInBackground()
 			}
 		
+			// Update the negotiation's new message flags
+			if self.userIsSeller {
+				self.negotiation.isNewSellerMessage = true
+				if (self.negotiation.messages.count == 0) {
+					self.negotiation.isNewBuyerMessage = false
+				}
+			} else {
+				self.negotiation.isNewBuyerMessage = true
+				if (self.negotiation.messages.count == 0) {
+					self.negotiation.isNewSellerMessage = false
+				}
+			}
+			
 			message.content = messageTextView.text
-			negotiation.messages.append(message)
-			negotiation.save()
+			self.negotiation.messages.append(message)
+			self.negotiation.save()
 		
 			// Clear the textview when message is sent.
-			messageTextView.text = ""
-			messageTableView.reloadData()
+			self.messageTextView.text = ""
+			self.messageTableView.reloadData()
 		}
 	}
 	
@@ -239,7 +254,7 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
 	// Mandatory UITableViewDelete function
 	// Returns number of rows in messagesTableView
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return negotiation.messages.count
+		return self.negotiation.messages.count
 	}
 	
 	// Mandatory UITableViewDelete function
@@ -254,7 +269,7 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
 		cell.receiverTextView.editable = false
 		cell.receiverTextView.scrollEnabled = false
 		
-		var isSenderMessage: Bool = (negotiation.messages[indexPath.row].sender.objectId == UserController.getCurrentUser().objectId)
+		var isSenderMessage: Bool = (self.negotiation.messages[indexPath.row].sender.objectId == UserController.getCurrentUser().objectId)
 		cell.recipientImageView.hidden = isSenderMessage
 		cell.senderImageView.hidden = !isSenderMessage
 		
@@ -264,7 +279,7 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
 			cell.receiverTextView.textAlignment = NSTextAlignment.Left
 		}
 		
-		var content = negotiation.messages[indexPath.row].content
+		var content = self.negotiation.messages[indexPath.row].content
 		cell.receiverTextView.text = content
 		cell.receiverTextView.sizeToFit()
 		return cell
@@ -275,13 +290,13 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		tableView.deselectRowAtIndexPath(indexPath, animated: false)
 		let row = indexPath.row
-		println(negotiation.messages[row].content)
+		println(self.negotiation.messages[row].content)
 	}
 	
 	// Sets the cell height for each message cell in the tableview
 	func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
 		var cell: MessageTableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as MessageTableViewCell
-		var content = negotiation.messages[indexPath.row].content
+		var content = self.negotiation.messages[indexPath.row].content
 		
 		// Calculate the height required to contain the message text
 		cell.receiverTextView.text = content
@@ -513,6 +528,21 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
         futurePaymentViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
 	
+	// Update the negotiation's new messages flags
+	func updateNewMessageFlags() {
+		// Only update the new message flags if the current negotiation has saved messages
+		if (self.negotiation.messages.count > 0) {
+			// Update the flags to indicate that the current user has seen the latest messages
+			if self.userIsSeller {
+				self.negotiation.isNewBuyerMessage = false
+			} else {
+				self.negotiation.isNewSellerMessage = false
+			}
+
+			self.negotiation.save()
+		}
+	}
+	
 	
 	// Called when the current view appears
 	override func viewDidAppear(animated: Bool) {
@@ -520,6 +550,8 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
 		if timer == nil {
 			timer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "reloadNegotiationViewTable:", userInfo: nil, repeats: true)
 		}
+		
+		updateNewMessageFlags()
 		
 		// Ensure tableview starts at bottom (most recent messages)
 		if (self.negotiation.messages.count > 0) {
@@ -535,5 +567,7 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
 			timer.invalidate()
 			timer = nil
 		}
+		
+		updateNewMessageFlags()
 	}
 }

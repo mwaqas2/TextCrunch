@@ -35,24 +35,24 @@ class MailboxViewController: UIViewController, 	UITableViewDataSource, UITableVi
 	var selectedNegotiation: Negotiation!
 	var negotiationQuery:PFQuery!
 	var negotiations: [Negotiation] = []
-	var viewBuyerNegotiations:Bool!
+	var viewBuyerNegotiations:Bool = true
 	var timer: NSTimer!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
 		// Register delegates for negotiation table view
-		negotiationTableView.delegate = self
-		negotiationTableView.dataSource = self
+		self.negotiationTableView.delegate = self
+		self.negotiationTableView.dataSource = self
 		
-		viewBuyerNegotiations = true
+		self.viewBuyerNegotiations = true
 		
 		self.view.backgroundColor = UIColor(patternImage: UIImage(named: "pentagon.png")!)
 		
 		// Register timed callback the refreshes the negotiation list every 5 seconds
-		timer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "reloadNegotiationViewTable:", userInfo: nil, repeats: true)
+		self.timer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "reloadNegotiationViewTable:", userInfo: nil, repeats: true)
 		
-		NegotiationDatabaseController.getUserNegotiations(viewBuyerNegotiations, callback: updateNegotiations)
+		NegotiationDatabaseController.getUserNegotiations(self.viewBuyerNegotiations, callback: updateNegotiations)
     }
 
     override func didReceiveMemoryWarning() {
@@ -62,21 +62,21 @@ class MailboxViewController: UIViewController, 	UITableViewDataSource, UITableVi
 	
 	// Refresh the list of negotiations displayed in the TableView	
 	func reloadNegotiationViewTable(timer:NSTimer!) {
-		NegotiationDatabaseController.getUserNegotiations(viewBuyerNegotiations, callback: updateNegotiations)
+		NegotiationDatabaseController.getUserNegotiations(self.viewBuyerNegotiations, callback: updateNegotiations)
 	}
 	
 	// Callback function for Parse DB search. Called when
 	// the query of the Parse DB is complete. Accepts a list of PFObjects
 	// containing the results of the most recent query
 	func updateNegotiations(queryResults: [Negotiation]) {
-		negotiations = queryResults
-		negotiationTableView.reloadData()
+		self.negotiations = queryResults
+		self.negotiationTableView.reloadData()
 	}
 
 	// Mandatory UITableViewDelete function
 	// Returns number of rows in negotiationTableView
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return negotiations.count
+		return self.negotiations.count
 	}
 	
 	// Mandatory UITableViewDelete function
@@ -84,13 +84,14 @@ class MailboxViewController: UIViewController, 	UITableViewDataSource, UITableVi
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell: MailboxTableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as MailboxTableViewCell
 
-		let negotiation = negotiations[indexPath.row]
+		let negotiation = self.negotiations[indexPath.row]
 		let mostRecentMessage: Message? = negotiation.messages.last!
 		
 		cell.bookTitleLabel?.text = negotiation.listing.book.title
 		cell.latestMessageLabel?.text = mostRecentMessage?.content
 		
-		cell.newMessageIcon?.hidden = false
+		var newMessages: Bool = (negotiation.isNewSellerMessage && self.viewBuyerNegotiations) || (negotiation.isNewBuyerMessage && !self.viewBuyerNegotiations)
+		cell.newMessageIcon?.hidden = !newMessages
 		
 		return cell
 	}
@@ -98,7 +99,7 @@ class MailboxViewController: UIViewController, 	UITableViewDataSource, UITableVi
 	// Mandatory UITableViewDelete function
 	// Called when tableView row is selected
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-		selectedNegotiation = negotiations[indexPath.row]
+		self.selectedNegotiation = negotiations[indexPath.row]
         
 		tableView.deselectRowAtIndexPath(indexPath, animated: false)
 		
@@ -109,26 +110,28 @@ class MailboxViewController: UIViewController, 	UITableViewDataSource, UITableVi
 	// Called when the user selects a tab from the segment control. Switch between buyer
 	// and seller negotiations
 	@IBAction func onSegmentControlPressed(sender: AnyObject) {
-		viewBuyerNegotiations = !viewBuyerNegotiations
+		self.viewBuyerNegotiations = !self.viewBuyerNegotiations
 		
 		// Update the table view
-		NegotiationDatabaseController.getUserNegotiations(viewBuyerNegotiations, callback: updateNegotiations)
+		NegotiationDatabaseController.getUserNegotiations(self.viewBuyerNegotiations, callback: updateNegotiations)
 	}
 	
 	// Called when the current view appears
 	override func viewDidAppear(animated: Bool) {
 		// Instantiate the timer if the timer has been destroyed
-		if timer == nil {
-			timer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "reloadNegotiationViewTable:", userInfo: nil, repeats: true)
+		if self.timer == nil {
+			self.timer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "reloadNegotiationViewTable:", userInfo: nil, repeats: true)
 		}
+		
+		NegotiationDatabaseController.getUserNegotiations(self.viewBuyerNegotiations, callback: updateNegotiations)
 	}
 	
 	// Called when the current view disappears
 	override func viewDidDisappear(animated: Bool) {
 		// Invalidate the timer when leaving the view
-		if timer != nil {
-			timer.invalidate()
-			timer = nil
+		if self.timer != nil {
+			self.timer.invalidate()
+			self.timer = nil
 		}
 	}
 	
@@ -138,8 +141,8 @@ class MailboxViewController: UIViewController, 	UITableViewDataSource, UITableVi
 			var svc = segue.destinationViewController as NegotiationViewController;
 			// Hide back bar to avoid resubmission of listing
 			// Only occurs when ViewListing is accessed via EditListing
-			svc.negotiation = selectedNegotiation
-			svc.listing = selectedNegotiation.listing
+			svc.negotiation = self.selectedNegotiation
+			svc.listing = self.selectedNegotiation.listing
 			svc.isNewListing = false
 			svc.seguedFromMailbox = true
 		}
