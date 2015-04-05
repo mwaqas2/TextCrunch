@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="SlN-8A-vyZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="SlN-8A-vyZ">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
@@ -142,20 +142,40 @@
                                     </mask>
                                 </variation>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ALW-Ak-oYc">
+                                <rect key="frame" x="189" y="461" width="223" height="30"/>
+                                <color key="backgroundColor" red="0.87058823529411766" green="0.20392156862745098" blue="0.1803921568627451" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Login With Google">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4xi-Ij-fsQ">
+                                <rect key="frame" x="189" y="423" width="223" height="30"/>
+                                <color key="backgroundColor" red="0.074509803921568626" green="0.62352941176470589" blue="0.90980392156862744" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Login With Twitter">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Ya3-w7-rHM" firstAttribute="top" secondItem="lAL-YH-Wn5" secondAttribute="bottom" constant="1" id="4Oj-cb-lim"/>
+                            <constraint firstAttribute="centerX" secondItem="4xi-Ij-fsQ" secondAttribute="centerX" constant="-0.5" id="5BW-TA-LsO"/>
+                            <constraint firstItem="ALW-Ak-oYc" firstAttribute="top" secondItem="4xi-Ij-fsQ" secondAttribute="bottom" constant="8" id="6JS-cR-dXr"/>
                             <constraint firstItem="hFF-Zy-Llm" firstAttribute="top" secondItem="9sv-ki-Jyd" secondAttribute="bottom" constant="10" id="AIW-we-2fd"/>
                             <constraint firstAttribute="centerX" secondItem="dQo-ik-Z8X" secondAttribute="centerX" constant="-0.5" id="Brz-hN-KhM"/>
                             <constraint firstItem="opA-2e-zBX" firstAttribute="top" secondItem="Ya3-w7-rHM" secondAttribute="bottom" constant="10" id="DFa-iW-4Pz"/>
                             <constraint firstAttribute="centerX" secondItem="fc6-Xj-x2f" secondAttribute="centerX" constant="11.5" id="H67-ax-gRJ"/>
+                            <constraint firstItem="4xi-Ij-fsQ" firstAttribute="height" secondItem="ALW-Ak-oYc" secondAttribute="height" id="HIL-8t-a7s"/>
                             <constraint firstItem="zU6-mJ-YEb" firstAttribute="top" secondItem="hFF-Zy-Llm" secondAttribute="bottom" constant="1" id="Lze-IX-vqj"/>
                             <constraint firstAttribute="centerX" secondItem="hFF-Zy-Llm" secondAttribute="centerX" constant="-0.5" id="PgS-wU-lda"/>
                             <constraint firstItem="Ya3-w7-rHM" firstAttribute="leading" secondItem="Nfu-iP-MXw" secondAttribute="leading" id="QlN-tb-IdV"/>
                             <constraint firstItem="xwg-3F-yrt" firstAttribute="trailing" secondItem="Ya3-w7-rHM" secondAttribute="trailing" id="R1k-8h-bOM"/>
+                            <constraint firstAttribute="centerX" secondItem="ALW-Ak-oYc" secondAttribute="centerX" constant="-0.5" id="Ssc-wS-0lb"/>
+                            <constraint firstItem="4xi-Ij-fsQ" firstAttribute="top" secondItem="dQo-ik-Z8X" secondAttribute="bottom" constant="8" id="VI8-0Z-oUH"/>
                             <constraint firstItem="Nfu-iP-MXw" firstAttribute="top" secondItem="fc6-Xj-x2f" secondAttribute="bottom" constant="50" id="X26-gL-0Wp"/>
                             <constraint firstItem="Ya3-w7-rHM" firstAttribute="top" secondItem="xwg-3F-yrt" secondAttribute="bottom" constant="1" id="XVP-lr-PXG"/>
+                            <constraint firstItem="4xi-Ij-fsQ" firstAttribute="width" secondItem="ALW-Ak-oYc" secondAttribute="width" id="Y1G-RD-A4j"/>
                             <constraint firstItem="Ya3-w7-rHM" firstAttribute="top" secondItem="Nfu-iP-MXw" secondAttribute="bottom" constant="1" id="cDn-Q2-FM2"/>
                             <constraint firstAttribute="centerX" secondItem="Ya3-w7-rHM" secondAttribute="centerX" constant="-0.5" id="eLo-Es-vUS"/>
                             <constraint firstAttribute="centerX" secondItem="zU6-mJ-YEb" secondAttribute="centerX" id="egM-Qd-QoM"/>
@@ -163,6 +183,8 @@
                             <constraint firstItem="fc6-Xj-x2f" firstAttribute="top" secondItem="sor-Go-hvC" secondAttribute="bottom" constant="50" id="lch-Ln-4D1"/>
                             <constraint firstItem="9sv-ki-Jyd" firstAttribute="leading" secondItem="opA-2e-zBX" secondAttribute="leading" id="nB7-Pf-PJ9"/>
                             <constraint firstItem="xwg-3F-yrt" firstAttribute="trailing" secondItem="lAL-YH-Wn5" secondAttribute="trailing" id="sKi-42-12V"/>
+                            <constraint firstItem="4xi-Ij-fsQ" firstAttribute="width" secondItem="dQo-ik-Z8X" secondAttribute="width" id="tII-fE-wrh"/>
+                            <constraint firstItem="4xi-Ij-fsQ" firstAttribute="height" secondItem="dQo-ik-Z8X" secondAttribute="height" id="uan-60-bxE"/>
                             <constraint firstItem="9sv-ki-Jyd" firstAttribute="top" secondItem="opA-2e-zBX" secondAttribute="bottom" constant="1" id="z2Y-Xx-wPt"/>
                             <constraint firstItem="dQo-ik-Z8X" firstAttribute="top" secondItem="zU6-mJ-YEb" secondAttribute="bottom" constant="20" id="z2h-sM-znN"/>
                         </constraints>
@@ -637,7 +659,6 @@
         <!--BillingInfoViewController-->
         <scene sceneID="hvu-h5-OA6">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Nvt-6H-grt" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController title="BillingInfoViewController" id="r4H-4r-PAO" customClass="BillingInfoViewController" customModule="TextCrunch" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="LMC-gl-3a5"/>
@@ -697,6 +718,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="zhx-27-OYs"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nvt-6H-grt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1627.5" y="1248.5915492957745"/>
         </scene>
@@ -1819,7 +1841,7 @@
                                                 </imageView>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lsQ-QH-JM5">
                                                     <rect key="frame" x="72" y="9" width="280" height="41"/>
-                                                    <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
@@ -1995,12 +2017,12 @@
         <image name="up_arrow.png" width="201" height="123"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="3f1-9h-r6A"/>
-        <segue reference="Kr0-Hl-yHk"/>
-        <segue reference="LSY-0b-oyb"/>
         <segue reference="fa7-S4-vYW"/>
+        <segue reference="S6U-8h-8D6"/>
         <segue reference="8iV-l4-1e5"/>
         <segue reference="Jmx-ac-2ai"/>
+        <segue reference="Kr0-Hl-yHk"/>
+        <segue reference="3f1-9h-r6A"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>
