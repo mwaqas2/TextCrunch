@@ -176,6 +176,7 @@ class EditListingViewController: UIViewController {
         self.listing.seller = UserController.getCurrentUser()
         self.listing.isActive = true
         self.listing.isOnHold = false
+        self.listing.image = PFFile(name: "image", data: self.data)
         setBookElements(book)
         updateButton.hidden = true
     }
@@ -257,7 +258,7 @@ class EditListingViewController: UIViewController {
             var svc = segue.destinationViewController as ListingViewController;
             svc.listing = self.listing
 			svc.isNewListing = isNewListing
-            if (imageExist & (data != nil)){
+            if (imageExist && (data != nil)){
                 svc.data = data
             }
         } else if (segue.identifier == "photoAttachSegue"){
