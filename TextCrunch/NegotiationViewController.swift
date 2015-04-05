@@ -80,7 +80,7 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
 
         var seller = listing.seller.fetchIfNeeded() as User
         userIsSeller = (seller.email == UserController.getCurrentUser().email)
-        if(userIsSeller){
+        if(userIsSeller) {
             purchaseButton.hidden = true
             holdButton.hidden = false
             soldButton.hidden = false
@@ -127,6 +127,13 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
         config.merchantUserAgreementURL = NSURL(string: "http://txtcrunch.com/user-agreement")
         
         timer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "updateNegotiationState:", userInfo: nil, repeats: true)
+        
+        // DO THIS ALL LAST SO WE DON'T START ANYTHING BEFORE THE CONFIG IS ALL SETUP
+        if (self.userIsSeller && self.negotiation.purchaseRequested) {
+            
+            self.confirmSale()
+        
+        }
 	}
 	
 	override func didReceiveMemoryWarning() {
@@ -376,6 +383,8 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
+    // Called for the seller after the buyer has initiated the payment process
+    // after the seller confirms, the buyer will double check before paying
     func confirmSale() {
         
         var alert = UIAlertController(

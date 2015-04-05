@@ -301,9 +301,7 @@ Parse.Cloud.define("capturePayment", function (request, response) {
         negotiation = object;
         listing = negotiation.get('listing');
         captureUrl = negotiation.get('paymentCaptureUrl');
-        sellerEmail = negotiation.get('seller').username;
-        console.log(sellerEmail);
-        console.log(captureUrl);
+        sellerEmail = negotiation.get('seller').get('email');
 
         return getOwnAccessToken();
 
@@ -369,7 +367,7 @@ var pay = function (sellerEmail, amount, accessToken, description, negotiationId
         },
         body: {
             sender_batch_header: {
-                email_subject: "TxtCrunch Payment for " + description
+                email_subject: "TxtCrunch Payment"
             },
             items: [
                 {
@@ -385,14 +383,14 @@ var pay = function (sellerEmail, amount, accessToken, description, negotiationId
             ]
         },
         success: function(res) {
-            if (res.data.transaction_status === "SUCCESS") {
+            if (res.data.batch_header.batch_status == "SUCCESS") {
                 promise.resolve();
             } else {
                 promise.reject("Failed to payout seller.", res.data);
             }
         },
         error: function(error) {
-            promise.reject("Failed to payout seller.", res.data);
+            promise.reject("Failed to payout seller.", error);
         }
     });
 
@@ -421,7 +419,6 @@ var capture = function (captureUrl, amount, accessToken)
                 is_final_capture: true
             },
             success: function(res) {
-                console.log(res.data);
                 if (res.data.state === 'completed') {
                     promise.resolve();
                 } else {
@@ -429,7 +426,7 @@ var capture = function (captureUrl, amount, accessToken)
                 }
             },
             error: function(error) {
-                promise.reject('Error capturing payment', error.data);
+                promise.reject('Error capturing payment', error);
             }
         });
 
