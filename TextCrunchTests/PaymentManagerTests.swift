@@ -37,7 +37,9 @@ class PaymentManagerTests: XCTestCase {
         var query = User.query()
         query.whereKey("email", equalTo:buyerEmail)
         buyer = query.findObjects().first as PFUser
-
+        
+        print(buyer)
+        
         var query2 = User.query()
         query2.whereKey("email", equalTo:sellerEmail)
         seller = query2.findObjects().first as PFUser
@@ -46,8 +48,8 @@ class PaymentManagerTests: XCTestCase {
         var book = bookQ.getObjectWithId("lVuQZZ9NKQ") as Book
         
         listing = Listing()
-        listing.buyer = buyer as User
-        listing.seller = seller as User
+        listing.buyer = buyer
+        listing.seller = seller
         listing.book = book
         listing.price = 20
         listing.save()
@@ -69,18 +71,19 @@ class PaymentManagerTests: XCTestCase {
 //        XCTAssert(result == true, "Code conversion failed")
 //    }
     
-    func testCharge() {
+    func testPaymentFlow() {
         
         // TODO hook these all up to pull name and seller parse id from the view
-        var amount = 20
         var paypalMetaDataID = PayPalMobile.clientMetadataID()
-        var sellerEmail = buyer.email
-        var bookTitle = "Tom Sawyer"
-        var paypalMetaDataId = PayPalMobile.clientMetadataID()
         
-        var result = PaymentManager.charge(negotiation, buyerMetaDataId: paypalMetaDataID)
+        var chargeResult = PaymentManager.prepareCharge(negotiation, buyerMetaDataId: paypalMetaDataID)
         
         // This is an example of a functional test case.
-        XCTAssert(result == true, "Shouldn't error on payment attempt")
+        XCTAssert(chargeResult == true, "Shouldn't error on payment attempt")
+ 
+        negotiation.fetch()
+        
+        var payResult = PaymentManager.capturePayment(negotiation)
+        XCTAssert(payResult == true, "Error capturing payment")
     }
 }
