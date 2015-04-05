@@ -120,9 +120,24 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7ac-w0-NmM">
+                                <rect key="frame" x="189" y="399" width="223" height="30"/>
+                                <color key="backgroundColor" red="0.078431372549019607" green="0.65098039215686276" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Login With Twitter">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A9s-tH-FTi">
+                                <rect key="frame" x="189" y="452" width="223" height="30"/>
+                                <color key="backgroundColor" red="0.82745098039215681" green="0.18431372549019609" blue="0.12941176470588237" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Login With Google">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.59999999999999998" green="0.79607843137254897" blue="0.74117647058823533" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="A9s-tH-FTi" firstAttribute="height" secondItem="7ac-w0-NmM" secondAttribute="height" id="18K-uD-Ll8"/>
                             <constraint firstItem="9sv-ki-Jyd" firstAttribute="trailing" secondItem="opA-2e-zBX" secondAttribute="trailing" constant="155" id="2dH-gQ-qFu"/>
                             <constraint firstItem="lAL-YH-Wn5" firstAttribute="trailing" secondItem="Ya3-w7-rHM" secondAttribute="trailing" constant="28" id="3oN-2p-Ygn"/>
                             <constraint firstItem="9sv-ki-Jyd" firstAttribute="leading" secondItem="opA-2e-zBX" secondAttribute="leading" id="4yR-gO-fiQ"/>
@@ -146,18 +161,25 @@
                             <constraint firstItem="zU6-mJ-YEb" firstAttribute="top" secondItem="hFF-Zy-Llm" secondAttribute="bottom" constant="-3" id="VYD-m4-H4R"/>
                             <constraint firstItem="zU6-mJ-YEb" firstAttribute="top" secondItem="hFF-Zy-Llm" secondAttribute="bottom" constant="-3" id="Ycl-j0-57d"/>
                             <constraint firstAttribute="trailingMargin" secondItem="9sv-ki-Jyd" secondAttribute="trailing" constant="172" id="Zw0-Wn-pG1"/>
+                            <constraint firstAttribute="centerX" secondItem="A9s-tH-FTi" secondAttribute="centerX" constant="-0.5" id="aCD-Mo-7kU"/>
                             <constraint firstItem="9sv-ki-Jyd" firstAttribute="width" secondItem="dQo-ik-Z8X" secondAttribute="width" id="beL-fj-6vN"/>
+                            <constraint firstItem="7ac-w0-NmM" firstAttribute="top" secondItem="dQo-ik-Z8X" secondAttribute="bottom" constant="27" id="eTs-oR-q3c"/>
                             <constraint firstItem="dQo-ik-Z8X" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="173" id="fWy-J6-nZQ"/>
                             <constraint firstItem="9sv-ki-Jyd" firstAttribute="width" secondItem="hFF-Zy-Llm" secondAttribute="width" id="h81-EJ-Qgv"/>
                             <constraint firstItem="9sv-ki-Jyd" firstAttribute="top" secondItem="opA-2e-zBX" secondAttribute="bottom" id="hNq-1k-hag"/>
                             <constraint firstItem="dQo-ik-Z8X" firstAttribute="top" secondItem="hFF-Zy-Llm" secondAttribute="bottom" constant="60" id="iBP-DO-BPS"/>
+                            <constraint firstItem="A9s-tH-FTi" firstAttribute="top" secondItem="dQo-ik-Z8X" secondAttribute="bottom" constant="80" id="im7-01-87p"/>
                             <constraint firstItem="hFF-Zy-Llm" firstAttribute="top" secondItem="9sv-ki-Jyd" secondAttribute="bottom" constant="17" id="jkd-R2-Beb"/>
                             <constraint firstItem="9sv-ki-Jyd" firstAttribute="top" secondItem="opA-2e-zBX" secondAttribute="bottom" constant="-1" id="jye-VE-waf"/>
+                            <constraint firstAttribute="centerX" secondItem="7ac-w0-NmM" secondAttribute="centerX" constant="-0.5" id="k6Y-On-IAB"/>
                             <constraint firstItem="hFF-Zy-Llm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="173" id="lfZ-je-tJK"/>
                             <constraint firstItem="VlH-Q8-678" firstAttribute="top" secondItem="dQo-ik-Z8X" secondAttribute="bottom" constant="228" id="m1b-oL-QEw"/>
+                            <constraint firstItem="A9s-tH-FTi" firstAttribute="width" secondItem="7ac-w0-NmM" secondAttribute="width" id="onS-bc-V3G"/>
+                            <constraint firstItem="A9s-tH-FTi" firstAttribute="height" secondItem="dQo-ik-Z8X" secondAttribute="height" id="pBN-pm-8Qz"/>
                             <constraint firstItem="VlH-Q8-678" firstAttribute="top" secondItem="dQo-ik-Z8X" secondAttribute="bottom" constant="228" id="uYh-QI-7CF"/>
                             <constraint firstItem="9sv-ki-Jyd" firstAttribute="width" secondItem="Ya3-w7-rHM" secondAttribute="width" id="v10-Wo-O3B"/>
                             <constraint firstAttribute="trailingMargin" secondItem="hFF-Zy-Llm" secondAttribute="trailing" constant="172" id="wrN-KE-CPI"/>
+                            <constraint firstItem="A9s-tH-FTi" firstAttribute="width" secondItem="dQo-ik-Z8X" secondAttribute="width" id="xza-BN-Fol"/>
                             <constraint firstItem="dQo-ik-Z8X" firstAttribute="top" secondItem="zU6-mJ-YEb" secondAttribute="bottom" constant="33" id="ywx-qY-0qp"/>
                         </constraints>
                         <variation key="default">
@@ -1931,11 +1953,11 @@
         <image name="up_arrow.png" width="201" height="123"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="wZB-RO-bmV"/>
-        <segue reference="8yV-Do-QqQ"/>
-        <segue reference="Lrg-jM-kO3"/>
-        <segue reference="8iV-l4-1e5"/>
         <segue reference="fa7-S4-vYW"/>
+        <segue reference="8iV-l4-1e5"/>
+        <segue reference="8yV-Do-QqQ"/>
+        <segue reference="q96-Cz-bw7"/>
+        <segue reference="wZB-RO-bmV"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>
