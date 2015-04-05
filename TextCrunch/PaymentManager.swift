@@ -15,39 +15,24 @@ class PaymentManager {
         
         var data = [
             "buyerMetaDataId": buyerMetaDataId,
-            "negotiatonId": negotiation.objectId
+            "negotiationId": negotiation.objectId
         ]
         
         var response = PFCloud.callFunction("charge", withParameters: data) as [String:AnyObject]
-        print(response)
         return response["success"] as Bool
     }
     
     class func capturePayment(negotiation: Negotiation) -> Bool {
-
-//        var data : NSDictionary = {
-//            "negotiationId": negotiation.objectId,
-//            "captureUrl": negotiation.paymentCaptureUrl,
-//            "amount": negotiation.listing.price,
-//            "description": negotiation.listing.book.title
-//        }
-//        
-//        var myDict:NSDictionary = ["Data" : negotiation]
-//        
-////        PFCloud.callFunctionInBackground("capturePayment", withParameters: data, {
-////            (result: AnyObject!, error: NSError!) -> Void in
-////            if error == nil {
-////                negotiation.completed = true
-////                negotiation.save()
-////            } else {
-////                print(error)
-////            }
-////        })
-//        
-//        var result = PFCloud.callFunction("capturePayment", withParameters: data)
-//        print(result)
-//        return result as Bool
-        return true
+        
+        var data = [
+            "negotiationId": negotiation.objectId,
+            "captureUrl": negotiation.paymentCaptureUrl,
+            "amount": String(format:"%.2f", Double(negotiation.listing.price)),
+            "description": negotiation.listing.book.title + " Purchase"
+        ]
+        
+        var response = PFCloud.callFunction("capturePayment", withParameters: data) as [String:AnyObject]
+        return response["success"] as Bool
     }
     
     class func saveCodeAsToken(userEmail: String, code: String) -> Bool {

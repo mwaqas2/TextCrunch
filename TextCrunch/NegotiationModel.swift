@@ -9,7 +9,8 @@
 import Foundation
 
 class Negotiation : PFObject, PFSubclassing {
-	@NSManaged var buyer: User
+	
+    @NSManaged var buyer: User
 	@NSManaged var seller: User
 	@NSManaged var messages: [Message]
 	@NSManaged var listing: Listing

@@ -9,7 +9,8 @@
 import Foundation
 
 class Message : PFObject, PFSubclassing {
-	@NSManaged var sender: User
+	
+    @NSManaged var sender: User
 	@NSManaged var receiver: User
 	@NSManaged var content: String
 	

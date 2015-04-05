@@ -141,12 +141,12 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
 			message.sender = UserController.getCurrentUser()
 		
 			if (UserController.getCurrentUser() == negotiation.seller) {
-				message.receiver = negotiation.buyer
+				message.receiver = negotiation.buyer as User
 				installation["selleruser"] = negotiation.seller
 				installation["buyeruser"] = negotiation.buyer
 				installation.saveInBackground()
 			} else {
-				message.receiver = negotiation.seller
+				message.receiver = negotiation.seller as User
 				installation["buyeruser"] = negotiation.buyer
 				installation["selleruser"] = negotiation.seller
 				installation.saveInBackground()

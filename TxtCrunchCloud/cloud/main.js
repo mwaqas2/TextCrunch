@@ -24,17 +24,6 @@ var paypalProduction = {
  */
 
 /**
- * Used to calculate what value in cents we are charging for a given transaction.
- *
- * @param amountInCents
- * @return our portion rounded down to the near cent in cents
- */
-var calculateEarnings = function (amountInCents) {
-    var charge = amountInCents * txPercent;
-    return Math.floor(charge);
-};
-
-/**
  * Creates a standardized cloud code response format.
  *
  * @param object data
@@ -75,6 +64,28 @@ var getUserByEmail = function (response, email, callback) {
     var query = new Parse.Query(Parse.User);
     query.equalTo("email", email);
     return query.first();
+};
+
+var getTypeById = function (type, id) {
+
+    var Obj = Parse.Object.extend(type);
+    var query = new Parse.Query(Obj);
+    query.equalTo("id", id);
+    return query.first();
+
+};
+
+var getNegotiation = function(id) {
+    var Negotiation = Parse.Object.extend("Negotiation");
+    var query = new Parse.Query(Negotiation).include([
+        "buyer", "seller", "listing.seller"
+    ]);
+    return query.get(id);
+};
+
+var getUserById = function (id) {
+    var query = new Parse.Query(Parse.User);
+    return query.get(id);
 };
 
 /**
@@ -123,15 +134,13 @@ Parse.Cloud.define("paypalCodeToToken", function (request, response) {
 
                     // otherwise get it and save to the user
                     var refreshToken = res.text.refresh_token;
-                    if (request.params.type === 'buyer') {
-                        user.set("buyerRefreshToken", refreshToken);
-                    } else {
-                        user.set("sellerRefreshToken", refreshToken);
-                    }
+                    user.save({
+                        "buyerRefreshToken": refreshToken
+                    }).then(function () {
+                        response.success(formatResponse("Code converted successfully", true, res.text));
+                    }, response.error(formatResponse("Error saving buyerRefreshToken", false)));
 
                     // persist changes and send back a success
-                    user.save();
-                    response.success(formatResponse("Code converted successfully", true, res.text));
 
                 } else {
                     response.success(
@@ -150,7 +159,7 @@ Parse.Cloud.define("paypalCodeToToken", function (request, response) {
 
 var refreshAccessToken = function (refreshToken) {
 
-    var promise = Parse.Promise();
+    var promise = new Parse.Promise();
 
     Parse.Cloud.httpRequest({
         method: "POST",
@@ -180,13 +189,6 @@ var refreshAccessToken = function (refreshToken) {
     return promise;
 };
 
-var getNegotiationById = function (negotiationId)
-{
-    var Negotiation = Parse.Object.extend("Negotiation");
-    var query = new Parse.Query(Negotiation);
-    query.equalTo("id", negotiationId);
-    return query.first();
-};
 
 /**
  * Handles charging a textbook buyer.
@@ -198,28 +200,26 @@ var getNegotiationById = function (negotiationId)
  *  - sellerParseId: the sellers Parse User Id
  * ]
  */
-
 Parse.Cloud.define("charge", function (request, response) {
 
-    var sellerEmail, negotiation, buyer, listing;
     var metadataId = request.params.metadataId;
     var negotiationId = request.params.negotiationId;
-    var amount = request.params.amount;
-    var description = request.params.description;
+    var negotiation, amount, description;
 
-    getNegotiationById(negotiationId).then(function (object) {
+    getNegotiation(negotiationId).then(function (object) {
 
-        // use the negotiation object to fetch/set all other data
         negotiation = object;
-        listing = negotiation.get('listing');
-        buyer = negotiation.get('buyer');
+        amount = negotiation.get("listing").get("price").toFixed(2).toString();
+        var bookTitle = negotiation.get("listing").get("book").get("title");
+        description = "Purchase for " + bookTitle;
 
-        // then get a new buyer access token
-        return refreshAccessToken(buyer.get('buyerRefreshToken'));
+        return refreshAccessToken(
+            negotiation.get("buyer").get("buyerRefreshToken")
+        );
 
     }).then(function (accessToken) {
 
-        var promise = Parse.Promise();
+        var promise = new Parse.Promise();
 
         Parse.Cloud.httpRequest({
             method: "POST",
@@ -238,7 +238,7 @@ Parse.Cloud.define("charge", function (request, response) {
                     {
                         amount:{
                             currency: "CAD",
-                            total: amount.toString()
+                            total: amount
                         },
                         description: description
                     }
@@ -252,11 +252,13 @@ Parse.Cloud.define("charge", function (request, response) {
                         .transactions[0].related_resources[0]
                         .authorization.links[1].href;
 
-                    // save this so the app can proceed
-                    negotiation.set('paymentCaptureUrl', captureUrl);
-                    negotiation.save()
-
-                    promise.resolve("Payment prepared successfully.");
+                    negotiation.save({
+                        "paymentCaptureUrl": captureUrl
+                    }).then(function (updated) {
+                        promise.resolve("Payment prepared successfully.");
+                    }, function (error) {
+                        promise.reject("Failed to save capture url", res.data);
+                    });
 
                 } else {
                     promise.reject("Failed to authorize user charge", res.data);
@@ -267,15 +269,17 @@ Parse.Cloud.define("charge", function (request, response) {
             }
         });
 
+        return promise;
+
     // Success! Respond to app.
-    }).then(function (msg) {
+    }.bind(negotiation)).then(function (msg) {
         response.success(formatResponse(msg, true));
 
     // error handler catches eeverything
     }, function(msg, result) {
         response.error(
-            formatResponse(msg, false, result.data)
-        );  
+            formatResponse(msg, false, result)
+        );
     });
 });
 
@@ -287,17 +291,19 @@ Parse.Cloud.define("charge", function (request, response) {
  */
 Parse.Cloud.define("capturePayment", function (request, response) {
 
-    var captureURL = request.params.captureUrl;
     var negotiationId = request.params.negotiationId;
-    var amount, description, sellerEmail, negotiation, listing, accessToken;
+    var amount = request.params.amount;
+    var description = request.params.description;
+    var captureUrl, sellerEmail, negotiation, listing, accessToken;
 
-    getNegotiationById(negotiationId).then(function (object) {
+    getNegotiation(negotiationId).then(function (object) {
 
         negotiation = object;
-        listing = negotiation.relation('listing');
-        description = listing.relation('book').get('title');
-        amount = listing.get('price').toFixed(2);
-        sellerEmail = listing.relation('seller').username;
+        listing = negotiation.get('listing');
+        captureUrl = negotiation.get('paymentCaptureUrl');
+        sellerEmail = negotiation.get('seller').username;
+        console.log(sellerEmail);
+        console.log(captureUrl);
 
         return getOwnAccessToken();
 
@@ -306,9 +312,9 @@ Parse.Cloud.define("capturePayment", function (request, response) {
         accessToken = token;
 
         return capture(
-            accesstoken,
             captureUrl,
-            amount
+            amount,
+            accessToken
         );
 
     }).then(function () {
@@ -326,9 +332,6 @@ Parse.Cloud.define("capturePayment", function (request, response) {
 
         var promises = [];
 
-        var negotiation = metadata.negotiation;
-        var listing = metadata.listing;
-
         // update corresponding parse objects
         negotiation.set('completed', true);
         listing.set('isActive', false);
@@ -343,13 +346,11 @@ Parse.Cloud.define("capturePayment", function (request, response) {
 
     // Catch all error handler
     }, function(msg, data) {
-        response.error(formatResponse(msg, false, data));
+        response.success(formatResponse(msg, false, data));
     });
 });
 
 
-// TODO probably using adaptive payments API, transfer money out of our own
-// bank to the seller
 /**
  * @param request.params [
  *  - sellerParseId
@@ -357,7 +358,7 @@ Parse.Cloud.define("capturePayment", function (request, response) {
  */
 var pay = function (sellerEmail, amount, accessToken, description, negotiationId)
 {
-    var promise = Parse.Promise();
+    var promise = new Parse.Promise();
 
     Parse.Cloud.httpRequest({
         method: "POST",
@@ -384,7 +385,6 @@ var pay = function (sellerEmail, amount, accessToken, description, negotiationId
             ]
         },
         success: function(res) {
-            console.log(res.data);
             if (res.data.transaction_status === "SUCCESS") {
                 promise.resolve();
             } else {
@@ -402,13 +402,13 @@ var pay = function (sellerEmail, amount, accessToken, description, negotiationId
 /**
  * Used to capture a pending buyer charge via url.
  */
-var capture = function (sellerEmail, amount, accessToken, description)
+var capture = function (captureUrl, amount, accessToken)
 {
-    var promise = Parse.Promise();
+    var promise = new Parse.Promise();
 
     Parse.Cloud.httpRequest({
             method: "POST",
-            url: captureURL,
+            url: captureUrl,
             headers: {
                 "Content-Type": "application/json;charset=utf-8",
                 "Authorization": "Bearer " + accessToken,
@@ -441,7 +441,7 @@ var capture = function (sellerEmail, amount, accessToken, description)
  */
 var getOwnAccessToken = function () {
 
-    var promise = Parse.Promise();
+    var promise = new Parse.Promise();
 
     Parse.Cloud.httpRequest({
         method: "POST",
