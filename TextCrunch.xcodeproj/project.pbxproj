@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18501C6E1AD1F528004F065F /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18501C6D1AD1F528004F065F /* Twitter.framework */; };
 		187896C61A8D7A020027C7A1 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187896C41A8D6D7A0027C7A1 /* UserModel.swift */; };
 		1892840B1A97B7AE000B15D6 /* Literature-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 189284091A97B7AE000B15D6 /* Literature-25.png */; };
 		1892840C1A97B7AE000B15D6 /* Money Bag-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 1892840A1A97B7AE000B15D6 /* Money Bag-25.png */; };
@@ -102,6 +103,7 @@
 /* Begin PBXFileReference section */
 		068508C138C86F1EED8F7AE4 /* Pods-TextCrunch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TextCrunch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TextCrunch/Pods-TextCrunch.debug.xcconfig"; sourceTree = "<group>"; };
 		13C06A76BB7E3789FF2562A7 /* Pods-TextCrunch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TextCrunch.release.xcconfig"; path = "Pods/Target Support Files/Pods-TextCrunch/Pods-TextCrunch.release.xcconfig"; sourceTree = "<group>"; };
+		18501C6D1AD1F528004F065F /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		187896C41A8D6D7A0027C7A1 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		189284091A97B7AE000B15D6 /* Literature-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Literature-25.png"; sourceTree = "<group>"; };
 		1892840A1A97B7AE000B15D6 /* Money Bag-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Money Bag-25.png"; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18501C6E1AD1F528004F065F /* Twitter.framework in Frameworks */,
 				65A9FD1C1A705A670095F48C /* CoreLocation.framework in Frameworks */,
 				65A9FD2C1A705B400095F48C /* libsqlite3.0.dylib in Frameworks */,
 				65A9FD281A705A9B0095F48C /* SystemConfiguration.framework in Frameworks */,
@@ -403,6 +406,7 @@
 		82130BAA12009FEBF7DF72FF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				18501C6D1AD1F528004F065F /* Twitter.framework */,
 				655DEF861A84107900931A3B /* libPods-TextCrunch-Bolts.a */,
 				655DEF871A84107900931A3B /* libPods-TextCrunch-Braintree.a */,
 				655DEF881A84107900931A3B /* libPods-TextCrunch-Parse.a */,
