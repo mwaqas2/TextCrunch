@@ -16,8 +16,12 @@ class Negotiation : PFObject, PFSubclassing {
 	@NSManaged var listing: Listing
 	@NSManaged var completed: Bool
     @NSManaged var purchaseRequested: Bool
+<<<<<<< HEAD
+    @NSManaged var sellerConfirmation: Bool
 	@NSManaged var isNewSellerMessage: Bool
 	@NSManaged var isNewBuyerMessage: Bool
+=======
+>>>>>>> master
     @NSManaged var paymentCaptureUrl: String?
 	
 	override class func load() {

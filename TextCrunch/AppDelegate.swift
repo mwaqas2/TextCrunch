@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PayPalMobile.initializeWithClientIdsForEnvironments([PayPalEnvironmentSandbox: "AT_zVdLhRy_IwuNqTMBFPVImboNVwfR6CJXhIp62uSMHcsZhKD3X6y9d-Snn3i679gA8M8yP5Qk32ZEa"])
         
         var types: UIUserNotificationType =
-        UIUserNotificationType.Alert |
+            UIUserNotificationType.Alert |
             UIUserNotificationType.Badge |
             UIUserNotificationType.Sound
         
