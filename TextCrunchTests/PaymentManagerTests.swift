@@ -76,7 +76,7 @@ class PaymentManagerTests: XCTestCase {
         // TODO hook these all up to pull name and seller parse id from the view
         var paypalMetaDataID = PayPalMobile.clientMetadataID()
         
-        var chargeResult = PaymentManager.charge(negotiation, buyerMetaDataId: paypalMetaDataID)
+        var chargeResult = PaymentManager.prepareCharge(negotiation, buyerMetaDataId: paypalMetaDataID)
         
         // This is an example of a functional test case.
         XCTAssert(chargeResult == true, "Shouldn't error on payment attempt")

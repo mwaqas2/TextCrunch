@@ -11,14 +11,14 @@ import Foundation
 class PaymentManager {
     
     // Charges a buyer and then pays the seller in the cloud
-    class func charge(negotiation: Negotiation, buyerMetaDataId: String) -> Bool {
+    class func prepareCharge(negotiation: Negotiation, buyerMetaDataId: String) -> Bool {
         
         var data = [
             "buyerMetaDataId": buyerMetaDataId,
             "negotiationId": negotiation.objectId
         ]
         
-        var response = PFCloud.callFunction("charge", withParameters: data) as [String:AnyObject]
+        var response = PFCloud.callFunction("prepareCharge", withParameters: data) as [String:AnyObject]
         return response["success"] as Bool
     }
     

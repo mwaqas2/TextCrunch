@@ -194,31 +194,18 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
 		
 		if (resultNegotiation != nil) {
             // ask the seller if they'd like to sell if the buyer has offered
-            if  (self.negotiation.purchaseRequested == false &&
+            if (self.negotiation.purchaseRequested == false &&
                 resultNegotiation?.purchaseRequested == true &&
                 userIsSeller == true
-            )
-            {
-                self.confirmSale()
-                
-            // if the seller confirms, pay up and complete from the user side
-            // because we need their PayPal metadata
-            } else if (
-                self.negotiation.sellerConfirmation == false &&
-                resultNegotiation?.sellerConfirmation == true &&
-                userIsSeller == false
             ) {
-                var paypalMetaDataID = PayPalMobile.clientMetadataID()
-                if (PaymentManager.charge(self.negotiation, buyerMetaDataId: paypalMetaDataID))
-                {
-                    resultNegotiation?.completed = true
-                    //resultNegotiation?.listing.isActive = false
-                    resultNegotiation?.listing.save()
-                    resultNegotiation?.save()
-                }
-                else {
-                    // TODO error handling
-                }
+                self.confirmSale()
+            }
+            
+            if (!self.userIsSeller &&
+                self.negotiation.purchaseRequested &&
+                resultNegotiation?.purchaseRequested == false
+            ) {
+                self.paymentError("Seller rejected purchase request.")
             }
             
             // update with newest negotiation, TODO: perhaps check if this is dirty
@@ -345,6 +332,7 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
             action in switch action.style {
                 case .Default:
                     self.prepareBuyer()
+                    
                 break
             default:
                 break
@@ -361,7 +349,7 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
     func notifySuccess() {
         var alert = UIAlertController(
             title: "Transaction Complete",
-            message: "The Textbook was exchanged successfully",
+            message: "The Textbook was exchanged successfully!",
             preferredStyle: UIAlertControllerStyle.Alert
         );
         
@@ -372,12 +360,14 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
                 
                 action in switch action.style {
                 case .Default:
-                    // TODO SEGUE HOME
+                    self.listing.isActive = false
+                    self.listing.buyer = self.negotiation.buyer
+                    self.listing.save()
+                    self.performSegueWithIdentifier("soldButtonSegue", sender: nil)
                     break
                 default:
                     break
                 }
-                
         }))
         
         self.presentViewController(alert, animated: true, completion: nil)
@@ -399,9 +389,16 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
             handler: {
                 action in switch action.style {
                 case .Default:
-                    self.negotiation.sellerConfirmation = true
-                    self.negotiation.save()
-                    // TODO pending message, spinner maybe
+
+                    if (PaymentManager.capturePayment(self.negotiation)) {
+                        self.notifySuccess()
+                    } else {
+                        self.negotiation.purchaseRequested = false
+                        self.negotiation.paymentCaptureUrl = ""
+                        self.negotiation.save()
+                        self.paymentError("Error completing payment. Get buyer to initiate again.")
+                    }
+                    
                     break
                 default:
                     break
@@ -418,6 +415,7 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
                 case .Cancel:
                     // if seller cancels, reset flow
                     self.negotiation.purchaseRequested = false
+                    self.negotiation.paymentCaptureUrl = ""
                     self.negotiation.save()
                     break
                 default:
@@ -430,7 +428,7 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
     }
     
     // Called when a buyer initiates textbook purchase. Checks PayPal
-    // authorization and then prepares a charge
+    // authorization and then prepares a prepareCharge
     func prepareBuyer() {
         
         PayPalMobile.preconnectWithEnvironment(PayPalEnvironmentSandbox)
@@ -462,7 +460,7 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
                 if (self.convertPaymentCodeToToken(response)) {
                     self.doubleCheckBuyer()
                 } else {
-                    // TODO: error
+                    self.paymentError("Error approving PayPal account. Try again.")
                 }
                 
             })
@@ -471,20 +469,29 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
     func doubleCheckBuyer() {
         var alert = UIAlertController(
             title: "Confirm Purchase",
-            message: "Press Yes To Finalize",
+            message: "Are you sure you'd like to proceeed?",
             preferredStyle: UIAlertControllerStyle.Alert
         );
         
         alert.addAction(UIAlertAction(
-            title: "Yes",
+            title: "Purchase",
             style: UIAlertActionStyle.Default,
             handler: {
                 
                 action in switch action.style {
                 case .Default:
-                    self.negotiation.purchaseRequested = true
-                    self.negotiation.save()
-                    self.purchaseButton.hidden = true
+                    
+                    var paypalMetaDataID = PayPalMobile.clientMetadataID()
+                    if (PaymentManager.prepareCharge(self.negotiation, buyerMetaDataId: paypalMetaDataID))
+                    {
+                        self.negotiation.purchaseRequested = true
+                        self.negotiation.save()
+                        self.purchaseButton.hidden = true
+                        
+                    } else {
+                        self.paymentError("Error approving purchase. Please try again.")
+                    }
+                    
                     break
                 default:
                     break
@@ -543,4 +550,22 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
 			timer = nil
 		}
 	}
+    
+    func paymentError(message: String) {
+
+        var alert = UIAlertController(
+            title: "Payment Error",
+            message: message,
+            preferredStyle: UIAlertControllerStyle.Alert
+        );
+        
+        alert.addAction(UIAlertAction(
+            title: "Okay",
+            style: UIAlertActionStyle.Default,
+            handler: nil
+        ))
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+
+    }
 }
