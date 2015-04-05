@@ -522,8 +522,10 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
 		}
 		
 		// Ensure tableview starts at bottom (most recent messages)
-		var indexPath = NSIndexPath(forRow: self.messageTableView.numberOfRowsInSection(0)-1, inSection: self.messageTableView.numberOfSections()-1)
-		self.messageTableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Bottom, animated: false)
+		if (self.negotiation.messages.count > 0) {
+			var indexPath = NSIndexPath(forRow: self.messageTableView.numberOfRowsInSection(0)-1, inSection: self.messageTableView.numberOfSections()-1)
+			self.messageTableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Bottom, animated: false)
+		}
 	}
 	
 	// Called when the current view disappears
