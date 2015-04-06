@@ -37,16 +37,22 @@ class ListingViewController: UIViewController {
     var data:NSData? = nil
 	var isNewListing = false
     var userIsSeller : Bool = false
+    var backButton : UIBarButtonItem?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "pentagon.png")!)
-		
-		self.navigationItem.setHidesBackButton(isNewListing, animated: true)
+        self.backButton = UIBarButtonItem(title: "Home", style: .Plain, target: self, action:"segueHome:")
+		//self.navigationItem.setHidesBackButton(isNewListing, animated: true)
+        self.navigationItem.setLeftBarButtonItem(backButton, animated: true)
         var listingSeller : User = listing.seller.fetchIfNeeded() as User
         userIsSeller = (UserController.getCurrentUser().email == listingSeller.email)
         initializeViews()
         setListingElements()
+    }
+    
+    func segueHome(sender: UIBarButtonItem){
+        self.performSegueWithIdentifier("toSellerHomepage", sender: nil)
     }
     
     //Sets up the state of the non-label views of the ListingView screen.
