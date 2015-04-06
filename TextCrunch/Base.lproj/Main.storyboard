@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="SlN-8A-vyZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="SlN-8A-vyZ">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
@@ -1652,7 +1652,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="503" id="xXH-2k-HT3"/>
                                 </constraints>
-                                <state key="normal" title="Negotiation With Seller">
+                                <state key="normal" title="Chat With Seller">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1991,11 +1991,11 @@
         <image name="up_arrow.png" width="201" height="123"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="iPy-fI-sIB"/>
-        <segue reference="vX5-LY-AnJ"/>
+        <segue reference="wZB-RO-bmV"/>
         <segue reference="S6U-8h-8D6"/>
         <segue reference="efr-3O-uBy"/>
-        <segue reference="wZB-RO-bmV"/>
+        <segue reference="vX5-LY-AnJ"/>
+        <segue reference="iPy-fI-sIB"/>
         <segue reference="Jmx-ac-2ai"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>

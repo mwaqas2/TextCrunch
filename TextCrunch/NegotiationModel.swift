@@ -27,4 +27,48 @@ class Negotiation : PFObject, PFSubclassing {
 	class func parseClassName() -> String! {
 		return "Negotiation"
 	}
+    
+    override init() {
+        super.init()
+    }
+    
+    convenience init(email: String, stripeId: String = "") {
+        self.init()
+        
+        self.completed = false
+        self.isNewBuyerMessage = false
+        self.isNewSellerMessage = false
+        self.purchaseRequested = false
+        self.paymentCaptureUrl = ""
+    }
+    
+    func sendMessage(content: String, receiever: User, receiverIsSeller: Bool) {
+        
+        var message = Message()
+        message.sender = UserController.getCurrentUser()
+        message.content = content
+        message.receiver = receiever
+        
+        // Update the negotiation's new message flags
+        if receiverIsSeller {
+            
+            self.isNewSellerMessage = true
+            
+            if (self.messages.count == 0) {
+                self.isNewBuyerMessage = false
+            }
+            
+        } else {
+            
+            self.isNewBuyerMessage = true
+            
+            if (self.messages.count == 0) {
+                self.isNewSellerMessage = false
+            }
+        }
+        
+        self.messages.append(message)
+        self.save()
+        
+    }
 }
