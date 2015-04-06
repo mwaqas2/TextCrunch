@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="SlN-8A-vyZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="SlN-8A-vyZ">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -1459,7 +1459,6 @@
                         <outlet property="price" destination="RjW-tm-8Kd" id="4Sf-rf-i6h"/>
                         <outlet property="publisher" destination="PIs-YI-djN" id="nyZ-b9-83I"/>
                         <outlet property="updateButton" destination="hIx-gv-jlL" id="QFn-F2-MJ0"/>
-                        <segue destination="4KC-lZ-eN4" kind="show" identifier="updateListing" id="GKd-2p-xF5"/>
                         <segue destination="z2C-fy-ceA" kind="show" identifier="deleteListing" id="8iV-l4-1e5"/>
                         <segue destination="4KC-lZ-eN4" kind="show" identifier="viewListing" id="S6U-8h-8D6"/>
                         <segue destination="hc5-Ek-cXq" kind="show" identifier="photoAttachSegue" id="8ln-Ef-cAf"/>
@@ -1715,13 +1714,12 @@
                         <segue destination="MYE-RU-plS" kind="show" identifier="editListing" id="efr-3O-uBy"/>
                         <segue destination="rOS-wc-sWm" kind="show" identifier="toSellerHomepage" id="vX5-LY-AnJ"/>
                         <segue destination="oYe-ts-w60" kind="show" identifier="negotiation" id="wZB-RO-bmV"/>
-                        <segue destination="rOS-wc-sWm" kind="show" id="Lrg-jM-kO3"/>
                         <segue destination="XkV-yB-DNX" kind="show" identifier="viewPictureSegue" id="Wtd-8C-Jvg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="chU-oP-Phr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4016" y="2034"/>
+            <point key="canvasLocation" x="4000" y="2078"/>
         </scene>
         <!--View Picture View Controller-->
         <scene sceneID="4SG-3W-aSs">

@@ -230,13 +230,10 @@ class EditListingViewController: UIViewController {
         */
         
         var point:PFGeoPoint = PFGeoPoint(location: CLLocation(latitude: self.lat_float, longitude: self.long_float)!)
-        
         self.listing["location"] = point
-        
         self.listing.save()
-        //print(self.listing)//Why do we have a print here?
-        self.performSegueWithIdentifier("updateListing", sender: nil)
-        
+		
+		self.navigationController?.popViewControllerAnimated(true)
     }
     
     @IBAction func imageButtonPressed(sender: AnyObject) {
@@ -255,13 +252,6 @@ class EditListingViewController: UIViewController {
             var svc = segue.destinationViewController as IsbnViewController;
             listing.book.delete()
             listing.delete()
-        } else if (segue.identifier == "updateListing") {
-            var svc = segue.destinationViewController as ListingViewController;
-            svc.listing = self.listing
-			svc.isNewListing = isNewListing
-            if (imageExist && (data != nil)){
-                svc.data = data
-            }
         } else if (segue.identifier == "photoAttachSegue"){
             var svc = segue.destinationViewController as TakePictureViewController
             svc.listing = self.listing
