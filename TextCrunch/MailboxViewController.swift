@@ -118,6 +118,7 @@ class MailboxViewController: UIViewController, 	UITableViewDataSource, UITableVi
 	
 	// Called when the current view appears
 	override func viewDidAppear(animated: Bool) {
+        self.navigationController?.topViewController.navigationItem.title = "Mailbox"
 		// Instantiate the timer if the timer has been destroyed
 		if self.timer == nil {
 			self.timer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "reloadNegotiationViewTable:", userInfo: nil, repeats: true)

@@ -32,11 +32,16 @@ class SellerListingViewController: UIViewController, UITableViewDelegate{
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "pentagon.png")!)
         // Hide the back navigation button in this views
 		self.navigationItem.hidesBackButton = true
         self.navigationItem.leftBarButtonItem = nil
         self.listingTable!.dataSource = tableDataSource
         self.listingTable!.delegate = self
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        self.navigationController?.topViewController.navigationItem.title = "Listings"
     }
 
     override func didReceiveMemoryWarning() {
