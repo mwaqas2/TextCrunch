@@ -54,7 +54,8 @@ class SellerListingViewController: UIViewController, UITableViewDelegate{
     //Method required by UITableViewDelegate
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         selectedListing = tableDataSource.currentListings[indexPath.row]
-        self.performSegueWithIdentifier("SellerViewCell", sender: nil)
+		tableView.deselectRowAtIndexPath(indexPath, animated: false)
+		self.performSegueWithIdentifier("SellerViewCell", sender: nil)
     }
 
 	// Called when the "New Listing" button is clicked. Transitions to the screen to create
