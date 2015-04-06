@@ -288,6 +288,8 @@ class SearchViewController: UIViewController, UITableViewDataSource, CLLocationM
 		// Get the row data for the selected row
 		selectedListing = listings[indexPath.row]
 		
+		tableView.deselectRowAtIndexPath(indexPath, animated: false)
+		
 		// Segue to a view of the selected listing
 		self.performSegueWithIdentifier("ViewSearchListing", sender: nil)
 	}
