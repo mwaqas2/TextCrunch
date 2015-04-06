@@ -1935,12 +1935,12 @@
         <image name="up_arrow.png" width="201" height="123"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="q96-Cz-bw7"/>
-        <segue reference="nKq-Dx-Km7"/>
-        <segue reference="Kr0-Hl-yHk"/>
         <segue reference="efr-3O-uBy"/>
         <segue reference="S6U-8h-8D6"/>
         <segue reference="8iV-l4-1e5"/>
+        <segue reference="nKq-Dx-Km7"/>
+        <segue reference="q96-Cz-bw7"/>
+        <segue reference="Kr0-Hl-yHk"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>

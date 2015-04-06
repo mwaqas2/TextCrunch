@@ -39,6 +39,7 @@ class EditListingViewController: UIViewController {
     var json: JSON!
     var numberofbooks = 0
 	var isNewListing = false //Set to true before segue if a new listing is being editted rather than one that already exists.
+	var condition: Int = 3
     
     var GpsAddr = GpsAddress()
     var lat_float = 53.544389
