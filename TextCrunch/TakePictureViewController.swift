@@ -37,11 +37,16 @@ class TakePictureViewController : UIViewController, UINavigationControllerDelega
     }
     
     @IBAction func takePhoto(sender: AnyObject) {
-        imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .Camera
-        
-        presentViewController(imagePicker, animated:true, completion: nil);
+        if (UIImagePickerController.isSourceTypeAvailable(.Camera) == false){
+            var alert = UIAlertController(title: "Error", message: "Error: You cannot take a photo without a camera.", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title:"Ok", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        } else {
+            imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = .Camera
+            presentViewController(imagePicker, animated:true, completion: nil);
+        }
     }
     
 

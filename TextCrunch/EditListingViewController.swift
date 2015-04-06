@@ -233,7 +233,8 @@ class EditListingViewController: UIViewController {
         self.listing["location"] = point
         self.listing.save()
 		
-		self.navigationController?.popViewControllerAnimated(true)
+		//self.navigationController?.popViewControllerAnimated(true)//This causes the user to be stuck in a loop between the take picture screen and edit listing screen.
+        self.performSegueWithIdentifier("viewListing", sender: nil)
     }
     
     @IBAction func imageButtonPressed(sender: AnyObject) {
