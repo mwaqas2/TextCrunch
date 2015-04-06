@@ -26,4 +26,4 @@ SPEC CHECKSUMS:
   ParseFacebookUtils: 4d58d0f133fa1af52f3a8d5caaa55cd435118ac4
   PayPal-iOS-SDK: 11e0adaee51c9edef35d6864ecfa927a8cf673cd
 
-COCOAPODS: 0.36.3
+COCOAPODS: 0.35.0
