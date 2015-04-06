@@ -1071,58 +1071,100 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g5C-2i-x9I">
-                                <rect key="frame" x="100" y="476" width="145" height="30"/>
+                                <rect key="frame" x="158" y="476" width="145" height="30"/>
+                                <color key="backgroundColor" red="0.16159193359999999" green="0.59588068179999998" blue="0.16244613869999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="111" id="KB0-Nq-hnN"/>
+                                    <constraint firstAttribute="height" constant="40" id="jTR-Ud-ZLN"/>
+                                </constraints>
                                 <state key="normal" title="Take Photo">
-                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="KB0-Nq-hnN"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <action selector="takePhoto:" destination="hc5-Ek-cXq" eventType="touchUpInside" id="aH1-Uc-FYh"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="coE-L9-aAw">
-                                <rect key="frame" x="100" y="28" width="400" height="400"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="coE-L9-aAw" secondAttribute="height" multiplier="1:1" id="s4V-tZ-rxa"/>
-                                </constraints>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oMl-n4-evx">
-                                <rect key="frame" x="75" y="514" width="184" height="30"/>
-                                <state key="normal" title="Add Photo From Library">
-                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="365" y="476" width="184" height="30"/>
+                                <color key="backgroundColor" red="0.16159193359999999" green="0.59588068179999998" blue="0.16244613869999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="223" id="8KW-VT-hNp"/>
+                                    <constraint firstAttribute="height" constant="40" id="Tkf-7E-26e"/>
+                                </constraints>
+                                <state key="normal" title="Add From Library">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="8KW-VT-hNp"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <action selector="attachLibraryPhoto:" destination="hc5-Ek-cXq" eventType="touchUpInside" id="qnj-eb-zpj"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ajF-1i-DSS">
-                                <rect key="frame" x="404" y="476" width="96" height="30"/>
-                                <state key="normal" title="Attach Photo">
-                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="303" y="534" width="96" height="30"/>
+                                <color key="backgroundColor" red="0.16159193359999999" green="0.59588068179999998" blue="0.16244613869999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="62m-Fq-udo"/>
+                                    <constraint firstAttribute="width" constant="223" id="TLP-Dk-HIF"/>
+                                </constraints>
+                                <state key="normal" title="Continue">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="attachPhoto:" destination="hc5-Ek-cXq" eventType="touchUpInside" id="rM9-Xg-ZBb"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="coE-L9-aAw">
+                                <rect key="frame" x="220" y="20" width="294" height="447"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="coE-L9-aAw" secondAttribute="height" multiplier="1:1.5" id="s4V-tZ-rxa"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="oMl-n4-evx" firstAttribute="width" secondItem="g5C-2i-x9I" secondAttribute="width" id="3Ph-0D-csD"/>
                             <constraint firstItem="g5C-2i-x9I" firstAttribute="leading" secondItem="coE-L9-aAw" secondAttribute="leading" id="3an-bV-0vp"/>
                             <constraint firstItem="g5C-2i-x9I" firstAttribute="centerX" secondItem="oMl-n4-evx" secondAttribute="centerX" constant="5.5" id="8LQ-GK-Bld"/>
                             <constraint firstAttribute="centerY" secondItem="coE-L9-aAw" secondAttribute="centerY" constant="72" id="FHA-jU-Ayi"/>
+                            <constraint firstItem="g5C-2i-x9I" firstAttribute="leading" secondItem="dnT-Dc-lw2" secondAttribute="leadingMargin" id="Fmf-rd-9un"/>
+                            <constraint firstItem="coE-L9-aAw" firstAttribute="top" secondItem="Vsb-ty-qx7" secondAttribute="bottom" constant="10" id="G3k-TV-dug"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ajF-1i-DSS" secondAttribute="trailing" constant="10" id="GCq-xX-K0s"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="oMl-n4-evx" secondAttribute="trailing" id="J0Q-Wv-B5o"/>
                             <constraint firstItem="coE-L9-aAw" firstAttribute="trailing" secondItem="ajF-1i-DSS" secondAttribute="trailing" id="Jeq-uR-Wkn"/>
+                            <constraint firstAttribute="centerX" secondItem="ajF-1i-DSS" secondAttribute="centerX" id="OSt-G9-0d6"/>
                             <constraint firstItem="h02-2G-cnd" firstAttribute="top" secondItem="g5C-2i-x9I" secondAttribute="bottom" constant="94" id="QdO-aD-Og6"/>
-                            <constraint firstItem="ajF-1i-DSS" firstAttribute="top" secondItem="coE-L9-aAw" secondAttribute="bottom" constant="48" id="bDN-CM-HKE"/>
-                            <constraint firstItem="oMl-n4-evx" firstAttribute="top" secondItem="g5C-2i-x9I" secondAttribute="bottom" constant="8" id="ksf-hn-WBY"/>
+                            <constraint firstItem="ajF-1i-DSS" firstAttribute="top" secondItem="g5C-2i-x9I" secondAttribute="bottom" constant="10" id="RpV-4d-A8c"/>
+                            <constraint firstItem="oMl-n4-evx" firstAttribute="leading" secondItem="g5C-2i-x9I" secondAttribute="trailing" constant="10" id="XVR-5z-kKS"/>
+                            <constraint firstItem="ajF-1i-DSS" firstAttribute="top" secondItem="coE-L9-aAw" secondAttribute="bottom" constant="20" id="bDN-CM-HKE"/>
+                            <constraint firstItem="h02-2G-cnd" firstAttribute="top" secondItem="ajF-1i-DSS" secondAttribute="bottom" constant="10" id="cs3-Gb-SUc"/>
+                            <constraint firstItem="oMl-n4-evx" firstAttribute="top" secondItem="g5C-2i-x9I" secondAttribute="bottom" constant="10" id="ksf-hn-WBY"/>
                             <constraint firstAttribute="centerX" secondItem="coE-L9-aAw" secondAttribute="centerX" id="lHz-d2-qOK"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="coE-L9-aAw" secondAttribute="trailing" constant="84" id="lrE-BX-kne"/>
-                            <constraint firstItem="g5C-2i-x9I" firstAttribute="top" secondItem="coE-L9-aAw" secondAttribute="bottom" constant="48" id="mOS-cT-qqq"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="coE-L9-aAw" secondAttribute="trailing" id="lrE-BX-kne"/>
+                            <constraint firstItem="g5C-2i-x9I" firstAttribute="top" secondItem="coE-L9-aAw" secondAttribute="bottom" constant="20" id="mOS-cT-qqq"/>
+                            <constraint firstItem="oMl-n4-evx" firstAttribute="top" secondItem="coE-L9-aAw" secondAttribute="bottom" constant="20" id="t3c-fQ-vs6"/>
+                            <constraint firstItem="ajF-1i-DSS" firstAttribute="leading" secondItem="g5C-2i-x9I" secondAttribute="trailing" constant="20" id="yTo-m9-4r5"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="FHA-jU-Ayi"/>
+                                <exclude reference="Jeq-uR-Wkn"/>
+                                <exclude reference="lrE-BX-kne"/>
+                                <exclude reference="3an-bV-0vp"/>
+                                <exclude reference="8LQ-GK-Bld"/>
+                                <exclude reference="ksf-hn-WBY"/>
                                 <exclude reference="QdO-aD-Og6"/>
+                                <exclude reference="GCq-xX-K0s"/>
+                                <exclude reference="bDN-CM-HKE"/>
+                                <exclude reference="yTo-m9-4r5"/>
                             </mask>
                         </variation>
                     </view>
@@ -1983,12 +2025,12 @@
         <image name="up_arrow.png" width="201" height="123"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="vX5-LY-AnJ"/>
-        <segue reference="S6U-8h-8D6"/>
-        <segue reference="efr-3O-uBy"/>
-        <segue reference="8iV-l4-1e5"/>
-        <segue reference="wZB-RO-bmV"/>
+        <segue reference="q96-Cz-bw7"/>
         <segue reference="nKq-Dx-Km7"/>
+        <segue reference="iPy-fI-sIB"/>
+        <segue reference="S6U-8h-8D6"/>
+        <segue reference="fa7-S4-vYW"/>
+        <segue reference="wZB-RO-bmV"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>
