@@ -56,16 +56,12 @@ class SellerListingViewController: UIViewController, UITableViewDelegate{
         selectedListing = tableDataSource.currentListings[indexPath.row]
         self.performSegueWithIdentifier("SellerViewCell", sender: nil)
     }
-	
-	// Called when the "Sell" button is clicked. Transitions to the screen for adding
-	// user payment information or the screen to create a listing
-	@IBAction func onSellButtonClicked(sender: AnyObject) {
-		//TODO: Add a check to see if payment info has been added
-		// if no payment info, go to payment info page, if payment info has already been
-		// given, transition to the listing creation page.
+
+	// Called when the "New Listing" button is clicked. Transitions to the screen to create
+	// a new listing
+	@IBAction func onNewListingButtonClicked(sender: AnyObject) {
 		self.performSegueWithIdentifier("StartListingCreation", sender: nil)
 	}
-
 	//Called when segmented controller for active/inactive listings is clicked
 	@IBAction func onListingSegmentedControllerClicked(sender: AnyObject) {
 		self.viewActiveListings = !self.viewActiveListings
