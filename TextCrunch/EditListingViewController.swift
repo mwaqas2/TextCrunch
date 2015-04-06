@@ -47,6 +47,7 @@ class EditListingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "pentagon.png")!)
         if (self.listing != nil){
             setListingElements()
             self.numberofbooks = 1

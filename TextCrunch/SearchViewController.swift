@@ -58,7 +58,8 @@ class SearchViewController: UIViewController, UITableViewDataSource, CLLocationM
     
 	override func viewDidLoad() {
 		super.viewDidLoad()
-        
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "pentagon.png")!)
+
         Gps.startTracking()
         listingTableView.reloadData()
 		
@@ -68,7 +69,10 @@ class SearchViewController: UIViewController, UITableViewDataSource, CLLocationM
 		
 		self.view.backgroundColor = UIColor(patternImage: UIImage(named: "pentagon.png")!)
 	}
-	
+    
+    override func viewDidAppear(animated: Bool) {
+        self.navigationController?.topViewController.navigationItem.title = "Marketplace"
+    }
 	
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()

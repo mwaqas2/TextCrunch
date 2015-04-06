@@ -27,4 +27,59 @@ class Negotiation : PFObject, PFSubclassing {
 	class func parseClassName() -> String! {
 		return "Negotiation"
 	}
+    
+    override init() {
+        super.init()
+    }
+    
+    convenience init(email: String, stripeId: String = "") {
+        self.init()
+        
+        self.completed = false
+        self.isNewBuyerMessage = false
+        self.isNewSellerMessage = false
+        self.purchaseRequested = false
+        self.paymentCaptureUrl = ""
+    }
+    
+    func sendMessage(content: String, receiever: User, receiverIsSeller: Bool) {
+        
+        let pushQuery = PFInstallation.query()
+        
+        let message = Message()
+        message.sender = UserController.getCurrentUser()
+        message.content = content
+        message.receiver = receiever
+        
+        // Update the negotiation's new message flags
+        if receiverIsSeller {
+            
+            self.isNewSellerMessage = true
+            
+            pushQuery.whereKey("selleruser", equalTo: self.seller)
+            
+            if (self.messages.count == 0) {
+                self.isNewBuyerMessage = false
+            }
+            
+        } else {
+            
+            self.isNewBuyerMessage = true
+            
+            pushQuery.whereKey("buyeruser", equalTo: self.buyer)
+            
+            if (self.messages.count == 0) {
+                self.isNewSellerMessage = false
+            }
+        }
+        
+        self.messages.append(message)
+        self.save()
+        
+        // send push notification
+        let push = PFPush()
+        push.setQuery(pushQuery)
+        push.setMessage(self.listing.book.title + ": " + content)
+        push.sendPushInBackground()
+    }
 }

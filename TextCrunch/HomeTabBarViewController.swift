@@ -12,9 +12,10 @@ class HomeTabBarViewController: UITabBarController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "pentagon.png")!)
 		// Hide the back navigation button in this view
 		self.navigationItem.setHidesBackButton(true, animated: true)
+    
 	}
 	
 	override func didReceiveMemoryWarning() {

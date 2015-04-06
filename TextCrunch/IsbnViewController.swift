@@ -23,6 +23,8 @@ class IsbnViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "pentagon.png")!)
+        self.navigationController?.topViewController.navigationItem.title = "Scan ISBN"
         Gps.startTracking()
         showISBNWarning(true)
     }
