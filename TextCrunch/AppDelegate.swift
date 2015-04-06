@@ -23,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Book.registerSubclass()
         Parse.setApplicationId("bd9pkI4jclGiICv1xM5YQiDfsxUD4SB4c3jQvBHW", clientKey: "nyPjmHMJAacFQVQSg7CTxZj3DWp1pKW9RBVsOPGK")
         PFFacebookUtils.initializeFacebook()
+        PFTwitterUtils.initializeWithConsumerKey("9f2K1GV53otgmz9gaJIVLwYUm", consumerSecret: "mWWg7MVFQpsNhmgDAvLBfbFSCFmYwunkZi0FekvFCz8gxgpzeM")
         
         PayPalMobile.initializeWithClientIdsForEnvironments([PayPalEnvironmentSandbox: "AT_zVdLhRy_IwuNqTMBFPVImboNVwfR6CJXhIp62uSMHcsZhKD3X6y9d-Snn3i679gA8M8yP5Qk32ZEa"])
         

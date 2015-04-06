@@ -16,6 +16,9 @@ class LoginViewController: UIViewController {
 	// Labels for login warnings
 	@IBOutlet weak var emailWarningLabel: UILabel!
 	@IBOutlet weak var passwordWarningLabel: UILabel!
+    
+    
+    @IBOutlet var twitterLoginButton: UIButton!
 	
 	let permissions = ["public_profile"]
     override func viewDidLoad() {
@@ -47,18 +50,16 @@ class LoginViewController: UIViewController {
 	}
 
     @IBAction func facebookLogin(sender: AnyObject) {
-        
         //Remember users are not synced!
-        PFFacebookUtils.logInWithPermissions(self.permissions, { (user: PFUser!, error: NSError!) -> Void in if user == nil { NSLog("Click the button to log in") }
-            
-        else if user.isNew {
+        PFFacebookUtils.logInWithPermissions(self.permissions,
+                {
+                    (user: PFUser!, error: NSError!) -> Void in if user == nil { NSLog("Click the button to log in")
+                } else if user.isNew {
             FBRequest.requestForMe()?.startWithCompletionHandler({(connection:FBRequestConnection!, result:AnyObject!, error:NSError!) in
                 
                 if(error != nil){
                     println("Error Getting ME: \(error)");
-                }
-                else{
-                    
+                }else{
                     if result.email != nil {
                         user.email = result.email
                         user.username = result.email
@@ -68,13 +69,11 @@ class LoginViewController: UIViewController {
                     } //if email!=nil
                 }
             })
-            
         } else {
             FBRequest.requestForMe()?.startWithCompletionHandler({(connection:FBRequestConnection!, result:AnyObject!, error:NSError!) in
                 if(error != nil){
                     println("Error Getting ME: \(error)");
-                }
-                else{
+                }else{
                     if result.email != nil {
                         user.email = result.email
                         user.username = result.email
@@ -87,6 +86,34 @@ class LoginViewController: UIViewController {
             }); //FBrequest
             }
         }) //PFfacebookutils
+    }
+    
+    
+    @IBAction func twitterLogin(sender: AnyObject) {
+        println("Twitter login button pressed.")
+        PFTwitterUtils.logInWithBlock{
+            (user: PFUser!, error: NSError!) -> Void in
+            if let user = user {
+                if user.isNew {
+                    //User just created an account with twitter.
+                    println("User is new login successful.")
+                } else {
+                    //An existing user logged in with twitter.
+                    println("User already exists login successful.")
+                }
+            self.performSegueWithIdentifier("SearchLogin", sender: nil)
+            } else {
+                //The user login failed.
+                println("Twitter user login failed.")
+                println("Error code: \(error.code)\nError Description: \(error.description)")
+                if(error.code == -1012){
+                    var alert = UIAlertController(title: "Twitter Login Error", message: "Error: You cannot log in to TxtCrunch with a Twitter account unless you already have a Twitter account linked tho this device.",
+                        preferredStyle: UIAlertControllerStyle.Alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
+                    self.presentViewController(alert, animated: true, completion: nil)
+                }
+            }
+        }
     }
 
     
