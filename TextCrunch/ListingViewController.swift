@@ -40,11 +40,7 @@ class ListingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //let gradientLayer = BackgroundSetting()
-        //let background = gradientLayer.background()
-        //background.frame=self.view.bounds
-        //self.view.layer.insertSublayer(background, atIndex: 0)
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "pentagon.png")!)
 		
 		self.navigationItem.setHidesBackButton(isNewListing, animated: true)
         var listingSeller : User = listing.seller.fetchIfNeeded() as User
@@ -86,15 +82,15 @@ class ListingViewController: UIViewController {
     
     // Populates labels with book/listing data
     func setListingElements() {
-        bookTitle.text = "Title: \(listing.book.title)"
-        author.text = "Author: \(listing.book.authorName)"
-        publisher.text = "Publisher: \(listing.book.publisherName)"
-        language.text = "Language: \(listing.book.language)"
-        edition.text = "Edition: \(listing.book.editionInfo)"
-        isbn13.text = "ISBN: \(listing.book.isbn13)"
+        bookTitle.text = listing.book.title
+        author.text = listing.book.authorName
+        publisher.text = listing.book.publisherName
+        language.text = listing.book.language
+        edition.text = listing.book.editionInfo
+        isbn13.text = listing.book.isbn13
         
         price.text = String(listing.price)
-        condition.text = "Condition: \(listing.condition)"
+        //condition.text = "Condition: \(listing.condition)"
         comments.text = listing.comment
     }
 	
