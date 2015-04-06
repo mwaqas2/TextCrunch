@@ -38,7 +38,7 @@ class ListingViewController: UIViewController {
 	var isNewListing = false
     var userIsSeller : Bool = false
     var backButton : UIBarButtonItem?
-    var overrideBackButton : Bool = true
+    var overrideBackButton : Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()

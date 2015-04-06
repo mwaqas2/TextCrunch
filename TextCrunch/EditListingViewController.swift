@@ -248,6 +248,7 @@ class EditListingViewController: UIViewController {
             // Hide back bar to avoid resubmission of listing
             // Only occurs when ViewListing is accessed via EditListing
             svc.listing = self.listing
+            svc.overrideBackButton = true
 			svc.isNewListing = isNewListing
         } else if (segue.identifier == "deleteListing") {
             var svc = segue.destinationViewController as IsbnViewController;

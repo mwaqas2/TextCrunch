@@ -299,7 +299,6 @@ class SearchViewController: UIViewController, UITableViewDataSource, CLLocationM
 			var svc = segue.destinationViewController as ListingViewController;
 			// Hide back bar to avoid resubmission of listing
 			// Only occurs when ViewListing is accessed via EditListing
-            svc.overrideBackButton = false
 			svc.listing = selectedListing
 			svc.isNewListing = false
 		}
