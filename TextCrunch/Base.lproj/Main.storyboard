@@ -229,7 +229,7 @@
                                 </constraints>
                                 <state key="normal" title="New Listing"/>
                                 <connections>
-                                    <segue destination="r4H-4r-PAO" kind="show" identifier="StartListingCreation" id="leQ-JD-Azf"/>
+                                    <action selector="onNewListingButtonClicked:" destination="Jcp-rd-Ddg" eventType="touchUpInside" id="KXu-qQ-D5F"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" bounces="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="81" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="XsW-w1-Nm9">
@@ -326,6 +326,7 @@
                         <outlet property="listingTable" destination="XsW-w1-Nm9" id="66W-RE-rgf"/>
                         <outlet property="sellButton" destination="t29-oD-SO0" id="id1-aJ-Aqa"/>
                         <segue destination="4KC-lZ-eN4" kind="show" identifier="SellerViewCell" id="8yV-Do-QqQ"/>
+                        <segue destination="z2C-fy-ceA" kind="push" identifier="StartListingCreation" id="ksO-l1-Dtu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="INT-gM-pUQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -619,72 +620,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wj7-Ns-UZD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-236.25" y="405.63380281690138"/>
-        </scene>
-        <!--BillingInfoViewController-->
-        <scene sceneID="hvu-h5-OA6">
-            <objects>
-                <viewController title="BillingInfoViewController" id="r4H-4r-PAO" customClass="BillingInfoViewController" customModule="TextCrunch" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="LMC-gl-3a5"/>
-                        <viewControllerLayoutGuide type="bottom" id="GfO-hu-pdr"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ayH-pp-Z4C">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sCQ-EU-xmC">
-                                <rect key="frame" x="49" y="451" width="503" height="35"/>
-                                <color key="backgroundColor" red="0.96281171089999995" green="0.32081731299999999" blue="0.32051487299999998" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="mIH-T1-l24"/>
-                                </constraints>
-                                <state key="normal" title="Create">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="z2C-fy-ceA" kind="show" id="iPy-fI-sIB"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Full Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sTm-Im-BFv">
-                                <rect key="frame" x="0.0" y="177" width="600" height="30"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Payment Information" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SAD-d4-jak">
-                                <rect key="frame" x="0.0" y="113" width="600" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="U0f-1g-1ed">
-                                <rect key="frame" x="0.0" y="221" width="600" height="30"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="sTm-Im-BFv" secondAttribute="trailing" id="0AF-Y0-QoB"/>
-                            <constraint firstItem="sTm-Im-BFv" firstAttribute="leading" secondItem="SAD-d4-jak" secondAttribute="leading" id="6gB-89-aj4"/>
-                            <constraint firstItem="sTm-Im-BFv" firstAttribute="trailing" secondItem="SAD-d4-jak" secondAttribute="trailing" id="Dlz-ME-CGY"/>
-                            <constraint firstItem="U0f-1g-1ed" firstAttribute="top" secondItem="sTm-Im-BFv" secondAttribute="bottom" constant="14" id="IRi-FZ-7Le"/>
-                            <constraint firstItem="U0f-1g-1ed" firstAttribute="leading" secondItem="ayH-pp-Z4C" secondAttribute="leading" id="al1-P8-5Wf"/>
-                            <constraint firstItem="sCQ-EU-xmC" firstAttribute="leading" secondItem="ayH-pp-Z4C" secondAttribute="leadingMargin" constant="33" id="fNX-SO-6JJ"/>
-                            <constraint firstItem="GfO-hu-pdr" firstAttribute="top" secondItem="sCQ-EU-xmC" secondAttribute="bottom" constant="65" id="jnB-Kf-nLj"/>
-                            <constraint firstItem="sTm-Im-BFv" firstAttribute="leading" secondItem="U0f-1g-1ed" secondAttribute="leading" id="jry-HN-Ymt"/>
-                            <constraint firstItem="sTm-Im-BFv" firstAttribute="top" secondItem="SAD-d4-jak" secondAttribute="bottom" constant="34" id="kku-OM-ZAU"/>
-                            <constraint firstItem="sCQ-EU-xmC" firstAttribute="centerX" secondItem="U0f-1g-1ed" secondAttribute="centerX" id="lms-l0-WSi"/>
-                            <constraint firstItem="SAD-d4-jak" firstAttribute="top" secondItem="LMC-gl-3a5" secondAttribute="bottom" constant="49" id="uYm-VD-Sz6"/>
-                            <constraint firstItem="sTm-Im-BFv" firstAttribute="trailing" secondItem="U0f-1g-1ed" secondAttribute="trailing" id="ypd-do-Zi9"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="zhx-27-OYs"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Nvt-6H-grt" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1627.5" y="1248.5915492957745"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="c5E-Fg-VBA">
@@ -2001,12 +1936,12 @@
         <image name="up_arrow.png" width="201" height="123"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="fa7-S4-vYW"/>
-        <segue reference="8yV-Do-QqQ"/>
         <segue reference="q96-Cz-bw7"/>
         <segue reference="nKq-Dx-Km7"/>
         <segue reference="Kr0-Hl-yHk"/>
-        <segue reference="iPy-fI-sIB"/>
+        <segue reference="8yV-Do-QqQ"/>
+        <segue reference="ksO-l1-Dtu"/>
+        <segue reference="fa7-S4-vYW"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>
