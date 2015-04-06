@@ -44,7 +44,9 @@ class Negotiation : PFObject, PFSubclassing {
     
     func sendMessage(content: String, receiever: User, receiverIsSeller: Bool) {
         
-        var message = Message()
+        let pushQuery = PFInstallation.query()
+        
+        let message = Message()
         message.sender = UserController.getCurrentUser()
         message.content = content
         message.receiver = receiever
@@ -54,6 +56,8 @@ class Negotiation : PFObject, PFSubclassing {
             
             self.isNewSellerMessage = true
             
+            pushQuery.whereKey("selleruser", equalTo: self.seller)
+            
             if (self.messages.count == 0) {
                 self.isNewBuyerMessage = false
             }
@@ -61,6 +65,8 @@ class Negotiation : PFObject, PFSubclassing {
         } else {
             
             self.isNewBuyerMessage = true
+            
+            pushQuery.whereKey("buyeruser", equalTo: self.buyer)
             
             if (self.messages.count == 0) {
                 self.isNewSellerMessage = false
@@ -70,5 +76,10 @@ class Negotiation : PFObject, PFSubclassing {
         self.messages.append(message)
         self.save()
         
+        // send push notification
+        let push = PFPush()
+        push.setQuery(pushQuery)
+        push.setMessage(self.listing.book.title + ": " + content)
+        push.sendPushInBackground()
     }
 }

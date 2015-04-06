@@ -34,7 +34,6 @@ class MessageTableViewCell: UITableViewCell {
 class NegotiationViewController : UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, PayPalFuturePaymentDelegate {
     
     let installation = PFInstallation.currentInstallation()
-    let pushQuery = PFInstallation.query()
     
 	@IBOutlet weak var messageTextView: UITextView!
 	@IBOutlet weak var sendButton: UIButton!
