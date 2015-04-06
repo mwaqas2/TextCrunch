@@ -9,16 +9,13 @@
 import UIKit
 
 class SellerListingViewController: UIViewController, UITableViewDelegate{
-
-    @IBOutlet weak var inactiveSwitch: UISwitch!//Switch for displaying inactive listings.
-    @IBOutlet weak var activeSwitch: UISwitch!//Switch for displaying active listings.
-    @IBOutlet weak var listingTable: UITableView!//The table view used to display all of the listings.
+	@IBOutlet weak var listingTable: UITableView!//The table view used to display all of the listings.
     @IBOutlet weak var sellButton: UIButton!//The button used to segue the user to a screen for selling listings.
     
     var tableDataSource : SellerListingViewTableDataSource//Custom class implementing UITableViewDataSource.
     var selectedListing: Listing?//The listing a user presses on. When pressed the user is segued to the listing screen for this listing.
-    
-    
+	var viewActiveListings: Bool = true
+	
     required init(coder aDecoder: NSCoder) {
         selectedListing = nil
         tableDataSource = SellerListingViewTableDataSource()
@@ -38,6 +35,11 @@ class SellerListingViewController: UIViewController, UITableViewDelegate{
         self.navigationItem.leftBarButtonItem = nil
         self.listingTable!.dataSource = tableDataSource
         self.listingTable!.delegate = self
+		
+		self.viewActiveListings = true
+		self.tableDataSource.modifyDisplay(.ACTIVE)
+		
+		self.view.backgroundColor = UIColor(patternImage: UIImage(named: "pentagon.png")!)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -63,22 +65,19 @@ class SellerListingViewController: UIViewController, UITableViewDelegate{
 		// given, transition to the listing creation page.
 		self.performSegueWithIdentifier("StartListingCreation", sender: nil)
 	}
-    
-    //Called when either the inactiveSwitch or activeSwitch are pressed.
-    @IBAction func switchClicked(sender: AnyObject) {
-        if inactiveSwitch.on && activeSwitch.on{
-            tableDataSource.modifyDisplay(.ALL)
-        } else if inactiveSwitch.on && !activeSwitch.on{
-            tableDataSource.modifyDisplay(.INACTIVE)
-        } else if !inactiveSwitch.on && activeSwitch.on {
-            tableDataSource.modifyDisplay(.ACTIVE)
-        } else if !inactiveSwitch.on && !activeSwitch.on{
-            tableDataSource.modifyDisplay(.NONE)
-        }
-        listingTable.reloadData()
-    }
-    
-    
+
+	//Called when segmented controller for active/inactive listings is clicked
+	@IBAction func onListingSegmentedControllerClicked(sender: AnyObject) {
+		self.viewActiveListings = !self.viewActiveListings
+		
+		if self.viewActiveListings {
+			self.tableDataSource.modifyDisplay(.ACTIVE)
+		} else {
+			self.tableDataSource.modifyDisplay(.INACTIVE)
+		}
+		
+		listingTable.reloadData()
+	}
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if (segue.identifier == "SellerViewCell") {
             var svc = segue.destinationViewController as ListingViewController;
