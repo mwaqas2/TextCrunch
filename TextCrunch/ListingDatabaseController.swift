@@ -65,6 +65,26 @@ class ListingDatabaseController {
 		}
 	}
     
+    class func latestListings(callback: ([Listing]) -> Void) {
+        var query = PFQuery(className: "Listing")
+        query.orderByDescending("createdAt")
+        query.limit = 20
+        query.includeKey("book")
+        query.includeKey("seller")
+        query.includeKey("buyer")
+        query.findObjectsInBackgroundWithBlock {
+            (objects: [AnyObject]!, error: NSError!) -> Void in
+            if error == nil {
+
+                // The query succeeded. Pass the matching Listings to the callback function.
+                if let listings = objects as? [Listing] {
+                    
+                    callback(listings)
+                }
+            }
+        }
+    }
+    
     //Sets the passed in listing to be inactive.
     class func setInactive(listing: Listing) -> Void{
         listing.isActive = false
