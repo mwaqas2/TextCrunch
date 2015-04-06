@@ -34,7 +34,6 @@ class MessageTableViewCell: UITableViewCell {
 class NegotiationViewController : UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, PayPalFuturePaymentDelegate {
     
     let installation = PFInstallation.currentInstallation()
-    let pushQuery = PFInstallation.query()
     
 	@IBOutlet weak var messageTextView: UITextView!
 	@IBOutlet weak var sendButton: UIButton!
@@ -58,7 +57,7 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
+        
 		messageTextView.delegate = self
 		messageTableView.delegate = self
 		messageTableView.dataSource = self
@@ -80,17 +79,34 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
 
         var seller = listing.seller.fetchIfNeeded() as User
         userIsSeller = (seller.email == UserController.getCurrentUser().email)
-        if(userIsSeller) {
+        
+        // setup state buttons based on buyer/seller
+        if (self.negotiation.completed) {
+            
+            // if completed, basically just disable everything, and put this
+            // screen into read-only mode
+            self.purchaseButton.hidden = true
+            self.holdButton.hidden = true
+            self.soldButton.hidden = true
+            self.sendButton.hidden = true
+            self.messageTextView.hidden = true
+            
+        }
+        else if(self.userIsSeller) {
+            
             purchaseButton.hidden = true
             holdButton.hidden = false
             soldButton.hidden = false
+            
             if(listing.isOnHold){
                 holdButton.setTitle("Remove Hold", forState: .Normal)
             } else {
                 holdButton.setTitle("Hold", forState: .Normal)
             }
+            
         }
 		else {
+            
             // show warning if on hold
 			buyerHoldWarningLabel.hidden = !listing.isOnHold
             
@@ -98,6 +114,7 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
             if (listing.isOnHold || self.negotiation.purchaseRequested) {
                 purchaseButton.hidden = true
             }
+            
 		}
 		
 		// Set navigation bar title
@@ -115,6 +132,11 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
 			getListingNegotiation()
 		}
         
+        // setup push notification queryables
+        installation["buyeruser"] = self.negotiation.buyer
+        installation["selleruser"] = self.negotiation.seller
+        installation.saveInBackground()
+        
         // Sets some handy sandbox defaults for PayPal
         config.forceDefaultsInSandbox = true
         config.sandboxUserPassword = "test1234"
@@ -126,15 +148,23 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
         config.merchantPrivacyPolicyURL = NSURL(string: "http://txtcrunch.com/privacy")
         config.merchantUserAgreementURL = NSURL(string: "http://txtcrunch.com/user-agreement")
         
-        timer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "updateNegotiationState:", userInfo: nil, repeats: true)
-        
-	updateNewMessageFlags()
+        updateNewMessageFlags()
 
         // DO THIS ALL LAST SO WE DON'T START ANYTHING BEFORE THE CONFIG IS ALL SETUP
-        if (self.userIsSeller && self.negotiation.purchaseRequested) {
-            
+        if (self.userIsSeller && self.negotiation.purchaseRequested && !self.negotiation.completed) {
             self.confirmSale()
+        }
         
+        // only turn on our update logic if the negotiation hasn't already been
+        // completed
+        if !self.negotiation.completed {
+            timer = NSTimer.scheduledTimerWithTimeInterval(
+                3,
+                target: self,
+                selector: "updateNegotiationState:",
+                userInfo: nil,
+                repeats: true
+            )
         }
 	}
 	
@@ -162,43 +192,24 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
 	
 	// Sends a message between users when the send button is pressed
 	@IBAction func onSendButtonClicked(sender: AnyObject) {
-		if !messageTextView.text.isEmpty {
-			var message = Message()
-			message.sender = UserController.getCurrentUser()
 		
-			if (UserController.getCurrentUser() == self.negotiation.seller) {
-				message.receiver = self.negotiation.buyer as User
-				installation["selleruser"] = self.negotiation.seller
-				installation["buyeruser"] = self.negotiation.buyer
-				installation.saveInBackground()
-			} else {
-				message.receiver = self.negotiation.seller as User
-				installation["buyeruser"] = self.negotiation.buyer
-				installation["selleruser"] = self.negotiation.seller
-				installation.saveInBackground()
-			}
+        if !messageTextView.text.isEmpty {
 		
-			// Update the negotiation's new message flags
-			if self.userIsSeller {
-				self.negotiation.isNewSellerMessage = true
-				if (self.negotiation.messages.count == 0) {
-					self.negotiation.isNewBuyerMessage = false
-				}
-			} else {
-				self.negotiation.isNewBuyerMessage = true
-				if (self.negotiation.messages.count == 0) {
-					self.negotiation.isNewSellerMessage = false
-				}
-			}
-			
-			message.content = messageTextView.text
-			self.negotiation.messages.append(message)
-			self.negotiation.save()
+            var receiver: User
+            
+            if self.userIsSeller {
+                receiver = self.negotiation.buyer
+            } else {
+                receiver = self.negotiation.seller
+            }
+            
+            self.negotiation.sendMessage(messageTextView.text, receiever: receiver, receiverIsSeller: self.userIsSeller)
 		
 			// Clear the textview when message is sent.
 			self.messageTextView.text = ""
 			self.messageTableView.reloadData()
 		}
+        
 	}
 	
     // Called via timer, in a perfect world we could scrap (pieces of) this for
@@ -220,15 +231,18 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
                 self.negotiation.purchaseRequested &&
                 resultNegotiation?.purchaseRequested == false
             ) {
-                self.paymentError("Seller rejected purchase request.")
+                self.paymentNotification("Seller rejected purchase request.")
             }
             
             // update with newest negotiation, TODO: perhaps check if this is dirty
             // or something so we don't end up in a bizarre state
             self.negotiation = resultNegotiation!
             
-            // TODO fix this, it's not being called
-            if (self.negotiation.completed == true) {
+            // Show a success notification if either party is in the negotiation
+            // screen when everything is finalized
+            if (resultNegotiation?.completed == true &&
+                self.negotiation.completed == false
+            ) {
                 self.notifySuccess()
             }
 		}
@@ -332,6 +346,7 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
+    // Handler when Buyer attempts to purchase a book
     @IBAction func onPurchaseButtonClicked(sender: AnyObject) {
         var alert = UIAlertController(
             title: "Confirm Purchase",
@@ -394,12 +409,12 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
         
         var alert = UIAlertController(
             title: "Confirm Sale",
-            message: "Are you sure you'd like to sell this textbook?",
+            message: "The buyer would like to buy your book. Would you like to continue?",
             preferredStyle: UIAlertControllerStyle.Alert
         );
         
         alert.addAction(UIAlertAction(
-            title: "Yes",
+            title: "Sell",
             style: UIAlertActionStyle.Default,
             handler: {
                 action in switch action.style {
@@ -407,11 +422,12 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
 
                     if (PaymentManager.capturePayment(self.negotiation)) {
                         self.notifySuccess()
+                        self.negotiation.sendMessage("Purchase Approved By Seller", receiever: self.negotiation.buyer, receiverIsSeller: false)
                     } else {
                         self.negotiation.purchaseRequested = false
                         self.negotiation.paymentCaptureUrl = ""
                         self.negotiation.save()
-                        self.paymentError("Error completing payment. Get buyer to initiate again.")
+                        self.paymentNotification("Error completing payment. Buyer must initiate again.")
                     }
                     
                     break
@@ -475,13 +491,16 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
                 if (self.convertPaymentCodeToToken(response)) {
                     self.doubleCheckBuyer()
                 } else {
-                    self.paymentError("Error approving PayPal account. Try again.")
+                    self.paymentNotification("Error approving PayPal account. Try again.")
                 }
                 
             })
     }
     
+    // presents one final buyer alert confirmation before setting up the PayPal
+    // Payment that the seller can confirm
     func doubleCheckBuyer() {
+        
         var alert = UIAlertController(
             title: "Confirm Purchase",
             message: "Are you sure you'd like to proceeed?",
@@ -503,8 +522,11 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
                         self.negotiation.save()
                         self.purchaseButton.hidden = true
                         
+                        self.negotiation.sendMessage("Buyer Purchase Requested", receiever: self.negotiation.seller, receiverIsSeller: true)
+                        self.paymentNotification("Waiting on seller purchase confirmation.")
+                        
                     } else {
-                        self.paymentError("Error approving purchase. Please try again.")
+                        self.paymentNotification("Error approving purchase. Please try again.")
                     }
                     
                     break
@@ -540,8 +562,9 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
     
     // Called when a user cancels authorizing a payment
     func payPalFuturePaymentDidCancel(futurePaymentViewController: PayPalFuturePaymentViewController!) {
-        println("PayPal Future Payment Authorizaiton Canceled")
+        
         futurePaymentViewController?.dismissViewControllerAnimated(true, completion: nil)
+        
     }
 	
 	// Update the negotiation's new messages flags
@@ -587,10 +610,12 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
 		updateNewMessageFlags()
 	}
     
-    func paymentError(message: String) {
+    // Use to display various payment notifications that don't require complex
+    // handling
+    func paymentNotification(message: String) {
 
         var alert = UIAlertController(
-            title: "Payment Error",
+            title: "Payment Notification",
             message: message,
             preferredStyle: UIAlertControllerStyle.Alert
         );
@@ -602,6 +627,5 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
         ))
         
         self.presentViewController(alert, animated: true, completion: nil)
-
     }
 }
