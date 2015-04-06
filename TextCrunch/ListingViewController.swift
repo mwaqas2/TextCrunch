@@ -38,13 +38,17 @@ class ListingViewController: UIViewController {
 	var isNewListing = false
     var userIsSeller : Bool = false
     var backButton : UIBarButtonItem?
+    var overrideBackButton : Bool = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "pentagon.png")!)
-        self.backButton = UIBarButtonItem(title: "Home", style: .Plain, target: self, action:"segueHome:")
+        if(overrideBackButton){
+            self.backButton = UIBarButtonItem(title: "Home", style: .Plain, target: self, action:"segueHome:")
+            self.navigationItem.setLeftBarButtonItem(backButton, animated: true)
+        }
+        
 		//self.navigationItem.setHidesBackButton(isNewListing, animated: true)
-        self.navigationItem.setLeftBarButtonItem(backButton, animated: true)
         var listingSeller : User = listing.seller.fetchIfNeeded() as User
         userIsSeller = (UserController.getCurrentUser().email == listingSeller.email)
         initializeViews()
