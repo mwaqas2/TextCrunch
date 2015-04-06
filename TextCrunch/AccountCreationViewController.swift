@@ -29,6 +29,8 @@ class AccountCreationViewController: UIViewController {
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "pentagon.png")!)
         // Init all warning labels as hidden
         showAccountInfoWarning(UserController.UCCode.CREATESUCCESS, isEmailValid: true, isPassValid: true, isConfirmPassValid: true)
+		
+		self.view.backgroundColor = UIColor(patternImage: UIImage(named: "pentagon.png")!)
     }
     
     override func didReceiveMemoryWarning() {

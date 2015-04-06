@@ -80,8 +80,10 @@ public class UserController {
     //Returns true if the deletion was successful and false if it was not.
     class func deleteCurrentUserAccount() -> Bool{
         var currentUser = PFUser.currentUser()
-        var result = currentUser.delete()
-        return result
+		if currentUser != nil {
+			return currentUser.delete()
+		}
+        return false
     }
     
     //Logs out the current user.

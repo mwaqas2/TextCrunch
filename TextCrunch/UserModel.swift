@@ -16,7 +16,6 @@ class User : PFUser, PFSubclassing {
         super.init()
     }
     
-    
     convenience init(email: String, stripeId: String = "") {
         self.init()
         self.email = email

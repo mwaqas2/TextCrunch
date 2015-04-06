@@ -22,14 +22,29 @@ class HomeTabBarViewController: UITabBarController {
 		// Dispose of any resources that can be recreated.
 	}
 	
-	
+	// When the logout button is clicked logs the current user out of their account
+	// and returns the user to the login screen.
 	/*
-	// MARK: - Navigation
-	// In a storyboard-based application, you will often want to do a little preparation before navigation
-	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-	// Get the new view controller using segue.destinationViewController.
-	// Pass the selected object to the new view controller.
-	}
-	*/
+	var test = 1
+	test = 2
 	
+	
+	
+	*/
+
+	@IBAction func onLogoutButtonClicked(sender: AnyObject) {
+	
+		// Log the current user out
+		if UserController.logoutCurrentUser() {
+			// If the user has been logged out, segue to the login screen
+			self.performSegueWithIdentifier("LogoutSegue", sender: nil)
+		}
+	}
+	
+	// Called before seguing to another view
+	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+		if (segue.identifier == "LogoutSegue") {
+			//var mailboxViewController = MailboxViewController as MailboxViewController
+		}
+	}
 }
