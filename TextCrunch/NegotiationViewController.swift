@@ -182,8 +182,14 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
 	// Check if negotiation with this seller and listingId exsts
 	// If not, create a new negotiation
 	func getListingNegotiation() {
-		// Search for Negotiations who's buyer matches that of the current listing
-		var resultNegotiation: Negotiation? = NegotiationDatabaseController.getListingNegotiation(listing, isSeller: self.userIsSeller)
+        // Search for Negotiations who's buyer matches that of the current listing
+        var resultNegotiation: Negotiation? = nil
+        
+        if self.userIsSeller {
+            resultNegotiation = NegotiationDatabaseController.getListingNegotiation(listing, isSeller: self.userIsSeller, buyer: negotiation.buyer, seller: negotiation.seller)
+        } else {
+            resultNegotiation = NegotiationDatabaseController.getListingNegotiation(listing, isSeller: self.userIsSeller, buyer: UserController.getCurrentUser(), seller: listing.seller as User)
+        }
 		
 		if (resultNegotiation != nil) {
 			self.negotiation = resultNegotiation!
@@ -216,7 +222,14 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
     // push notifications
 	func updateNegotiationState(timer:NSTimer!) {
         
-		var resultNegotiation: Negotiation? = NegotiationDatabaseController.getListingNegotiation(listing, isSeller: self.userIsSeller)
+        // Search for Negotiations who's buyer matches that of the current listing
+        var resultNegotiation: Negotiation? = nil
+        
+        if self.userIsSeller {
+            resultNegotiation = NegotiationDatabaseController.getListingNegotiation(listing, isSeller: self.userIsSeller, buyer: negotiation.buyer, seller: negotiation.seller)
+        } else {
+            resultNegotiation = NegotiationDatabaseController.getListingNegotiation(listing, isSeller: self.userIsSeller, buyer: UserController.getCurrentUser(), seller: listing.seller as User)
+        }
 		
 		if (resultNegotiation != nil) {
             // ask the seller if they'd like to sell if the buyer has offered
