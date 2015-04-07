@@ -10,7 +10,7 @@ import Foundation
 
 class Listing : PFObject, PFSubclassing {
     @NSManaged var book: Book
-    @NSManaged var price: Int
+    @NSManaged var price: Float
     @NSManaged var seller: PFObject
     @NSManaged var buyer: PFObject?
 	@NSManaged var condition: Int

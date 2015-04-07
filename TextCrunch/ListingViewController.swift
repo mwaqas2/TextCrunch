@@ -98,7 +98,7 @@ class ListingViewController: UIViewController {
         language.text = listing.book.language
         edition.text = listing.book.editionInfo
         isbn13.text = listing.book.isbn13
-        price.text = String(listing.price)
+        price.text = NSString(format: "%.2f", listing.price)
 		
 		var conditionText: String = "Condition: "
 		var bookCondition: Int = listing.condition

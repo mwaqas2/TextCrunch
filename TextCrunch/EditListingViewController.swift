@@ -92,7 +92,7 @@ class EditListingViewController: UIViewController {
     
     //Sets text labels according to the book attached to the current listing.
     func setListingElements() {
-        price.text = String(listing.price)
+        price.text = NSString(format: "%.2f", listing.price)
         comments.text = listing.comment
         bookTitle!.text = listing.book.title
         author!.text = listing.book.authorName
@@ -100,7 +100,7 @@ class EditListingViewController: UIViewController {
         language!.text = listing.book.language
         edition!.text = listing.book.editionInfo
         isbn13!.text = listing.book.isbn13
-        price!.text = String(listing.price)
+        price!.text = NSString(format: "%.2f", listing.price)
         comments!.text = listing.comment
         if(listing.image != nil){
             bookImageButton.setImage(UIImage(data: listing.image!.getData()), forState: .Normal)
@@ -208,9 +208,9 @@ class EditListingViewController: UIViewController {
         var priceLen = countElements(price.text)
         saveTextFieldsToModel()
         if (priceLen > 0){
-            self.listing.price = price.text.toInt()!
-        }else{
-            self.listing.price = 0
+            self.listing.price = (price.text as NSString).floatValue
+        } else {
+            self.listing.price = 0.00
         }
         self.listing.comment = self.comments.text
 		if self.isNewListing {
