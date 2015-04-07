@@ -30,6 +30,7 @@ class EditListingViewController: UIViewController {
 	@IBOutlet weak var locationText: UITextField!
     
     @IBOutlet weak var updateButton: UIButton!
+	@IBOutlet weak var conditionSlider: UISlider!
     
     var bookISBN:String!
     var listing:Listing!
@@ -39,6 +40,7 @@ class EditListingViewController: UIViewController {
     var json: JSON!
     var numberofbooks = 0
 	var isNewListing = false //Set to true before segue if a new listing is being editted rather than one that already exists.
+	var condition: Int = 2
     
     var GpsAddr = GpsAddress()
     var lat_float = 53.544389
@@ -180,6 +182,7 @@ class EditListingViewController: UIViewController {
         self.listing.isActive = true
         self.listing.isOnHold = false
         self.listing.image = PFFile(name: "image", data: self.data)
+		self.listing.condition = condition
         setBookElements(book)
         updateButton.hidden = true
     }
@@ -231,6 +234,7 @@ class EditListingViewController: UIViewController {
         
         var point:PFGeoPoint = PFGeoPoint(location: CLLocation(latitude: self.lat_float, longitude: self.long_float)!)
         self.listing["location"] = point
+		self.listing.condition = condition
         self.listing.save()
 		
 		//self.navigationController?.popViewControllerAnimated(true)//This causes the user to be stuck in a loop between the take picture screen and edit listing screen.
@@ -259,7 +263,14 @@ class EditListingViewController: UIViewController {
             svc.listing = self.listing
         }
     }
-    
+
+	
+	@IBAction func onSliderChanged(sender: UISlider) {
+		var currentValue = Int(sender.value)
+		self.condition = currentValue
+		
+		self.conditionSlider.setValue(Float(currentValue), animated: true)
+	}
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
