@@ -15,7 +15,6 @@ class ListingViewController: UIViewController {
     @IBOutlet var imageButton: UIButton!
 
     @IBOutlet weak var price: UILabel!//UILabel for the selected Listing's price.
-    @IBOutlet weak var condition: UILabel!//UILabel for the selected Listing's condition.
     @IBOutlet weak var bookTitle: UILabel!//UILabel for the selected Listing's title.
     @IBOutlet weak var author: UILabel!//UILabel for the selected Listing's authour.
     @IBOutlet weak var publisher: UILabel!//UILabel for the selected Listing's publisher.
@@ -23,6 +22,7 @@ class ListingViewController: UIViewController {
     @IBOutlet weak var isbn13: UILabel!//UILabel for the selected Listing's ISBN number.
     @IBOutlet weak var comments: UILabel!//UILabel for any comments attached to the Listing.
     @IBOutlet weak var language: UILabel!//UILbael for the language the book attached to the listing is in.
+	@IBOutlet weak var condition: UILabel!
     
     
     @IBOutlet weak var NegotiationButton: UIButton!
@@ -37,16 +37,22 @@ class ListingViewController: UIViewController {
     var data:NSData? = nil
 	var isNewListing = false
     var userIsSeller : Bool = false
+    var backButton : UIBarButtonItem?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "pentagon.png")!)
-		
-		self.navigationItem.setHidesBackButton(isNewListing, animated: true)
+        self.backButton = UIBarButtonItem(title: "Home", style: .Plain, target: self, action:"segueHome:")
+		//self.navigationItem.setHidesBackButton(isNewListing, animated: true)
+        self.navigationItem.setLeftBarButtonItem(backButton, animated: true)
         var listingSeller : User = listing.seller.fetchIfNeeded() as User
         userIsSeller = (UserController.getCurrentUser().email == listingSeller.email)
         initializeViews()
         setListingElements()
+    }
+    
+    func segueHome(sender: UIBarButtonItem){
+        self.performSegueWithIdentifier("toSellerHomepage", sender: nil)
     }
     
     //Sets up the state of the non-label views of the ListingView screen.
@@ -88,9 +94,18 @@ class ListingViewController: UIViewController {
         language.text = listing.book.language
         edition.text = listing.book.editionInfo
         isbn13.text = listing.book.isbn13
-        
         price.text = String(listing.price)
-        //condition.text = "Condition: \(listing.condition)"
+		
+		var conditionText: String = "Condition: "
+		var bookCondition: Int = listing.condition
+		if (bookCondition > 2) {
+			conditionText += "New"
+		} else if (bookCondition > 1) {
+			conditionText += "Average"
+		} else {
+			conditionText += "Poor"
+		}
+        condition.text = conditionText
         comments.text = listing.comment
     }
 	

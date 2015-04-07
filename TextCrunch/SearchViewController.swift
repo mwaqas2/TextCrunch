@@ -67,7 +67,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, CLLocationM
 		currentSortMode = SortMode.None
 		updateSortArrows()
 		
-		self.view.backgroundColor = UIColor(patternImage: UIImage(named: "pentagon.png")!)
+        ListingDatabaseController.latestListings(updateListings)
 	}
     
     override func viewDidAppear(animated: Bool) {
@@ -96,7 +96,7 @@ class SearchViewController: UIViewController, UITableViewDataSource, CLLocationM
 		// Set the cell's text and image
 		cell.titleLabel?.text = listingBook.title
 		cell.authorLabel?.text = "by " + listingBook.authorName
-		cell.priceLabel?.text = "$ " + String(listing.price)
+		cell.priceLabel?.text = "$" + String(listing.price)
         if(listing.image != nil){
             cell.listingImage.image = UIImage(data: listing.image!.getData())
         } else {
