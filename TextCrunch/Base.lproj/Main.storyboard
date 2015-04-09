@@ -1902,17 +1902,6 @@
                                     </mask>
                                 </variation>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jvh-17-Fq9" userLabel="Send">
-                                <rect key="frame" x="558" y="498" width="35" height="38"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="38" id="HKr-lk-wG9"/>
-                                    <constraint firstAttribute="width" constant="35" id="yw4-eF-xs7"/>
-                                </constraints>
-                                <state key="normal" title="Button" image="send_arrow.png"/>
-                                <connections>
-                                    <action selector="onSendButtonClicked:" destination="oYe-ts-w60" eventType="touchUpInside" id="N0r-vc-Kfk"/>
-                                </connections>
-                            </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LEl-xu-Dq9">
                                 <rect key="frame" x="361" y="447" width="223" height="30"/>
                                 <color key="backgroundColor" red="0.197212999" green="0.59588068179999998" blue="0.00069249357800000005" alpha="1" colorSpace="calibratedRGB"/>
@@ -1973,6 +1962,17 @@
                                     <action selector="toggleListingHold:" destination="oYe-ts-w60" eventType="touchUpInside" id="6fI-Ic-XQz"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jvh-17-Fq9" userLabel="Send">
+                                <rect key="frame" x="558" y="498" width="35" height="38"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38" id="HKr-lk-wG9"/>
+                                    <constraint firstAttribute="width" constant="35" id="yw4-eF-xs7"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="send_arrow.png"/>
+                                <connections>
+                                    <action selector="onSendButtonClicked:" destination="oYe-ts-w60" eventType="touchUpInside" id="N0r-vc-Kfk"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="ww3-II-FHo" firstAttribute="top" secondItem="deT-1o-Ugy" secondAttribute="bottom" constant="8" symbolic="YES" id="45I-4q-6dE"/>
@@ -1989,7 +1989,7 @@
                             <constraint firstItem="5g5-3C-TQb" firstAttribute="width" secondItem="LEl-xu-Dq9" secondAttribute="width" id="Mfv-5E-NBY"/>
                             <constraint firstItem="LEl-xu-Dq9" firstAttribute="trailing" secondItem="ww3-II-FHo" secondAttribute="trailing" id="QO5-r4-KvA"/>
                             <constraint firstItem="5g5-3C-TQb" firstAttribute="leading" secondItem="fap-7U-Hhf" secondAttribute="leadingMargin" id="Sao-gU-F0g"/>
-                            <constraint firstAttribute="bottom" secondItem="Kgs-aO-NN4" secondAttribute="bottom" constant="20" symbolic="YES" id="Sik-n2-IX8"/>
+                            <constraint firstAttribute="bottom" secondItem="Kgs-aO-NN4" secondAttribute="bottom" constant="300" id="Sik-n2-IX8"/>
                             <constraint firstItem="Kgs-aO-NN4" firstAttribute="top" secondItem="ww3-II-FHo" secondAttribute="bottom" constant="61" id="Tbe-zj-3Qw"/>
                             <constraint firstItem="LEl-xu-Dq9" firstAttribute="top" secondItem="CQ1-OX-fSc" secondAttribute="bottom" constant="1" id="V8Z-Ha-snb"/>
                             <constraint firstItem="Jvh-17-Fq9" firstAttribute="leading" secondItem="Kgs-aO-NN4" secondAttribute="trailing" constant="13" id="VQP-Q2-x64"/>
@@ -1997,7 +1997,7 @@
                             <constraint firstItem="LEl-xu-Dq9" firstAttribute="leading" secondItem="5g5-3C-TQb" secondAttribute="trailing" constant="5" id="bpx-dI-fns"/>
                             <constraint firstItem="D26-zh-b3c" firstAttribute="centerY" secondItem="CQ1-OX-fSc" secondAttribute="centerY" id="dki-pn-umP"/>
                             <constraint firstItem="ww3-II-FHo" firstAttribute="trailing" secondItem="fap-7U-Hhf" secondAttribute="trailingMargin" id="dxq-0b-G9n"/>
-                            <constraint firstItem="N09-Y5-2DX" firstAttribute="top" secondItem="Jvh-17-Fq9" secondAttribute="bottom" constant="32" id="fWD-Kc-Bx7"/>
+                            <constraint firstItem="N09-Y5-2DX" firstAttribute="top" secondItem="Jvh-17-Fq9" secondAttribute="bottom" constant="300" id="fWD-Kc-Bx7"/>
                             <constraint firstItem="CQ1-OX-fSc" firstAttribute="top" secondItem="ww3-II-FHo" secondAttribute="bottom" constant="1" id="hhE-ch-hVX"/>
                             <constraint firstItem="CQ1-OX-fSc" firstAttribute="centerX" secondItem="ww3-II-FHo" secondAttribute="centerX" id="lgu-EP-HYL"/>
                             <constraint firstItem="Kgs-aO-NN4" firstAttribute="top" secondItem="D26-zh-b3c" secondAttribute="bottom" constant="5" id="vW2-xU-ug7"/>
@@ -2072,12 +2072,12 @@
         <image name="up_arrow.png" width="201" height="123"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="wZB-RO-bmV"/>
         <segue reference="LSY-0b-oyb"/>
-        <segue reference="q96-Cz-bw7"/>
+        <segue reference="3f1-9h-r6A"/>
         <segue reference="nKq-Dx-Km7"/>
         <segue reference="ksO-l1-Dtu"/>
         <segue reference="efr-3O-uBy"/>
-        <segue reference="wZB-RO-bmV"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>
