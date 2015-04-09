@@ -63,7 +63,8 @@ class EditListingViewController: UIViewController {
             self.listing.book.isbn13 = bookISBN
             setListingElements()
         }
-            //self.bookimage!.frame = CGRectMake(31,31,136,140)
+		
+		self.conditionSlider.setValue(Float(condition), animated: true)
     }
     
     
@@ -102,6 +103,7 @@ class EditListingViewController: UIViewController {
         isbn13!.text = listing.book.isbn13
         price!.text = NSString(format: "%.2f", listing.price)
         comments!.text = listing.comment
+		condition = listing.condition
         if(listing.image != nil){
             bookImageButton.setImage(UIImage(data: listing.image!.getData()), forState: .Normal)
             imageExist = true
@@ -164,8 +166,6 @@ class EditListingViewController: UIViewController {
             var largethumbnail = toString(bookdictionary["imageLinks"]["thumbnail"])
             let url = NSURL(string:"\(smallthumbnail)")
             self.data = NSData(contentsOfURL: url!) //make sure your image in this url does exist
-            //self.bookimage!.frame = CGRectMake(31,31,136,140)
-            //self.bookimage.image = UIImage(data: data!)
             self.bookImageButton.setImage(UIImage(data: data!), forState: .Normal)
         }
         var book = Book()
