@@ -135,11 +135,12 @@ class LoginViewController: UIViewController {
 			var retVal = UserController.loginUser(emailTextField.text, password: passwordTextField.text)
 			loginSuccessful = (retVal.code == UserController.UCCode.LOGINSUCCESS)
 			
-			isValidEmail = loginSuccessful
-			isValidPass = loginSuccessful
-			
 			if (retVal.code == UserController.UCCode.LOGINFAIL_PASSWORD) {
 				isValidPass = false
+			}
+			else {
+				// The invalid email warning is the default warning when the user cannot login
+				isValidEmail = false
 			}
 			
 		}

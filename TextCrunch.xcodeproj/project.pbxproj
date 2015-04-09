@@ -35,7 +35,6 @@
 		324AD26F1AA77ED100A6FE26 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324AD26E1AA77ED100A6FE26 /* MessageModel.swift */; };
 		324AD2711AA77F2100A6FE26 /* NegotiationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324AD2701AA77F2100A6FE26 /* NegotiationModel.swift */; };
 		324AD2731AA77FC500A6FE26 /* send_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 324AD2721AA77FC500A6FE26 /* send_arrow.png */; };
-		32922C3A1A9E237100CEC74C /* ListingDatabaseControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32922C391A9E237100CEC74C /* ListingDatabaseControllerTests.swift */; };
 		32C890AF1A7FC70A00196E47 /* SellerListingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C890AE1A7FC70A00196E47 /* SellerListingViewController.swift */; };
 		32E4E3C81ACEEEF700130E98 /* Exit-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 32E4E3C71ACEEEF700130E98 /* Exit-32.png */; };
 		32E4E3D11ACF364A00130E98 /* User Male2-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 32E4E3CF1ACF364A00130E98 /* User Male2-25.png */; };
@@ -126,7 +125,6 @@
 		324AD26E1AA77ED100A6FE26 /* MessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
 		324AD2701AA77F2100A6FE26 /* NegotiationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NegotiationModel.swift; sourceTree = "<group>"; };
 		324AD2721AA77FC500A6FE26 /* send_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = send_arrow.png; sourceTree = "<group>"; };
-		32922C391A9E237100CEC74C /* ListingDatabaseControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListingDatabaseControllerTests.swift; sourceTree = "<group>"; };
 		32C890AE1A7FC70A00196E47 /* SellerListingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SellerListingViewController.swift; sourceTree = "<group>"; };
 		32E4E3C71ACEEEF700130E98 /* Exit-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Exit-32.png"; sourceTree = "<group>"; };
 		32E4E3CF1ACF364A00130E98 /* User Male2-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "User Male2-25.png"; sourceTree = "<group>"; };
@@ -307,7 +305,6 @@
 				18B489A81A82DE2F00541D06 /* UserControllerTests.swift */,
 				535A39321A870BC000D3F01B /* BookModelTests.swift */,
 				535A393D1A874C0A00D3F01B /* ListingModelTests.swift */,
-				32922C391A9E237100CEC74C /* ListingDatabaseControllerTests.swift */,
 				655DEF941A8415D200931A3B /* Supporting Files */,
 			);
 			path = TextCrunchTests;
@@ -593,7 +590,6 @@
 				18B312CE1A8432F7009EF22B /* TwitterUserController.swift in Sources */,
 				18B312CD1A8432F3009EF22B /* FBUserController.swift in Sources */,
 				18B312CB1A8432ED009EF22B /* ListingModel.swift in Sources */,
-				32922C3A1A9E237100CEC74C /* ListingDatabaseControllerTests.swift in Sources */,
 				18B312CC1A8432F0009EF22B /* GoogleUserController.swift in Sources */,
 				535A39331A870BC000D3F01B /* BookModelTests.swift in Sources */,
 				535A39361A871EFC00D3F01B /* BookModel.swift in Sources */,
