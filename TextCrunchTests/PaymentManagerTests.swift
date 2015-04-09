@@ -18,7 +18,7 @@ class PaymentManagerTests: XCTestCase {
     var buyerEmail = "me@derekdowling.com"
     var buyerPW = "test1234"
     
-    var sellerEmail = "me-buyer2@derekdowling.com"
+    var sellerEmail = "me@derekdowling.com"
     var sellerPW = "test4567"
     
     var buyer: PFUser!
@@ -36,22 +36,22 @@ class PaymentManagerTests: XCTestCase {
         
         var query = User.query()
         query.whereKey("email", equalTo:buyerEmail)
-        buyer = query.findObjects().first as PFUser
+        buyer = query.findObjects().first as User
         
         print(buyer)
         
         var query2 = User.query()
         query2.whereKey("email", equalTo:sellerEmail)
-        seller = query2.findObjects().first as PFUser
+        seller = query2.findObjects().first as User
         
         var bookQ = PFQuery(className:"Book")
-        var book = bookQ.getObjectWithId("lVuQZZ9NKQ") as Book
+        var book = bookQ.getObjectWithId("gR493QRK6g") as Book
         
         listing = Listing()
         listing.buyer = buyer
         listing.seller = seller
         listing.book = book
-        listing.price = 20
+        listing.price = 20.00
         listing.save()
         
         negotiation = Negotiation()

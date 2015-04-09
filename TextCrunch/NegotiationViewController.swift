@@ -475,6 +475,12 @@ class NegotiationViewController : UIViewController, UITableViewDataSource, UITab
     // authorization and then prepares a prepareCharge
     func prepareBuyer() {
         
+        // Make sure that we're persisting a new negotiation before any payment
+        // stuff goes down
+        if self.negotiation.isDirty() {
+            self.negotiation.save()
+        }
+        
         PayPalMobile.preconnectWithEnvironment(PayPalEnvironmentSandbox)
         
         var buyer: User? = negotiation.listing.buyer?.fetchIfNeeded() as? User

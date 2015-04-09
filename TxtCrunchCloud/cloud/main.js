@@ -219,6 +219,7 @@ Parse.Cloud.define("prepareCharge", function (request, response) {
         var bookTitle = negotiation.get("listing").get("book").get("title");
         description = "Purchase for " + bookTitle;
 
+
         return refreshAccessToken(
             negotiation.get("buyer").get("buyerRefreshToken")
         );
