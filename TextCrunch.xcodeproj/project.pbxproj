@@ -56,7 +56,6 @@
 		535A39461A8D938400D3F01B /* image_placeholder.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 535A39451A8D938400D3F01B /* image_placeholder.jpg */; };
 		53F8E5CE1A85DFC600A5D10E /* BookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F8E5CC1A85DFC600A5D10E /* BookModel.swift */; };
 		560869C41A8A51B300630C64 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560869C31A8A51B300630C64 /* Background.swift */; };
-		560869C61A8A522600630C64 /* BillingInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560869C51A8A522600630C64 /* BillingInfoViewController.swift */; };
 		560869C81A8A524F00630C64 /* ListingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560869C71A8A524F00630C64 /* ListingViewController.swift */; };
 		560869CA1A8A527B00630C64 /* EditListingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560869C91A8A527B00630C64 /* EditListingViewController.swift */; };
 		560869CC1A8A529800630C64 /* IsbnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560869CB1A8A529800630C64 /* IsbnViewController.swift */; };
@@ -143,7 +142,6 @@
 		535A39451A8D938400D3F01B /* image_placeholder.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image_placeholder.jpg; sourceTree = "<group>"; };
 		53F8E5CC1A85DFC600A5D10E /* BookModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookModel.swift; sourceTree = "<group>"; };
 		560869C31A8A51B300630C64 /* Background.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
-		560869C51A8A522600630C64 /* BillingInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillingInfoViewController.swift; sourceTree = "<group>"; };
 		560869C71A8A524F00630C64 /* ListingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListingViewController.swift; sourceTree = "<group>"; };
 		560869C91A8A527B00630C64 /* EditListingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditListingViewController.swift; sourceTree = "<group>"; };
 		560869CB1A8A529800630C64 /* IsbnViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IsbnViewController.swift; sourceTree = "<group>"; };
@@ -249,7 +247,6 @@
 				32C890AE1A7FC70A00196E47 /* SellerListingViewController.swift */,
 				32E6E0F31A84599400292B7A /* AccountCreationViewController.swift */,
 				658FCFFC1A64789E004D056D /* LoginViewController.swift */,
-				560869C51A8A522600630C64 /* BillingInfoViewController.swift */,
 				560869C71A8A524F00630C64 /* ListingViewController.swift */,
 				560869C91A8A527B00630C64 /* EditListingViewController.swift */,
 				560869CB1A8A529800630C64 /* IsbnViewController.swift */,
@@ -607,7 +604,6 @@
 				32ECF1E31A9D63CD00F65DA5 /* ListingDatabaseController.swift in Sources */,
 				18B4899F1A7D66E000541D06 /* GoogleUserController.swift in Sources */,
 				18B489A71A82D7F300541D06 /* ListingModel.swift in Sources */,
-				560869C61A8A522600630C64 /* BillingInfoViewController.swift in Sources */,
 				656F7C711AC53D8F003A5507 /* PaymentManager.swift in Sources */,
 				53F8E5CE1A85DFC600A5D10E /* BookModel.swift in Sources */,
 				560869C81A8A524F00630C64 /* ListingViewController.swift in Sources */,
